@@ -198,8 +198,6 @@ export default function SongsDatabase() {
       
       setIsEditModalOpen(false);
       setEditingSong(null);
-      
-      alert('Song saved successfully!');
     } catch (error) {
       console.error('Error saving song:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
