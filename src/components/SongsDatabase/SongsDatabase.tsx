@@ -202,8 +202,9 @@ export default function SongsDatabase() {
       alert('Song saved successfully!');
     } catch (error) {
       console.error('Error saving song:', error);
-      console.error('Error details:', error.message);
-      alert(`Failed to save song: ${error.message}. Please check the console for more details.`);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('Error details:', errorMessage);
+      alert(`Failed to save song: ${errorMessage}. Please check the console for more details.`);
     }
   };
 
