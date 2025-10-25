@@ -1,4 +1,8 @@
-const API_BASE = process.env.NODE_ENV === 'production' ? 'https://hook-club-app-245827946513.us-central1.run.app' : 'http://localhost:3000';
+// Determine API base URL based on environment
+const isProduction = process.env.NODE_ENV === 'production' || 
+                     process.env.VERCEL_ENV === 'production' ||
+                     window.location.hostname !== 'localhost';
+const API_BASE = isProduction ? 'https://hook-club-app-245827946513.us-central1.run.app' : 'http://localhost:3000';
 
 class ApiService {
   // Songs API
