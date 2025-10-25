@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import apiService from '@/services/api';
 
 // Song preference types
 type SongPreference = 'definitely' | 'maybe' | 'avoid';
@@ -197,9 +198,9 @@ export default function ReceptionForm() {
 
   // Load songs data
   useEffect(() => {
-    fetch('/data/songs.json')
-      .then(response => response.json())
-      .then(data => {
+    const loadSongs = async () => {
+      try {
+        const data = await apiService.getSongs();
         setFullSongsData(data);
         
         // Transform data for client use
@@ -218,8 +219,12 @@ export default function ReceptionForm() {
           });
         }
         setSongsData(transformedData);
-      })
-      .catch(error => console.error('Error loading songs:', error));
+      } catch (error) {
+        console.error('Error loading songs:', error);
+      }
+    };
+    
+    loadSongs();
   }, []);
 
   // Helper functions

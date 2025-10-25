@@ -98,7 +98,7 @@ export default function SongsDatabase() {
             inactiveSongs: data.songs.filter((song: any) => !song.isLive).length
           } 
         });
-        setFilteredSongs(data.songs);
+        // Don't set filteredSongs here - let the useEffect handle filtering
       } catch (err) {
         console.error('Error loading songs:', err);
         // Fallback to local file if API fails
@@ -106,7 +106,7 @@ export default function SongsDatabase() {
           .then(res => res.json())
           .then(data => {
             setSongsData(data);
-            setFilteredSongs(data.songs);
+            // Don't set filteredSongs here - let the useEffect handle filtering
           })
           .catch(fallbackErr => console.error('Error loading fallback songs:', fallbackErr));
       }

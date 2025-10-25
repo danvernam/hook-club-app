@@ -378,8 +378,7 @@ export default function ClientPortal() {
     const loadGuestArrivalSongs = async () => {
       setIsLoadingGuestArrival(true);
       try {
-        const response = await fetch('/data/songs.json');
-        const data = await response.json();
+        const data = await apiService.getSongs();
         const songsData = data.songs || [];
         setGuestArrivalSongs(songsData);
         
@@ -407,8 +406,7 @@ export default function ClientPortal() {
     const loadCocktailHourSongs = async () => {
       setIsLoadingCocktailHour(true);
       try {
-        const response = await fetch('/data/songs.json');
-        const data = await response.json();
+        const data = await apiService.getSongs();
         const songsData = data.songs || [];
         setCocktailHourSongs(songsData);
         
@@ -436,8 +434,7 @@ export default function ClientPortal() {
     const loadAfterPartySongs = async () => {
       setIsLoadingAfterParty(true);
       try {
-        const response = await fetch('/data/songs.json');
-        const data = await response.json();
+        const data = await apiService.getSongs();
         const songsData = data.songs || [];
         setAfterPartySongs(songsData);
         
@@ -465,8 +462,7 @@ export default function ClientPortal() {
     const loadReceptionSongs = async () => {
       setIsLoadingReception(true);
       try {
-        const response = await fetch('/data/songs.json');
-        const data = await response.json();
+        const data = await apiService.getSongs();
         const songsData = data.songs || [];
         setReceptionSongs(songsData);
         
