@@ -141,7 +141,7 @@ export default function ClientPortal() {
     url: string;
   }>>([]);
   
-  // Getting to know you form fields
+  // Form fields (no auto-save)
   const [howDidYouFindUs, setHowDidYouFindUs] = useState<string>('');
   const [whereDoYouLive, setWhereDoYouLive] = useState<string>('');
   const [whereAreYouFrom, setWhereAreYouFrom] = useState<string>('');
@@ -306,36 +306,11 @@ export default function ClientPortal() {
     "Cultural Music"
   ];
 
-  // Save client data to API
+  // Save only essential client data to API (song feedback)
   const saveClientData = async () => {
     try {
       const clientData = {
-        ceremonySongs,
-        guestArrivalRequests,
-        cocktailHourRequests,
-        receptionRequests,
-        receptionSpecialMoments,
-        afterPartySpecialMoments,
-        welcomePartySpecialMoments,
-        cocktailHourSpecialMoments,
-        afterPartySpecialRequests,
-        welcomePartySpecialRequests,
-        receptionSpecialRequests,
-        dinnerPlaylist,
-        dinnerPlaylistNotes,
-        playlistLinks,
-        // Getting to know you fields
-        howDidYouFindUs,
-        whereDoYouLive,
-        whereAreYouFrom,
-        whatDoYouDo,
-        whatDoesYourPartnerDo,
-        howDidYouMeet,
-        favoriteMemory,
-        whatMakesYouLaugh,
-        favoriteThingAboutPartner,
-        whatAreYouMostExcitedAbout,
-        anythingElse
+        guestArrivalSongPreferences
       };
       
       await apiService.updateClientData('default', clientData);
@@ -349,33 +324,8 @@ export default function ClientPortal() {
     const loadClientData = async () => {
       try {
         const data = await apiService.getClientData('default');
-        if (data.ceremonySongs) setCeremonySongs(data.ceremonySongs);
-        if (data.guestArrivalRequests) setGuestArrivalRequests(data.guestArrivalRequests);
-        if (data.cocktailHourRequests) setCocktailHourRequests(data.cocktailHourRequests);
-        if (data.receptionRequests) setReceptionRequests(data.receptionRequests);
-        if (data.receptionSpecialMoments) setReceptionSpecialMoments(data.receptionSpecialMoments);
-        if (data.afterPartySpecialMoments) setAfterPartySpecialMoments(data.afterPartySpecialMoments);
-        if (data.welcomePartySpecialMoments) setWelcomePartySpecialMoments(data.welcomePartySpecialMoments);
-        if (data.cocktailHourSpecialMoments) setCocktailHourSpecialMoments(data.cocktailHourSpecialMoments);
-        if (data.afterPartySpecialRequests) setAfterPartySpecialRequests(data.afterPartySpecialRequests);
-        if (data.welcomePartySpecialRequests) setWelcomePartySpecialRequests(data.welcomePartySpecialRequests);
-        if (data.receptionSpecialRequests) setReceptionSpecialRequests(data.receptionSpecialRequests);
-        if (data.dinnerPlaylist) setDinnerPlaylist(data.dinnerPlaylist);
-        if (data.dinnerPlaylistNotes) setDinnerPlaylistNotes(data.dinnerPlaylistNotes);
-        if (data.playlistLinks) setPlaylistLinks(data.playlistLinks);
-        
-        // Load getting to know you fields
-        if (data.howDidYouFindUs) setHowDidYouFindUs(data.howDidYouFindUs);
-        if (data.whereDoYouLive) setWhereDoYouLive(data.whereDoYouLive);
-        if (data.whereAreYouFrom) setWhereAreYouFrom(data.whereAreYouFrom);
-        if (data.whatDoYouDo) setWhatDoYouDo(data.whatDoYouDo);
-        if (data.whatDoesYourPartnerDo) setWhatDoesYourPartnerDo(data.whatDoesYourPartnerDo);
-        if (data.howDidYouMeet) setHowDidYouMeet(data.howDidYouMeet);
-        if (data.favoriteMemory) setFavoriteMemory(data.favoriteMemory);
-        if (data.whatMakesYouLaugh) setWhatMakesYouLaugh(data.whatMakesYouLaugh);
-        if (data.favoriteThingAboutPartner) setFavoriteThingAboutPartner(data.favoriteThingAboutPartner);
-        if (data.whatAreYouMostExcitedAbout) setWhatAreYouMostExcitedAbout(data.whatAreYouMostExcitedAbout);
-        if (data.anythingElse) setAnythingElse(data.anythingElse);
+        // Load only essential data (song feedback)
+        if (data.guestArrivalSongPreferences) setGuestArrivalSongPreferences(data.guestArrivalSongPreferences);
       } catch (error) {
         console.error('Error loading client data:', error);
       }
@@ -384,7 +334,7 @@ export default function ClientPortal() {
     loadClientData();
   }, []);
 
-  // Auto-save client data when it changes
+  // Auto-save only song feedback data when it changes
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       saveClientData();
@@ -392,32 +342,7 @@ export default function ClientPortal() {
 
     return () => clearTimeout(timeoutId);
   }, [
-    ceremonySongs,
-    guestArrivalRequests,
-    cocktailHourRequests,
-    receptionRequests,
-    receptionSpecialMoments,
-    afterPartySpecialMoments,
-    welcomePartySpecialMoments,
-    cocktailHourSpecialMoments,
-    afterPartySpecialRequests,
-    welcomePartySpecialRequests,
-    receptionSpecialRequests,
-    dinnerPlaylist,
-    dinnerPlaylistNotes,
-    playlistLinks,
-    // Getting to know you fields
-    howDidYouFindUs,
-    whereDoYouLive,
-    whereAreYouFrom,
-    whatDoYouDo,
-    whatDoesYourPartnerDo,
-    howDidYouMeet,
-    favoriteMemory,
-    whatMakesYouLaugh,
-    favoriteThingAboutPartner,
-    whatAreYouMostExcitedAbout,
-    anythingElse
+    guestArrivalSongPreferences
   ]);
 
   // Load songs from database
