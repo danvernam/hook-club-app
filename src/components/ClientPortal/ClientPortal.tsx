@@ -141,6 +141,19 @@ export default function ClientPortal() {
     url: string;
   }>>([]);
   
+  // Getting to know you form fields
+  const [howDidYouFindUs, setHowDidYouFindUs] = useState<string>('');
+  const [whereDoYouLive, setWhereDoYouLive] = useState<string>('');
+  const [whereAreYouFrom, setWhereAreYouFrom] = useState<string>('');
+  const [whatDoYouDo, setWhatDoYouDo] = useState<string>('');
+  const [whatDoesYourPartnerDo, setWhatDoesYourPartnerDo] = useState<string>('');
+  const [howDidYouMeet, setHowDidYouMeet] = useState<string>('');
+  const [favoriteMemory, setFavoriteMemory] = useState<string>('');
+  const [whatMakesYouLaugh, setWhatMakesYouLaugh] = useState<string>('');
+  const [favoriteThingAboutPartner, setFavoriteThingAboutPartner] = useState<string>('');
+  const [whatAreYouMostExcitedAbout, setWhatAreYouMostExcitedAbout] = useState<string>('');
+  const [anythingElse, setAnythingElse] = useState<string>('');
+  
   // Ceremony moment types
   const ceremonyMomentTypes = [
     'Ceremony Processional',
@@ -310,7 +323,19 @@ export default function ClientPortal() {
         receptionSpecialRequests,
         dinnerPlaylist,
         dinnerPlaylistNotes,
-        playlistLinks
+        playlistLinks,
+        // Getting to know you fields
+        howDidYouFindUs,
+        whereDoYouLive,
+        whereAreYouFrom,
+        whatDoYouDo,
+        whatDoesYourPartnerDo,
+        howDidYouMeet,
+        favoriteMemory,
+        whatMakesYouLaugh,
+        favoriteThingAboutPartner,
+        whatAreYouMostExcitedAbout,
+        anythingElse
       };
       
       await apiService.updateClientData('default', clientData);
@@ -338,6 +363,19 @@ export default function ClientPortal() {
         if (data.dinnerPlaylist) setDinnerPlaylist(data.dinnerPlaylist);
         if (data.dinnerPlaylistNotes) setDinnerPlaylistNotes(data.dinnerPlaylistNotes);
         if (data.playlistLinks) setPlaylistLinks(data.playlistLinks);
+        
+        // Load getting to know you fields
+        if (data.howDidYouFindUs) setHowDidYouFindUs(data.howDidYouFindUs);
+        if (data.whereDoYouLive) setWhereDoYouLive(data.whereDoYouLive);
+        if (data.whereAreYouFrom) setWhereAreYouFrom(data.whereAreYouFrom);
+        if (data.whatDoYouDo) setWhatDoYouDo(data.whatDoYouDo);
+        if (data.whatDoesYourPartnerDo) setWhatDoesYourPartnerDo(data.whatDoesYourPartnerDo);
+        if (data.howDidYouMeet) setHowDidYouMeet(data.howDidYouMeet);
+        if (data.favoriteMemory) setFavoriteMemory(data.favoriteMemory);
+        if (data.whatMakesYouLaugh) setWhatMakesYouLaugh(data.whatMakesYouLaugh);
+        if (data.favoriteThingAboutPartner) setFavoriteThingAboutPartner(data.favoriteThingAboutPartner);
+        if (data.whatAreYouMostExcitedAbout) setWhatAreYouMostExcitedAbout(data.whatAreYouMostExcitedAbout);
+        if (data.anythingElse) setAnythingElse(data.anythingElse);
       } catch (error) {
         console.error('Error loading client data:', error);
       }
@@ -367,7 +405,19 @@ export default function ClientPortal() {
     receptionSpecialRequests,
     dinnerPlaylist,
     dinnerPlaylistNotes,
-    playlistLinks
+    playlistLinks,
+    // Getting to know you fields
+    howDidYouFindUs,
+    whereDoYouLive,
+    whereAreYouFrom,
+    whatDoYouDo,
+    whatDoesYourPartnerDo,
+    howDidYouMeet,
+    favoriteMemory,
+    whatMakesYouLaugh,
+    favoriteThingAboutPartner,
+    whatAreYouMostExcitedAbout,
+    anythingElse
   ]);
 
   // Load songs from database
@@ -375,8 +425,7 @@ export default function ClientPortal() {
     const loadSongs = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch('/data/songs.json');
-        const data = await response.json();
+        const data = await apiService.getSongs();
         const songsData = data.songs || [];
         setSongs(songsData);
         
@@ -763,6 +812,8 @@ export default function ClientPortal() {
                       <label className="block text-sm font-medium text-gray-700 mb-2">How Did You Find The Hook Club Originally?</label>
                       <input
                         type="text"
+                        value={howDidYouFindUs}
+                        onChange={(e) => setHowDidYouFindUs(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                       />
                     </div>
@@ -770,6 +821,8 @@ export default function ClientPortal() {
                       <label className="block text-sm font-medium text-gray-700 mb-2">Where Do You Live?</label>
                       <input
                         type="text"
+                        value={whereDoYouLive}
+                        onChange={(e) => setWhereDoYouLive(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                       />
                     </div>
@@ -777,6 +830,8 @@ export default function ClientPortal() {
                       <label className="block text-sm font-medium text-gray-700 mb-2">Where Are You From Originally?</label>
                       <input
                         type="text"
+                        value={whereAreYouFrom}
+                        onChange={(e) => setWhereAreYouFrom(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                       />
                     </div>
@@ -784,6 +839,8 @@ export default function ClientPortal() {
                       <label className="block text-sm font-medium text-gray-700 mb-2">How Did You Meet?</label>
                       <input
                         type="text"
+                        value={howDidYouMeet}
+                        onChange={(e) => setHowDidYouMeet(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                       />
                     </div>
