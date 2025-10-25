@@ -132,6 +132,38 @@ export default function ClientPortal() {
   const [songPreferences, setSongPreferences] = useState<Record<string, 'definitely' | 'maybe' | 'avoid'>>({});
   const [isLoading, setIsLoading] = useState(false);
 
+  // Filter songs for Welcome Party (only show songs tagged for welcomeParty)
+  const filteredWelcomePartySongs = songs.filter(song => 
+    song.sections && song.sections.includes('welcomeParty')
+  );
+
+  // Filter songs for Guest Arrival (only show songs tagged for guestArrival)
+  const filteredGuestArrivalSongs = songs.filter(song => 
+    song.sections && song.sections.includes('guestArrival')
+  );
+
+  // Filter songs for Cocktail Hour (only show songs tagged for cocktailHour)
+  const filteredCocktailHourSongs = songs.filter(song => 
+    song.sections && song.sections.includes('cocktailHour')
+  );
+
+  // Filter songs for After Party (only show songs tagged for afterParty)
+  const filteredAfterPartySongs = songs.filter(song => 
+    song.sections && song.sections.includes('afterParty')
+  );
+
+  // Filter songs for Reception (only show songs tagged for reception)
+  const filteredReceptionSongs = songs.filter(song => 
+    song.sections && song.sections.includes('reception')
+  );
+
+  // Count total songs available in Reception genres
+  const totalReceptionSongs = songs.filter(song => 
+    song.genres && song.genres.some((g: any) => 
+      ['pop', 'disco', 'soul', 'rock', 'country', 'hip hop', 'r&b', 'jazz', 'folk', 'indie', 'alternative', 'punk'].includes(g.band)
+    )
+  ).length;
+
   // Mock recommended songs for special moments (this will eventually come from the database)
   const getRecommendedSongs = (momentType: string) => {
     const recommendations: Record<string, Array<{title: string, artist: string, videoUrl: string}>> = {
@@ -361,9 +393,9 @@ export default function ClientPortal() {
   }, [activeReceptionTab]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col items-center">
       {/* Header with Hook Club Branding */}
-      <div className="bg-white">
+      <div className="bg-white w-full">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           {/* Hook Club Logo */}
           <div className="text-center mb-8">
@@ -376,8 +408,7 @@ export default function ClientPortal() {
           
           {/* Planning Portal Title */}
           <div className="text-center mb-6">
-            <h1 className="text-2xl font-bold text-gray-900 mb-1">THE HOOK CLUB</h1>
-            <h2 className="text-sm font-medium text-gray-600 uppercase tracking-wider">PLANNING PORTAL</h2>
+            <h1 className="text-2xl font-bold text-gray-900 uppercase tracking-wider">PLANNING PORTAL</h1>
           </div>
           
           {/* Event Details */}
@@ -419,20 +450,20 @@ export default function ClientPortal() {
       {activeView === 'database' ? (
         <SongsDatabase />
       ) : (
-        <div>
+        <div className="w-full">
           {/* General Info Tabs */}
-          <div className="bg-gray-50 border-b border-gray-200">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center py-2">
-                <h3 className="text-sm font-medium text-gray-700 uppercase tracking-wider">General Info</h3>
-              </div>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full mb-8">
+            <div className="text-center py-1 mb-2">
+              <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider">General Info</h3>
+            </div>
+            <div className="bg-white border border-purple-200 rounded-lg p-2">
               <nav className="flex justify-center space-x-12">
                 <button
                   onClick={() => setActiveTab('services')}
                   className={`py-6 px-4 border-b-2 font-medium text-base ${
                     activeTab === 'services'
                       ? 'border-purple-500 text-purple-600'
-                      : 'border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300'
+                      : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                   }`}
                 >
                   Services
@@ -442,7 +473,7 @@ export default function ClientPortal() {
                   className={`py-6 px-4 border-b-2 font-medium text-base ${
                     activeTab === 'getting-to-know-you'
                       ? 'border-purple-500 text-purple-600'
-                      : 'border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300'
+                      : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                   }`}
                 >
                   Getting To Know You
@@ -452,7 +483,7 @@ export default function ClientPortal() {
                   className={`py-6 px-4 border-b-2 font-medium text-base ${
                     activeTab === 'preferences'
                       ? 'border-purple-500 text-purple-600'
-                      : 'border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300'
+                      : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                   }`}
                 >
                   Preferences
@@ -462,7 +493,7 @@ export default function ClientPortal() {
                   className={`py-6 px-4 border-b-2 font-medium text-base ${
                     activeTab === 'documents'
                       ? 'border-purple-500 text-purple-600'
-                      : 'border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300'
+                      : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                   }`}
                 >
                   Documents
@@ -472,18 +503,18 @@ export default function ClientPortal() {
           </div>
 
           {/* Music Planning Tabs */}
-          <div className="bg-white border-b border-gray-200">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center py-2">
-                <h3 className="text-sm font-medium text-gray-700 uppercase tracking-wider">Music Planning</h3>
-              </div>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="text-center py-1 mb-2">
+              <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider">Music Planning</h3>
+            </div>
+            <div className="bg-white border border-purple-200 rounded-lg p-2">
               <nav className="flex justify-center space-x-8">
                 <button
                   onClick={() => setActiveTab('welcome-party')}
                   className={`py-4 px-3 border-b-2 font-medium text-sm ${
                     activeTab === 'welcome-party'
                       ? 'border-pink-500 text-pink-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                      : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                   }`}
                 >
                   Welcome Party
@@ -493,7 +524,7 @@ export default function ClientPortal() {
                   className={`py-4 px-3 border-b-2 font-medium text-sm ${
                     activeTab === 'ceremony'
                       ? 'border-pink-500 text-pink-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                      : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                   }`}
                 >
                   Ceremony
@@ -503,7 +534,7 @@ export default function ClientPortal() {
                   className={`py-4 px-3 border-b-2 font-medium text-sm ${
                     activeTab === 'cocktail-hour'
                       ? 'border-pink-500 text-pink-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                      : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                   }`}
                 >
                   Cocktail Hour
@@ -513,7 +544,7 @@ export default function ClientPortal() {
                   className={`py-4 px-3 border-b-2 font-medium text-sm ${
                     activeTab === 'reception'
                       ? 'border-pink-500 text-pink-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                      : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                   }`}
                 >
                   Reception
@@ -523,7 +554,7 @@ export default function ClientPortal() {
                   className={`py-4 px-3 border-b-2 font-medium text-sm ${
                     activeTab === 'after-party'
                       ? 'border-pink-500 text-pink-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                      : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                   }`}
                 >
                   After Party
@@ -533,7 +564,7 @@ export default function ClientPortal() {
           </div>
 
           {/* Main Content */}
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
             {/* Services Content */}
             {activeTab === 'services' && (
               <div className="space-y-8">
@@ -546,21 +577,21 @@ export default function ClientPortal() {
                     <div className="space-y-4">
                       <div className="border-l-4 border-purple-500 pl-4">
                         <h4 className="font-medium text-gray-900">Welcome Party</h4>
-                        <p className="text-sm text-gray-600">Folk Band - Violin, Guitar, Bass, Drums</p>
+                        <p className="text-sm text-gray-600">Folk Band - Violin • Guitar • Bass • Drums</p>
                       </div>
                       <div className="border-l-4 border-purple-500 pl-4">
                         <h4 className="font-medium text-gray-900">Ceremony</h4>
-                        <p className="text-sm text-gray-600">Piano Trio - Violin, Cello, Piano</p>
+                        <p className="text-sm text-gray-600">Piano Trio - Violin • Cello • Piano</p>
                       </div>
                       <div className="border-l-4 border-purple-500 pl-4">
                         <h4 className="font-medium text-gray-900">Cocktail Hour</h4>
-                        <p className="text-sm text-gray-600">Jazz Quartet - Sax, Guitar, Bass, Drums</p>
+                        <p className="text-sm text-gray-600">Jazz Quartet - Sax • Guitar • Bass • Drums</p>
                       </div>
                     </div>
                     <div className="space-y-4">
                       <div className="border-l-4 border-purple-500 pl-4">
                         <h4 className="font-medium text-gray-900">Reception</h4>
-                        <p className="text-sm text-gray-600">15-Piece Full Band - 5 Vocalists, Violin, Trumpet, Sax, Trombone, Guitar, Keyboard, Synths, Bass, Percussion, Drums</p>
+                        <p className="text-sm text-gray-600">15-Piece Full Band - 5 Vocalists • Violin • Trumpet • Sax • Trombone • Guitar • Keyboard • Synths • Bass • Percussion • Drums</p>
                       </div>
                       <div className="border-l-4 border-purple-500 pl-4">
                         <h4 className="font-medium text-gray-900">After Party</h4>
@@ -577,11 +608,11 @@ export default function ClientPortal() {
                     <div className="space-y-4">
                       <div className="border-l-4 border-pink-500 pl-4">
                         <h4 className="font-medium text-gray-900">Welcome Party</h4>
-                        <p className="text-sm text-gray-600">PA System, Wash Lighting, 10 Uplights, Toast Mic</p>
+                        <p className="text-sm text-gray-600">PA System • Wash Lighting • 10 Uplights • Toast Mic</p>
                       </div>
                       <div className="border-l-4 border-pink-500 pl-4">
                         <h4 className="font-medium text-gray-900">Ceremony</h4>
-                        <p className="text-sm text-gray-600">Musician Amplification, Wireless Mic/Speakers</p>
+                        <p className="text-sm text-gray-600">Musician Amplification • Wireless Mic/Speakers</p>
                       </div>
                       <div className="border-l-4 border-pink-500 pl-4">
                         <h4 className="font-medium text-gray-900">Cocktail Hour</h4>
@@ -591,11 +622,11 @@ export default function ClientPortal() {
                     <div className="space-y-4">
                       <div className="border-l-4 border-pink-500 pl-4">
                         <h4 className="font-medium text-gray-900">Reception</h4>
-                        <p className="text-sm text-gray-600">PA System, Sound Engineer, Toast Mic, Wash Lighting, Dance Lighting Package</p>
+                        <p className="text-sm text-gray-600">PA System • Sound Engineer • Toast Mic • Wash Lighting • Dance Lighting Package</p>
                       </div>
                       <div className="border-l-4 border-pink-500 pl-4">
                         <h4 className="font-medium text-gray-900">After Party</h4>
-                        <p className="text-sm text-gray-600">PA System, Announcement Mic, 10 Uplights</p>
+                        <p className="text-sm text-gray-600">PA System • Announcement Mic • 10 Uplights</p>
                       </div>
                     </div>
                   </div>
@@ -900,7 +931,7 @@ export default function ClientPortal() {
                             <span className="text-purple-600">✓</span>
                           )}
                         </div>
-                        <p className="text-sm text-gray-600 mb-3">Bright, vibrant lighting with warm tones and colorful accents</p>
+                        <p className="text-sm text-gray-600 mb-3">White bandstands, white mic stands, white drum kit</p>
                         <button className="text-sm text-purple-600 hover:text-purple-800 font-medium">
                           View Examples
                         </button>
@@ -921,7 +952,7 @@ export default function ClientPortal() {
                             <span className="text-purple-600">✓</span>
                           )}
                         </div>
-                        <p className="text-sm text-gray-600 mb-3">Moody, dramatic lighting with deep shadows and atmospheric effects</p>
+                        <p className="text-sm text-gray-600 mb-3">Black bandstands, black mic stands, dark drum kit</p>
                         <button className="text-sm text-purple-600 hover:text-purple-800 font-medium">
                           View Examples
                         </button>
@@ -1161,8 +1192,8 @@ export default function ClientPortal() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Upload Moodboards/Wardrobe Instructions</label>
-                        <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                          <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                        <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                          <svg className="mx-auto h-8 w-8 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
                             <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                           <p className="mt-2 text-sm text-gray-600">Click to upload or drag and drop</p>
@@ -1188,16 +1219,16 @@ export default function ClientPortal() {
                   {/* Document Upload Form */}
                   <div className="space-y-4">
                     {/* File Upload */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Select File</label>
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                        <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                          <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <p className="mt-2 text-sm text-gray-600">Click to upload document or drag and drop</p>
-                        <p className="text-xs text-gray-500">PDF, DOC, DOCX up to 10MB</p>
-                      </div>
-                    </div>
+           <div>
+             <label className="block text-sm font-medium text-gray-700 mb-2">Select File</label>
+             <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+               <svg className="mx-auto h-8 w-8 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                 <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+               </svg>
+               <p className="mt-1 text-sm text-gray-600">Click to upload document or drag and drop</p>
+               <p className="text-xs text-gray-500">PDF, DOC, DOCX up to 10MB</p>
+             </div>
+           </div>
 
                     {/* Document Type */}
                     <div>
@@ -1254,69 +1285,8 @@ export default function ClientPortal() {
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4">Uploaded Documents</h3>
                   
-                  <div className="space-y-3">
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-3 mb-2">
-                            <input
-                              type="text"
-                              defaultValue="Wedding Timeline v1.0"
-                              className="flex-1 px-2 py-1 border border-gray-300 rounded text-sm font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            />
-                            <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Timeline</span>
-                          </div>
-                          <p className="text-sm text-gray-600">Uploaded 2 days ago</p>
-                        </div>
-                        <div className="flex space-x-2 ml-4">
-                          <button className="text-sm text-purple-600 hover:text-purple-800">View</button>
-                          <button className="text-sm text-purple-600 hover:text-purple-800">Download</button>
-                          <button className="text-sm text-red-600 hover:text-red-800">Delete</button>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-3 mb-2">
-                            <input
-                              type="text"
-                              defaultValue="Ceremony Script v1.0"
-                              className="flex-1 px-2 py-1 border border-gray-300 rounded text-sm font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            />
-                            <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Ceremony Script</span>
-                          </div>
-                          <p className="text-sm text-gray-600">Uploaded 1 day ago</p>
-                        </div>
-                        <div className="flex space-x-2 ml-4">
-                          <button className="text-sm text-purple-600 hover:text-purple-800">View</button>
-                          <button className="text-sm text-purple-600 hover:text-purple-800">Download</button>
-                          <button className="text-sm text-red-600 hover:text-red-800">Delete</button>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-3 mb-2">
-                            <input
-                              type="text"
-                              defaultValue="Moodboard Collection"
-                              className="flex-1 px-2 py-1 border border-gray-300 rounded text-sm font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            />
-                            <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Custom</span>
-                          </div>
-                          <p className="text-sm text-gray-600">Uploaded 3 days ago</p>
-                        </div>
-                        <div className="flex space-x-2 ml-4">
-                          <button className="text-sm text-purple-600 hover:text-purple-800">View</button>
-                          <button className="text-sm text-purple-600 hover:text-purple-800">Download</button>
-                          <button className="text-sm text-red-600 hover:text-red-800">Delete</button>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="text-center py-8">
+                    <p className="text-gray-500">No documents uploaded yet</p>
                   </div>
                 </div>
               </div>
@@ -1331,11 +1301,11 @@ export default function ClientPortal() {
                     <div className="flex items-start justify-between">
                       <div>
                         <h4 className="text-lg font-medium text-gray-900">Entertainment Services: Folk Band</h4>
-                        <p className="text-sm text-gray-600">Violin, Guitar, Bass, Drums</p>
+                        <p className="text-sm text-gray-600">Violin • Guitar • Bass • Drums</p>
                       </div>
                       <div>
                         <h4 className="text-lg font-medium text-gray-900">Production Services</h4>
-                        <p className="text-sm text-gray-600">PA System, Wash Lighting, 10 Uplights, Toast Mic</p>
+                        <p className="text-sm text-gray-600">PA System • Wash Lighting • 10 Uplights • Toast Mic</p>
                       </div>
                     </div>
                   </div>
@@ -1348,7 +1318,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeWelcomePartyTab === 'special-moments'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Special Moments
@@ -1358,7 +1328,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeWelcomePartyTab === 'special-requests'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Song Requests
@@ -1368,7 +1338,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeWelcomePartyTab === 'core-repertoire'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Welcome Party Song List
@@ -1772,7 +1742,7 @@ export default function ClientPortal() {
                     <div className="space-y-6">
                       <div className="flex justify-between items-center">
                         <h3 className="text-lg font-medium text-gray-900">Welcome Party Song List</h3>
-                        <span className="text-sm text-gray-500">{sortedSongs.length} songs available</span>
+                        <span className="text-sm text-gray-500">{filteredWelcomePartySongs.length} songs available</span>
                       </div>
 
                       {/* Song Progress Section */}
@@ -1788,22 +1758,28 @@ export default function ClientPortal() {
                             <div className="flex justify-between items-center mb-2">
                               <h5 className="font-medium text-green-800">🤘 Definitely Play</h5>
                               <span className="text-sm text-green-600">
-                                {Object.values(songPreferences).filter(pref => pref === 'definitely').length}/∞
+                                {Object.values(songPreferences).filter(pref => pref === 'definitely').length}/30
                               </span>
                             </div>
                             <div className="w-full bg-green-200 rounded-full h-2 mb-2">
                               <div 
                                 className="bg-green-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'definitely').length / 25) * 100)}%` 
+                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'definitely').length / 15) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: 25-50 songs</p>
-                            {Object.values(songPreferences).filter(pref => pref === 'definitely').length < 25 && (
+                            <p className="text-sm text-gray-600">Goal: 15-30 songs</p>
+                            {Object.values(songPreferences).filter(pref => pref === 'definitely').length < 15 && (
                               <p className="text-sm text-orange-600 mt-1 flex items-center">
                                 <span className="mr-1">⚠️</span>
                                 Need more songs
+                              </p>
+                            )}
+                            {Object.values(songPreferences).filter(pref => pref === 'definitely').length > 30 && (
+                              <p className="text-sm text-red-600 mt-1 flex items-center">
+                                <span className="mr-1">🚨</span>
+                                Over limit (max 30 songs)
                               </p>
                             )}
                           </div>
@@ -1820,12 +1796,12 @@ export default function ClientPortal() {
                               <div 
                                 className="bg-yellow-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'maybe').length / 25) * 100)}%` 
+                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'maybe').length / 20) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: ≥25 songs</p>
-                            {Object.values(songPreferences).filter(pref => pref === 'maybe').length < 25 && (
+                            <p className="text-sm text-gray-600">Goal: ≥20 songs</p>
+                            {Object.values(songPreferences).filter(pref => pref === 'maybe').length < 20 && (
                               <p className="text-sm text-orange-600 mt-1 flex items-center">
                                 <span className="mr-1">⚠️</span>
                                 Need more songs
@@ -1838,18 +1814,24 @@ export default function ClientPortal() {
                             <div className="flex justify-between items-center mb-2">
                               <h5 className="font-medium text-red-800">👎 Avoid Playing</h5>
                               <span className="text-sm text-red-600">
-                                {Object.values(songPreferences).filter(pref => pref === 'avoid').length}/∞
+                                {Object.values(songPreferences).filter(pref => pref === 'avoid').length}/25
                               </span>
                             </div>
                             <div className="w-full bg-red-200 rounded-full h-2 mb-2">
                               <div 
                                 className="bg-red-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'avoid').length / 50) * 100)}%` 
+                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'avoid').length / 25) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: ≤50 songs</p>
+                            <p className="text-sm text-gray-600">Goal: ≤25 songs</p>
+                            {Object.values(songPreferences).filter(pref => pref === 'avoid').length > 25 && (
+                              <p className="text-sm text-red-600 mt-1 flex items-center">
+                                <span className="mr-1">🚨</span>
+                                Over limit (max 25 songs)
+                              </p>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -1860,13 +1842,13 @@ export default function ClientPortal() {
                           <div className="text-center py-8 text-gray-500">
                             <p>Loading songs...</p>
                           </div>
-                        ) : sortedSongs.length === 0 ? (
+                        ) : filteredWelcomePartySongs.length === 0 ? (
                           <div className="text-center py-8 text-gray-500">
-                            <p>No songs available</p>
+                            <p>No songs tagged for Welcome Party</p>
                           </div>
                         ) : (
                           <div className="divide-y divide-gray-200">
-                            {sortedSongs.map((song, index) => (
+                            {filteredWelcomePartySongs.map((song, index) => (
                               <div key={song.id || index} className="p-4 hover:bg-gray-50">
                                 <div className="flex items-center justify-between">
                                   <div className="flex-1">
@@ -1947,11 +1929,11 @@ export default function ClientPortal() {
                     <div className="flex items-start justify-between">
                       <div>
                         <h4 className="text-lg font-medium text-gray-900">Entertainment Services: Piano Trio</h4>
-                        <p className="text-sm text-gray-600">Violin, Cello, Piano</p>
+                        <p className="text-sm text-gray-600">Violin • Cello • Piano</p>
                       </div>
                       <div>
                         <h4 className="text-lg font-medium text-gray-900">Production Services</h4>
-                        <p className="text-sm text-gray-600">Musician Amplification, Wireless Mic/Speakers</p>
+                        <p className="text-sm text-gray-600">Musician Amplification • Wireless Mic/Speakers</p>
                       </div>
                     </div>
                   </div>
@@ -1964,7 +1946,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeCeremonyTab === 'ceremony-music'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Ceremony Music
@@ -1974,7 +1956,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeCeremonyTab === 'guest-arrival-requests'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Guest Arrival Song Requests
@@ -1984,7 +1966,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeCeremonyTab === 'guest-arrival'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Guest Arrival Song List
@@ -2197,8 +2179,8 @@ export default function ClientPortal() {
                   {activeCeremonyTab === 'ceremony-music' && (
                     <div className="mt-8 bg-white rounded-lg border border-gray-200 p-6">
                       <h4 className="text-lg font-medium text-gray-900 mb-4">Ceremony Script Upload</h4>
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                        <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                        <svg className="mx-auto h-8 w-8 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
                           <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <p className="mt-2 text-sm text-gray-600">Click to upload ceremony script or drag and drop</p>
@@ -2318,7 +2300,7 @@ export default function ClientPortal() {
                     <div className="space-y-6">
                       <div className="flex justify-between items-center">
                         <h3 className="text-lg font-medium text-gray-900">Guest Arrival Song List</h3>
-                        <span className="text-sm text-gray-500">{sortedGuestArrivalSongs.length} songs available</span>
+                        <span className="text-sm text-gray-500">{filteredGuestArrivalSongs.length} songs available</span>
                       </div>
 
                       {/* Song Progress Section */}
@@ -2334,22 +2316,28 @@ export default function ClientPortal() {
                             <div className="flex justify-between items-center mb-2">
                               <h5 className="font-medium text-green-800">🤘 Definitely Play</h5>
                               <span className="text-sm text-green-600">
-                                {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'definitely').length}/∞
+                                {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'definitely').length}/10
                               </span>
                             </div>
                             <div className="w-full bg-green-200 rounded-full h-2 mb-2">
                               <div 
                                 className="bg-green-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(guestArrivalSongPreferences).filter(pref => pref === 'definitely').length / 25) * 100)}%` 
+                                  width: `${Math.min(100, (Object.values(guestArrivalSongPreferences).filter(pref => pref === 'definitely').length / 5) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: 25-50 songs</p>
-                            {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'definitely').length < 25 && (
+                            <p className="text-sm text-gray-600">Goal: 5-10 songs</p>
+                            {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'definitely').length < 5 && (
                               <p className="text-sm text-orange-600 mt-1 flex items-center">
                                 <span className="mr-1">⚠️</span>
                                 Need more songs
+                              </p>
+                            )}
+                            {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'definitely').length > 10 && (
+                              <p className="text-sm text-red-600 mt-1 flex items-center">
+                                <span className="mr-1">🚨</span>
+                                Over limit (max 10 songs)
                               </p>
                             )}
                           </div>
@@ -2366,12 +2354,12 @@ export default function ClientPortal() {
                               <div 
                                 className="bg-yellow-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(guestArrivalSongPreferences).filter(pref => pref === 'maybe').length / 25) * 100)}%` 
+                                  width: `${Math.min(100, (Object.values(guestArrivalSongPreferences).filter(pref => pref === 'maybe').length / 5) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: ≥25 songs</p>
-                            {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'maybe').length < 25 && (
+                            <p className="text-sm text-gray-600">Goal: ≥5 songs</p>
+                            {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'maybe').length < 5 && (
                               <p className="text-sm text-orange-600 mt-1 flex items-center">
                                 <span className="mr-1">⚠️</span>
                                 Need more songs
@@ -2384,18 +2372,24 @@ export default function ClientPortal() {
                             <div className="flex justify-between items-center mb-2">
                               <h5 className="font-medium text-red-800">👎 Avoid Playing</h5>
                               <span className="text-sm text-red-600">
-                                {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'avoid').length}/∞
+                                {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'avoid').length}/5
                               </span>
                             </div>
                             <div className="w-full bg-red-200 rounded-full h-2 mb-2">
                               <div 
                                 className="bg-red-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(guestArrivalSongPreferences).filter(pref => pref === 'avoid').length / 50) * 100)}%` 
+                                  width: `${Math.min(100, (Object.values(guestArrivalSongPreferences).filter(pref => pref === 'avoid').length / 5) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: ≤50 songs</p>
+                            <p className="text-sm text-gray-600">Goal: ≤5 songs</p>
+                            {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'avoid').length > 5 && (
+                              <p className="text-sm text-red-600 mt-1 flex items-center">
+                                <span className="mr-1">🚨</span>
+                                Over limit (max 5 songs)
+                              </p>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -2406,13 +2400,13 @@ export default function ClientPortal() {
                           <div className="text-center py-8 text-gray-500">
                             <p>Loading songs...</p>
                           </div>
-                        ) : sortedGuestArrivalSongs.length === 0 ? (
+                        ) : filteredGuestArrivalSongs.length === 0 ? (
                           <div className="text-center py-8 text-gray-500">
-                            <p>No songs available</p>
+                            <p>No songs tagged for Guest Arrival</p>
                           </div>
                         ) : (
                           <div className="divide-y divide-gray-200">
-                            {sortedGuestArrivalSongs.map((song, index) => (
+                            {filteredGuestArrivalSongs.map((song, index) => (
                               <div key={song.id || index} className="p-4 hover:bg-gray-50">
                                 <div className="flex items-center justify-between">
                                   <div className="flex-1">
@@ -2493,7 +2487,7 @@ export default function ClientPortal() {
                     <div className="flex items-start justify-between">
                       <div>
                         <h4 className="text-lg font-medium text-gray-900">Entertainment Services: Jazz Quartet</h4>
-                        <p className="text-sm text-gray-600">Sax, Guitar, Bass, Drums</p>
+                        <p className="text-sm text-gray-600">Sax • Guitar • Bass • Drums</p>
                       </div>
                       <div>
                         <h4 className="text-lg font-medium text-gray-900">Production Services</h4>
@@ -2510,7 +2504,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeCocktailHourTab === 'special-moments'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Special Moments
@@ -2520,7 +2514,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeCocktailHourTab === 'song-requests'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Song Requests
@@ -2530,7 +2524,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeCocktailHourTab === 'cocktail-hour-song-list'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Cocktail Hour Song List
@@ -2773,7 +2767,7 @@ export default function ClientPortal() {
                     <div className="space-y-6">
                       <div className="flex justify-between items-center">
                         <h3 className="text-lg font-medium text-gray-900">Cocktail Hour Song List</h3>
-                        <span className="text-sm text-gray-500">{sortedCocktailHourSongs.length} songs available</span>
+                        <span className="text-sm text-gray-500">{filteredCocktailHourSongs.length} songs available</span>
                       </div>
 
                       {/* Song Progress Section */}
@@ -2789,22 +2783,28 @@ export default function ClientPortal() {
                             <div className="flex justify-between items-center mb-2">
                               <h5 className="font-medium text-green-800">🤘 Definitely Play</h5>
                               <span className="text-sm text-green-600">
-                                {Object.values(cocktailHourSongPreferences).filter(pref => pref === 'definitely').length}/∞
+                                {Object.values(cocktailHourSongPreferences).filter(pref => pref === 'definitely').length}/15
                               </span>
                             </div>
                             <div className="w-full bg-green-200 rounded-full h-2 mb-2">
                               <div 
                                 className="bg-green-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(cocktailHourSongPreferences).filter(pref => pref === 'definitely').length / 25) * 100)}%` 
+                                  width: `${Math.min(100, (Object.values(cocktailHourSongPreferences).filter(pref => pref === 'definitely').length / 10) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: 25-50 songs</p>
-                            {Object.values(cocktailHourSongPreferences).filter(pref => pref === 'definitely').length < 25 && (
+                            <p className="text-sm text-gray-600">Goal: 10-15 songs</p>
+                            {Object.values(cocktailHourSongPreferences).filter(pref => pref === 'definitely').length < 10 && (
                               <p className="text-sm text-orange-600 mt-1 flex items-center">
                                 <span className="mr-1">⚠️</span>
                                 Need more songs
+                              </p>
+                            )}
+                            {Object.values(cocktailHourSongPreferences).filter(pref => pref === 'definitely').length > 15 && (
+                              <p className="text-sm text-red-600 mt-1 flex items-center">
+                                <span className="mr-1">🚨</span>
+                                Over limit (max 15 songs)
                               </p>
                             )}
                           </div>
@@ -2821,12 +2821,12 @@ export default function ClientPortal() {
                               <div 
                                 className="bg-yellow-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(cocktailHourSongPreferences).filter(pref => pref === 'maybe').length / 25) * 100)}%` 
+                                  width: `${Math.min(100, (Object.values(cocktailHourSongPreferences).filter(pref => pref === 'maybe').length / 5) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: ≥25 songs</p>
-                            {Object.values(cocktailHourSongPreferences).filter(pref => pref === 'maybe').length < 25 && (
+                            <p className="text-sm text-gray-600">Goal: ≥5 songs</p>
+                            {Object.values(cocktailHourSongPreferences).filter(pref => pref === 'maybe').length < 5 && (
                               <p className="text-sm text-orange-600 mt-1 flex items-center">
                                 <span className="mr-1">⚠️</span>
                                 Need more songs
@@ -2839,18 +2839,24 @@ export default function ClientPortal() {
                             <div className="flex justify-between items-center mb-2">
                               <h5 className="font-medium text-red-800">👎 Avoid Playing</h5>
                               <span className="text-sm text-red-600">
-                                {Object.values(cocktailHourSongPreferences).filter(pref => pref === 'avoid').length}/∞
+                                {Object.values(cocktailHourSongPreferences).filter(pref => pref === 'avoid').length}/5
                               </span>
                             </div>
                             <div className="w-full bg-red-200 rounded-full h-2 mb-2">
                               <div 
                                 className="bg-red-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(cocktailHourSongPreferences).filter(pref => pref === 'avoid').length / 50) * 100)}%` 
+                                  width: `${Math.min(100, (Object.values(cocktailHourSongPreferences).filter(pref => pref === 'avoid').length / 5) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: ≤50 songs</p>
+                            <p className="text-sm text-gray-600">Goal: ≤5 songs</p>
+                            {Object.values(cocktailHourSongPreferences).filter(pref => pref === 'avoid').length > 5 && (
+                              <p className="text-sm text-red-600 mt-1 flex items-center">
+                                <span className="mr-1">🚨</span>
+                                Over limit (max 5 songs)
+                              </p>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -2861,13 +2867,13 @@ export default function ClientPortal() {
                           <div className="text-center py-8 text-gray-500">
                             <p>Loading songs...</p>
                           </div>
-                        ) : sortedCocktailHourSongs.length === 0 ? (
+                        ) : filteredCocktailHourSongs.length === 0 ? (
                           <div className="text-center py-8 text-gray-500">
-                            <p>No songs available</p>
+                            <p>No songs tagged for Cocktail Hour</p>
                           </div>
                         ) : (
                           <div className="divide-y divide-gray-200">
-                            {sortedCocktailHourSongs.map((song, index) => (
+                            {filteredCocktailHourSongs.map((song, index) => (
                               <div key={song.id || index} className="p-4 hover:bg-gray-50">
                                 <div className="flex items-center justify-between">
                                   <div className="flex-1">
@@ -2948,11 +2954,11 @@ export default function ClientPortal() {
                     <div className="flex items-start justify-between">
                       <div>
                         <h4 className="text-lg font-medium text-gray-900">Entertainment Services: 15-Piece Full Band</h4>
-                        <p className="text-sm text-gray-600">5 Vocalists, Violin, Trumpet, Sax, Trombone, Guitar, Keyboard, Synths, Bass, Percussion, Drums</p>
+                        <p className="text-sm text-gray-600">5 Vocalists • Violin • Trumpet • Sax • Trombone • Guitar • Keyboard • Synths • Bass • Percussion • Drums</p>
                       </div>
                       <div>
                         <h4 className="text-lg font-medium text-gray-900">Production Services</h4>
-                        <p className="text-sm text-gray-600">PA System, Sound Engineer, Toast Mic, Wash Lighting, Dance Lighting Package</p>
+                        <p className="text-sm text-gray-600">PA System • Sound Engineer • Toast Mic • Wash Lighting • Dance Lighting Package</p>
                       </div>
                     </div>
                   </div>
@@ -2965,7 +2971,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeReceptionTab === 'special-moments'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Special Moments
@@ -2975,7 +2981,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeReceptionTab === 'special-requests'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Song Requests
@@ -2985,7 +2991,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeReceptionTab === 'reception-song-list'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Reception Song List
@@ -3228,7 +3234,7 @@ export default function ClientPortal() {
                     <div className="space-y-6">
                       <div className="flex justify-between items-center">
                         <h3 className="text-lg font-medium text-gray-900">Reception Song List</h3>
-                        <span className="text-sm text-gray-500">{sortedReceptionSongs.length} songs available</span>
+                        <span className="text-sm text-gray-500">{totalReceptionSongs} songs available</span>
                       </div>
 
                       {/* Song Progress Section */}
@@ -3244,7 +3250,7 @@ export default function ClientPortal() {
                             <div className="flex justify-between items-center mb-2">
                               <h5 className="font-medium text-green-800">🤘 Definitely Play</h5>
                               <span className="text-sm text-green-600">
-                                {Object.values(receptionSongPreferences).filter(pref => pref === 'definitely').length}/∞
+                                {Object.values(receptionSongPreferences).filter(pref => pref === 'definitely').length}/50
                               </span>
                             </div>
                             <div className="w-full bg-green-200 rounded-full h-2 mb-2">
@@ -3294,7 +3300,7 @@ export default function ClientPortal() {
                             <div className="flex justify-between items-center mb-2">
                               <h5 className="font-medium text-red-800">👎 Avoid Playing</h5>
                               <span className="text-sm text-red-600">
-                                {Object.values(receptionSongPreferences).filter(pref => pref === 'avoid').length}/∞
+                                {Object.values(receptionSongPreferences).filter(pref => pref === 'avoid').length}/25
                               </span>
                             </div>
                             <div className="w-full bg-red-200 rounded-full h-2 mb-2">
@@ -3447,7 +3453,7 @@ export default function ClientPortal() {
                       </div>
                       <div>
                         <h4 className="text-lg font-medium text-gray-900">Production Services</h4>
-                        <p className="text-sm text-gray-600">PA System, Announcement Mic, 10 Uplights</p>
+                        <p className="text-sm text-gray-600">PA System • Announcement Mic • 10 Uplights</p>
                       </div>
                     </div>
                   </div>
@@ -3460,7 +3466,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeAfterPartyTab === 'special-moments'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Special Moments
@@ -3470,7 +3476,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeAfterPartyTab === 'special-requests'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         Song Requests
@@ -3480,7 +3486,7 @@ export default function ClientPortal() {
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeAfterPartyTab === 'core-repertoire'
                             ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
                         After Party Song List
@@ -3723,7 +3729,7 @@ export default function ClientPortal() {
                     <div className="space-y-6">
                       <div className="flex justify-between items-center">
                         <h3 className="text-lg font-medium text-gray-900">After Party Song List</h3>
-                        <span className="text-sm text-gray-500">{sortedAfterPartySongs.length} songs available</span>
+                        <span className="text-sm text-gray-500">{filteredAfterPartySongs.length} songs available</span>
                       </div>
 
                       {/* Song Progress Section */}
@@ -3739,22 +3745,28 @@ export default function ClientPortal() {
                             <div className="flex justify-between items-center mb-2">
                               <h5 className="font-medium text-green-800">🤘 Definitely Play</h5>
                               <span className="text-sm text-green-600">
-                                {Object.values(afterPartySongPreferences).filter(pref => pref === 'definitely').length}/∞
+                                {Object.values(afterPartySongPreferences).filter(pref => pref === 'definitely').length}/30
                               </span>
                             </div>
                             <div className="w-full bg-green-200 rounded-full h-2 mb-2">
                               <div 
                                 className="bg-green-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(afterPartySongPreferences).filter(pref => pref === 'definitely').length / 25) * 100)}%` 
+                                  width: `${Math.min(100, (Object.values(afterPartySongPreferences).filter(pref => pref === 'definitely').length / 15) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: 25-50 songs</p>
-                            {Object.values(afterPartySongPreferences).filter(pref => pref === 'definitely').length < 25 && (
+                            <p className="text-sm text-gray-600">Goal: 15-30 songs</p>
+                            {Object.values(afterPartySongPreferences).filter(pref => pref === 'definitely').length < 15 && (
                               <p className="text-sm text-orange-600 mt-1 flex items-center">
                                 <span className="mr-1">⚠️</span>
                                 Need more songs
+                              </p>
+                            )}
+                            {Object.values(afterPartySongPreferences).filter(pref => pref === 'definitely').length > 30 && (
+                              <p className="text-sm text-red-600 mt-1 flex items-center">
+                                <span className="mr-1">🚨</span>
+                                Over limit (max 30 songs)
                               </p>
                             )}
                           </div>
@@ -3771,12 +3783,12 @@ export default function ClientPortal() {
                               <div 
                                 className="bg-yellow-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(afterPartySongPreferences).filter(pref => pref === 'maybe').length / 25) * 100)}%` 
+                                  width: `${Math.min(100, (Object.values(afterPartySongPreferences).filter(pref => pref === 'maybe').length / 20) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: ≥25 songs</p>
-                            {Object.values(afterPartySongPreferences).filter(pref => pref === 'maybe').length < 25 && (
+                            <p className="text-sm text-gray-600">Goal: ≥20 songs</p>
+                            {Object.values(afterPartySongPreferences).filter(pref => pref === 'maybe').length < 20 && (
                               <p className="text-sm text-orange-600 mt-1 flex items-center">
                                 <span className="mr-1">⚠️</span>
                                 Need more songs
@@ -3789,7 +3801,7 @@ export default function ClientPortal() {
                             <div className="flex justify-between items-center mb-2">
                               <h5 className="font-medium text-red-800">👎 Avoid Playing</h5>
                               <span className="text-sm text-red-600">
-                                {Object.values(afterPartySongPreferences).filter(pref => pref === 'avoid').length}/∞
+                                {Object.values(afterPartySongPreferences).filter(pref => pref === 'avoid').length}/25
                               </span>
                             </div>
                             <div className="w-full bg-red-200 rounded-full h-2 mb-2">
@@ -3811,13 +3823,13 @@ export default function ClientPortal() {
                           <div className="text-center py-8 text-gray-500">
                             <p>Loading songs...</p>
                           </div>
-                        ) : sortedAfterPartySongs.length === 0 ? (
+                        ) : filteredAfterPartySongs.length === 0 ? (
                           <div className="text-center py-8 text-gray-500">
-                            <p>No songs available</p>
+                            <p>No songs tagged for After Party</p>
                           </div>
                         ) : (
                           <div className="divide-y divide-gray-200">
-                            {sortedAfterPartySongs.map((song, index) => (
+                            {filteredAfterPartySongs.map((song, index) => (
                               <div key={song.id || index} className="p-4 hover:bg-gray-50">
                                 <div className="flex items-center justify-between">
                                   <div className="flex-1">
