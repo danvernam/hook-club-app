@@ -1,10 +1,10 @@
 {
   "metadata": {
     "version": "2.0",
-    "lastUpdated": "2025-10-25T10:57:59.536Z",
-    "totalSongs": 1457,
-    "activeSongs": 157,
-    "inactiveSongs": 1300
+    "lastUpdated": "2025-10-25T22:37:58.218Z",
+    "totalSongs": 1455,
+    "activeSongs": 162,
+    "inactiveSongs": 1293
   },
   "songs": [
     {
@@ -224,7 +224,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -326,7 +331,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -374,10 +384,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💕 Slow Jams",
+          "band": "slow jams"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -428,7 +443,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🕺 Studio '25",
+          "band": "disco"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -581,7 +601,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -1703,7 +1728,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -1856,7 +1886,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -1958,7 +1993,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -2009,7 +2049,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -2162,7 +2207,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -2264,7 +2314,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎧 Can't Stop Hip Hop",
+          "band": "hip hop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -2516,10 +2571,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -2723,7 +2783,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -2774,7 +2839,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤘 Instant Mosh",
+          "band": "punk"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -3284,7 +3354,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -3896,7 +3971,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -4151,7 +4231,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💕 Slow Jams",
+          "band": "slow jams"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -5159,57 +5244,6 @@
       ]
     },
     {
-      "id": "bang-a-gong-get-it-on",
-      "originalTitle": "Bang A Gong (Get It On)",
-      "originalArtist": "Unknown Artist",
-      "thcTitle": "Bang A Gong (Get It On)",
-      "thcArtist": "The Hook Club",
-      "videoUrl": "",
-      "spotifyUrl": "",
-      "originalBpm": null,
-      "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
-      "genres": [],
-      "specialMomentTypes": [],
-      "thcPercent": null,
-      "notes": "",
-      "createdAt": "2025-10-25T10:18:24.689Z",
-      "updatedAt": "2025-10-25T10:18:24.689Z",
-      "originalKey": null,
-      "requiresLeadVocalist": false,
-      "leadVocalistRole": "",
-      "leadVocalistPart": "",
-      "requiresBackgroundVocals": false,
-      "backgroundVocalCount": 0,
-      "backgroundVocalRoles": [],
-      "backgroundVocalParts": [],
-      "backgroundVocalPartNames": [],
-      "leadSheet": false,
-      "fullBandArrangement": false,
-      "hornChart": false,
-      "sheetMusicStandard": false,
-      "chartLyricsSpecial": false,
-      "hornChartSpecial": false,
-      "chordLyricChartUrl": "",
-      "ensembleSheetMusic": {},
-      "keyVersions": [
-        {
-          "key": "C",
-          "isDefault": true,
-          "bpm": null,
-          "chordLyricChartUrl": "",
-          "leadSheetUrl": "",
-          "fullBandArrangementUrl": "",
-          "hornChartUrl": "",
-          "sheetMusicStandardUrl": "",
-          "chartLyricsSpecialUrl": "",
-          "hornChartSpecialUrl": ""
-        }
-      ]
-    },
-    {
       "id": "bang-bang",
       "originalTitle": "Bang Bang",
       "originalArtist": "Jessie J, Ariana Grande, Nicki Minaj",
@@ -5885,7 +5919,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🕺 Studio '25",
+          "band": "disco"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -6038,7 +6077,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -6902,10 +6946,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -7823,7 +7872,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -8078,7 +8132,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -8282,7 +8341,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -8435,7 +8499,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -9659,7 +9728,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -10220,7 +10294,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -10781,7 +10860,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤠 Country For All",
+          "band": "country"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -11036,7 +11120,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -11444,7 +11533,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -11597,7 +11691,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤘 Instant Mosh",
+          "band": "punk"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -12158,7 +12257,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -12209,7 +12313,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -13229,7 +13338,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -13280,7 +13394,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -13382,7 +13501,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -13433,7 +13557,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🕺 Studio '25",
+          "band": "disco"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -13535,7 +13664,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🌮 The Latin Bible",
+          "band": "latin"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -13739,7 +13873,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -13943,7 +14082,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -14096,7 +14240,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🌮 The Latin Bible",
+          "band": "latin"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -15218,7 +15367,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -15269,7 +15423,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -15371,7 +15530,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -15422,7 +15586,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -15728,7 +15897,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎧 Can't Stop Hip Hop",
+          "band": "hip hop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -16901,7 +17075,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎧 Can't Stop Hip Hop",
+          "band": "hip hop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -17156,7 +17335,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -17615,7 +17799,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -17921,7 +18110,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -17969,10 +18163,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤘 Instant Mosh",
+          "band": "punk"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -18737,7 +18936,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🌮 The Latin Bible",
+          "band": "latin"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -18839,7 +19043,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤘 Instant Mosh",
+          "band": "punk"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -18992,7 +19201,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -19145,7 +19359,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -20726,7 +20945,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎧 Can't Stop Hip Hop",
+          "band": "hip hop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -20777,7 +21001,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🕺 Studio '25",
+          "band": "disco"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -20930,7 +21159,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -21134,7 +21368,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🕺 Studio '25",
+          "band": "disco"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -21287,7 +21526,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -21389,7 +21633,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -21440,7 +21689,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -22052,7 +22306,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -22562,7 +22821,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -24755,7 +25019,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -26435,10 +26704,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💕 Slow Jams",
+          "band": "slow jams"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -26846,7 +27120,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -27305,7 +27584,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -28427,7 +28711,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -28529,7 +28818,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🌮 The Latin Bible",
+          "band": "latin"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -28682,7 +28976,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -28886,7 +29185,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -29243,7 +29547,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -29294,7 +29603,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -29345,7 +29659,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -29447,7 +29766,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -29651,7 +29975,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🕺 Studio '25",
+          "band": "disco"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -29702,7 +30031,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -30212,7 +30546,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -30926,7 +31265,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💕 Slow Jams",
+          "band": "slow jams"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -32048,7 +32392,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤠 Country For All",
+          "band": "country"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -32813,7 +33162,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -34088,7 +34442,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -34284,57 +34643,6 @@
       "originalTitle": "Küssen Kann Man Nicht Alleine",
       "originalArtist": "Unknown Artist",
       "thcTitle": "Küssen Kann Man Nicht Alleine",
-      "thcArtist": "The Hook Club",
-      "videoUrl": "",
-      "spotifyUrl": "",
-      "originalBpm": null,
-      "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
-      "genres": [],
-      "specialMomentTypes": [],
-      "thcPercent": null,
-      "notes": "",
-      "createdAt": "2025-10-25T10:18:24.696Z",
-      "updatedAt": "2025-10-25T10:18:24.696Z",
-      "originalKey": null,
-      "requiresLeadVocalist": false,
-      "leadVocalistRole": "",
-      "leadVocalistPart": "",
-      "requiresBackgroundVocals": false,
-      "backgroundVocalCount": 0,
-      "backgroundVocalRoles": [],
-      "backgroundVocalParts": [],
-      "backgroundVocalPartNames": [],
-      "leadSheet": false,
-      "fullBandArrangement": false,
-      "hornChart": false,
-      "sheetMusicStandard": false,
-      "chartLyricsSpecial": false,
-      "hornChartSpecial": false,
-      "chordLyricChartUrl": "",
-      "ensembleSheetMusic": {},
-      "keyVersions": [
-        {
-          "key": "C",
-          "isDefault": true,
-          "bpm": null,
-          "chordLyricChartUrl": "",
-          "leadSheetUrl": "",
-          "fullBandArrangementUrl": "",
-          "hornChartUrl": "",
-          "sheetMusicStandardUrl": "",
-          "chartLyricsSpecialUrl": "",
-          "hornChartSpecialUrl": ""
-        }
-      ]
-    },
-    {
-      "id": "l",
-      "originalTitle": "l",
-      "originalArtist": "Unknown Artist",
-      "thcTitle": "l",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
@@ -35261,7 +35569,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -35567,7 +35880,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -35924,7 +36242,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -36026,7 +36349,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤠 Country For All",
+          "band": "country"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -36128,7 +36456,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🕺 Studio '25",
+          "band": "disco"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -36485,7 +36818,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -36689,7 +37027,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -37403,7 +37746,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -37454,7 +37802,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -37760,7 +38113,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💕 Slow Jams",
+          "band": "slow jams"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -37862,7 +38220,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎧 Can't Stop Hip Hop",
+          "band": "hip hop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -38525,7 +38888,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🕺 Studio '25",
+          "band": "disco"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -38576,7 +38944,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤠 Country For All",
+          "band": "country"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -39800,7 +40173,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎧 Can't Stop Hip Hop",
+          "band": "hip hop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -40412,7 +40790,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤘 Instant Mosh",
+          "band": "punk"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -40514,7 +40897,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -40718,7 +41106,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -41840,7 +42233,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -42044,7 +42442,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎧 Can't Stop Hip Hop",
+          "band": "hip hop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -43166,7 +43569,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💕 Slow Jams",
+          "band": "slow jams"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -43982,7 +44390,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -44186,7 +44599,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -45206,7 +45624,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -45512,7 +45935,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -45563,7 +45991,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🌮 The Latin Bible",
+          "band": "latin"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -46022,7 +46455,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -46175,7 +46613,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -46379,7 +46822,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -46787,7 +47235,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -47399,7 +47852,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🕺 Studio '25",
+          "band": "disco"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -47450,7 +47908,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -48011,7 +48474,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -49643,7 +50111,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -50051,7 +50524,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤘 Instant Mosh",
+          "band": "punk"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -50204,7 +50682,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -50408,7 +50891,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -50714,7 +51202,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -50816,7 +51309,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -51530,7 +52028,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -51683,7 +52186,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -51887,7 +52395,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -54896,7 +55409,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤘 Instant Mosh",
+          "band": "punk"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -55559,7 +56077,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🌮 The Latin Bible",
+          "band": "latin"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -55916,7 +56439,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤘 Instant Mosh",
+          "band": "punk"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -56426,7 +56954,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -56783,7 +57316,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -56834,7 +57372,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -57140,7 +57683,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤠 Country For All",
+          "band": "country"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -57497,7 +58045,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -58466,7 +59019,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💕 Slow Jams",
+          "band": "slow jams"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -58670,7 +59228,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤠 Country For All",
+          "band": "country"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -59078,7 +59641,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -61679,7 +62247,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎧 Can't Stop Hip Hop",
+          "band": "hip hop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -62495,7 +63068,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -62750,7 +63328,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -62801,7 +63384,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🌮 The Latin Bible",
+          "band": "latin"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -64229,7 +64817,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -64841,7 +65434,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -64943,7 +65541,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -65147,7 +65750,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -65504,7 +66112,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🌮 The Latin Bible",
+          "band": "latin"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -65606,7 +66219,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤠 Country For All",
+          "band": "country"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -65759,7 +66377,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -66167,7 +66790,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -66524,7 +67152,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -66677,7 +67310,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -68717,7 +69355,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -68768,7 +69411,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎧 Can't Stop Hip Hop",
+          "band": "hip hop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -69125,7 +69773,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -69737,7 +70390,16 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        },
+        {
+          "client": "💕 Slow Jams",
+          "band": "slow jams"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -69839,7 +70501,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤠 Country For All",
+          "band": "country"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -69890,7 +70557,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -70145,7 +70817,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -70553,7 +71230,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -71012,7 +71694,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -71624,7 +72311,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🤘 Instant Mosh",
+          "band": "punk"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
