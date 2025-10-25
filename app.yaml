@@ -1,0 +1,21 @@
+runtime: nodejs18
+
+env_variables:
+  NODE_ENV: production
+  GOOGLE_CLOUD_PROJECT: hook-club-app-2025
+
+handlers:
+  - url: /api/.*
+    script: auto
+  - url: /.*
+    script: auto
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 10
+  target_cpu_utilization: 0.6
+
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10

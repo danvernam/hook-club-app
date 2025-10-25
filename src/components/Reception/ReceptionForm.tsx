@@ -554,78 +554,9 @@ export default function ReceptionForm() {
               <p className="text-gray-600 mt-2">Complete entertainment and production services for your wedding</p>
             </div>
 
-            {/* Entertainment Services */}
+            {/* Reception Services */}
             <div className="mb-8 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border-2 border-gray-200">
-              <h3 className="text-2xl font-bold text-black mb-4">🎵 Entertainment Services</h3>
-              <div className="space-y-4">
-                <div>
-                  <h4 className="text-lg font-bold text-black mb-2">Welcome Party</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Acoustic Guitar, Violin, Piano</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-black mb-2">Ceremony</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Piano, Violin, Cello</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-black mb-2">Cocktail Hour</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Piano, Bass, Drums, Saxophone</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-black mb-2">Reception</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Full 15-Piece Band: Vocals, Guitar, Bass, Drums, Piano, Saxophone, Trumpet, Trombone, Violin, Viola, Cello, Flute, Clarinet, Percussion, DJ</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-black mb-2">After-Party</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• DJ, Saxophone, Violin</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Production Services */}
-            <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border-2 border-gray-200">
-              <h3 className="text-2xl font-bold text-black mb-4">🎛️ Production Services</h3>
-              <div className="space-y-4">
-                <div>
-                  <h4 className="text-lg font-bold text-black mb-2">Welcome Party</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Sound System, Microphones, Lighting</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-black mb-2">Ceremony</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Sound System, Microphones, Recording</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-black mb-2">Cocktail Hour</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Sound System, Microphones, Lighting</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-black mb-2">Reception</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Full Sound System, Microphones, Lighting, Stage, Recording</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-black mb-2">After-Party</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Sound System, Microphones, Lighting</li>
-                  </ul>
-                </div>
-              </div>
+              <h3 className="text-2xl font-bold text-black mb-4">Reception - 15-Piece Full Band</h3>
             </div>
           </div>
         )}

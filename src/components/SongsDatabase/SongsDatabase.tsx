@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import apiService from '@/services/api';
 
 interface Song {
   id: string;
@@ -84,13 +85,33 @@ export default function SongsDatabase() {
   ]);
 
   useEffect(() => {
-    fetch('/data/songs.json')
-      .then(res => res.json())
-      .then(data => {
-        setSongsData(data);
+    const loadSongs = async () => {
+      try {
+        const data = await apiService.getSongs();
+        setSongsData({ 
+          songs: data.songs, 
+          metadata: { 
+            version: "1.0.0",
+            lastUpdated: new Date().toISOString(),
+            totalSongs: data.songs.length,
+            activeSongs: data.songs.filter((song: any) => song.isLive).length,
+            inactiveSongs: data.songs.filter((song: any) => !song.isLive).length
+          } 
+        });
         setFilteredSongs(data.songs);
-      })
-      .catch(err => console.error('Error loading songs:', err));
+      } catch (err) {
+        console.error('Error loading songs:', err);
+        // Fallback to local file if API fails
+        fetch('/data/songs.json')
+          .then(res => res.json())
+          .then(data => {
+            setSongsData(data);
+            setFilteredSongs(data.songs);
+          })
+          .catch(fallbackErr => console.error('Error loading fallback songs:', fallbackErr));
+      }
+    };
+    loadSongs();
   }, []);
 
   useEffect(() => {
@@ -155,21 +176,29 @@ export default function SongsDatabase() {
           setActiveTab('basic');
         };
 
-  const handleSaveSong = () => {
+  const handleSaveSong = async () => {
     if (!editingSong || !songsData) return;
     
-    // Update the song in the data
-    const updatedSongs = songsData.songs.map(song => 
-      song.id === editingSong.id ? editingSong : song
-    );
-    
-    setSongsData({
-      ...songsData,
-      songs: updatedSongs
-    });
-    
-    setIsEditModalOpen(false);
-    setEditingSong(null);
+    try {
+      // Save to API
+      await apiService.updateSong(editingSong.id, editingSong);
+      
+      // Update local state
+      const updatedSongs = songsData.songs.map(song => 
+        song.id === editingSong.id ? editingSong : song
+      );
+      
+      setSongsData({
+        ...songsData,
+        songs: updatedSongs
+      });
+      
+      setIsEditModalOpen(false);
+      setEditingSong(null);
+    } catch (error) {
+      console.error('Error saving song:', error);
+      alert('Failed to save song. Please try again.');
+    }
   };
 
   const handleCancelEdit = () => {

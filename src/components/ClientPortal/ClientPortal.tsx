@@ -2,15 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import SongsDatabase from '@/components/SongsDatabase/SongsDatabase';
+import apiService from '@/services/api';
 
 export default function ClientPortal() {
   const [activeTab, setActiveTab] = useState<'services' | 'getting-to-know-you' | 'preferences' | 'documents' | 'welcome-party' | 'ceremony' | 'cocktail-hour' | 'reception' | 'after-party'>('services');
   const [activeView, setActiveView] = useState<'client-portal' | 'database'>('client-portal');
-  const [activeWelcomePartyTab, setActiveWelcomePartyTab] = useState<'special-moments' | 'special-requests' | 'core-repertoire'>('special-moments');
+  const [activeWelcomePartyTab, setActiveWelcomePartyTab] = useState<'special-songs' | 'special-requests' | 'core-repertoire'>('special-songs');
   const [activeCeremonyTab, setActiveCeremonyTab] = useState<'ceremony-music' | 'guest-arrival-requests' | 'guest-arrival'>('ceremony-music');
-  const [activeCocktailHourTab, setActiveCocktailHourTab] = useState<'special-moments' | 'song-requests' | 'cocktail-hour-song-list'>('special-moments');
-  const [activeAfterPartyTab, setActiveAfterPartyTab] = useState<'special-moments' | 'special-requests' | 'core-repertoire'>('special-moments');
-  const [activeReceptionTab, setActiveReceptionTab] = useState<'special-moments' | 'special-requests' | 'reception-song-list'>('special-moments');
+  const [activeCocktailHourTab, setActiveCocktailHourTab] = useState<'special-songs' | 'song-requests' | 'cocktail-hour-song-list'>('special-songs');
+  const [activeAfterPartyTab, setActiveAfterPartyTab] = useState<'special-songs' | 'special-requests' | 'core-repertoire'>('special-songs');
+  const [activeReceptionTab, setActiveReceptionTab] = useState<'special-songs' | 'special-requests' | 'reception-song-list'>('special-songs');
   const [guestArrivalSongs, setGuestArrivalSongs] = useState<any[]>([]);
   const [sortedGuestArrivalSongs, setSortedGuestArrivalSongs] = useState<any[]>([]);
   const [guestArrivalSongPreferences, setGuestArrivalSongPreferences] = useState<Record<string, 'definitely' | 'maybe' | 'avoid'>>({});
@@ -21,6 +22,7 @@ export default function ClientPortal() {
     clientArtist: string;
     clientLink: string;
     clientNote: string;
+    processionalWalkers?: string;
   }>>([]);
   const [guestArrivalRequests, setGuestArrivalRequests] = useState<Array<{
     clientSongTitle: string;
@@ -40,6 +42,7 @@ export default function ClientPortal() {
     clientArtist: string;
     clientLink: string;
     clientNote: string;
+    reason?: string;
   }>>([]);
   const [afterPartySpecialMoments, setAfterPartySpecialMoments] = useState<Array<{
     specialMomentType: string;
@@ -47,6 +50,7 @@ export default function ClientPortal() {
     clientArtist: string;
     clientLink: string;
     clientNote: string;
+    reason?: string;
   }>>([]);
   const [afterPartySpecialRequests, setAfterPartySpecialRequests] = useState<Array<{
     clientSongTitle: string;
@@ -64,6 +68,7 @@ export default function ClientPortal() {
     clientArtist: string;
     clientLink: string;
     clientNote: string;
+    reason?: string;
   }>>([]);
   const [receptionSpecialRequests, setReceptionSpecialRequests] = useState<Array<{
     clientSongTitle: string;
@@ -108,6 +113,7 @@ export default function ClientPortal() {
     clientArtist: string;
     clientLink: string;
     clientNote: string;
+    reason?: string;
     // Future fields for database matching:
     // matchedSongId?: string;
     // isInDatabase?: boolean;
@@ -119,6 +125,21 @@ export default function ClientPortal() {
   }>>([]);
   const [expandedRecommendations, setExpandedRecommendations] = useState<Record<number, boolean>>({});
   const [expandedCeremonyRecommendations, setExpandedCeremonyRecommendations] = useState<Record<number, boolean>>({});
+  
+  // Missing state variables
+  const [receptionRequests, setReceptionRequests] = useState<Array<{
+    clientSongTitle: string;
+    clientArtist: string;
+    clientLink: string;
+    clientNote: string;
+  }>>([]);
+  
+  const [dinnerPlaylist, setDinnerPlaylist] = useState<string>('');
+  const [dinnerPlaylistNotes, setDinnerPlaylistNotes] = useState<string>('');
+  const [playlistLinks, setPlaylistLinks] = useState<Array<{
+    title: string;
+    url: string;
+  }>>([]);
   
   // Ceremony moment types
   const ceremonyMomentTypes = [
@@ -164,7 +185,7 @@ export default function ClientPortal() {
     )
   ).length;
 
-  // Mock recommended songs for special moments (this will eventually come from the database)
+  // Mock recommended songs for special songs (this will eventually come from the database)
   const getRecommendedSongs = (momentType: string) => {
     const recommendations: Record<string, Array<{title: string, artist: string, videoUrl: string}>> = {
       "First Dance": [
@@ -203,25 +224,50 @@ export default function ClientPortal() {
     return recommendations[momentType] || [];
   };
 
-  // Special moment types from the database
-  const specialMomentTypes = [
-    "Ceremony Processional",
-    "Ceremony Recessional",
-    "Wedding Party Intro",
-    "Newlyweds Intro",
-    "First Dance",
-    "Parent Dance",
-    "Cake Cutting",
-    "Grand Finale",
-    "Anniversary Dance",
-    "Bouquet Toss",
-    "Mezinka Dance",
-    "Tea Ceremony",
-    "Tarantella",
-    "Goldun",
-    "Money Spray",
-    "Money Dance"
-  ];
+  // Section-specific special moment types
+  const getSpecialMomentTypes = (section: string) => {
+    const baseTypes: Record<string, string[]> = {
+      'welcome-party': [
+        "Grand Finale",
+        "Fireworks Song",
+        "Fire/Belly Dancer Song"
+      ],
+      'ceremony': [
+        "Ceremony Processional",
+        "Ceremony Recessional",
+        "Wedding Party Intro",
+        "Newlyweds Intro"
+      ],
+      'cocktail-hour': [
+        "Wedding Party Intro",
+        "Newlyweds Intro",
+        "First Dance",
+        "Toast"
+      ],
+      'reception': [
+        "First Dance",
+        "Parent Dance",
+        "Cake Cutting",
+        "Anniversary Dance",
+        "Bouquet Toss",
+        "Mezinka Dance",
+        "Tea Ceremony",
+        "Tarantella",
+        "Goldun",
+        "Money Spray",
+        "Money Dance"
+      ],
+      'after-party': [
+        "Grand Finale",
+        "Fireworks Song",
+        "Fire/Belly Dancer Song",
+        "Sparkler Sendoff"
+      ]
+    };
+    
+    const sectionTypes = baseTypes[section] || [];
+    return [...sectionTypes, "Custom"];
+  };
 
   // Reception genres for organizing songs
   const receptionGenres = [
@@ -246,6 +292,83 @@ export default function ClientPortal() {
     "Salads",
     "Cultural Music"
   ];
+
+  // Save client data to API
+  const saveClientData = async () => {
+    try {
+      const clientData = {
+        ceremonySongs,
+        guestArrivalRequests,
+        cocktailHourRequests,
+        receptionRequests,
+        receptionSpecialMoments,
+        afterPartySpecialMoments,
+        welcomePartySpecialMoments,
+        cocktailHourSpecialMoments,
+        afterPartySpecialRequests,
+        welcomePartySpecialRequests,
+        receptionSpecialRequests,
+        dinnerPlaylist,
+        dinnerPlaylistNotes,
+        playlistLinks
+      };
+      
+      await apiService.updateClientData('default', clientData);
+    } catch (error) {
+      console.error('Error saving client data:', error);
+    }
+  };
+
+  // Load client data from API
+  useEffect(() => {
+    const loadClientData = async () => {
+      try {
+        const data = await apiService.getClientData('default');
+        if (data.ceremonySongs) setCeremonySongs(data.ceremonySongs);
+        if (data.guestArrivalRequests) setGuestArrivalRequests(data.guestArrivalRequests);
+        if (data.cocktailHourRequests) setCocktailHourRequests(data.cocktailHourRequests);
+        if (data.receptionRequests) setReceptionRequests(data.receptionRequests);
+        if (data.receptionSpecialMoments) setReceptionSpecialMoments(data.receptionSpecialMoments);
+        if (data.afterPartySpecialMoments) setAfterPartySpecialMoments(data.afterPartySpecialMoments);
+        if (data.welcomePartySpecialMoments) setWelcomePartySpecialMoments(data.welcomePartySpecialMoments);
+        if (data.cocktailHourSpecialMoments) setCocktailHourSpecialMoments(data.cocktailHourSpecialMoments);
+        if (data.afterPartySpecialRequests) setAfterPartySpecialRequests(data.afterPartySpecialRequests);
+        if (data.welcomePartySpecialRequests) setWelcomePartySpecialRequests(data.welcomePartySpecialRequests);
+        if (data.receptionSpecialRequests) setReceptionSpecialRequests(data.receptionSpecialRequests);
+        if (data.dinnerPlaylist) setDinnerPlaylist(data.dinnerPlaylist);
+        if (data.dinnerPlaylistNotes) setDinnerPlaylistNotes(data.dinnerPlaylistNotes);
+        if (data.playlistLinks) setPlaylistLinks(data.playlistLinks);
+      } catch (error) {
+        console.error('Error loading client data:', error);
+      }
+    };
+    
+    loadClientData();
+  }, []);
+
+  // Auto-save client data when it changes
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      saveClientData();
+    }, 1000); // Debounce saves
+
+    return () => clearTimeout(timeoutId);
+  }, [
+    ceremonySongs,
+    guestArrivalRequests,
+    cocktailHourRequests,
+    receptionRequests,
+    receptionSpecialMoments,
+    afterPartySpecialMoments,
+    welcomePartySpecialMoments,
+    cocktailHourSpecialMoments,
+    afterPartySpecialRequests,
+    welcomePartySpecialRequests,
+    receptionSpecialRequests,
+    dinnerPlaylist,
+    dinnerPlaylistNotes,
+    playlistLinks
+  ]);
 
   // Load songs from database
   useEffect(() => {
@@ -420,16 +543,6 @@ export default function ClientPortal() {
           {/* Navigation Buttons */}
           <div className="flex justify-center space-x-4">
             <button 
-              onClick={() => setActiveView('database')}
-              className={`px-6 py-3 text-sm font-medium rounded-md ${
-                activeView === 'database'
-                  ? 'bg-purple-100 text-purple-700'
-                  : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
-              }`}
-            >
-              Songs Database
-            </button>
-            <button 
               onClick={() => setActiveView('client-portal')}
               className={`px-6 py-3 text-sm font-medium rounded-md ${
                 activeView === 'client-portal'
@@ -437,7 +550,17 @@ export default function ClientPortal() {
                   : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
               }`}
             >
-              Client Portal
+              Planning Portal
+            </button>
+            <button 
+              onClick={() => setActiveView('database')}
+              className={`px-6 py-3 text-sm font-medium rounded-md ${
+                activeView === 'database'
+                  ? 'bg-purple-100 text-purple-700'
+                  : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
+              }`}
+            >
+              Admin Portal
             </button>
           </div>
         </div>
@@ -607,26 +730,21 @@ export default function ClientPortal() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                       <div className="border-l-4 border-pink-500 pl-4">
-                        <h4 className="font-medium text-gray-900">Welcome Party</h4>
-                        <p className="text-sm text-gray-600">PA System • Wash Lighting • 10 Uplights • Toast Mic</p>
+                        <h4 className="font-medium text-gray-900">Welcome Party - PA System • Sound Engineer • Toast Mic • Wash Lighting</h4>
                       </div>
                       <div className="border-l-4 border-pink-500 pl-4">
-                        <h4 className="font-medium text-gray-900">Ceremony</h4>
-                        <p className="text-sm text-gray-600">Musician Amplification • Wireless Mic/Speakers</p>
+                        <h4 className="font-medium text-gray-900">Ceremony - Musician Amplification • Wireless Mic/Speakers</h4>
                       </div>
                       <div className="border-l-4 border-pink-500 pl-4">
-                        <h4 className="font-medium text-gray-900">Cocktail Hour</h4>
-                        <p className="text-sm text-gray-600">Musician Amplification</p>
+                        <h4 className="font-medium text-gray-900">Cocktail Hour - Musician Amplification</h4>
                       </div>
                     </div>
                     <div className="space-y-4">
                       <div className="border-l-4 border-pink-500 pl-4">
-                        <h4 className="font-medium text-gray-900">Reception</h4>
-                        <p className="text-sm text-gray-600">PA System • Sound Engineer • Toast Mic • Wash Lighting • Dance Lighting Package</p>
+                        <h4 className="font-medium text-gray-900">Reception - PA System • Sound Engineer • Toast Mic • Wash Lighting • Dance Lighting Package</h4>
                       </div>
                       <div className="border-l-4 border-pink-500 pl-4">
-                        <h4 className="font-medium text-gray-900">After Party</h4>
-                        <p className="text-sm text-gray-600">PA System • Announcement Mic • 10 Uplights</p>
+                        <h4 className="font-medium text-gray-900">After Party - PA System • Announcement Mic • 10 Uplights</h4>
                       </div>
                     </div>
                   </div>
@@ -1298,30 +1416,21 @@ export default function ClientPortal() {
                 <h2 className="text-2xl font-bold text-purple-600 text-center">Welcome Party</h2>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <div className="mb-6">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h4 className="text-lg font-medium text-gray-900">Entertainment Services: Folk Band</h4>
-                        <p className="text-sm text-gray-600">Violin • Guitar • Bass • Drums</p>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-medium text-gray-900">Production Services</h4>
-                        <p className="text-sm text-gray-600">PA System • Wash Lighting • 10 Uplights • Toast Mic</p>
-                      </div>
-                    </div>
+                    <h4 className="text-lg font-medium text-gray-900">Welcome Party - Folk Band</h4>
                   </div>
                   
                   {/* Welcome Party Sub-tabs */}
                   <div className="border-b border-gray-200 mb-6">
                     <nav className="flex justify-center space-x-6">
                       <button
-                        onClick={() => setActiveWelcomePartyTab('special-moments')}
+                        onClick={() => setActiveWelcomePartyTab('special-songs')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeWelcomePartyTab === 'special-moments'
+                          activeWelcomePartyTab === 'special-songs'
                             ? 'border-purple-500 text-purple-600'
                             : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
-                        Special Moments
+                        Special Songs
                       </button>
                       <button
                         onClick={() => setActiveWelcomePartyTab('special-requests')}
@@ -1347,11 +1456,11 @@ export default function ClientPortal() {
                   </div>
 
                   {/* Special Moments Content */}
-                  {activeWelcomePartyTab === 'special-moments' && (
+                  {activeWelcomePartyTab === 'special-songs' && (
                     <div className="space-y-6">
                       <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-medium text-gray-900">Special Moments</h3>
-                        <span className="text-sm text-gray-500">{welcomePartySpecialMoments.length}/5 moments</span>
+                        <h3 className="text-lg font-medium text-gray-900">Special Songs</h3>
+                        <span className="text-sm text-gray-500">{welcomePartySpecialMoments.length}/5 songs</span>
                       </div>
                       
                       {/* Add Moment Button */}
@@ -1360,7 +1469,7 @@ export default function ClientPortal() {
                           onClick={() => setWelcomePartySpecialMoments([...welcomePartySpecialMoments, { specialMomentType: '', clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
                           className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
                         >
-                          + Add Special Moment
+                          + Add Special Song
                         </button>
                       )}
                       
@@ -1390,7 +1499,7 @@ export default function ClientPortal() {
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                               >
                                 <option value="">Select moment type</option>
-                                {specialMomentTypes.map((type) => (
+                                {getSpecialMomentTypes('welcome-party').map((type) => (
                                   <option key={type} value={type}>
                                     {type}
                                   </option>
@@ -1413,6 +1522,24 @@ export default function ClientPortal() {
                               />
                             </div>
                           </div>
+
+                          {/* Reason field - show when Custom is selected */}
+                          {moment.specialMomentType === 'Custom' && (
+                            <div className="mt-4">
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Reason for this song</label>
+                              <textarea
+                                value={moment.reason || ''}
+                                onChange={(e) => {
+                                  const newMoments = [...welcomePartySpecialMoments];
+                                  newMoments[index].reason = e.target.value;
+                                  setWelcomePartySpecialMoments(newMoments);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                placeholder="Explain why this song is special for this moment"
+                                rows={3}
+                              />
+                            </div>
+                          )}
 
                           {/* Recommended Songs Section */}
                           {moment.specialMomentType && getRecommendedSongs(moment.specialMomentType).length > 0 && (
@@ -1524,8 +1651,8 @@ export default function ClientPortal() {
                       
                       {welcomePartySpecialMoments.length === 0 && (
                         <div className="text-center py-8 text-gray-500">
-                          <p>No special moments added yet</p>
-                          <p className="text-sm mt-1">Click "Add Special Moment" to get started</p>
+                          <p>No special songs added yet</p>
+                          <p className="text-sm mt-1">Click "Add Special Song" to get started</p>
                         </div>
                       )}
                     </div>
@@ -1926,16 +2053,7 @@ export default function ClientPortal() {
                 <h2 className="text-2xl font-bold text-purple-600 text-center">Ceremony</h2>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <div className="mb-6">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h4 className="text-lg font-medium text-gray-900">Entertainment Services: Piano Trio</h4>
-                        <p className="text-sm text-gray-600">Violin • Cello • Piano</p>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-medium text-gray-900">Production Services</h4>
-                        <p className="text-sm text-gray-600">Musician Amplification • Wireless Mic/Speakers</p>
-                      </div>
-                    </div>
+                    <h4 className="text-lg font-medium text-gray-900">Ceremony - Piano Trio</h4>
                   </div>
                   
                   {/* Ceremony Sub-tabs */}
@@ -1984,7 +2102,7 @@ export default function ClientPortal() {
 
                       {/* Add Ceremony Song Button */}
                       <button
-                        onClick={() => setCeremonySongs([...ceremonySongs, { ceremonyMomentType: '', clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
+                        onClick={() => setCeremonySongs([...ceremonySongs, { ceremonyMomentType: '', clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '', processionalWalkers: '' }])}
                         className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
                       >
                         + Add Ceremony Song
@@ -2163,6 +2281,27 @@ export default function ClientPortal() {
                               placeholder="Special instructions or notes"
                             />
                           </div>
+
+                          {/* Processional Walkers field - show only when Ceremony Processional is selected */}
+                          {song.ceremonyMomentType === 'Ceremony Processional' && (
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Who is walking down to this song?</label>
+                              <textarea
+                                value={song.processionalWalkers || ''}
+                                onChange={(e) => {
+                                  const newSongs = [...ceremonySongs];
+                                  newSongs[index].processionalWalkers = e.target.value;
+                                  setCeremonySongs(newSongs);
+                                }}
+                                rows={2}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                placeholder="e.g., Bride, Groom, Wedding Party, Parents, etc."
+                              />
+                              <p className="mt-1 text-xs text-gray-500">
+                                Note: We will get the official order from you closer to the wedding
+                              </p>
+                            </div>
+                          )}
                         </div>
                       ))}
 
@@ -2484,30 +2623,21 @@ export default function ClientPortal() {
                 <h2 className="text-2xl font-bold text-purple-600 text-center">Cocktail Hour</h2>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <div className="mb-6">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h4 className="text-lg font-medium text-gray-900">Entertainment Services: Jazz Quartet</h4>
-                        <p className="text-sm text-gray-600">Sax • Guitar • Bass • Drums</p>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-medium text-gray-900">Production Services</h4>
-                        <p className="text-sm text-gray-600">Musician Amplification</p>
-                      </div>
-                    </div>
+                    <h4 className="text-lg font-medium text-gray-900">Cocktail Hour - Jazz Quartet</h4>
                   </div>
                   
                   {/* Cocktail Hour Sub-tabs */}
                   <div className="border-b border-gray-200">
                     <nav className="flex justify-center space-x-8">
                       <button
-                        onClick={() => setActiveCocktailHourTab('special-moments')}
+                        onClick={() => setActiveCocktailHourTab('special-songs')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeCocktailHourTab === 'special-moments'
+                          activeCocktailHourTab === 'special-songs'
                             ? 'border-purple-500 text-purple-600'
                             : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
-                        Special Moments
+                        Special Songs
                       </button>
                       <button
                         onClick={() => setActiveCocktailHourTab('song-requests')}
@@ -2533,11 +2663,11 @@ export default function ClientPortal() {
                   </div>
 
                   {/* Special Moments Content */}
-                  {activeCocktailHourTab === 'special-moments' && (
+                  {activeCocktailHourTab === 'special-songs' && (
                     <div className="space-y-6 mt-6">
                       <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-medium text-gray-900">Special Moments</h3>
-                        <span className="text-sm text-gray-500">{cocktailHourSpecialMoments.length} moments</span>
+                        <h3 className="text-lg font-medium text-gray-900">Special Songs</h3>
+                        <span className="text-sm text-gray-500">{cocktailHourSpecialMoments.length} songs</span>
                       </div>
 
                       {/* Add Special Moment Button */}
@@ -2545,14 +2675,14 @@ export default function ClientPortal() {
                         onClick={() => setCocktailHourSpecialMoments([...cocktailHourSpecialMoments, { specialMomentType: '', clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
                         className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
                       >
-                        + Add Special Moment
+                        + Add Special Song
                       </button>
 
                       {/* Special Moments List */}
                       {cocktailHourSpecialMoments.map((moment, index) => (
                         <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
                           <div className="flex justify-between items-center">
-                            <h4 className="font-medium text-gray-900">Special Moment {index + 1}</h4>
+                            <h4 className="font-medium text-gray-900">Special Song {index + 1}</h4>
                             <button
                               onClick={() => setCocktailHourSpecialMoments(cocktailHourSpecialMoments.filter((_, i) => i !== index))}
                               className="text-red-600 hover:text-red-800 text-sm"
@@ -2574,7 +2704,7 @@ export default function ClientPortal() {
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                               >
                                 <option value="">Select special moment</option>
-                                {specialMomentTypes.map((type) => (
+                                {getSpecialMomentTypes('cocktail-hour').map((type) => (
                                   <option key={type} value={type}>
                                     {type}
                                   </option>
@@ -2597,6 +2727,24 @@ export default function ClientPortal() {
                               />
                             </div>
                           </div>
+
+                          {/* Reason field - show when Custom is selected */}
+                          {moment.specialMomentType === 'Custom' && (
+                            <div className="mt-4">
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Reason for this song</label>
+                              <textarea
+                                value={moment.reason || ''}
+                                onChange={(e) => {
+                                  const newMoments = [...cocktailHourSpecialMoments];
+                                  newMoments[index].reason = e.target.value;
+                                  setCocktailHourSpecialMoments(newMoments);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                placeholder="Explain why this song is special for this moment"
+                                rows={3}
+                              />
+                            </div>
+                          )}
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
@@ -2649,8 +2797,8 @@ export default function ClientPortal() {
 
                       {cocktailHourSpecialMoments.length === 0 && (
                         <div className="text-center py-8 text-gray-500">
-                          <p>No special moments added yet</p>
-                          <p className="text-sm mt-1">Click "Add Special Moment" to get started</p>
+                          <p>No special songs added yet</p>
+                          <p className="text-sm mt-1">Click "Add Special Song" to get started</p>
                         </div>
                       )}
                     </div>
@@ -2951,30 +3099,21 @@ export default function ClientPortal() {
                 <h2 className="text-2xl font-bold text-purple-600 text-center">Reception</h2>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <div className="mb-6">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h4 className="text-lg font-medium text-gray-900">Entertainment Services: 15-Piece Full Band</h4>
-                        <p className="text-sm text-gray-600">5 Vocalists • Violin • Trumpet • Sax • Trombone • Guitar • Keyboard • Synths • Bass • Percussion • Drums</p>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-medium text-gray-900">Production Services</h4>
-                        <p className="text-sm text-gray-600">PA System • Sound Engineer • Toast Mic • Wash Lighting • Dance Lighting Package</p>
-                      </div>
-                    </div>
+                    <h4 className="text-lg font-medium text-gray-900">Reception - 15-Piece Full Band</h4>
                   </div>
                   
                   {/* Reception Sub-tabs */}
                   <div className="border-b border-gray-200">
                     <nav className="flex justify-center space-x-8">
                       <button
-                        onClick={() => setActiveReceptionTab('special-moments')}
+                        onClick={() => setActiveReceptionTab('special-songs')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeReceptionTab === 'special-moments'
+                          activeReceptionTab === 'special-songs'
                             ? 'border-purple-500 text-purple-600'
                             : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
-                        Special Moments
+                        Special Songs
                       </button>
                       <button
                         onClick={() => setActiveReceptionTab('special-requests')}
@@ -3000,11 +3139,11 @@ export default function ClientPortal() {
                   </div>
 
                   {/* Special Moments Content */}
-                  {activeReceptionTab === 'special-moments' && (
+                  {activeReceptionTab === 'special-songs' && (
                     <div className="space-y-6 mt-6">
                       <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-medium text-gray-900">Special Moments</h3>
-                        <span className="text-sm text-gray-500">{receptionSpecialMoments.length} moments</span>
+                        <h3 className="text-lg font-medium text-gray-900">Special Songs</h3>
+                        <span className="text-sm text-gray-500">{receptionSpecialMoments.length} songs</span>
                       </div>
 
                       {/* Add Special Moment Button */}
@@ -3012,14 +3151,14 @@ export default function ClientPortal() {
                         onClick={() => setReceptionSpecialMoments([...receptionSpecialMoments, { specialMomentType: '', clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
                         className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
                       >
-                        + Add Special Moment
+                        + Add Special Song
                       </button>
 
                       {/* Special Moments List */}
                       {receptionSpecialMoments.map((moment, index) => (
                         <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
                           <div className="flex justify-between items-center">
-                            <h4 className="font-medium text-gray-900">Special Moment {index + 1}</h4>
+                            <h4 className="font-medium text-gray-900">Special Song {index + 1}</h4>
                             <button
                               onClick={() => setReceptionSpecialMoments(receptionSpecialMoments.filter((_, i) => i !== index))}
                               className="text-red-600 hover:text-red-800 text-sm"
@@ -3041,7 +3180,7 @@ export default function ClientPortal() {
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                               >
                                 <option value="">Select special moment</option>
-                                {specialMomentTypes.map((type) => (
+                                {getSpecialMomentTypes('reception').map((type) => (
                                   <option key={type} value={type}>
                                     {type}
                                   </option>
@@ -3064,6 +3203,24 @@ export default function ClientPortal() {
                               />
                             </div>
                           </div>
+
+                          {/* Reason field - show when Custom is selected */}
+                          {moment.specialMomentType === 'Custom' && (
+                            <div className="mt-4">
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Reason for this song</label>
+                              <textarea
+                                value={moment.reason || ''}
+                                onChange={(e) => {
+                                  const newMoments = [...receptionSpecialMoments];
+                                  newMoments[index].reason = e.target.value;
+                                  setReceptionSpecialMoments(newMoments);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                placeholder="Explain why this song is special for this moment"
+                                rows={3}
+                              />
+                            </div>
+                          )}
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
@@ -3116,8 +3273,8 @@ export default function ClientPortal() {
 
                       {receptionSpecialMoments.length === 0 && (
                         <div className="text-center py-8 text-gray-500">
-                          <p>No special moments added yet</p>
-                          <p className="text-sm mt-1">Click "Add Special Moment" to get started</p>
+                          <p>No special songs added yet</p>
+                          <p className="text-sm mt-1">Click "Add Special Song" to get started</p>
                         </div>
                       )}
                     </div>
@@ -3446,30 +3603,21 @@ export default function ClientPortal() {
                 <h2 className="text-2xl font-bold text-purple-600 text-center">After Party</h2>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <div className="mb-6">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h4 className="text-lg font-medium text-gray-900">Entertainment Services: DJ + Violin + Sax</h4>
-                        <p className="text-sm text-gray-600">DJ with live Violin and Sax accompaniment</p>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-medium text-gray-900">Production Services</h4>
-                        <p className="text-sm text-gray-600">PA System • Announcement Mic • 10 Uplights</p>
-                      </div>
-                    </div>
+                    <h4 className="text-lg font-medium text-gray-900">After Party - DJ + Violin + Sax</h4>
                   </div>
                   
                   {/* After Party Sub-tabs */}
                   <div className="border-b border-gray-200">
                     <nav className="flex justify-center space-x-8">
                       <button
-                        onClick={() => setActiveAfterPartyTab('special-moments')}
+                        onClick={() => setActiveAfterPartyTab('special-songs')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeAfterPartyTab === 'special-moments'
+                          activeAfterPartyTab === 'special-songs'
                             ? 'border-purple-500 text-purple-600'
                             : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
-                        Special Moments
+                        Special Songs
                       </button>
                       <button
                         onClick={() => setActiveAfterPartyTab('special-requests')}
@@ -3495,11 +3643,11 @@ export default function ClientPortal() {
                   </div>
 
                   {/* Special Moments Content */}
-                  {activeAfterPartyTab === 'special-moments' && (
+                  {activeAfterPartyTab === 'special-songs' && (
                     <div className="space-y-6 mt-6">
                       <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-medium text-gray-900">Special Moments</h3>
-                        <span className="text-sm text-gray-500">{afterPartySpecialMoments.length} moments</span>
+                        <h3 className="text-lg font-medium text-gray-900">Special Songs</h3>
+                        <span className="text-sm text-gray-500">{afterPartySpecialMoments.length} songs</span>
                       </div>
 
                       {/* Add Special Moment Button */}
@@ -3507,14 +3655,14 @@ export default function ClientPortal() {
                         onClick={() => setAfterPartySpecialMoments([...afterPartySpecialMoments, { specialMomentType: '', clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
                         className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
                       >
-                        + Add Special Moment
+                        + Add Special Song
                       </button>
 
                       {/* Special Moments List */}
                       {afterPartySpecialMoments.map((moment, index) => (
                         <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
                           <div className="flex justify-between items-center">
-                            <h4 className="font-medium text-gray-900">Special Moment {index + 1}</h4>
+                            <h4 className="font-medium text-gray-900">Special Song {index + 1}</h4>
                             <button
                               onClick={() => setAfterPartySpecialMoments(afterPartySpecialMoments.filter((_, i) => i !== index))}
                               className="text-red-600 hover:text-red-800 text-sm"
@@ -3536,7 +3684,7 @@ export default function ClientPortal() {
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                               >
                                 <option value="">Select special moment</option>
-                                {specialMomentTypes.map((type) => (
+                                {getSpecialMomentTypes('after-party').map((type) => (
                                   <option key={type} value={type}>
                                     {type}
                                   </option>
@@ -3559,6 +3707,24 @@ export default function ClientPortal() {
                               />
                             </div>
                           </div>
+
+                          {/* Reason field - show when Custom is selected */}
+                          {moment.specialMomentType === 'Custom' && (
+                            <div className="mt-4">
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Reason for this song</label>
+                              <textarea
+                                value={moment.reason || ''}
+                                onChange={(e) => {
+                                  const newMoments = [...afterPartySpecialMoments];
+                                  newMoments[index].reason = e.target.value;
+                                  setAfterPartySpecialMoments(newMoments);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                placeholder="Explain why this song is special for this moment"
+                                rows={3}
+                              />
+                            </div>
+                          )}
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
@@ -3611,8 +3777,8 @@ export default function ClientPortal() {
 
                       {afterPartySpecialMoments.length === 0 && (
                         <div className="text-center py-8 text-gray-500">
-                          <p>No special moments added yet</p>
-                          <p className="text-sm mt-1">Click "Add Special Moment" to get started</p>
+                          <p>No special songs added yet</p>
+                          <p className="text-sm mt-1">Click "Add Special Song" to get started</p>
                         </div>
                       )}
                     </div>
