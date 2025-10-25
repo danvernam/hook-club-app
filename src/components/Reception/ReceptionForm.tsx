@@ -421,7 +421,7 @@ export default function ReceptionForm() {
           <div className="text-center py-6">
             <div className="text-lg font-bold text-black">Aretha Franklin & Ted White • Wedding</div>
             <div className="text-sm text-gray-600">Saturday 4/20/1961 • The Plaza Hotel, New York</div>
-          </div>
+      </div>
         </div>
       </div>
 
@@ -432,7 +432,7 @@ export default function ReceptionForm() {
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-2">
             <div className="flex flex-wrap gap-2">
               {/* General Info Tabs */}
-              <button
+        <button
                 onClick={() => setMainTab('general')}
                 className={`px-4 py-2 text-sm font-semibold rounded transition-all ${
                   mainTab === 'general' 
@@ -441,8 +441,8 @@ export default function ReceptionForm() {
                 }`}
               >
                 Services
-              </button>
-              <button
+        </button>
+        <button
                 onClick={() => setMainTab('gettingtoknow')}
                 className={`px-4 py-2 text-sm font-semibold rounded transition-all ${
                   mainTab === 'gettingtoknow' 
@@ -451,8 +451,8 @@ export default function ReceptionForm() {
                 }`}
               >
                 Getting To Know You
-              </button>
-              <button
+        </button>
+        <button
                 onClick={() => setMainTab('contacts')}
                 className={`px-4 py-2 text-sm font-semibold rounded transition-all ${
                   mainTab === 'contacts' 
@@ -461,8 +461,8 @@ export default function ReceptionForm() {
                 }`}
               >
                 Contacts
-              </button>
-              <button
+        </button>
+      <button
                 onClick={() => setMainTab('eventinfo')}
                 className={`px-4 py-2 text-sm font-semibold rounded transition-all ${
                   mainTab === 'eventinfo' 
@@ -471,7 +471,7 @@ export default function ReceptionForm() {
                 }`}
               >
                 Event Info
-              </button>
+      </button>
               
               {/* Music Planning Tabs */}
               <button
@@ -484,7 +484,7 @@ export default function ReceptionForm() {
               >
                 Welcome Party
               </button>
-              <button
+          <button
                 onClick={() => setMainTab('ceremony')}
                 className={`px-4 py-2 text-sm font-semibold rounded transition-all ${
                   mainTab === 'ceremony' 
@@ -541,7 +541,7 @@ export default function ReceptionForm() {
                 className="px-4 py-2 text-sm font-semibold rounded transition-all bg-purple-600 text-white hover:bg-purple-700"
               >
                 Band Prep →
-              </button>
+          </button>
                 </div>
               </div>
         </div>
@@ -910,8 +910,8 @@ export default function ReceptionForm() {
                       className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
-                </div>
-              </div>
+            </div>
+          </div>
 
               {/* Guest Information */}
               <div className="bg-gray-50 p-6 rounded-lg border-2 border-gray-200">
@@ -2599,9 +2599,9 @@ export default function ReceptionForm() {
               <p className="text-gray-600 mt-2">Admin panel for managing songs and genres</p>
             </div>
             
-            <div className="mb-6">
+          <div className="mb-6">
               <div className="bg-gray-100 rounded-lg p-2">
-                <div className="flex gap-2">
+              <div className="flex gap-2">
                 <button
                     onClick={() => setBandPrepTab('dashboard')}
                     className={`px-4 py-2 text-sm font-semibold rounded transition-all ${
