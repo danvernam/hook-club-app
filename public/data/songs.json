@@ -20,7 +20,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": "100%",
       "notes": "",
@@ -71,7 +76,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🕺 Studio '25",
+          "band": "disco"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": "100%",
       "notes": "",
@@ -122,7 +132,12 @@
       "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎷 Souled Out",
+          "band": "soul"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": "100%",
       "notes": "",
