@@ -180,8 +180,11 @@ export default function SongsDatabase() {
     if (!editingSong || !songsData) return;
     
     try {
+      console.log('Saving song:', editingSong.id, editingSong);
+      
       // Save to API
-      await apiService.updateSong(editingSong.id, editingSong);
+      const result = await apiService.updateSong(editingSong.id, editingSong);
+      console.log('Save result:', result);
       
       // Update local state
       const updatedSongs = songsData.songs.map(song => 
@@ -195,9 +198,12 @@ export default function SongsDatabase() {
       
       setIsEditModalOpen(false);
       setEditingSong(null);
+      
+      alert('Song saved successfully!');
     } catch (error) {
       console.error('Error saving song:', error);
-      alert('Failed to save song. Please try again.');
+      console.error('Error details:', error.message);
+      alert(`Failed to save song: ${error.message}. Please check the console for more details.`);
     }
   };
 
@@ -297,8 +303,8 @@ export default function SongsDatabase() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {filteredSongs.map((song) => (
-                <tr key={song.id} className="hover:bg-gray-50">
+              {filteredSongs.map((song, index) => (
+                <tr key={song.id || `song-${index}`} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <div className="text-sm font-medium text-gray-900 truncate max-w-xs">{song.thcTitle}</div>
@@ -617,6 +623,21 @@ export default function SongsDatabase() {
                     ))}
                   </div>
                 </div>
+
+                <div className="flex gap-4 pt-4">
+                  <button
+                    onClick={handleCancelEdit}
+                    className="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSaveSong}
+                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                  >
+                    Save Changes
+                  </button>
+                </div>
                 
               </div>
             )}
@@ -698,6 +719,21 @@ export default function SongsDatabase() {
                       </label>
                     ))}
                   </div>
+                </div>
+
+                <div className="flex gap-4 pt-4">
+                  <button
+                    onClick={handleCancelEdit}
+                    className="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSaveSong}
+                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                  >
+                    Save Changes
+                  </button>
                 </div>
               </div>
             )}
@@ -802,7 +838,7 @@ export default function SongsDatabase() {
                         </div>
                         
                         {Array.from({length: editingSong.backgroundVocalCount}, (_, i) => (
-                          <div key={i} className="border border-gray-200 rounded-md p-3 space-y-3">
+                          <div key={`bg-vocal-${i}`} className="border border-gray-200 rounded-md p-3 space-y-3">
                             <div className="flex items-center justify-between">
                               <h4 className="font-medium text-gray-900">Background Vocal Part {i + 1}</h4>
                               <button
@@ -886,8 +922,21 @@ export default function SongsDatabase() {
                     )}
                   </div>
                 </div>
-                
 
+                <div className="flex gap-4 pt-4">
+                  <button
+                    onClick={handleCancelEdit}
+                    className="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSaveSong}
+                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                  >
+                    Save Changes
+                  </button>
+                </div>
 
               </div>
             )}
@@ -933,7 +982,7 @@ export default function SongsDatabase() {
                 {/* Key Versions List */}
                 <div className="space-y-4">
                   {editingSong.keyVersions.map((version, index) => (
-                    <div key={index} className="border border-gray-200 rounded-md p-4 space-y-4">
+                    <div key={`version-${index}-${version.key}`} className="border border-gray-200 rounded-md p-4 space-y-4">
                       <div className="flex items-center justify-between">
                         <h5 className="font-medium text-gray-900">
                           Version {index + 1} - {version.key} {version.isDefault && '(Default)'}
@@ -1155,6 +1204,21 @@ export default function SongsDatabase() {
                       </div>
                     </div>
                   ))}
+                </div>
+
+                <div className="flex gap-4 pt-4">
+                  <button
+                    onClick={handleCancelEdit}
+                    className="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSaveSong}
+                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                  >
+                    Save Changes
+                  </button>
                 </div>
               </div>
             )}
