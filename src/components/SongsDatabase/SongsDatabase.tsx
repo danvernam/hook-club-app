@@ -480,6 +480,7 @@ export default function SongsDatabase() {
                     onChange={(e) => setEditingSong({...editingSong, originalKey: e.target.value})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                   >
+                    <option value="">Select Key</option>
                     <option value="C">C</option>
                     <option value="C#">C#</option>
                     <option value="Db">Db</option>
@@ -524,6 +525,7 @@ export default function SongsDatabase() {
                     onChange={(e) => setEditingSong({...editingSong, thcPercent: e.target.value})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                   >
+                    <option value="">Select Percentage</option>
                     <option value="25%">25%</option>
                     <option value="50%">50%</option>
                     <option value="75%">75%</option>
