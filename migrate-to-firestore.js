@@ -18,36 +18,29 @@ async function migrateSongs() {
     
     console.log(`Found ${songsData.songs.length} songs to migrate`);
     
-    // Batch write to Firestore
-    const batch = db.batch();
-    let batchCount = 0;
     const BATCH_SIZE = 500; // Firestore batch limit
     
-    for (let i = 0; i < songsData.songs.length; i++) {
-      const song = songsData.songs[i];
-      const songRef = db.collection('songs').doc(song.id);
+    for (let i = 0; i < songsData.songs.length; i += BATCH_SIZE) {
+      const batch = db.batch(); // Create new batch for each iteration
+      const currentBatch = songsData.songs.slice(i, i + BATCH_SIZE);
       
-      // Convert timestamps to Firestore format
-      const songData = {
-        ...song,
-        createdAt: song.createdAt ? admin.firestore.Timestamp.fromDate(new Date(song.createdAt)) : admin.firestore.FieldValue.serverTimestamp(),
-        updatedAt: song.updatedAt ? admin.firestore.Timestamp.fromDate(new Date(song.updatedAt)) : admin.firestore.FieldValue.serverTimestamp()
-      };
+      console.log(`Processing batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(songsData.songs.length / BATCH_SIZE)} (${currentBatch.length} songs)...`);
       
-      batch.set(songRef, songData);
-      batchCount++;
-      
-      // Commit batch when it reaches the limit
-      if (batchCount >= BATCH_SIZE) {
-        await batch.commit();
-        console.log(`Migrated ${i + 1} songs...`);
-        batchCount = 0;
+      for (const song of currentBatch) {
+        const songRef = db.collection('songs').doc(song.id);
+        
+        // Convert timestamps to Firestore format
+        const songData = {
+          ...song,
+          createdAt: song.createdAt ? admin.firestore.Timestamp.fromDate(new Date(song.createdAt)) : admin.firestore.FieldValue.serverTimestamp(),
+          updatedAt: song.updatedAt ? admin.firestore.Timestamp.fromDate(new Date(song.updatedAt)) : admin.firestore.FieldValue.serverTimestamp()
+        };
+        
+        batch.set(songRef, songData);
       }
-    }
-    
-    // Commit remaining songs
-    if (batchCount > 0) {
+      
       await batch.commit();
+      console.log(`✅ Batch ${Math.floor(i / BATCH_SIZE) + 1} committed successfully.`);
     }
     
     console.log(`✅ Successfully migrated ${songsData.songs.length} songs to Firestore`);
