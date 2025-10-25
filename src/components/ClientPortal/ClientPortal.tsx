@@ -825,9 +825,7 @@ export default function ClientPortal() {
                       <div className="flex justify-between items-start mb-2">
                         <h4 className="font-medium text-gray-900">Stylish Cocktail Attire</h4>
                         <div className="flex items-center space-x-2">
-                          {selectedWardrobe === 'cocktail' && (
-                            <span className="text-purple-600">✓</span>
-                          )}
+                          <span className="text-purple-600">✓</span>
                           <span className="text-xs text-gray-500">Option 1</span>
                         </div>
                       </div>
@@ -852,9 +850,7 @@ export default function ClientPortal() {
                       <div className="flex justify-between items-start mb-2">
                         <h4 className="font-medium text-gray-900">Stylish Black Tie</h4>
                         <div className="flex items-center space-x-2">
-                          {selectedWardrobe === 'black-tie' && (
-                            <span className="text-purple-600">✓</span>
-                          )}
+                          <span className="text-purple-600">✓</span>
                           <span className="text-xs text-gray-500">Option 2</span>
                         </div>
                       </div>
@@ -879,9 +875,7 @@ export default function ClientPortal() {
                       <div className="flex justify-between items-start mb-2">
                         <h4 className="font-medium text-gray-900">Formal Black Tie</h4>
                         <div className="flex items-center space-x-2">
-                          {selectedWardrobe === 'formal-black-tie' && (
-                            <span className="text-purple-600">✓</span>
-                          )}
+                          <span className="text-purple-600">✓</span>
                           <span className="text-xs text-gray-500">Option 3</span>
                         </div>
                       </div>
@@ -906,9 +900,7 @@ export default function ClientPortal() {
                       <div className="flex justify-between items-start mb-2">
                         <h4 className="font-medium text-gray-900">White Tux Formal</h4>
                         <div className="flex items-center space-x-2">
-                          {selectedWardrobe === 'white-tux-formal' && (
-                            <span className="text-purple-600">✓</span>
-                          )}
+                          <span className="text-purple-600">✓</span>
                           <span className="text-xs text-gray-500">Option 4</span>
                         </div>
                       </div>
@@ -933,9 +925,7 @@ export default function ClientPortal() {
                       <div className="flex justify-between items-start mb-2">
                         <h4 className="font-medium text-gray-900">THC Formal</h4>
                         <div className="flex items-center space-x-2">
-                          {selectedWardrobe === 'thc-formal' && (
-                            <span className="text-purple-600">✓</span>
-                          )}
+                          <span className="text-purple-600">✓</span>
                           <span className="text-xs text-gray-500">Option 5</span>
                         </div>
                       </div>
@@ -960,9 +950,7 @@ export default function ClientPortal() {
                       <div className="flex justify-between items-start mb-2">
                         <h4 className="font-medium text-gray-900">Custom Attire</h4>
                         <div className="flex items-center space-x-2">
-                          {selectedWardrobe === 'custom' && (
-                            <span className="text-purple-600">✓</span>
-                          )}
+                          <span className="text-purple-600">✓</span>
                           <span className="text-xs text-gray-500">Option 6</span>
                         </div>
                       </div>
@@ -1027,9 +1015,7 @@ export default function ClientPortal() {
                       >
                         <div className="flex justify-between items-start mb-2">
                           <h5 className="font-medium text-gray-900">Light Mode</h5>
-                          {selectedStageLook === 'light' && (
-                            <span className="text-purple-600">✓</span>
-                          )}
+                          <span className="text-purple-600">✓</span>
                         </div>
                         <p className="text-sm text-gray-600 mb-3">White bandstands, white mic stands, white drum kit</p>
                         <button className="text-sm text-purple-600 hover:text-purple-800 font-medium">
@@ -1048,9 +1034,7 @@ export default function ClientPortal() {
                       >
                         <div className="flex justify-between items-start mb-2">
                           <h5 className="font-medium text-gray-900">Dark Mode</h5>
-                          {selectedStageLook === 'dark' && (
-                            <span className="text-purple-600">✓</span>
-                          )}
+                          <span className="text-purple-600">✓</span>
                         </div>
                         <p className="text-sm text-gray-600 mb-3">Black bandstands, black mic stands, dark drum kit</p>
                         <button className="text-sm text-purple-600 hover:text-purple-800 font-medium">
@@ -1075,9 +1059,7 @@ export default function ClientPortal() {
                       >
                         <div className="flex justify-between items-start mb-3">
                           <h5 className="font-medium text-gray-900">Natural</h5>
-                          {selectedWashLighting === 'natural' && (
-                            <span className="text-purple-600">✓</span>
-                          )}
+                          <span className="text-purple-600">✓</span>
                         </div>
                         <p className="text-sm text-gray-600 mb-3">We'll match the room color</p>
                         <button className="text-sm text-purple-600 hover:text-purple-800 font-medium">
@@ -1096,9 +1078,7 @@ export default function ClientPortal() {
                       >
                         <div className="flex justify-between items-start mb-3">
                           <h5 className="font-medium text-gray-900">Color</h5>
-                          {selectedWashLighting === 'color' && (
-                            <span className="text-purple-600">✓</span>
-                          )}
+                          <span className="text-purple-600">✓</span>
                         </div>
                         <p className="text-sm text-gray-600 mb-3">Colored stage wash lighting</p>
                         
@@ -1148,9 +1128,7 @@ export default function ClientPortal() {
                           >
                             <div className="flex justify-between items-start mb-3">
                               <h5 className="font-medium text-gray-900">Natural</h5>
-                              {selectedUplightingColor === 'natural' && (
-                                <span className="text-purple-600">✓</span>
-                              )}
+                              <span className="text-purple-600">✓</span>
                             </div>
                             <p className="text-sm text-gray-600 mb-3">We'll match the room color</p>
                             <button className="text-sm text-purple-600 hover:text-purple-800 font-medium">
@@ -1169,9 +1147,7 @@ export default function ClientPortal() {
                           >
                             <div className="flex justify-between items-start mb-3">
                               <h5 className="font-medium text-gray-900">Color</h5>
-                              {selectedUplightingColor === 'color' && (
-                                <span className="text-purple-600">✓</span>
-                              )}
+                              <span className="text-purple-600">✓</span>
                             </div>
                             <p className="text-sm text-gray-600 mb-3">Colored uplighting</p>
                             
