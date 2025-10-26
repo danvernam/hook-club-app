@@ -189,9 +189,12 @@ export default function SongsDatabase() {
     try {
       console.log('Saving song:', editingSong.id, editingSong);
       
-      // Check for duplicate thcTitle
+      // Check for duplicate thcTitle (exclude songs with empty IDs and current song)
       const duplicateSong = songsData.songs.find(song => 
-        song.thcTitle === editingSong.thcTitle && song.id !== editingSong.id
+        song.thcTitle === editingSong.thcTitle && 
+        song.id !== editingSong.id && 
+        song.id !== '' && 
+        editingSong.id !== ''
       );
       
       if (duplicateSong) {
