@@ -142,12 +142,13 @@ export default function ClientPortal() {
   }>>([]);
   const [songsData, setSongsData] = useState<any>(null);
   
-  // Load songs data for special moment recommendations
+  // Load songs data for special moment recommendations and song lists
   useEffect(() => {
     const loadSongs = async () => {
       try {
         const data = await apiService.getSongs();
         setSongsData(data);
+        setSongs(data.songs || []);
       } catch (error) {
         console.error('Error loading songs:', error);
       }
