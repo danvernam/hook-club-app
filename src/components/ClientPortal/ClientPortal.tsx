@@ -3610,9 +3610,9 @@ export default function ClientPortal() {
                                   {receptionGenres.filter(genre => 
                                     ['guest entrance', 'dinner entertainment'].includes(genre.band)
                                   ).map((genre) => {
-                                    // Filter songs by genre
+                                    // Filter songs by light genre
                                     const genreSongs = sortedReceptionSongs.filter(song => 
-                                      song.genres && song.genres.some((g: any) => g.band === genre.band)
+                                      song.lightGenres && song.lightGenres.some((g: any) => g.band === genre.band)
                                     );
 
                                     return (
