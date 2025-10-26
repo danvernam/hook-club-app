@@ -189,32 +189,42 @@ export default function ClientPortal() {
   const [songPreferences, setSongPreferences] = useState<Record<string, 'definitely' | 'maybe' | 'avoid'>>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // Filter songs for Welcome Party (only show songs tagged with dance genres)
+  // Filter songs for Welcome Party (only show songs tagged with welcome party genres)
   const filteredWelcomePartySongs = songs.filter(song => 
-    song.danceGenres && song.danceGenres.length > 0
+    song.genres && song.genres.some((genre: any) => 
+      ['pop', 'disco', 'soul', 'rock', 'country', 'hip hop', 'r&b', 'jazz', 'folk', 'indie', 'alternative', 'punk'].includes((genre.band || '').toLowerCase())
+    )
   );
 
-  // Filter songs for Guest Arrival (only show songs tagged with Guest Entrance light genre)
+  // Filter songs for Guest Arrival (only show songs tagged with Guest Entrance genre)
   const filteredGuestArrivalSongs = songs.filter(song => 
-    song.lightGenres && song.lightGenres.some((genre: any) => 
+    song.genres && song.genres.some((genre: any) => 
+      (genre.client || '').toLowerCase().includes('guest entrance') ||
       (genre.band || '').toLowerCase().includes('guest entrance')
     )
   );
 
-  // Filter songs for Cocktail Hour (only show songs tagged with dance genres)
+  // Filter songs for Cocktail Hour (only show songs tagged with cocktail hour genres)
   const filteredCocktailHourSongs = songs.filter(song => 
-    song.danceGenres && song.danceGenres.length > 0
+    song.genres && song.genres.some((genre: any) => 
+      ['jazz', 'soul', 'r&b', 'lounge', 'acoustic'].includes((genre.band || '').toLowerCase())
+    )
   );
 
-  // Filter songs for After Party (only show songs tagged with dance genres)
+  // Filter songs for After Party (only show songs tagged with after party genres)
   const filteredAfterPartySongs = songs.filter(song => 
-    song.danceGenres && song.danceGenres.length > 0
+    song.genres && song.genres.some((genre: any) => 
+      ['pop', 'disco', 'hip hop', 'rock', 'electronic'].includes((genre.band || '').toLowerCase())
+    )
   );
 
-  // Filter songs for Reception (show both dance and light genres)
-  const filteredReceptionSongs = songs.filter(song => 
-    (song.danceGenres && song.danceGenres.length > 0) || 
-    (song.lightGenres && song.lightGenres.length > 0)
+  // Filter songs for Reception - separate into dance and light music
+  const filteredReceptionDanceSongs = songs.filter(song => 
+    song.danceGenres && song.danceGenres.length > 0
+  );
+  
+  const filteredReceptionLightSongs = songs.filter(song => 
+    song.lightGenres && song.lightGenres.length > 0
   );
 
   // Filter songs for Dinner Entertainment (only show songs tagged with dinner entertainment light genre)
@@ -224,12 +234,8 @@ export default function ClientPortal() {
     )
   );
 
-  // Count total songs available in Reception genres
-  const totalReceptionSongs = songs.filter(song => 
-    song.genres && song.genres.some((g: any) => 
-      ['pop', 'disco', 'soul', 'rock', 'country', 'hip hop', 'r&b', 'jazz', 'folk', 'indie', 'alternative', 'punk'].includes(g.band)
-    )
-  ).length;
+  // Count total songs available in Reception (both dance and light music)
+  const totalReceptionSongs = filteredReceptionDanceSongs.length + filteredReceptionLightSongs.length;
 
   // Get recommended songs from database based on special moment type
   const getRecommendedSongs = (momentType: string) => {
@@ -3475,110 +3481,137 @@ export default function ClientPortal() {
                             <p>No songs available</p>
                           </div>
                         ) : (
-                          <div className="space-y-4">
-                            {receptionGenres.map((genre) => {
-                              // Filter songs by genre
-                              const genreSongs = sortedReceptionSongs.filter(song => 
-                                song.genres && song.genres.some((g: any) => g.band === genre.band)
-                              );
-
-                              return (
-                                <div key={genre.band} className="border border-gray-200 rounded-lg">
-                                  <button
-                                    onClick={() => setExpandedReceptionGenres(prev => ({
-                                      ...prev,
-                                      [genre.band]: !prev[genre.band]
-                                    }))}
-                                    className="w-full px-4 py-3 text-left bg-gray-50 hover:bg-gray-100 border-b border-gray-200 flex items-center justify-between"
-                                  >
-                                    <div className="flex items-center space-x-3">
-                                      <span className="text-lg font-medium text-gray-900">{genre.client}</span>
-                                      <span className="text-sm text-gray-600">({genreSongs.length} songs)</span>
-                                    </div>
-                                    <div className="flex items-center space-x-2">
-                                      <svg
-                                        className={`w-5 h-5 transform transition-transform ${
-                                          expandedReceptionGenres[genre.band] ? 'rotate-180' : ''
-                                        }`}
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                      >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                      </svg>
-                                    </div>
-                                  </button>
-                                  
-                                  {expandedReceptionGenres[genre.band] && (
-                                    <div className="divide-y divide-gray-200">
-                                      {genreSongs.map((song, index) => (
-                                        <div key={song.id || index} className="p-4 hover:bg-gray-50">
-                                          <div className="flex items-center justify-between">
-                                            <div className="flex-1">
-                                              <div className="flex items-center space-x-4">
-                                                <div>
-                                                  <a
-                                                    href={song.videoUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="font-medium text-purple-600 hover:text-purple-800 underline"
-                                                  >
-                                                    {song.originalTitle}
-                                                  </a>
-                                                  <p className="text-sm text-gray-600">{song.originalArtist}</p>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            
-                                            <div className="flex items-center space-x-2">
-                                              <button
-                                                onClick={() => setReceptionSongPreferences(prev => ({
-                                                  ...prev,
-                                                  [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
-                                                }))}
-                                                className={`px-3 py-1 text-sm rounded border ${
-                                                  receptionSongPreferences[song.id] === 'definitely'
-                                                    ? 'bg-green-100 text-green-800 border-green-300'
-                                                    : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
-                                                }`}
-                                              >
-                                                🤘 Definitely Play
-                                              </button>
-                                              <button
-                                                onClick={() => setReceptionSongPreferences(prev => ({
-                                                  ...prev,
-                                                  [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
-                                                }))}
-                                                className={`px-3 py-1 text-sm rounded border ${
-                                                  receptionSongPreferences[song.id] === 'maybe'
-                                                    ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
-                                                    : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
-                                                }`}
-                                              >
-                                                👍 If the Mood is Right
-                                              </button>
-                                              <button
-                                                onClick={() => setReceptionSongPreferences(prev => ({
-                                                  ...prev,
-                                                  [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
-                                                }))}
-                                                className={`px-3 py-1 text-sm rounded border ${
-                                                  receptionSongPreferences[song.id] === 'avoid'
-                                                    ? 'bg-red-100 text-red-800 border-red-300'
-                                                    : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
-                                                }`}
-                                              >
-                                                👎 Avoid Playing
-                                              </button>
-                                            </div>
-                                          </div>
+                          <div className="space-y-6">
+                            {/* Dance Music Section */}
+                            <div className="border border-gray-200 rounded-lg">
+                              <div className="bg-purple-50 px-4 py-3 border-b border-gray-200">
+                                <h4 className="text-lg font-semibold text-gray-900">💃 Dance Music</h4>
+                                <p className="text-sm text-gray-600">{filteredReceptionDanceSongs.length} songs</p>
+                              </div>
+                              <div className="p-4">
+                                {filteredReceptionDanceSongs.length === 0 ? (
+                                  <p className="text-gray-500 text-center py-4">No dance songs available</p>
+                                ) : (
+                                  <div className="space-y-2">
+                                    {filteredReceptionDanceSongs.map((song, index) => (
+                                      <div key={song.id || index} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
+                                        <div className="flex-1">
+                                          <div className="font-medium text-gray-900">{song.originalTitle}</div>
+                                          <div className="text-sm text-gray-600">{song.originalArtist}</div>
                                         </div>
-                                      ))}
-                                    </div>
-                                  )}
-                                </div>
-                              );
-                            })}
+                                        <div className="flex space-x-2">
+                                          <button
+                                            onClick={() => setReceptionSongPreferences(prev => ({
+                                              ...prev,
+                                              [song.id]: prev[song.id] === 'definitely' ? 'maybe' : 'definitely'
+                                            }))}
+                                            className={`px-3 py-1 rounded text-sm ${
+                                              receptionSongPreferences[song.id] === 'definitely'
+                                                ? 'bg-green-100 text-green-800 border border-green-300'
+                                                : 'bg-gray-100 text-gray-700 border border-gray-300 hover:bg-green-50'
+                                            }`}
+                                          >
+                                            ✓
+                                          </button>
+                                          <button
+                                            onClick={() => setReceptionSongPreferences(prev => ({
+                                              ...prev,
+                                              [song.id]: prev[song.id] === 'maybe' ? 'avoid' : 'maybe'
+                                            }))}
+                                            className={`px-3 py-1 rounded text-sm ${
+                                              receptionSongPreferences[song.id] === 'maybe'
+                                                ? 'bg-yellow-100 text-yellow-800 border border-yellow-300'
+                                                : 'bg-gray-100 text-gray-700 border border-gray-300 hover:bg-yellow-50'
+                                            }`}
+                                          >
+                                            ?
+                                          </button>
+                                          <button
+                                            onClick={() => setReceptionSongPreferences(prev => ({
+                                              ...prev,
+                                              [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
+                                            }))}
+                                            className={`px-3 py-1 rounded text-sm ${
+                                              receptionSongPreferences[song.id] === 'avoid'
+                                                ? 'bg-red-100 text-red-800 border border-red-300'
+                                                : 'bg-gray-100 text-gray-700 border border-gray-300 hover:bg-red-50'
+                                            }`}
+                                          >
+                                            ✗
+                                          </button>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Light Music Section */}
+                            <div className="border border-gray-200 rounded-lg">
+                              <div className="bg-blue-50 px-4 py-3 border-b border-gray-200">
+                                <h4 className="text-lg font-semibold text-gray-900">🎵 Light Music</h4>
+                                <p className="text-sm text-gray-600">{filteredReceptionLightSongs.length} songs</p>
+                              </div>
+                              <div className="p-4">
+                                {filteredReceptionLightSongs.length === 0 ? (
+                                  <p className="text-gray-500 text-center py-4">No light music songs available</p>
+                                ) : (
+                                  <div className="space-y-2">
+                                    {filteredReceptionLightSongs.map((song, index) => (
+                                      <div key={song.id || index} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
+                                        <div className="flex-1">
+                                          <div className="font-medium text-gray-900">{song.originalTitle}</div>
+                                          <div className="text-sm text-gray-600">{song.originalArtist}</div>
+                                        </div>
+                                        <div className="flex space-x-2">
+                                          <button
+                                            onClick={() => setReceptionSongPreferences(prev => ({
+                                              ...prev,
+                                              [song.id]: prev[song.id] === 'definitely' ? 'maybe' : 'definitely'
+                                            }))}
+                                            className={`px-3 py-1 rounded text-sm ${
+                                              receptionSongPreferences[song.id] === 'definitely'
+                                                ? 'bg-green-100 text-green-800 border border-green-300'
+                                                : 'bg-gray-100 text-gray-700 border border-gray-300 hover:bg-green-50'
+                                            }`}
+                                          >
+                                            ✓
+                                          </button>
+                                          <button
+                                            onClick={() => setReceptionSongPreferences(prev => ({
+                                              ...prev,
+                                              [song.id]: prev[song.id] === 'maybe' ? 'avoid' : 'maybe'
+                                            }))}
+                                            className={`px-3 py-1 rounded text-sm ${
+                                              receptionSongPreferences[song.id] === 'maybe'
+                                                ? 'bg-yellow-100 text-yellow-800 border border-yellow-300'
+                                                : 'bg-gray-100 text-gray-700 border border-gray-300 hover:bg-yellow-50'
+                                            }`}
+                                          >
+                                            ?
+                                          </button>
+                                          <button
+                                            onClick={() => setReceptionSongPreferences(prev => ({
+                                              ...prev,
+                                              [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
+                                            }))}
+                                            className={`px-3 py-1 rounded text-sm ${
+                                              receptionSongPreferences[song.id] === 'avoid'
+                                                ? 'bg-red-100 text-red-800 border border-red-300'
+                                                : 'bg-gray-100 text-gray-700 border border-gray-300 hover:bg-red-50'
+                                            }`}
+                                          >
+                                            ✗
+                                          </button>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+
                           </div>
                         )}
                       </div>
