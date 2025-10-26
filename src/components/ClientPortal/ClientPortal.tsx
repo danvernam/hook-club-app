@@ -8,7 +8,7 @@ export default function ClientPortal() {
   const [activeTab, setActiveTab] = useState<'services' | 'getting-to-know-you' | 'preferences' | 'documents' | 'welcome-party' | 'ceremony' | 'cocktail-hour' | 'reception' | 'after-party'>('services');
   const [activeView, setActiveView] = useState<'client-portal' | 'database'>('client-portal');
   const [activeWelcomePartyTab, setActiveWelcomePartyTab] = useState<'special-songs' | 'special-requests' | 'core-repertoire'>('core-repertoire');
-  const [activeCeremonyTab, setActiveCeremonyTab] = useState<'ceremony-music' | 'guest-arrival-requests' | 'guest-arrival'>('ceremony-music');
+  const [activeCeremonyTab, setActiveCeremonyTab] = useState<'ceremony-music' | 'guest-arrival-requests' | 'guest-arrival'>('guest-arrival');
   const [activeCocktailHourTab, setActiveCocktailHourTab] = useState<'special-songs' | 'song-requests' | 'cocktail-hour-song-list'>('cocktail-hour-song-list');
   const [activeAfterPartyTab, setActiveAfterPartyTab] = useState<'special-songs' | 'special-requests' | 'core-repertoire'>('core-repertoire');
   const [activeReceptionTab, setActiveReceptionTab] = useState<'special-songs' | 'special-requests' | 'reception-song-list'>('reception-song-list');
@@ -2062,14 +2062,14 @@ export default function ClientPortal() {
                   <div className="border-b border-gray-200">
                     <nav className="flex justify-center space-x-8">
                       <button
-                        onClick={() => setActiveCeremonyTab('ceremony-music')}
+                        onClick={() => setActiveCeremonyTab('guest-arrival')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeCeremonyTab === 'ceremony-music'
+                          activeCeremonyTab === 'guest-arrival'
                             ? 'border-purple-500 text-purple-600'
                             : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
-                        Ceremony Music
+                        Guest Arrival Song List
                       </button>
                       <button
                         onClick={() => setActiveCeremonyTab('guest-arrival-requests')}
@@ -2082,14 +2082,14 @@ export default function ClientPortal() {
                         Guest Arrival Song Requests
                       </button>
                       <button
-                        onClick={() => setActiveCeremonyTab('guest-arrival')}
+                        onClick={() => setActiveCeremonyTab('ceremony-music')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeCeremonyTab === 'guest-arrival'
+                          activeCeremonyTab === 'ceremony-music'
                             ? 'border-purple-500 text-purple-600'
                             : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
                         }`}
                       >
-                        Guest Arrival Song List
+                        Ceremony Music
                       </button>
                     </nav>
                   </div>

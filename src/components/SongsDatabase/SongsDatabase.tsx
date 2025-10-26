@@ -11,8 +11,8 @@ interface Song {
   thcArtist: string;
   videoUrl: string;
   spotifyUrl: string;
-  originalBpm: number;
-  thcBpm: number;
+  originalBpm: number | null;
+  thcBpm: number | null;
   isLive: boolean;
   sections: string[];
   ensembles: string[];
@@ -548,8 +548,8 @@ export default function SongsDatabase() {
                   <label className="block text-sm font-medium text-gray-900 mb-2">Original BPM</label>
                   <input
                     type="number"
-                    value={editingSong.originalBpm}
-                    onChange={(e) => setEditingSong({...editingSong, originalBpm: parseInt(e.target.value) || 0})}
+                    value={editingSong.originalBpm || ''}
+                    onChange={(e) => setEditingSong({...editingSong, originalBpm: e.target.value ? parseInt(e.target.value) : null})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                   />
                 </div>
@@ -558,8 +558,8 @@ export default function SongsDatabase() {
                   <label className="block text-sm font-medium text-gray-900 mb-2">THC BPM</label>
                   <input
                     type="number"
-                    value={editingSong.thcBpm}
-                    onChange={(e) => setEditingSong({...editingSong, thcBpm: parseInt(e.target.value) || 0})}
+                    value={editingSong.thcBpm || ''}
+                    onChange={(e) => setEditingSong({...editingSong, thcBpm: e.target.value ? parseInt(e.target.value) : null})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                   />
                 </div>
@@ -1053,7 +1053,7 @@ export default function SongsDatabase() {
                       const newVersion = {
                         key: defaultKey,
                         isDefault: editingSong.keyVersions.length === 0,
-                        bpm: editingSong.thcBpm,
+                        bpm: editingSong.thcBpm || 0,
                         chordLyricChartUrl: '',
                         leadSheetUrl: '',
                         fullBandArrangementUrl: '',
