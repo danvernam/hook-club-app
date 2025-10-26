@@ -185,9 +185,12 @@ export default function ClientPortal() {
     song.sections && song.sections.includes('welcomeParty')
   );
 
-  // Filter songs for Guest Arrival (only show songs tagged for guestArrival)
+  // Filter songs for Guest Arrival (only show songs tagged with Guest Entrance genre)
   const filteredGuestArrivalSongs = songs.filter(song => 
-    song.sections && song.sections.includes('guestArrival')
+    song.genres && song.genres.some((genre: any) => 
+      (genre.client || '').toLowerCase().includes('guest entrance') ||
+      (genre.band || '').toLowerCase().includes('guest entrance')
+    )
   );
 
   // Filter songs for Cocktail Hour (only show songs tagged for cocktailHour)
