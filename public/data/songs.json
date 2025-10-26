@@ -1,10 +1,10 @@
 {
   "metadata": {
     "version": "2.0",
-    "lastUpdated": "2025-10-26T06:57:26.282Z",
+    "lastUpdated": "2025-10-26T07:41:29.054Z",
     "totalSongs": 1449,
-    "activeSongs": 213,
-    "inactiveSongs": 1236
+    "activeSongs": 212,
+    "inactiveSongs": 1237
   },
   "songs": [
     {
@@ -55910,15 +55910,10 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": true,
+      "isLive": false,
       "sections": [],
       "ensembles": [],
-      "genres": [
-        {
-          "client": "🎸 Rock Of Ages",
-          "band": "rock"
-        }
-      ],
+      "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
