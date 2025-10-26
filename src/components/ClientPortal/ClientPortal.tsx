@@ -189,46 +189,37 @@ export default function ClientPortal() {
   const [songPreferences, setSongPreferences] = useState<Record<string, 'definitely' | 'maybe' | 'avoid'>>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // Filter songs for Welcome Party (only show songs tagged with welcome party genres)
+  // Filter songs for Welcome Party (only show songs tagged with dance genres)
   const filteredWelcomePartySongs = songs.filter(song => 
-    song.genres && song.genres.some((genre: any) => 
-      ['pop', 'disco', 'soul', 'rock', 'country', 'hip hop', 'r&b', 'jazz', 'folk', 'indie', 'alternative', 'punk'].includes((genre.band || '').toLowerCase())
-    )
+    song.danceGenres && song.danceGenres.length > 0
   );
 
-  // Filter songs for Guest Arrival (only show songs tagged with Guest Entrance genre)
+  // Filter songs for Guest Arrival (only show songs tagged with Guest Entrance light genre)
   const filteredGuestArrivalSongs = songs.filter(song => 
-    song.genres && song.genres.some((genre: any) => 
-      (genre.client || '').toLowerCase().includes('guest entrance') ||
+    song.lightGenres && song.lightGenres.some((genre: any) => 
       (genre.band || '').toLowerCase().includes('guest entrance')
     )
   );
 
-  // Filter songs for Cocktail Hour (only show songs tagged with cocktail hour genres)
+  // Filter songs for Cocktail Hour (only show songs tagged with dance genres)
   const filteredCocktailHourSongs = songs.filter(song => 
-    song.genres && song.genres.some((genre: any) => 
-      ['jazz', 'soul', 'r&b', 'lounge', 'acoustic'].includes((genre.band || '').toLowerCase())
-    )
+    song.danceGenres && song.danceGenres.length > 0
   );
 
-  // Filter songs for After Party (only show songs tagged with after party genres)
+  // Filter songs for After Party (only show songs tagged with dance genres)
   const filteredAfterPartySongs = songs.filter(song => 
-    song.genres && song.genres.some((genre: any) => 
-      ['pop', 'disco', 'hip hop', 'rock', 'electronic'].includes((genre.band || '').toLowerCase())
-    )
+    song.danceGenres && song.danceGenres.length > 0
   );
 
-  // Filter songs for Reception (only show songs tagged with reception genres)
+  // Filter songs for Reception (show both dance and light genres)
   const filteredReceptionSongs = songs.filter(song => 
-    song.genres && song.genres.some((genre: any) => 
-      ['pop', 'disco', 'soul', 'rock', 'country', 'hip hop', 'r&b', 'jazz', 'folk', 'indie', 'alternative', 'punk'].includes((genre.band || '').toLowerCase())
-    )
+    (song.danceGenres && song.danceGenres.length > 0) || 
+    (song.lightGenres && song.lightGenres.length > 0)
   );
 
-  // Filter songs for Dinner Entertainment (only show songs tagged with Dinner Entertainment genre)
+  // Filter songs for Dinner Entertainment (only show songs tagged with dinner entertainment light genre)
   const filteredDinnerEntertainmentSongs = songs.filter(song => 
-    song.genres && song.genres.some((genre: any) => 
-      (genre.client || '').toLowerCase().includes('dinner entertainment') ||
+    song.lightGenres && song.lightGenres.some((genre: any) => 
       (genre.band || '').toLowerCase().includes('dinner entertainment')
     )
   );

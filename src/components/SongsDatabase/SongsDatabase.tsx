@@ -17,6 +17,8 @@ interface Song {
   sections: string[];
   ensembles: string[];
   genres: Array<{ client: string; band: string }>;
+  danceGenres: Array<{ client: string; band: string }>;
+  lightGenres: Array<{ client: string; band: string }>;
   specialMomentTypes: string[];
   specialMomentRecommendations: string[];
   thcPercent: string;
@@ -158,7 +160,7 @@ export default function SongsDatabase() {
   }
 
         const sections = ['welcomeParty', 'afterParty'];
-  const genres = [
+  const danceGenres = [
     { client: '💯 Cream Of The Pop', band: 'pop' },
     { client: '🎷 Souled Out', band: 'soul' },
     { client: '🎸 Rock Of Ages', band: 'rock' },
@@ -167,9 +169,12 @@ export default function SongsDatabase() {
     { client: '🤘 Instant Mosh', band: 'punk' },
     { client: '🤠 Country For All', band: 'country' },
     { client: '🔥 The Latin Bible', band: 'latin' },
-    { client: '🎶 Slow Jams', band: 'slowjams' },
-    { client: 'Dinner Entertainment', band: 'Dinner Entertainment' },
-    { client: 'Guest Entrance', band: 'Guest Entrance' }
+    { client: '🎶 Slow Jams', band: 'slow jams' }
+  ];
+  
+  const lightGenres = [
+    { client: '🚪 Guest Entrance', band: 'guest entrance' },
+    { client: '🍽️ Dinner Entertainment', band: 'dinner entertainment' }
   ];
 
         const handleEditSong = (song: Song) => {
@@ -266,6 +271,8 @@ export default function SongsDatabase() {
       sections: [],
       ensembles: [],
       genres: [],
+      danceGenres: [],
+      lightGenres: [],
       specialMomentTypes: [],
       specialMomentRecommendations: [],
       thcPercent: '',
@@ -348,7 +355,7 @@ export default function SongsDatabase() {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
             >
               <option value="">All Genres</option>
-              {genres.map(genre => (
+              {[...danceGenres, ...lightGenres].map(genre => (
                 <option key={genre.band} value={genre.band}>
                   {genre.client}
                 </option>
@@ -711,7 +718,7 @@ export default function SongsDatabase() {
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-3">Reception Genres</label>
                   <div className="space-y-3">
-                    {genres.map(genre => (
+                    {[...danceGenres, ...lightGenres].map(genre => (
                       <label key={genre.band} className="flex items-center">
                         <input
                           type="checkbox"
