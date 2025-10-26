@@ -1,9 +1,9 @@
 {
   "metadata": {
     "version": "2.0",
-    "lastUpdated": "2025-10-26T09:31:39.476Z",
-    "totalSongs": 1449,
-    "activeSongs": 212,
+    "lastUpdated": "2025-10-26T09:32:19.018Z",
+    "totalSongs": 1450,
+    "activeSongs": 213,
     "inactiveSongs": 1237
   },
   "songs": [
@@ -74887,6 +74887,34 @@
       "hornChartSpecial": false,
       "chordLyricChartUrl": "",
       "ensembleSheetMusic": {},
+      "keyVersions": []
+    },
+    {
+      "id": "as-it-was-harry-styles",
+      "originalTitle": "As It Was",
+      "originalArtist": "Harry Styles",
+      "thcTitle": "As It Was",
+      "thcArtist": "Harry Styles",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [
+        {
+          "client": "💯 Cream Of The Pop",
+          "band": "pop"
+        }
+      ],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": "",
+      "notes": "",
+      "createdAt": "2025-10-26T09:32:19.017Z",
+      "updatedAt": "2025-10-26T09:32:19.018Z",
+      "originalKey": "",
       "keyVersions": []
     }
   ]
