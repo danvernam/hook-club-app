@@ -220,11 +220,11 @@ export default function ClientPortal() {
 
   // Filter songs for Reception - separate into dance and light music
   const filteredReceptionDanceSongs = songs.filter(song => 
-    song.danceGenres && song.danceGenres.length > 0
+    song.danceGenres && song.danceGenres.length > 0 && song.isLive
   );
   
   const filteredReceptionLightSongs = songs.filter(song => 
-    song.lightGenres && song.lightGenres.length > 0
+    song.lightGenres && song.lightGenres.length > 0 && song.isLive
   );
 
   // Filter songs for Dinner Entertainment (only show songs tagged with dinner entertainment light genre)
@@ -3493,9 +3493,9 @@ export default function ClientPortal() {
                                   {receptionGenres.filter(genre => 
                                     ['pop', 'soul', 'rock', 'hip hop', 'disco', 'punk', 'country', 'latin', 'slow jams'].includes(genre.band)
                                   ).map((genre) => {
-                                    // Filter songs by dance genre
+                                    // Filter songs by dance genre (only active songs)
                                     const genreSongs = sortedReceptionSongs.filter(song => 
-                                      song.danceGenres && song.danceGenres.some((g: any) => g.band === genre.band)
+                                      song.danceGenres && song.danceGenres.some((g: any) => g.band === genre.band) && song.isLive
                                     );
 
                                     return (
@@ -3610,9 +3610,9 @@ export default function ClientPortal() {
                                   {receptionGenres.filter(genre => 
                                     ['guest entrance', 'dinner entertainment'].includes(genre.band)
                                   ).map((genre) => {
-                                    // Filter songs by light genre
+                                    // Filter songs by light genre (only active songs)
                                     const genreSongs = sortedReceptionSongs.filter(song => 
-                                      song.lightGenres && song.lightGenres.some((g: any) => g.band === genre.band)
+                                      song.lightGenres && song.lightGenres.some((g: any) => g.band === genre.band) && song.isLive
                                     );
 
                                     return (
