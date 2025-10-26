@@ -1,10 +1,10 @@
 {
   "metadata": {
     "version": "2.0",
-    "lastUpdated": "2025-10-26T06:42:15.918Z",
-    "totalSongs": 1447,
-    "activeSongs": 161,
-    "inactiveSongs": 1286
+    "lastUpdated": "2025-10-26T06:57:26.282Z",
+    "totalSongs": 1449,
+    "activeSongs": 213,
+    "inactiveSongs": 1236
   },
   "songs": [
     {
@@ -960,7 +960,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -999,6 +999,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Newlyweds Intro"
       ]
     },
     {
@@ -2304,6 +2307,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Newlyweds Intro"
       ]
     },
     {
@@ -3815,7 +3821,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -3854,7 +3860,8 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
-      ]
+      ],
+      "specialMomentRecommendations": []
     },
     {
       "id": "as-i-am",
@@ -3922,8 +3929,8 @@
       "ensembles": [],
       "genres": [
         {
-          "client": "💯 Cream Of The Pop",
-          "band": "pop"
+          "client": "Guest Entrance",
+          "band": "Guest Entrance"
         }
       ],
       "specialMomentTypes": [],
@@ -4170,6 +4177,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "First Dance"
       ]
     },
     {
@@ -4641,7 +4651,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -4680,6 +4690,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "First Dance"
       ]
     },
     {
@@ -7456,7 +7469,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -7495,6 +7508,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Grand Finale"
       ]
     },
     {
@@ -8129,7 +8145,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -8168,6 +8184,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Newlyweds Intro"
       ]
     },
     {
@@ -8287,7 +8306,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -8326,7 +8345,8 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
-      ]
+      ],
+      "specialMomentRecommendations": []
     },
     {
       "id": "brujeria",
@@ -8649,7 +8669,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -8688,6 +8708,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Cake Cutting"
       ]
     },
     {
@@ -9674,7 +9697,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -9713,6 +9736,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "First Dance"
       ]
     },
     {
@@ -11270,7 +11296,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -11309,6 +11335,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Wedding Party Intro"
       ]
     },
     {
@@ -11790,7 +11819,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -11829,6 +11858,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "First Dance"
       ]
     },
     {
@@ -12191,6 +12223,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Newlyweds Intro"
       ]
     },
     {
@@ -12361,10 +12396,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Dinner Entertainment",
+          "band": "Dinner Entertainment"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -15104,10 +15144,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Dinner Entertainment",
+          "band": "Dinner Entertainment"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -15464,6 +15509,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Grand Finale"
       ]
     },
     {
@@ -17009,6 +17057,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Grand Finale"
       ]
     },
     {
@@ -18061,8 +18112,8 @@
       "ensembles": [],
       "genres": [
         {
-          "client": "🤘 Instant Mosh",
-          "band": "punk"
+          "client": "Guest Entrance",
+          "band": "Guest Entrance"
         }
       ],
       "specialMomentTypes": [],
@@ -18520,7 +18571,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -18559,6 +18610,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Parent Dance"
       ]
     },
     {
@@ -19147,10 +19201,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Dinner Entertainment",
+          "band": "Dinner Entertainment"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -19611,7 +19670,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -19650,6 +19709,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Parent Dance"
       ]
     },
     {
@@ -19917,10 +19979,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Dinner Entertainment",
+          "band": "Dinner Entertainment"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -23430,7 +23497,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -23469,6 +23536,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Wedding Party Intro"
       ]
     },
     {
@@ -26857,7 +26927,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -26896,6 +26966,10 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Parent Dance",
+        "Cake Cutting"
       ]
     },
     {
@@ -27219,7 +27293,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -27258,6 +27332,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Parent Dance"
       ]
     },
     {
@@ -27530,7 +27607,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -27569,6 +27646,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Cake Cutting"
       ]
     },
     {
@@ -29430,7 +29510,8 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
-      ]
+      ],
+      "specialMomentRecommendations": []
     },
     {
       "id": "i-wanna-dance-with-somebody",
@@ -29486,6 +29567,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Grand Finale"
       ]
     },
     {
@@ -31148,6 +31232,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "First Dance"
       ]
     },
     {
@@ -33210,7 +33297,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -33249,6 +33336,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Parent Dance"
       ]
     },
     {
@@ -33822,10 +33912,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Dinner Entertainment",
+          "band": "Dinner Entertainment"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -34541,10 +34636,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "💕 Slow Jams",
+          "band": "slow jams"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -34847,7 +34947,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -34886,6 +34986,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Parent Dance"
       ]
     },
     {
@@ -34898,7 +35001,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -34937,6 +35040,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Grand Finale"
       ]
     },
     {
@@ -35826,10 +35932,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Guest Entrance",
+          "band": "Guest Entrance"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -37483,10 +37594,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Guest Entrance",
+          "band": "Guest Entrance"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -37850,10 +37966,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Guest Entrance",
+          "band": "Guest Entrance"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -37889,6 +38010,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Newlyweds Intro"
       ]
     },
     {
@@ -37996,6 +38120,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "First Dance"
       ]
     },
     {
@@ -38523,7 +38650,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -38562,6 +38689,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "First Dance"
       ]
     },
     {
@@ -40989,6 +41119,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Parent Dance"
       ]
     },
     {
@@ -41562,7 +41695,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -41601,6 +41734,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Parent Dance"
       ]
     },
     {
@@ -46141,7 +46277,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -46180,6 +46316,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Grand Finale"
       ]
     },
     {
@@ -49338,7 +49477,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -49377,6 +49516,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Wedding Party Intro"
       ]
     },
     {
@@ -54534,10 +54676,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Dinner Entertainment",
+          "band": "Dinner Entertainment"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -55763,10 +55910,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -56164,6 +56316,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Cake Cutting"
       ]
     },
     {
@@ -57629,10 +57784,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Dinner Entertainment",
+          "band": "Dinner Entertainment"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -57940,7 +58100,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -57979,6 +58139,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Grand Finale"
       ]
     },
     {
@@ -58863,10 +59026,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Dinner Entertainment",
+          "band": "Dinner Entertainment"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -60607,10 +60775,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -61576,7 +61749,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -61615,6 +61788,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Grand Finale"
       ]
     },
     {
@@ -62346,10 +62522,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Guest Entrance",
+          "band": "Guest Entrance"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -62397,7 +62578,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -62436,6 +62617,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Newlyweds Intro"
       ]
     },
     {
@@ -62652,7 +62836,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -62691,6 +62875,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Wedding Party Intro"
       ]
     },
     {
@@ -66787,10 +66974,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Guest Entrance",
+          "band": "Guest Entrance"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -66933,6 +67125,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Wedding Party Intro"
       ]
     },
     {
@@ -67358,7 +67553,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -67397,6 +67592,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Grand Finale"
       ]
     },
     {
@@ -67409,7 +67607,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -67448,6 +67646,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Parent Dance"
       ]
     },
     {
@@ -70132,10 +70333,6 @@
       "ensembles": [],
       "genres": [
         {
-          "client": "🎷 Souled Out",
-          "band": "soul"
-        },
-        {
           "client": "💕 Slow Jams",
           "band": "slow jams"
         }
@@ -70175,6 +70372,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "First Dance"
       ]
     },
     {
@@ -70187,7 +70387,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -70226,6 +70426,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Parent Dance"
       ]
     },
     {
@@ -70661,7 +70864,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -70700,6 +70903,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Wedding Party Intro"
       ]
     },
     {
@@ -71023,7 +71229,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -71062,6 +71268,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "Parent Dance"
       ]
     },
     {
@@ -71074,7 +71283,7 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -71113,6 +71322,9 @@
           "chartLyricsSpecialUrl": "",
           "hornChartSpecialUrl": ""
         }
+      ],
+      "specialMomentRecommendations": [
+        "First Dance"
       ]
     },
     {
@@ -71227,10 +71439,15 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
-      "genres": [],
+      "genres": [
+        {
+          "client": "Dinner Entertainment",
+          "band": "Dinner Entertainment"
+        }
+      ],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
@@ -74592,6 +74809,90 @@
           "hornChartSpecialUrl": ""
         }
       ]
+    },
+    {
+      "id": "paradise-by-the-dashboard-light-meat-loaf",
+      "originalTitle": "Paradise By The Dashboard Light",
+      "originalArtist": "Meat Loaf",
+      "thcTitle": "Paradise By The Dashboard Light",
+      "thcArtist": "Meat Loaf",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [
+        {
+          "client": "🎸 Rock Of Ages",
+          "band": "rock"
+        }
+      ],
+      "specialMomentTypes": [],
+      "thcPercent": "",
+      "notes": "",
+      "createdAt": "2025-10-26T06:47:37.006Z",
+      "updatedAt": "2025-10-26T06:47:37.007Z",
+      "originalKey": "",
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": []
+    },
+    {
+      "id": "sugar-maroon-5",
+      "originalTitle": "Sugar",
+      "originalArtist": "Maroon 5",
+      "thcTitle": "Sugar",
+      "thcArtist": "Maroon 5",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [
+        "Cake Cutting"
+      ],
+      "thcPercent": "",
+      "notes": "",
+      "createdAt": "2025-10-26T06:57:26.281Z",
+      "updatedAt": "2025-10-26T06:57:26.282Z",
+      "originalKey": "",
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": []
     }
   ]
 }
