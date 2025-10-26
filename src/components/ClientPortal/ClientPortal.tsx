@@ -222,7 +222,7 @@ export default function ClientPortal() {
         song.specialMomentRecommendations.includes(momentType)
       )
       .map((song: any) => ({
-        title: song.thcTitle || song.originalTitle,
+        title: song.originalTitle,
         artist: song.originalArtist,
         videoUrl: song.videoUrl || ''
       }));
@@ -1980,7 +1980,7 @@ export default function ClientPortal() {
                                           rel="noopener noreferrer"
                                           className="font-medium text-purple-600 hover:text-purple-800 underline"
                                         >
-                                          {song.thcTitle}
+                                          {song.originalTitle}
                                         </a>
                                         <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                       </div>
@@ -2550,7 +2550,7 @@ export default function ClientPortal() {
                                           rel="noopener noreferrer"
                                           className="font-medium text-purple-600 hover:text-purple-800 underline"
                                         >
-                                          {song.thcTitle}
+                                          {song.originalTitle}
                                         </a>
                                         <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                       </div>
@@ -3026,7 +3026,7 @@ export default function ClientPortal() {
                                           rel="noopener noreferrer"
                                           className="font-medium text-purple-600 hover:text-purple-800 underline"
                                         >
-                                          {song.thcTitle}
+                                          {song.originalTitle}
                                         </a>
                                         <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                       </div>
@@ -3525,7 +3525,7 @@ export default function ClientPortal() {
                                                     rel="noopener noreferrer"
                                                     className="font-medium text-purple-600 hover:text-purple-800 underline"
                                                   >
-                                                    {song.thcTitle}
+                                                    {song.originalTitle}
                                                   </a>
                                                   <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                                 </div>
@@ -4000,7 +4000,7 @@ export default function ClientPortal() {
                                           rel="noopener noreferrer"
                                           className="font-medium text-purple-600 hover:text-purple-800 underline"
                                         >
-                                          {song.thcTitle}
+                                          {song.originalTitle}
                                         </a>
                                         <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                       </div>

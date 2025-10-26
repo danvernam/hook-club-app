@@ -184,6 +184,25 @@ export default function SongsDatabase() {
     try {
       console.log('Saving song:', editingSong.id, editingSong);
       
+      // Check for duplicate thcTitle
+      const duplicateSong = songsData.songs.find(song => 
+        song.thcTitle === editingSong.thcTitle && song.id !== editingSong.id
+      );
+      
+      if (duplicateSong) {
+        const shouldProceed = confirm(
+          `A song with the THC title "${editingSong.thcTitle}" already exists (by ${duplicateSong.originalArtist}).\n\n` +
+          `Would you like to add the artist name to make it unique?\n` +
+          `This will change the THC title to: "${editingSong.thcTitle} [${editingSong.originalArtist}]"`
+        );
+        
+        if (shouldProceed) {
+          editingSong.thcTitle = `${editingSong.thcTitle} [${editingSong.originalArtist}]`;
+        } else {
+          return; // User cancelled, don't save
+        }
+      }
+      
       let result;
       let updatedSongs;
       

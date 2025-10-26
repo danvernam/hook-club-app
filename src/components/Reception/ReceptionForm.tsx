@@ -211,7 +211,7 @@ export default function ReceptionForm() {
               transformedData[key] = data.songs.filter((song: any) => 
                 song.genre === key && song.isLive
               ).map((song: any) => ({
-                song: song.thcTitle || song.originalTitle,
+                song: song.originalTitle,
                 artist: song.thcArtist || song.originalArtist,
                 videoUrl: song.videoUrl
               }));
@@ -2799,12 +2799,12 @@ export default function ReceptionForm() {
                                 ?.filter((song: any) => {
                                   if (!songSearch) return true;
                                   const searchTerm = songSearch.toLowerCase();
-                                  return (song.thcTitle || song.originalTitle).toLowerCase().includes(searchTerm) ||
+                                  return song.originalTitle.toLowerCase().includes(searchTerm) ||
                                          (song.thcArtist || song.originalArtist).toLowerCase().includes(searchTerm);
                                 })
                                 ?.sort((a: any, b: any) => {
                                   if (songSort === 'title') {
-                                    return (a.thcTitle || a.originalTitle).localeCompare(b.thcTitle || b.originalTitle);
+                                    return a.originalTitle.localeCompare(b.originalTitle);
                                   } else {
                                     return (a.thcArtist || a.originalArtist).localeCompare(b.thcArtist || b.originalArtist);
                                   }
@@ -2812,7 +2812,7 @@ export default function ReceptionForm() {
                                 ?.map((song: any, index: number) => (
                                 <tr key={song.id} className="hover:bg-gray-50">
                                   <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
-                                  <td className="border border-gray-300 px-4 py-2">{song.thcTitle || song.originalTitle}</td>
+                                  <td className="border border-gray-300 px-4 py-2">{song.originalTitle}</td>
                                   <td className="border border-gray-300 px-4 py-2">{song.thcArtist || song.originalArtist}</td>
                                   <td className="border border-gray-300 px-4 py-2">
                                     <span className={`px-2 py-1 rounded text-xs ${
