@@ -274,16 +274,8 @@ export default function SongsDatabase() {
     try {
       console.log('Deleting song:', songId);
       
-      // Delete from API
-      const response = await fetch(`${process.env.NODE_ENV === 'production' 
-        ? 'https://hook-club-app-245827946513.us-central1.run.app' 
-        : 'http://localhost:3000'}/api/songs/${songId}`, {
-        method: 'DELETE'
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to delete song');
-      }
+      // Delete from API using the service
+      await apiService.deleteSong(songId);
       
       // Update local state
       const updatedSongs = songsData.songs.filter(s => s.id !== songId);
