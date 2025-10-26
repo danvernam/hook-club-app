@@ -308,9 +308,9 @@ export default function ClientPortal() {
     { client: "🤘 Instant Mosh", band: "punk" },
     { client: "🤠 Country For All", band: "country" },
     { client: "🔥 The Latin Bible", band: "latin" },
-    { client: "🎶 Slow Jams", band: "slowjams" },
-    { client: "🚪 Guest Entrance", band: "entrance" },
-    { client: "🍽️ Dinner Entertainment", band: "dinner" }
+    { client: "🎶 Slow Jams", band: "slow jams" },
+    { client: "🚪 Guest Entrance", band: "guest entrance" },
+    { client: "🍽️ Dinner Entertainment", band: "dinner entertainment" }
   ];
 
   // Playlist types for request playlists
@@ -3493,9 +3493,9 @@ export default function ClientPortal() {
                                   {receptionGenres.filter(genre => 
                                     ['pop', 'soul', 'rock', 'hip hop', 'disco', 'punk', 'country', 'latin', 'slow jams'].includes(genre.band)
                                   ).map((genre) => {
-                                    // Filter songs by genre
+                                    // Filter songs by dance genre
                                     const genreSongs = sortedReceptionSongs.filter(song => 
-                                      song.genres && song.genres.some((g: any) => g.band === genre.band)
+                                      song.danceGenres && song.danceGenres.some((g: any) => g.band === genre.band)
                                     );
 
                                     return (
