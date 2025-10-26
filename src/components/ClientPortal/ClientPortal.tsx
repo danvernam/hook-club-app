@@ -180,9 +180,11 @@ export default function ClientPortal() {
   const [songPreferences, setSongPreferences] = useState<Record<string, 'definitely' | 'maybe' | 'avoid'>>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // Filter songs for Welcome Party (only show songs tagged for welcomeParty)
+  // Filter songs for Welcome Party (only show songs tagged with welcome party genres)
   const filteredWelcomePartySongs = songs.filter(song => 
-    song.sections && song.sections.includes('welcomeParty')
+    song.genres && song.genres.some((genre: any) => 
+      ['pop', 'disco', 'soul', 'rock', 'country', 'hip hop', 'r&b', 'jazz', 'folk', 'indie', 'alternative', 'punk'].includes((genre.band || '').toLowerCase())
+    )
   );
 
   // Filter songs for Guest Arrival (only show songs tagged with Guest Entrance genre)
@@ -193,19 +195,33 @@ export default function ClientPortal() {
     )
   );
 
-  // Filter songs for Cocktail Hour (only show songs tagged for cocktailHour)
+  // Filter songs for Cocktail Hour (only show songs tagged with cocktail hour genres)
   const filteredCocktailHourSongs = songs.filter(song => 
-    song.sections && song.sections.includes('cocktailHour')
+    song.genres && song.genres.some((genre: any) => 
+      ['jazz', 'soul', 'r&b', 'lounge', 'acoustic'].includes((genre.band || '').toLowerCase())
+    )
   );
 
-  // Filter songs for After Party (only show songs tagged for afterParty)
+  // Filter songs for After Party (only show songs tagged with after party genres)
   const filteredAfterPartySongs = songs.filter(song => 
-    song.sections && song.sections.includes('afterParty')
+    song.genres && song.genres.some((genre: any) => 
+      ['pop', 'disco', 'hip hop', 'rock', 'electronic'].includes((genre.band || '').toLowerCase())
+    )
   );
 
-  // Filter songs for Reception (only show songs tagged for reception)
+  // Filter songs for Reception (only show songs tagged with reception genres)
   const filteredReceptionSongs = songs.filter(song => 
-    song.sections && song.sections.includes('reception')
+    song.genres && song.genres.some((genre: any) => 
+      ['pop', 'disco', 'soul', 'rock', 'country', 'hip hop', 'r&b', 'jazz', 'folk', 'indie', 'alternative', 'punk'].includes((genre.band || '').toLowerCase())
+    )
+  );
+
+  // Filter songs for Dinner Entertainment (only show songs tagged with Dinner Entertainment genre)
+  const filteredDinnerEntertainmentSongs = songs.filter(song => 
+    song.genres && song.genres.some((genre: any) => 
+      (genre.client || '').toLowerCase().includes('dinner entertainment') ||
+      (genre.band || '').toLowerCase().includes('dinner entertainment')
+    )
   );
 
   // Count total songs available in Reception genres
