@@ -7,11 +7,11 @@ import apiService from '@/services/api';
 export default function ClientPortal() {
   const [activeTab, setActiveTab] = useState<'services' | 'getting-to-know-you' | 'preferences' | 'documents' | 'welcome-party' | 'ceremony' | 'cocktail-hour' | 'reception' | 'after-party'>('services');
   const [activeView, setActiveView] = useState<'client-portal' | 'database'>('client-portal');
-  const [activeWelcomePartyTab, setActiveWelcomePartyTab] = useState<'special-songs' | 'special-requests' | 'core-repertoire'>('special-songs');
+  const [activeWelcomePartyTab, setActiveWelcomePartyTab] = useState<'special-songs' | 'special-requests' | 'core-repertoire'>('core-repertoire');
   const [activeCeremonyTab, setActiveCeremonyTab] = useState<'ceremony-music' | 'guest-arrival-requests' | 'guest-arrival'>('ceremony-music');
-  const [activeCocktailHourTab, setActiveCocktailHourTab] = useState<'special-songs' | 'song-requests' | 'cocktail-hour-song-list'>('special-songs');
-  const [activeAfterPartyTab, setActiveAfterPartyTab] = useState<'special-songs' | 'special-requests' | 'core-repertoire'>('special-songs');
-  const [activeReceptionTab, setActiveReceptionTab] = useState<'special-songs' | 'special-requests' | 'reception-song-list'>('special-songs');
+  const [activeCocktailHourTab, setActiveCocktailHourTab] = useState<'special-songs' | 'song-requests' | 'cocktail-hour-song-list'>('cocktail-hour-song-list');
+  const [activeAfterPartyTab, setActiveAfterPartyTab] = useState<'special-songs' | 'special-requests' | 'core-repertoire'>('core-repertoire');
+  const [activeReceptionTab, setActiveReceptionTab] = useState<'special-songs' | 'special-requests' | 'reception-song-list'>('reception-song-list');
   const [guestArrivalSongs, setGuestArrivalSongs] = useState<any[]>([]);
   const [sortedGuestArrivalSongs, setSortedGuestArrivalSongs] = useState<any[]>([]);
   const [guestArrivalSongPreferences, setGuestArrivalSongPreferences] = useState<Record<string, 'definitely' | 'maybe' | 'avoid'>>({});
@@ -1425,6 +1425,16 @@ export default function ClientPortal() {
                   <div className="border-b border-gray-200 mb-6">
                     <nav className="flex justify-center space-x-6">
                       <button
+                        onClick={() => setActiveWelcomePartyTab('core-repertoire')}
+                        className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                          activeWelcomePartyTab === 'core-repertoire'
+                            ? 'border-purple-500 text-purple-600'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
+                        }`}
+                      >
+                        Welcome Party Song List
+                      </button>
+                      <button
                         onClick={() => setActiveWelcomePartyTab('special-songs')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeWelcomePartyTab === 'special-songs'
@@ -1443,16 +1453,6 @@ export default function ClientPortal() {
                         }`}
                       >
                         Song Requests
-                      </button>
-                      <button
-                        onClick={() => setActiveWelcomePartyTab('core-repertoire')}
-                        className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeWelcomePartyTab === 'core-repertoire'
-                            ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
-                        }`}
-                      >
-                        Welcome Party Song List
                       </button>
                     </nav>
                   </div>
@@ -2632,6 +2632,16 @@ export default function ClientPortal() {
                   <div className="border-b border-gray-200">
                     <nav className="flex justify-center space-x-8">
                       <button
+                        onClick={() => setActiveCocktailHourTab('cocktail-hour-song-list')}
+                        className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                          activeCocktailHourTab === 'cocktail-hour-song-list'
+                            ? 'border-purple-500 text-purple-600'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
+                        }`}
+                      >
+                        Cocktail Hour Song List
+                      </button>
+                      <button
                         onClick={() => setActiveCocktailHourTab('special-songs')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeCocktailHourTab === 'special-songs'
@@ -2650,16 +2660,6 @@ export default function ClientPortal() {
                         }`}
                       >
                         Song Requests
-                      </button>
-                      <button
-                        onClick={() => setActiveCocktailHourTab('cocktail-hour-song-list')}
-                        className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeCocktailHourTab === 'cocktail-hour-song-list'
-                            ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
-                        }`}
-                      >
-                        Cocktail Hour Song List
                       </button>
                     </nav>
                   </div>
@@ -3108,6 +3108,16 @@ export default function ClientPortal() {
                   <div className="border-b border-gray-200">
                     <nav className="flex justify-center space-x-8">
                       <button
+                        onClick={() => setActiveReceptionTab('reception-song-list')}
+                        className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                          activeReceptionTab === 'reception-song-list'
+                            ? 'border-purple-500 text-purple-600'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
+                        }`}
+                      >
+                        Reception Song List
+                      </button>
+                      <button
                         onClick={() => setActiveReceptionTab('special-songs')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeReceptionTab === 'special-songs'
@@ -3126,16 +3136,6 @@ export default function ClientPortal() {
                         }`}
                       >
                         Song Requests
-                      </button>
-                      <button
-                        onClick={() => setActiveReceptionTab('reception-song-list')}
-                        className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeReceptionTab === 'reception-song-list'
-                            ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
-                        }`}
-                      >
-                        Reception Song List
                       </button>
                     </nav>
                   </div>
@@ -3612,6 +3612,16 @@ export default function ClientPortal() {
                   <div className="border-b border-gray-200">
                     <nav className="flex justify-center space-x-8">
                       <button
+                        onClick={() => setActiveAfterPartyTab('core-repertoire')}
+                        className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                          activeAfterPartyTab === 'core-repertoire'
+                            ? 'border-purple-500 text-purple-600'
+                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
+                        }`}
+                      >
+                        After Party Song List
+                      </button>
+                      <button
                         onClick={() => setActiveAfterPartyTab('special-songs')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeAfterPartyTab === 'special-songs'
@@ -3630,16 +3640,6 @@ export default function ClientPortal() {
                         }`}
                       >
                         Song Requests
-                      </button>
-                      <button
-                        onClick={() => setActiveAfterPartyTab('core-repertoire')}
-                        className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeAfterPartyTab === 'core-repertoire'
-                            ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
-                        }`}
-                      >
-                        After Party Song List
                       </button>
                     </nav>
                   </div>
