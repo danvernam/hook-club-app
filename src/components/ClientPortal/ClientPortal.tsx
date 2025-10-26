@@ -149,8 +149,16 @@ export default function ClientPortal() {
         const data = await apiService.getSongs();
         setSongsData(data);
         setSongs(data.songs || []);
+        
+        // Sort songs by artist A-Z for the welcome party tab
+        const sorted = [...(data.songs || [])].sort((a, b) => 
+          (a.originalArtist || '').localeCompare(b.originalArtist || '')
+        );
+        setSortedSongs(sorted);
       } catch (error) {
         console.error('Error loading songs:', error);
+        setSongs([]);
+        setSortedSongs([]);
       }
     };
     loadSongs();
@@ -356,31 +364,10 @@ export default function ClientPortal() {
     guestArrivalSongPreferences
   ]);
 
-  // Load songs from database
+  // Set loading state when switching to core repertoire tab
   useEffect(() => {
-    const loadSongs = async () => {
-      setIsLoading(true);
-      try {
-        const data = await apiService.getSongs();
-        const songsData = data.songs || [];
-        setSongs(songsData);
-        
-        // Sort songs by artist A-Z
-        const sorted = [...songsData].sort((a, b) => 
-          (a.originalArtist || '').localeCompare(b.originalArtist || '')
-        );
-        setSortedSongs(sorted);
-      } catch (error) {
-        console.error('Error loading songs:', error);
-        setSongs([]);
-        setSortedSongs([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
     if (activeWelcomePartyTab === 'core-repertoire') {
-      loadSongs();
+      setIsLoading(false); // Songs are already loaded, just set loading to false
     }
   }, [activeWelcomePartyTab]);
 
