@@ -1,10 +1,10 @@
 {
   "metadata": {
     "version": "2.0",
-    "lastUpdated": "2025-10-25T23:25:21.952Z",
+    "lastUpdated": "2025-10-26T06:42:15.918Z",
     "totalSongs": 1447,
-    "activeSongs": 162,
-    "inactiveSongs": 1285
+    "activeSongs": 161,
+    "inactiveSongs": 1286
   },
   "songs": [
     {
@@ -6844,15 +6844,10 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": true,
+      "isLive": false,
       "sections": [],
       "ensembles": [],
-      "genres": [
-        {
-          "client": "🎷 Souled Out",
-          "band": "soul"
-        }
-      ],
+      "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
