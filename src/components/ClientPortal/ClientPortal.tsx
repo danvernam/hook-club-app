@@ -140,6 +140,20 @@ export default function ClientPortal() {
     title: string;
     url: string;
   }>>([]);
+  const [songsData, setSongsData] = useState<any>(null);
+  
+  // Load songs data for special moment recommendations
+  useEffect(() => {
+    const loadSongs = async () => {
+      try {
+        const data = await apiService.getSongs();
+        setSongsData(data);
+      } catch (error) {
+        console.error('Error loading songs:', error);
+      }
+    };
+    loadSongs();
+  }, []);
   
   // Form fields (no auto-save)
   const [howDidYouFindUs, setHowDidYouFindUs] = useState<string>('');
@@ -198,43 +212,20 @@ export default function ClientPortal() {
     )
   ).length;
 
-  // Mock recommended songs for special songs (this will eventually come from the database)
+  // Get recommended songs from database based on special moment type
   const getRecommendedSongs = (momentType: string) => {
-    const recommendations: Record<string, Array<{title: string, artist: string, videoUrl: string}>> = {
-      "First Dance": [
-        { title: "At Last", artist: "Etta James", videoUrl: "https://youtube.com/watch?v=S-cbOl96RFM" },
-        { title: "Perfect", artist: "Ed Sheeran", videoUrl: "https://youtube.com/watch?v=2Vv-BfVoq4g" },
-        { title: "All of Me", artist: "John Legend", videoUrl: "https://youtube.com/watch?v=450p7goxZqg" },
-        { title: "Thinking Out Loud", artist: "Ed Sheeran", videoUrl: "https://youtube.com/watch?v=lp-EO5I60KA" },
-        { title: "A Thousand Years", artist: "Christina Perri", videoUrl: "https://youtube.com/watch?v=rtOvBOTyX00" },
-        { title: "Can't Help Myself", artist: "Four Tops", videoUrl: "https://youtube.com/watch?v=4F1gB6y6i3M" },
-        { title: "Unchained Melody", artist: "Righteous Brothers", videoUrl: "https://youtube.com/watch?v=qiiyq2xrSI0" },
-        { title: "The Way You Look Tonight", artist: "Frank Sinatra", videoUrl: "https://youtube.com/watch?v=6E2hYDIFDIU" },
-        { title: "Make You Feel My Love", artist: "Adele", videoUrl: "https://youtube.com/watch?v=0put0_a--Ng" },
-        { title: "Your Song", artist: "Elton John", videoUrl: "https://youtube.com/watch?v=GlPlfCy1urI" },
-        { title: "Come Away With Me", artist: "Norah Jones", videoUrl: "https://youtube.com/watch?v=0put0_a--Ng" },
-        { title: "L-O-V-E", artist: "Nat King Cole", videoUrl: "https://youtube.com/watch?v=1lyu1KKwC74" },
-        { title: "The First Time Ever I Saw Your Face", artist: "Roberta Flack", videoUrl: "https://youtube.com/watch?v=0put0_a--Ng" },
-        { title: "At Last", artist: "Beyoncé", videoUrl: "https://youtube.com/watch?v=S-cbOl96RFM" },
-        { title: "Better Together", artist: "Jack Johnson", videoUrl: "https://youtube.com/watch?v=0put0_a--Ng" }
-      ],
-      "Parent Dance": [
-        { title: "What a Wonderful World", artist: "Louis Armstrong", videoUrl: "https://youtube.com/watch?v=CWzrABouyeE" },
-        { title: "My Girl", artist: "The Temptations", videoUrl: "https://youtube.com/watch?v=4F1gB6y6i3M" },
-        { title: "You Are the Sunshine of My Life", artist: "Stevie Wonder", videoUrl: "https://youtube.com/watch?v=Yjf8xqZ5XgY" }
-      ],
-      "Ceremony Processional": [
-        { title: "Canon in D", artist: "Pachelbel", videoUrl: "https://youtube.com/watch?v=8Af372EQLck" },
-        { title: "Ave Maria", artist: "Schubert", videoUrl: "https://youtube.com/watch?v=pwp1CH5R-w4" },
-        { title: "Bridal Chorus", artist: "Wagner", videoUrl: "https://youtube.com/watch?v=7X7l5a6L_0I" }
-      ],
-      "Ceremony Recessional": [
-        { title: "Wedding March", artist: "Mendelssohn", videoUrl: "https://youtube.com/watch?v=0x1k8QlUlus" },
-        { title: "Ode to Joy", artist: "Beethoven", videoUrl: "https://youtube.com/watch?v=ChygZLpJDNE" },
-        { title: "Trumpet Voluntary", artist: "Clarke", videoUrl: "https://youtube.com/watch?v=Z6cJ9XanvJE" }
-      ]
-    };
-    return recommendations[momentType] || [];
+    if (!songsData || !songsData.songs) return [];
+    
+    return songsData.songs
+      .filter((song: any) => 
+        song.specialMomentRecommendations && 
+        song.specialMomentRecommendations.includes(momentType)
+      )
+      .map((song: any) => ({
+        title: song.thcTitle || song.originalTitle,
+        artist: song.originalArtist,
+        videoUrl: song.videoUrl || ''
+      }));
   };
 
   // Section-specific special moment types
@@ -1565,7 +1556,7 @@ export default function ClientPortal() {
                               {expandedRecommendations[index] && (
                                 <div className="mt-2 max-h-64 overflow-y-auto border border-gray-200 rounded-lg">
                                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2 p-3">
-                                    {getRecommendedSongs(moment.specialMomentType).map((song, songIndex) => (
+                                    {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string}, songIndex: number) => (
                                       <div key={songIndex} className="flex items-center justify-between p-2 bg-white rounded border hover:bg-gray-50">
                                         <div className="flex-1 min-w-0">
                                           <div className="font-medium text-gray-900 text-sm truncate">{song.title}</div>
@@ -2198,7 +2189,7 @@ export default function ClientPortal() {
                                 {expandedCeremonyRecommendations[index] && (
                                   <div className="mt-3 p-4 bg-purple-50 border border-purple-200 rounded-lg max-h-48 overflow-y-auto">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                      {getRecommendedSongs(song.ceremonyMomentType).map((recSong, songIndex) => (
+                                      {getRecommendedSongs(song.ceremonyMomentType).map((recSong: {title: string, artist: string, videoUrl: string}, songIndex: number) => (
                                         <button
                                           key={songIndex}
                                           type="button"
