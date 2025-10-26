@@ -73,7 +73,7 @@ export default function SongsDatabase() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSection, setSelectedSection] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('');
-  const [showInactive, setShowInactive] = useState(false);
+  const [showInactive, setShowInactive] = useState(true);
   const [editingSong, setEditingSong] = useState<Song | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -423,7 +423,7 @@ export default function SongsDatabase() {
                 onChange={(e) => setShowInactive(e.target.checked)}
                 className="mr-2"
               />
-              Show Inactive Songs
+              Show Active Songs Only
             </label>
           </div>
         </div>
