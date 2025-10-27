@@ -259,6 +259,42 @@ export default function SongsDatabase() {
     setEditingSong(null);
   };
 
+  const handleForceDeleteSong = (song: Song) => {
+    if (!songsData) return;
+    
+    const confirmDelete = confirm(
+      `Are you sure you want to FORCE DELETE "${song.thcTitle}" by ${song.originalArtist}?\n\n` +
+      `This song has an invalid ID and will be removed from the local view only.\n\n` +
+      `This action cannot be undone.`
+    );
+    
+    if (!confirmDelete) return;
+    
+    try {
+      console.log('Force deleting song with invalid ID:', song);
+      
+      // Remove from local state only (no API call since it has invalid ID)
+      const updatedSongs = songsData.songs.filter(s => s !== song);
+      setSongsData({
+        ...songsData,
+        songs: updatedSongs,
+        metadata: {
+          ...songsData.metadata,
+          totalSongs: updatedSongs.length,
+          activeSongs: updatedSongs.filter(song => song.isLive).length,
+          inactiveSongs: updatedSongs.filter(song => !song.isLive).length,
+          lastUpdated: new Date().toISOString()
+        }
+      });
+      
+      console.log('Song force deleted successfully from local state');
+      
+    } catch (error) {
+      console.error('Error force deleting song:', error);
+      alert('Failed to force delete song. Please try again.');
+    }
+  };
+
   const handleDeleteSong = async (songId: string) => {
     if (!songsData) return;
     
@@ -503,18 +539,23 @@ export default function SongsDatabase() {
                       <button className="px-2 py-1 bg-gray-600 text-white text-xs rounded hover:bg-gray-700">
                         View
                       </button>
-                      <button
-                        onClick={() => handleDeleteSong(song.id)}
-                        disabled={!song.id || song.id === ''}
-                        className={`px-2 py-1 text-white text-xs rounded ${
-                          !song.id || song.id === '' 
-                            ? 'bg-gray-400 cursor-not-allowed' 
-                            : 'bg-red-600 hover:bg-red-700'
-                        }`}
-                        title={!song.id || song.id === '' ? 'Cannot delete: Invalid song ID' : 'Delete song'}
-                      >
-                        Delete
-                      </button>
+                      {!song.id || song.id === '' ? (
+                        <button
+                          onClick={() => handleForceDeleteSong(song)}
+                          className="px-2 py-1 bg-orange-600 text-white text-xs rounded hover:bg-orange-700"
+                          title="Force delete song with invalid ID"
+                        >
+                          Force Delete
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleDeleteSong(song.id)}
+                          className="px-2 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700"
+                          title="Delete song"
+                        >
+                          Delete
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>
