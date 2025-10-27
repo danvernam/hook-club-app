@@ -262,8 +262,15 @@ export default function SongsDatabase() {
   const handleDeleteSong = async (songId: string) => {
     if (!songsData) return;
     
+    console.log('Delete song called with ID:', songId);
+    console.log('Available songs:', songsData.songs.map(s => ({ id: s.id, title: s.thcTitle })));
+    
     const song = songsData.songs.find(s => s.id === songId);
-    if (!song) return;
+    if (!song) {
+      console.error('Song not found with ID:', songId);
+      alert('Song not found!');
+      return;
+    }
     
     const confirmDelete = confirm(
       `Are you sure you want to delete "${song.thcTitle}" by ${song.originalArtist}?\n\nThis action cannot be undone.`
@@ -272,7 +279,7 @@ export default function SongsDatabase() {
     if (!confirmDelete) return;
     
     try {
-      console.log('Deleting song:', songId);
+      console.log('Deleting song:', songId, 'Title:', song.thcTitle);
       
       // Delete from API using the service
       await apiService.deleteSong(songId);
