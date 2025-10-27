@@ -72,6 +72,12 @@ server.post('/api/songs', async (req, res) => {
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
       updatedAt: admin.firestore.FieldValue.serverTimestamp()
     });
+    
+    // Update the document to include the ID in the song data
+    await docRef.update({
+      id: docRef.id
+    });
+    
     res.json({ success: true, id: docRef.id });
   } catch (error) {
     console.error('Error creating song:', error);
