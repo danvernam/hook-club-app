@@ -265,6 +265,13 @@ export default function SongsDatabase() {
     console.log('Delete song called with ID:', songId);
     console.log('Available songs:', songsData.songs.map(s => ({ id: s.id, title: s.thcTitle })));
     
+    // Check for empty or invalid ID
+    if (!songId || songId === '') {
+      console.error('Cannot delete song with empty ID');
+      alert('Cannot delete song: Invalid song ID');
+      return;
+    }
+    
     const song = songsData.songs.find(s => s.id === songId);
     if (!song) {
       console.error('Song not found with ID:', songId);
