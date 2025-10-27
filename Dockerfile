@@ -14,6 +14,10 @@ COPY . .
 # Build the application
 RUN npm run build
 
+# List the contents of .next directory to debug
+RUN ls -la .next/
+RUN ls -la .next/static/ || echo "No static directory found"
+
 # Remove dev dependencies
 RUN npm prune --production
 
