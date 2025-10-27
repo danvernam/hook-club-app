@@ -24,5 +24,5 @@ RUN npm prune --production
 # Expose port
 EXPOSE 8080
 
-# Start the application
-CMD ["npm", "start"]
+# Start the application using the standalone server
+CMD ["node", "server.js"]
