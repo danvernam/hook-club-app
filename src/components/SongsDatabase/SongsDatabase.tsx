@@ -78,6 +78,7 @@ export default function SongsDatabase() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('basic');
+  const [isSaving, setIsSaving] = useState(false);
   const [vocalists, setVocalists] = useState([
     { id: 'vocalist1', name: 'Vocalist 1', role: 'Vocalist 1' },
     { id: 'vocalist2', name: 'Vocalist 2', role: 'Vocalist 2' },
@@ -184,10 +185,15 @@ export default function SongsDatabase() {
         };
 
   const handleSaveSong = async () => {
-    if (!editingSong || !songsData) return;
+    if (!editingSong || !songsData || isSaving) return;
     
+    setIsSaving(true);
     try {
-      console.log('Saving song:', editingSong.id, editingSong);
+      console.log('=== SAVE SONG DEBUG ===');
+      console.log('Editing song ID:', editingSong.id);
+      console.log('Is new song (empty ID):', editingSong.id === '');
+      console.log('Song data:', editingSong);
+      console.log('Current songs count:', songsData.songs.length);
       
       // Check for duplicate thcTitle (exclude songs with empty IDs and current song)
       const duplicateSong = songsData.songs.find(song => 
@@ -216,11 +222,14 @@ export default function SongsDatabase() {
       
       if (editingSong.id === '') {
         // Creating a new song
+        console.log('Creating new song via API...');
         result = await apiService.createSong(editingSong);
         console.log('Create result:', result);
+        console.log('New song ID from API:', result.id);
         
         // Add the new song to local state
         updatedSongs = [...songsData.songs, { ...editingSong, id: result.id }];
+        console.log('Updated songs count after create:', updatedSongs.length);
       } else {
         // Updating an existing song
         result = await apiService.updateSong(editingSong.id, editingSong);
@@ -251,6 +260,8 @@ export default function SongsDatabase() {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       console.error('Error details:', errorMessage);
       alert(`Failed to save song: ${errorMessage}. Please check the console for more details.`);
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -1485,9 +1496,14 @@ export default function SongsDatabase() {
               </button>
               <button
                 onClick={handleSaveSong}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                disabled={isSaving}
+                className={`px-4 py-2 text-white rounded ${
+                  isSaving 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-blue-600 hover:bg-blue-700'
+                }`}
               >
-                Save Changes
+                {isSaving ? 'Saving...' : 'Save Changes'}
               </button>
             </div>
 
