@@ -507,8 +507,8 @@ export default function SongsDatabase() {
 
       {/* Edit Modal */}
       {isEditModalOpen && editingSong && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-6 max-w-4xl w-full max-h-[85vh] flex flex-col">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-gray-900">
                 {editingSong.id === '' ? 'Add New Song' : `Edit Song: ${editingSong.thcTitle}`}
@@ -586,6 +586,7 @@ export default function SongsDatabase() {
             </div>
 
             {/* Tab Content */}
+            <div className="flex-1 overflow-y-auto">
             {activeTab === 'basic' && (
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-900">Basic Information</h3>
@@ -713,20 +714,6 @@ export default function SongsDatabase() {
                   </label>
                 </div>
 
-                <div className="flex gap-4 pt-4">
-                  <button
-                    onClick={handleCancelEdit}
-                    className="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleSaveSong}
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                  >
-                    Save Changes
-                  </button>
-                </div>
               </div>
             )}
 
@@ -794,21 +781,6 @@ export default function SongsDatabase() {
                   </div>
                 </div>
 
-                <div className="flex gap-4 pt-4">
-                  <button
-                    onClick={handleCancelEdit}
-                    className="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleSaveSong}
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                  >
-                    Save Changes
-                  </button>
-                </div>
-                
               </div>
             )}
 
@@ -1091,21 +1063,6 @@ export default function SongsDatabase() {
                       </div>
                     )}
                   </div>
-                </div>
-
-                <div className="flex gap-4 pt-4">
-                  <button
-                    onClick={handleCancelEdit}
-                    className="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleSaveSong}
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                  >
-                    Save Changes
-                  </button>
                 </div>
 
               </div>
@@ -1448,22 +1405,25 @@ export default function SongsDatabase() {
                   ))}
                 </div>
                 
-                <div className="flex gap-4 pt-4">
-                  <button
-                    onClick={handleCancelEdit}
-                    className="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleSaveSong}
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                  >
-                    Save Changes
-                  </button>
-                </div>
               </div>
             )}
+            </div>
+
+            {/* Fixed Footer with Save/Cancel Buttons */}
+            <div className="flex justify-end gap-4 pt-4 border-t border-gray-200 mt-4">
+              <button
+                onClick={handleCancelEdit}
+                className="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSaveSong}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Save Changes
+              </button>
+            </div>
 
           </div>
         </div>
