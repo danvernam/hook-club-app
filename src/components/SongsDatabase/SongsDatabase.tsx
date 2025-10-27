@@ -268,7 +268,7 @@ export default function SongsDatabase() {
     // Check for empty or invalid ID
     if (!songId || songId === '') {
       console.error('Cannot delete song with empty ID');
-      alert('Cannot delete song: Invalid song ID');
+      alert('Cannot delete song: This song has an invalid ID and cannot be deleted through the UI. Please contact support to clean up this duplicate entry.');
       return;
     }
     
@@ -477,6 +477,11 @@ export default function SongsDatabase() {
                           Inactive
                         </span>
                       )}
+                      {(!song.id || song.id === '') && (
+                        <span className="px-1.5 py-0.5 text-xs bg-yellow-100 text-yellow-800 rounded-full">
+                          Invalid ID
+                        </span>
+                      )}
                     </div>
                   </td>
                   <td className="px-6 py-4">
@@ -500,7 +505,13 @@ export default function SongsDatabase() {
                       </button>
                       <button
                         onClick={() => handleDeleteSong(song.id)}
-                        className="px-2 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700"
+                        disabled={!song.id || song.id === ''}
+                        className={`px-2 py-1 text-white text-xs rounded ${
+                          !song.id || song.id === '' 
+                            ? 'bg-gray-400 cursor-not-allowed' 
+                            : 'bg-red-600 hover:bg-red-700'
+                        }`}
+                        title={!song.id || song.id === '' ? 'Cannot delete: Invalid song ID' : 'Delete song'}
                       >
                         Delete
                       </button>
