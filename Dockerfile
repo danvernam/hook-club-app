@@ -23,9 +23,6 @@ RUN ls -la .next/static/ || echo "No static directory found"
 # Copy the standalone build to the working directory
 RUN cp -r .next/standalone/* ./
 
-# Copy static files to the correct location for standalone server
-RUN cp -r .next/static .next/
-
 # Remove dev dependencies
 RUN npm prune --production
 
