@@ -184,8 +184,8 @@ export default function SongsDatabase() {
   
   const lightGenres = [
     { client: '🚪 Guest Entrance', band: 'guest entrance' },
-    { client: '🍽️ Dinner Entertainment', band: 'dinner entertainment' },
-    { client: '🎷 Jazz', band: 'jazz' }
+    { client: '🥗 Salad Jazz', band: 'salad jazz' },
+    { client: '🍽️ Dinner Entertainment', band: 'dinner entertainment' }
   ];
 
         const handleEditSong = (song: Song) => {
