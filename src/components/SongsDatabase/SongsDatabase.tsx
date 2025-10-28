@@ -179,7 +179,11 @@ export default function SongsDatabase() {
   ];
 
         const handleEditSong = (song: Song) => {
-          setEditingSong({ ...song });
+          setEditingSong({ 
+            ...song,
+            danceGenres: song.danceGenres || [],
+            lightGenres: song.lightGenres || []
+          });
           setIsEditModalOpen(true);
           setActiveTab('basic');
         };
@@ -835,7 +839,7 @@ export default function SongsDatabase() {
                     {[...danceGenres, ...lightGenres].map(genre => {
                       const isDanceGenre = danceGenres.some(dg => dg.band === genre.band);
                       const isLightGenre = lightGenres.some(lg => lg.band === genre.band);
-                      const currentField = isDanceGenre ? editingSong.danceGenres : editingSong.lightGenres;
+                      const currentField = isDanceGenre ? (editingSong.danceGenres || []) : (editingSong.lightGenres || []);
                       const isChecked = currentField.some(g => g.band === genre.band);
                       
                       return (
