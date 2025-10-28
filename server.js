@@ -130,9 +130,18 @@ server.all('*', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.prepare().then(() => {
+if (dev) {
+  // Development mode - use Next.js dev server
+  app.prepare().then(() => {
+    server.listen(PORT, (err) => {
+      if (err) throw err;
+      console.log(`> Ready on http://localhost:${PORT}`);
+    });
+  });
+} else {
+  // Production mode - standalone build
   server.listen(PORT, (err) => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${PORT}`);
   });
-});
+}

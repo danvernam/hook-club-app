@@ -29,5 +29,5 @@ RUN npm prune --production
 # Expose port
 EXPOSE 8080
 
-# Start the application using the standalone server
-CMD ["node", "server.js"]
+# Start the application using the Next.js standalone server
+CMD ["node", ".next/standalone/server.js"]
