@@ -189,9 +189,26 @@ export default function ClientPortal() {
   const [songPreferences, setSongPreferences] = useState<Record<string, 'definitely' | 'maybe' | 'avoid'>>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // Filter songs for Welcome Party (only show songs tagged with welcome party section)
-  const filteredWelcomePartySongs = songs.filter(song => 
-    song.isLive && song.sections && song.sections.includes('welcomeParty')
+  // Filter songs for Welcome Party - Dance Music Repertoire (all reception dance genres + after party songs)
+  const filteredWelcomePartyDanceSongs = songs.filter(song => 
+    song.isLive && (
+      // All reception dance genres
+      (song.danceGenres && song.danceGenres.length > 0) ||
+      // After party songs
+      (song.sections && song.sections.includes('afterParty'))
+    )
+  );
+
+  // Filter songs for Welcome Party - Light Music Repertoire (salad jazz, guest entrance, dinner entertainment, ceremony, cocktail hour)
+  const filteredWelcomePartyLightSongs = songs.filter(song => 
+    song.isLive && (
+      // Salad jazz, guest entrance, dinner entertainment
+      (song.lightGenres && song.lightGenres.some((genre: any) => 
+        ['salad jazz', 'guest entrance', 'dinner entertainment'].includes((genre.band || '').toLowerCase())
+      )) ||
+      // Ceremony or cocktail hour ensembles
+      (song.sections && (song.sections.includes('ceremony') || song.sections.includes('cocktailHour')))
+    )
   );
 
   // Filter songs for Guest Arrival (only show songs tagged with Guest Entrance genre)
@@ -2006,180 +2023,177 @@ export default function ClientPortal() {
 
                   {/* Core Repertoire Content */}
                   {activeWelcomePartyTab === 'core-repertoire' && (
-                    <div className="space-y-6">
-                      <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-medium text-gray-900">Welcome Party Song List</h3>
-                        <span className="text-sm text-gray-500">{filteredWelcomePartySongs.length} songs available</span>
-                      </div>
-
-                      {/* Song Progress Section */}
-                      <div className="bg-white rounded-lg border border-gray-200 p-6">
-                        <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-                          <span className="mr-2">🎵</span>
-                          Song Progress
-                        </h4>
+                    <div className="space-y-8">
+                      {/* Dance Music Repertoire Section */}
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <h3 className="text-lg font-medium text-gray-900">💃 Dance Music Repertoire</h3>
+                          <span className="text-sm text-gray-500">{filteredWelcomePartyDanceSongs.length} songs available</span>
+                        </div>
                         
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          {/* Definitely Play Card */}
-                          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                            <div className="flex justify-between items-center mb-2">
-                              <h5 className="font-medium text-green-800">🤘 Definitely Play</h5>
-                              <span className="text-sm text-green-600">
-                                {Object.values(songPreferences).filter(pref => pref === 'definitely').length}/30
-                              </span>
+                        <div className="bg-white rounded-lg border border-gray-200">
+                          {isLoading ? (
+                            <div className="text-center py-8 text-gray-500">
+                              <p>Loading songs...</p>
                             </div>
-                            <div className="w-full bg-green-200 rounded-full h-2 mb-2">
-                              <div 
-                                className="bg-green-600 h-2 rounded-full transition-all duration-300"
-                                style={{ 
-                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'definitely').length / 15) * 100)}%` 
-                                }}
-                              ></div>
+                          ) : filteredWelcomePartyDanceSongs.length === 0 ? (
+                            <div className="text-center py-8 text-gray-500">
+                              <p>No dance songs available</p>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: 15-30 songs</p>
-                            {Object.values(songPreferences).filter(pref => pref === 'definitely').length < 15 && (
-                              <p className="text-sm text-orange-600 mt-1 flex items-center">
-                                <span className="mr-1">⚠️</span>
-                                Need more songs
-                              </p>
-                            )}
-                            {Object.values(songPreferences).filter(pref => pref === 'definitely').length > 30 && (
-                              <p className="text-sm text-red-600 mt-1 flex items-center">
-                                <span className="mr-1">🚨</span>
-                                Over limit (max 30 songs)
-                              </p>
-                            )}
-                          </div>
-
-                          {/* If Mood Is Right Card */}
-                          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                            <div className="flex justify-between items-center mb-2">
-                              <h5 className="font-medium text-yellow-800">👍 If Mood Is Right</h5>
-                              <span className="text-sm text-yellow-600">
-                                {Object.values(songPreferences).filter(pref => pref === 'maybe').length}/∞
-                              </span>
+                          ) : (
+                            <div className="divide-y divide-gray-200">
+                              {filteredWelcomePartyDanceSongs.map((song, index) => (
+                                <div key={song.id || index} className="p-4 hover:bg-gray-50">
+                                  <div className="flex items-center justify-between">
+                                    <div className="flex-1">
+                                      <div className="flex items-center space-x-4">
+                                        <div>
+                                          <a
+                                            href={song.videoUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="font-medium text-purple-600 hover:text-purple-800 underline"
+                                          >
+                                            {song.originalTitle}
+                                          </a>
+                                          <p className="text-sm text-gray-600">{song.originalArtist}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
+                                    <div className="flex items-center space-x-2">
+                                      <button
+                                        onClick={() => setSongPreferences(prev => ({
+                                          ...prev,
+                                          [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
+                                        }))}
+                                        className={`px-3 py-1 text-sm rounded border ${
+                                          songPreferences[song.id] === 'definitely'
+                                            ? 'bg-green-100 text-green-800 border-green-300'
+                                            : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
+                                        }`}
+                                      >
+                                        🤘 Definitely Play
+                                      </button>
+                                      <button
+                                        onClick={() => setSongPreferences(prev => ({
+                                          ...prev,
+                                          [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
+                                        }))}
+                                        className={`px-3 py-1 text-sm rounded border ${
+                                          songPreferences[song.id] === 'maybe'
+                                            ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
+                                            : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
+                                        }`}
+                                      >
+                                        👍 If the Mood is Right
+                                      </button>
+                                      <button
+                                        onClick={() => setSongPreferences(prev => ({
+                                          ...prev,
+                                          [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
+                                        }))}
+                                        className={`px-3 py-1 text-sm rounded border ${
+                                          songPreferences[song.id] === 'avoid'
+                                            ? 'bg-red-100 text-red-800 border-red-300'
+                                            : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
+                                        }`}
+                                      >
+                                        👎 Avoid Playing
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
                             </div>
-                            <div className="w-full bg-yellow-200 rounded-full h-2 mb-2">
-                              <div 
-                                className="bg-yellow-600 h-2 rounded-full transition-all duration-300"
-                                style={{ 
-                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'maybe').length / 20) * 100)}%` 
-                                }}
-                              ></div>
-                            </div>
-                            <p className="text-sm text-gray-600">Goal: ≥20 songs</p>
-                            {Object.values(songPreferences).filter(pref => pref === 'maybe').length < 20 && (
-                              <p className="text-sm text-orange-600 mt-1 flex items-center">
-                                <span className="mr-1">⚠️</span>
-                                Need more songs
-                              </p>
-                            )}
-                          </div>
-
-                          {/* Avoid Playing Card */}
-                          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                            <div className="flex justify-between items-center mb-2">
-                              <h5 className="font-medium text-red-800">👎 Avoid Playing</h5>
-                              <span className="text-sm text-red-600">
-                                {Object.values(songPreferences).filter(pref => pref === 'avoid').length}/25
-                              </span>
-                            </div>
-                            <div className="w-full bg-red-200 rounded-full h-2 mb-2">
-                              <div 
-                                className="bg-red-600 h-2 rounded-full transition-all duration-300"
-                                style={{ 
-                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'avoid').length / 25) * 100)}%` 
-                                }}
-                              ></div>
-                            </div>
-                            <p className="text-sm text-gray-600">Goal: ≤25 songs</p>
-                            {Object.values(songPreferences).filter(pref => pref === 'avoid').length > 25 && (
-                              <p className="text-sm text-red-600 mt-1 flex items-center">
-                                <span className="mr-1">🚨</span>
-                                Over limit (max 25 songs)
-                              </p>
-                            )}
-                          </div>
+                          )}
                         </div>
                       </div>
 
-                      {/* Songs List */}
-                      <div className="bg-white rounded-lg border border-gray-200">
-                        {isLoading ? (
-                          <div className="text-center py-8 text-gray-500">
-                            <p>Loading songs...</p>
-                          </div>
-                        ) : filteredWelcomePartySongs.length === 0 ? (
-                          <div className="text-center py-8 text-gray-500">
-                            <p>No songs tagged for Welcome Party</p>
-                          </div>
-                        ) : (
-                          <div className="divide-y divide-gray-200">
-                            {filteredWelcomePartySongs.map((song, index) => (
-                              <div key={song.id || index} className="p-4 hover:bg-gray-50">
-                                <div className="flex items-center justify-between">
-                                  <div className="flex-1">
-                                    <div className="flex items-center space-x-4">
-                                      <div>
-                                        <a
-                                          href={song.videoUrl}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="font-medium text-purple-600 hover:text-purple-800 underline"
-                                        >
-                                          {song.originalTitle}
-                                        </a>
-                                        <p className="text-sm text-gray-600">{song.originalArtist}</p>
+                      {/* Light Music Repertoire Section */}
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <h3 className="text-lg font-medium text-gray-900">🎵 Light Music Repertoire</h3>
+                          <span className="text-sm text-gray-500">{filteredWelcomePartyLightSongs.length} songs available</span>
+                        </div>
+                        
+                        <div className="bg-white rounded-lg border border-gray-200">
+                          {isLoading ? (
+                            <div className="text-center py-8 text-gray-500">
+                              <p>Loading songs...</p>
+                            </div>
+                          ) : filteredWelcomePartyLightSongs.length === 0 ? (
+                            <div className="text-center py-8 text-gray-500">
+                              <p>No light music songs available</p>
+                            </div>
+                          ) : (
+                            <div className="divide-y divide-gray-200">
+                              {filteredWelcomePartyLightSongs.map((song, index) => (
+                                <div key={song.id || index} className="p-4 hover:bg-gray-50">
+                                  <div className="flex items-center justify-between">
+                                    <div className="flex-1">
+                                      <div className="flex items-center space-x-4">
+                                        <div>
+                                          <a
+                                            href={song.videoUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="font-medium text-purple-600 hover:text-purple-800 underline"
+                                          >
+                                            {song.originalTitle}
+                                          </a>
+                                          <p className="text-sm text-gray-600">{song.originalArtist}</p>
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
-                                  
-                                  <div className="flex items-center space-x-2">
-                                    <button
-                                      onClick={() => setSongPreferences(prev => ({
-                                        ...prev,
-                                        [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
-                                      }))}
-                                      className={`px-3 py-1 text-sm rounded border ${
-                                        songPreferences[song.id] === 'definitely'
-                                          ? 'bg-green-100 text-green-800 border-green-300'
-                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
-                                      }`}
-                                    >
-                                      🤘 Definitely Play
-                                    </button>
-                                    <button
-                                      onClick={() => setSongPreferences(prev => ({
-                                        ...prev,
-                                        [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
-                                      }))}
-                                      className={`px-3 py-1 text-sm rounded border ${
-                                        songPreferences[song.id] === 'maybe'
-                                          ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
-                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
-                                      }`}
-                                    >
-                                      👍 If the Mood is Right
-                                    </button>
-                                    <button
-                                      onClick={() => setSongPreferences(prev => ({
-                                        ...prev,
-                                        [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
-                                      }))}
-                                      className={`px-3 py-1 text-sm rounded border ${
-                                        songPreferences[song.id] === 'avoid'
-                                          ? 'bg-red-100 text-red-800 border-red-300'
-                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
-                                      }`}
-                                    >
-                                      👎 Avoid Playing
-                                    </button>
+                                    
+                                    <div className="flex items-center space-x-2">
+                                      <button
+                                        onClick={() => setSongPreferences(prev => ({
+                                          ...prev,
+                                          [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
+                                        }))}
+                                        className={`px-3 py-1 text-sm rounded border ${
+                                          songPreferences[song.id] === 'definitely'
+                                            ? 'bg-green-100 text-green-800 border-green-300'
+                                            : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
+                                        }`}
+                                      >
+                                        🤘 Definitely Play
+                                      </button>
+                                      <button
+                                        onClick={() => setSongPreferences(prev => ({
+                                          ...prev,
+                                          [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
+                                        }))}
+                                        className={`px-3 py-1 text-sm rounded border ${
+                                          songPreferences[song.id] === 'maybe'
+                                            ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
+                                            : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
+                                        }`}
+                                      >
+                                        👍 If the Mood is Right
+                                      </button>
+                                      <button
+                                        onClick={() => setSongPreferences(prev => ({
+                                          ...prev,
+                                          [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
+                                        }))}
+                                        className={`px-3 py-1 text-sm rounded border ${
+                                          songPreferences[song.id] === 'avoid'
+                                            ? 'bg-red-100 text-red-800 border-red-300'
+                                            : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
+                                        }`}
+                                      >
+                                        👎 Avoid Playing
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   )}
