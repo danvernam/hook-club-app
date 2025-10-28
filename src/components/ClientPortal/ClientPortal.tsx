@@ -191,51 +191,30 @@ export default function ClientPortal() {
 
   // Filter songs for Welcome Party (only show songs tagged with welcome party genres)
   const filteredWelcomePartySongs = songs.filter(song => 
-    song.isLive && (
-      (song.danceGenres && song.danceGenres.some((genre: any) => 
-        ['pop', 'disco', 'soul', 'rock', 'country', 'hip hop', 'r&b', 'jazz', 'folk', 'indie', 'alternative', 'punk'].includes((genre.band || '').toLowerCase())
-      )) ||
-      (song.genres && song.genres.some((genre: any) => 
-        ['pop', 'disco', 'soul', 'rock', 'country', 'hip hop', 'r&b', 'jazz', 'folk', 'indie', 'alternative', 'punk'].includes((genre.band || '').toLowerCase())
-      ))
+    song.isLive && song.danceGenres && song.danceGenres.some((genre: any) => 
+      ['pop', 'disco', 'soul', 'rock', 'country', 'hip hop', 'r&b', 'jazz', 'folk', 'indie', 'alternative', 'punk'].includes((genre.band || '').toLowerCase())
     )
   );
 
   // Filter songs for Guest Arrival (only show songs tagged with Guest Entrance genre)
   const filteredGuestArrivalSongs = songs.filter(song => 
-    song.isLive && (
-      (song.lightGenres && song.lightGenres.some((genre: any) => 
-        (genre.client || '').toLowerCase().includes('guest entrance') ||
-        (genre.band || '').toLowerCase().includes('guest entrance')
-      )) ||
-      (song.genres && song.genres.some((genre: any) => 
-        (genre.client || '').toLowerCase().includes('guest entrance') ||
-        (genre.band || '').toLowerCase().includes('guest entrance')
-      ))
+    song.isLive && song.lightGenres && song.lightGenres.some((genre: any) => 
+      (genre.client || '').toLowerCase().includes('guest entrance') ||
+      (genre.band || '').toLowerCase().includes('guest entrance')
     )
   );
 
   // Filter songs for Cocktail Hour (only show songs tagged with cocktail hour genres)
   const filteredCocktailHourSongs = songs.filter(song => 
-    song.isLive && (
-      (song.danceGenres && song.danceGenres.some((genre: any) => 
-        ['jazz', 'soul', 'r&b', 'lounge', 'acoustic'].includes((genre.band || '').toLowerCase())
-      )) ||
-      (song.genres && song.genres.some((genre: any) => 
-        ['jazz', 'soul', 'r&b', 'lounge', 'acoustic'].includes((genre.band || '').toLowerCase())
-      ))
+    song.isLive && song.danceGenres && song.danceGenres.some((genre: any) => 
+      ['jazz', 'soul', 'r&b', 'lounge', 'acoustic'].includes((genre.band || '').toLowerCase())
     )
   );
 
   // Filter songs for After Party (only show songs tagged with after party genres)
   const filteredAfterPartySongs = songs.filter(song => 
-    song.isLive && (
-      (song.danceGenres && song.danceGenres.some((genre: any) => 
-        ['pop', 'disco', 'hip hop', 'rock', 'electronic'].includes((genre.band || '').toLowerCase())
-      )) ||
-      (song.genres && song.genres.some((genre: any) => 
-        ['pop', 'disco', 'hip hop', 'rock', 'electronic'].includes((genre.band || '').toLowerCase())
-      ))
+    song.isLive && song.danceGenres && song.danceGenres.some((genre: any) => 
+      ['pop', 'disco', 'hip hop', 'rock', 'electronic'].includes((genre.band || '').toLowerCase())
     )
   );
 

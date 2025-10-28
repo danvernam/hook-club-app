@@ -832,29 +832,50 @@ export default function SongsDatabase() {
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-3">Reception Genres</label>
                   <div className="space-y-3">
-                    {[...danceGenres, ...lightGenres].map(genre => (
-                      <label key={genre.band} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          checked={editingSong.genres.some(g => g.band === genre.band)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setEditingSong({
-                                ...editingSong,
-                                genres: [...editingSong.genres, genre]
-                              });
-                            } else {
-                              setEditingSong({
-                                ...editingSong,
-                                genres: editingSong.genres.filter(g => g.band !== genre.band)
-                              });
-                            }
-                          }}
-                          className="mr-2"
-                        />
-                        <span className="text-gray-900">{genre.client}</span>
-                      </label>
-                    ))}
+                    {[...danceGenres, ...lightGenres].map(genre => {
+                      const isDanceGenre = danceGenres.some(dg => dg.band === genre.band);
+                      const isLightGenre = lightGenres.some(lg => lg.band === genre.band);
+                      const currentField = isDanceGenre ? editingSong.danceGenres : editingSong.lightGenres;
+                      const isChecked = currentField.some(g => g.band === genre.band);
+                      
+                      return (
+                        <label key={genre.band} className="flex items-center">
+                          <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                if (isDanceGenre) {
+                                  setEditingSong({
+                                    ...editingSong,
+                                    danceGenres: [...editingSong.danceGenres, genre]
+                                  });
+                                } else {
+                                  setEditingSong({
+                                    ...editingSong,
+                                    lightGenres: [...editingSong.lightGenres, genre]
+                                  });
+                                }
+                              } else {
+                                if (isDanceGenre) {
+                                  setEditingSong({
+                                    ...editingSong,
+                                    danceGenres: editingSong.danceGenres.filter(g => g.band !== genre.band)
+                                  });
+                                } else {
+                                  setEditingSong({
+                                    ...editingSong,
+                                    lightGenres: editingSong.lightGenres.filter(g => g.band !== genre.band)
+                                  });
+                                }
+                              }
+                            }}
+                            className="mr-2"
+                          />
+                          <span className="text-gray-900">{genre.client}</span>
+                        </label>
+                      );
+                    })}
                   </div>
                 </div>
 
