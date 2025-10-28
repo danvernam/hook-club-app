@@ -310,7 +310,8 @@ export default function ClientPortal() {
     { client: "🔥 The Latin Bible", band: "latin" },
     { client: "🎶 Slow Jams", band: "slow jams" },
     { client: "🚪 Guest Entrance", band: "guest entrance" },
-    { client: "🍽️ Dinner Entertainment", band: "dinner entertainment" }
+    { client: "🍽️ Dinner Entertainment", band: "dinner entertainment" },
+    { client: "🥗 Salad Jazz", band: "salad jazz" }
   ];
 
   // Playlist types for request playlists
@@ -3608,7 +3609,7 @@ export default function ClientPortal() {
                               <div className="p-4">
                                 <div className="space-y-4">
                                   {receptionGenres.filter(genre => 
-                                    ['guest entrance', 'dinner entertainment'].includes(genre.band)
+                                    ['guest entrance', 'dinner entertainment', 'salad jazz'].includes(genre.band)
                                   ).map((genre) => {
                                     // Filter songs by light genre (only active songs)
                                     const genreSongs = sortedReceptionSongs.filter(song => 
