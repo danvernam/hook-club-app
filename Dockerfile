@@ -16,7 +16,12 @@ RUN npm run build
 
 # List the contents of .next directory to debug
 RUN ls -la .next/
+RUN ls -la .next/standalone/ || echo "No standalone directory found"
 RUN ls -la .next/static/ || echo "No static directory found"
+
+# Copy the standalone build to the working directory
+RUN cp -r .next/standalone/* ./
+RUN cp -r .next/static .next/static
 
 # Remove dev dependencies
 RUN npm prune --production
