@@ -162,21 +162,30 @@ export default function SongsDatabase() {
 
         const sections = ['welcomeParty', 'afterParty'];
   const danceGenres = [
-    { client: '💯 Cream Of The Pop', band: 'pop' },
     { client: '🎷 Souled Out', band: 'soul' },
+    { client: '💯 Cream Of The Pop', band: 'pop' },
     { client: '🎸 Rock Of Ages', band: 'rock' },
     { client: '🎧 Can\'t Stop Hip Hop', band: 'hip hop' },
-    { client: '🕺 Studio \'25', band: 'disco' },
+    { client: '🛑 Stop! In The Name Of Motown', band: 'motown' },
     { client: '🤘 Instant Mosh', band: 'punk' },
-    { client: '🤠 Country For All', band: 'country' },
     { client: '🔥 The Latin Bible', band: 'latin' },
-    { client: '🎶 Slow Jams', band: 'slow jams' }
+    { client: '🕺 Studio \'25', band: 'disco' },
+    { client: '🤠 Country For All', band: 'country' },
+    { client: '🚀 Next Level Bops', band: 'popedm' },
+    { client: '🌴 Top Of The Tropics', band: 'caribbean' },
+    { client: '💃 Get In Formation', band: 'group-dances' },
+    { client: '✨ Songs That Slay', band: 'lgbtq' },
+    { client: '🔥 Because I Got Lit', band: 'club' },
+    { client: '🌍 THC Worldwide', band: 'world' },
+    { client: '🎉 All The Rave', band: 'rave' },
+    { client: '🤔 What Do You Meme', band: 'meme' },
+    { client: '⭐ The Stars of La La Land', band: 'showtunes' }
   ];
   
   const lightGenres = [
     { client: '🚪 Guest Entrance', band: 'guest entrance' },
     { client: '🍽️ Dinner Entertainment', band: 'dinner entertainment' },
-    { client: '🥗 Salad Jazz', band: 'salad jazz' }
+    { client: '🎷 Jazz', band: 'jazz' }
   ];
 
         const handleEditSong = (song: Song) => {

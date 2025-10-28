@@ -192,7 +192,7 @@ export default function ClientPortal() {
   // Filter songs for Welcome Party (only show songs tagged with welcome party genres)
   const filteredWelcomePartySongs = songs.filter(song => 
     song.isLive && song.danceGenres && song.danceGenres.some((genre: any) => 
-      ['pop', 'disco', 'soul', 'rock', 'country', 'hip hop', 'r&b', 'jazz', 'folk', 'indie', 'alternative', 'punk'].includes((genre.band || '').toLowerCase())
+      ['soul', 'pop', 'rock', 'hip hop', 'motown', 'punk', 'latin', 'disco', 'country', 'popedm', 'caribbean', 'group-dances', 'lgbtq', 'club', 'world', 'rave', 'meme', 'showtunes', 'r&b', 'jazz', 'folk', 'indie', 'alternative'].includes((genre.band || '').toLowerCase())
     )
   );
 
@@ -214,7 +214,7 @@ export default function ClientPortal() {
   // Filter songs for After Party (only show songs tagged with after party genres)
   const filteredAfterPartySongs = songs.filter(song => 
     song.isLive && song.danceGenres && song.danceGenres.some((genre: any) => 
-      ['pop', 'disco', 'hip hop', 'rock', 'electronic'].includes((genre.band || '').toLowerCase())
+      ['soul', 'pop', 'rock', 'hip hop', 'motown', 'punk', 'latin', 'disco', 'country', 'popedm', 'caribbean', 'group-dances', 'lgbtq', 'club', 'world', 'rave', 'meme', 'showtunes', 'electronic'].includes((genre.band || '').toLowerCase())
     )
   );
 
@@ -300,18 +300,27 @@ export default function ClientPortal() {
 
   // Reception genres for organizing songs
   const receptionGenres = [
-    { client: "💯 Cream Of The Pop", band: "pop" },
     { client: "🎷 Souled Out", band: "soul" },
+    { client: "💯 Cream Of The Pop", band: "pop" },
     { client: "🎸 Rock Of Ages", band: "rock" },
     { client: "🎧 Can't Stop Hip Hop", band: "hip hop" },
-    { client: "🕺 Studio '25", band: "disco" },
+    { client: "🛑 Stop! In The Name Of Motown", band: "motown" },
     { client: "🤘 Instant Mosh", band: "punk" },
-    { client: "🤠 Country For All", band: "country" },
     { client: "🔥 The Latin Bible", band: "latin" },
-    { client: "🎶 Slow Jams", band: "slow jams" },
+    { client: "🕺 Studio '25", band: "disco" },
+    { client: "🤠 Country For All", band: "country" },
+    { client: "🚀 Next Level Bops", band: "popedm" },
+    { client: "🌴 Top Of The Tropics", band: "caribbean" },
+    { client: "💃 Get In Formation", band: "group-dances" },
+    { client: "✨ Songs That Slay", band: "lgbtq" },
+    { client: "🔥 Because I Got Lit", band: "club" },
+    { client: "🌍 THC Worldwide", band: "world" },
+    { client: "🎉 All The Rave", band: "rave" },
+    { client: "🤔 What Do You Meme", band: "meme" },
+    { client: "⭐ The Stars of La La Land", band: "showtunes" },
     { client: "🚪 Guest Entrance", band: "guest entrance" },
     { client: "🍽️ Dinner Entertainment", band: "dinner entertainment" },
-    { client: "🥗 Salad Jazz", band: "salad jazz" }
+    { client: "🎷 Jazz", band: "jazz" }
   ];
 
   // Playlist types for request playlists
@@ -3492,7 +3501,7 @@ export default function ClientPortal() {
                               <div className="p-4">
                                 <div className="space-y-4">
                                   {receptionGenres.filter(genre => 
-                                    ['pop', 'soul', 'rock', 'hip hop', 'disco', 'punk', 'country', 'latin', 'slow jams'].includes(genre.band)
+                                    ['soul', 'pop', 'rock', 'hip hop', 'motown', 'punk', 'latin', 'disco', 'country', 'popedm', 'caribbean', 'group-dances', 'lgbtq', 'club', 'world', 'rave', 'meme', 'showtunes'].includes(genre.band)
                                   ).map((genre) => {
                                     // Filter songs by dance genre (only active songs)
                                     const genreSongs = sortedReceptionSongs.filter(song => 
@@ -3609,7 +3618,7 @@ export default function ClientPortal() {
                               <div className="p-4">
                                 <div className="space-y-4">
                                   {receptionGenres.filter(genre => 
-                                    ['guest entrance', 'dinner entertainment', 'salad jazz'].includes(genre.band)
+                                    ['guest entrance', 'dinner entertainment', 'jazz'].includes(genre.band)
                                   ).map((genre) => {
                                     // Filter songs by light genre (only active songs)
                                     const genreSongs = sortedReceptionSongs.filter(song => 
