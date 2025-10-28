@@ -189,9 +189,9 @@ export default function ClientPortal() {
   const [songPreferences, setSongPreferences] = useState<Record<string, 'definitely' | 'maybe' | 'avoid'>>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // Filter songs for Welcome Party (show all active songs - any song can be a welcome party song)
+  // Filter songs for Welcome Party (only show songs tagged with welcome party section)
   const filteredWelcomePartySongs = songs.filter(song => 
-    song.isLive
+    song.isLive && song.sections && song.sections.includes('welcomeParty')
   );
 
   // Filter songs for Guest Arrival (only show songs tagged with Guest Entrance genre)
@@ -209,9 +209,9 @@ export default function ClientPortal() {
     )
   );
 
-  // Filter songs for After Party (show all active songs - any song can be an after party song)
+  // Filter songs for After Party (only show songs tagged with after party section)
   const filteredAfterPartySongs = songs.filter(song => 
-    song.isLive
+    song.isLive && song.sections && song.sections.includes('afterParty')
   );
 
   // Filter songs for Reception - separate into dance and light music
