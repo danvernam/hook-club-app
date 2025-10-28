@@ -8,8 +8,9 @@ COPY package*.json ./
 # Install all dependencies (including dev dependencies for build)
 RUN npm ci
 
-# Copy source code
+# Copy source code (excluding custom server.js since we'll use standalone)
 COPY . .
+RUN rm -f server.js
 
 # Build the application
 RUN npm run build
@@ -21,7 +22,9 @@ RUN ls -la .next/static/ || echo "No static directory found"
 
 # Copy the standalone build to the working directory
 RUN cp -r .next/standalone/* ./
-RUN cp -r .next/static ./
+
+# Copy static files to the correct location for standalone server
+RUN cp -r .next/static .next/static
 
 # Remove dev dependencies
 RUN npm prune --production
@@ -30,4 +33,4 @@ RUN npm prune --production
 EXPOSE 8080
 
 # Start the application using the Next.js standalone server
-CMD ["node", ".next/standalone/server.js"]
+CMD ["node", "server.js"]
