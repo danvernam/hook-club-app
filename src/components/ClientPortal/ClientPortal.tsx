@@ -189,11 +189,9 @@ export default function ClientPortal() {
   const [songPreferences, setSongPreferences] = useState<Record<string, 'definitely' | 'maybe' | 'avoid'>>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // Filter songs for Welcome Party (only show songs tagged with welcome party genres)
+  // Filter songs for Welcome Party (show all active songs - any song can be a welcome party song)
   const filteredWelcomePartySongs = songs.filter(song => 
-    song.isLive && song.danceGenres && song.danceGenres.some((genre: any) => 
-      ['soul', 'pop', 'rock', 'hip hop', 'motown', 'punk', 'latin', 'disco', 'country', 'popedm', 'caribbean', 'group-dances', 'lgbtq', 'club', 'world', 'rave', 'meme', 'showtunes', 'r&b', 'jazz', 'folk', 'indie', 'alternative'].includes((genre.band || '').toLowerCase())
-    )
+    song.isLive
   );
 
   // Filter songs for Guest Arrival (only show songs tagged with Guest Entrance genre)
@@ -211,11 +209,9 @@ export default function ClientPortal() {
     )
   );
 
-  // Filter songs for After Party (only show songs tagged with after party genres)
+  // Filter songs for After Party (show all active songs - any song can be an after party song)
   const filteredAfterPartySongs = songs.filter(song => 
-    song.isLive && song.danceGenres && song.danceGenres.some((genre: any) => 
-      ['soul', 'pop', 'rock', 'hip hop', 'motown', 'punk', 'latin', 'disco', 'country', 'popedm', 'caribbean', 'group-dances', 'lgbtq', 'club', 'world', 'rave', 'meme', 'showtunes', 'electronic'].includes((genre.band || '').toLowerCase())
-    )
+    song.isLive
   );
 
   // Filter songs for Reception - separate into dance and light music
@@ -1402,6 +1398,143 @@ export default function ClientPortal() {
                       <button className="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium">
                         Upload Document
                       </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Booking Documents Section */}
+                <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Booking Documents</h3>
+                  
+                  <div className="space-y-4">
+                    <p className="text-gray-600 mb-4">Important documents related to your booking will appear here.</p>
+                    
+                    {/* Contract Section */}
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-900">Contract</h4>
+                            <p className="text-sm text-gray-500">Your signed service agreement</p>
+                          </div>
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          <span className="px-2 py-1 bg-gray-100 rounded-full">Pending</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Retainer Invoice Section */}
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-900">Retainer Invoice</h4>
+                            <p className="text-sm text-gray-500">Initial payment and booking confirmation</p>
+                          </div>
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          <span className="px-2 py-1 bg-gray-100 rounded-full">Pending</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Additional Documents Placeholder */}
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-900">Additional Documents</h4>
+                            <p className="text-sm text-gray-500">Other booking-related documents</p>
+                          </div>
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          <span className="px-2 py-1 bg-gray-100 rounded-full">None</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Payment Information Section */}
+                <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Payment Information</h3>
+                  
+                  <div className="space-y-6">
+                    {/* Retainer Payment */}
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="text-lg font-medium text-gray-900">25% Retainer Payment</h4>
+                        <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Paid</span>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+                          <div className="text-lg font-semibold text-gray-900">$____</div>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Date Paid</label>
+                          <div className="text-sm text-gray-600">____/____/____</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Final Payment */}
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="text-lg font-medium text-gray-900">75% Final Payment</h4>
+                        <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Pending</span>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+                          <div className="text-lg font-semibold text-gray-900">$____</div>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Due Date</label>
+                          <div className="text-sm text-gray-600">2 weeks before event date</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Payment Summary */}
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <h5 className="text-sm font-medium text-gray-900 mb-3">Payment Summary</h5>
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">Total Package Price:</span>
+                          <span className="font-medium text-gray-900">$____</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">Retainer Paid (25%):</span>
+                          <span className="font-medium text-green-600">$____</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">Remaining Balance (75%):</span>
+                          <span className="font-medium text-yellow-600">$____</span>
+                        </div>
+                        <div className="border-t border-gray-200 pt-2">
+                          <div className="flex justify-between text-sm font-medium">
+                            <span className="text-gray-900">Status:</span>
+                            <span className="text-yellow-600">Partially Paid</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
