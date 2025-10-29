@@ -160,7 +160,7 @@ export default function SongsDatabase() {
     return <div className="p-8">Loading songs database...</div>;
   }
 
-        const sections = ['welcomeParty', 'afterParty', 'pianoTrio', 'guestArrival', 'cocktailHour'];
+  const sections = ['welcomeParty', 'afterParty', 'pianoTrio', 'guestArrival', 'cocktailHour'];
   const danceGenres = [
     { client: '🎷 Souled Out', band: 'soul' },
     { client: '💯 Cream Of The Pop', band: 'pop' },

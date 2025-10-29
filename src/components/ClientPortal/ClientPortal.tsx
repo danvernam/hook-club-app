@@ -279,9 +279,9 @@ export default function ClientPortal() {
     )
   );
 
-  // Filter songs for Piano Trio - Recommended Options (songs tagged with pianoTrio section)
+  // Filter songs for Piano Trio - Recommended Options (songs tagged with pianoTrio section or ceremony section)
   const filteredPianoTrioSongs = songs.filter(song => 
-    song.isLive && song.sections && song.sections.includes('pianoTrio')
+    song.isLive && song.sections && (song.sections.includes('pianoTrio') || song.sections.includes('ceremony'))
   );
 
   // Filter songs for Guest Arrival (songs tagged with guestArrival section)
