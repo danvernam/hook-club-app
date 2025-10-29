@@ -5,7 +5,7 @@ import SongsDatabase from '@/components/SongsDatabase/SongsDatabase';
 import apiService from '@/services/api';
 
 export default function ClientPortal() {
-  const [activeTab, setActiveTab] = useState<'services' | 'getting-to-know-you' | 'preferences' | 'documents' | 'welcome-party' | 'ceremony' | 'cocktail-hour' | 'reception' | 'after-party'>('services');
+  const [activeTab, setActiveTab] = useState<'services' | 'getting-to-know-you' | 'preferences' | 'documents' | 'vendors' | 'welcome-party' | 'ceremony' | 'cocktail-hour' | 'reception' | 'after-party'>('services');
   const [activeView, setActiveView] = useState<'client-portal' | 'database'>('client-portal');
   const [activeWelcomePartyTab, setActiveWelcomePartyTab] = useState<'special-songs' | 'special-requests' | 'core-repertoire'>('core-repertoire');
   const [welcomePartyDanceExpanded, setWelcomePartyDanceExpanded] = useState(false);
@@ -14,6 +14,16 @@ export default function ClientPortal() {
   const [pianoTrioExpanded, setPianoTrioExpanded] = useState(false);
   const [guestArrivalExpanded, setGuestArrivalExpanded] = useState(false);
   const [cocktailHourGeneralExpanded, setCocktailHourGeneralExpanded] = useState(false);
+  const [afterPartyDanceExpanded, setAfterPartyDanceExpanded] = useState(false);
+  const [afterPartyDJExpanded, setAfterPartyDJExpanded] = useState(false);
+  const [fullVendorListSent, setFullVendorListSent] = useState(false);
+  const [vendors, setVendors] = useState<Array<{
+    id: string;
+    category: string;
+    name: string;
+    email: string;
+    socialMedia: string;
+  }>>([]);
   const [activeCeremonyTab, setActiveCeremonyTab] = useState<'ceremony-music' | 'guest-arrival-requests' | 'guest-arrival'>('guest-arrival');
   const [activeCocktailHourTab, setActiveCocktailHourTab] = useState<'special-songs' | 'song-requests' | 'cocktail-hour-song-list'>('cocktail-hour-song-list');
   const [activeAfterPartyTab, setActiveAfterPartyTab] = useState<'special-songs' | 'special-requests' | 'core-repertoire'>('core-repertoire');
@@ -76,17 +86,69 @@ export default function ClientPortal() {
     clientNote: string;
     reason?: string;
   }>>([]);
-  const [receptionSpecialRequests, setReceptionSpecialRequests] = useState<Array<{
+  const [receptionEssentialRequests, setReceptionEssentialRequests] = useState<Array<{
     clientSongTitle: string;
     clientArtist: string;
     clientLink: string;
     clientNote: string;
+  }>>([]);
+  const [receptionAdditionalRequests, setReceptionAdditionalRequests] = useState<Array<{
+    clientSongTitle: string;
+    clientArtist: string;
+    clientLink: string;
+    clientNote: string;
+  }>>([]);
+  const [receptionPlaylists, setReceptionPlaylists] = useState<Array<{
+    playlistLink: string;
+    playlistType: string;
+    playlistNote: string;
   }>>([]);
   const [receptionSongs, setReceptionSongs] = useState<any[]>([]);
   const [sortedReceptionSongs, setSortedReceptionSongs] = useState<any[]>([]);
   const [receptionSongPreferences, setReceptionSongPreferences] = useState<Record<string, 'definitely' | 'maybe' | 'avoid'>>({});
   const [isLoadingReception, setIsLoadingReception] = useState(false);
   const [expandedReceptionGenres, setExpandedReceptionGenres] = useState<Record<string, boolean>>({});
+
+  // Vendor categories
+  const vendorCategories = [
+    '💒 Venue',
+    '💍 Wedding Planner',
+    '📆 Month-of Coordinator',
+    '📋 Day-of Coordinator',
+    '🧑‍💼 Venue Event Coordinator',
+    '🥗 Caterer',
+    '🌸 Florist',
+    '📸 Photographer',
+    '📹 Videographer',
+    '🎞️ Photo Booth',
+    '🍽️ Rentals',
+    '🎂 Cake',
+    '💇 Hair/Makeup',
+    '🧑‍⚖️ Officiant',
+    'Other'
+  ];
+
+  // Helper functions for vendors
+  const addVendor = () => {
+    const newVendor = {
+      id: Date.now().toString(),
+      category: '',
+      name: '',
+      email: '',
+      socialMedia: ''
+    };
+    setVendors([...vendors, newVendor]);
+  };
+
+  const updateVendor = (id: string, field: string, value: string) => {
+    setVendors(vendors.map(vendor => 
+      vendor.id === id ? { ...vendor, [field]: value } : vendor
+    ));
+  };
+
+  const removeVendor = (id: string) => {
+    setVendors(vendors.filter(vendor => vendor.id !== id));
+  };
   const [selectedStageLook, setSelectedStageLook] = useState<string>('');
   const [selectedWashLighting, setSelectedWashLighting] = useState<string>('');
   const [selectedUplightingColor, setSelectedUplightingColor] = useState<string>('');
@@ -233,6 +295,16 @@ export default function ClientPortal() {
     !(song.sections && song.sections.includes('pianoTrio'))
   );
 
+  // Filter songs for After Party - Dance Music Repertoire (all reception dance genres, excluding after party songs)
+  const filteredAfterPartyDanceSongs = songs.filter(song => 
+    song.isLive && song.danceGenres && song.danceGenres.length > 0
+  );
+
+  // Filter songs for After Party - DJ Song List (after party songs)
+  const filteredAfterPartyDJSongs = songs.filter(song => 
+    song.isLive && song.sections && song.sections.includes('afterParty')
+  );
+
   // Filter songs for Cocktail Hour (only show songs tagged with cocktail hour genres)
   const filteredCocktailHourSongs = songs.filter(song => 
     song.isLive && song.danceGenres && song.danceGenres.some((genre: any) => 
@@ -301,6 +373,8 @@ export default function ClientPortal() {
         "Toast"
       ],
       'reception': [
+        "Wedding Party Intro",
+        "Newlyweds Intro",
         "First Dance",
         "Parent Dance",
         "Cake Cutting",
@@ -311,7 +385,9 @@ export default function ClientPortal() {
         "Tarantella",
         "Goldun",
         "Money Spray",
-        "Money Dance"
+        "Money Dance",
+        "Newlyweds Exit",
+        "Private Last Dance"
       ],
       'after-party': [
         "Grand Finale",
@@ -622,6 +698,16 @@ export default function ClientPortal() {
                   }`}
                 >
                   Documents
+                </button>
+                <button
+                  onClick={() => setActiveTab('vendors')}
+                  className={`py-6 px-4 border-b-2 font-medium text-base ${
+                    activeTab === 'vendors'
+                      ? 'border-purple-500 text-purple-600'
+                      : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
+                  }`}
+                >
+                  Vendors
                 </button>
               </nav>
             </div>
@@ -1578,6 +1664,138 @@ export default function ClientPortal() {
                     <p className="text-gray-500">No documents uploaded yet</p>
                   </div>
                 </div>
+              </div>
+            )}
+
+            {/* Vendors Content */}
+            {activeTab === 'vendors' && (
+              <div className="space-y-6">
+                <h2 className="text-2xl font-bold text-gray-900">Vendors</h2>
+                
+                {/* Full Vendor List Checkbox */}
+                <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                  <div className="flex items-center space-x-3">
+                    <input
+                      type="checkbox"
+                      id="fullVendorListSent"
+                      checked={fullVendorListSent}
+                      onChange={(e) => setFullVendorListSent(e.target.checked)}
+                      className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="fullVendorListSent" className="text-sm font-medium text-gray-900">
+                      Check Box If Full Vendor List Will Be Sent To All Vendors
+                    </label>
+                  </div>
+                </div>
+
+                {fullVendorListSent ? (
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <div className="text-center">
+                      <h3 className="text-lg font-medium text-blue-900 mb-2">Vendor List Will Be Provided</h3>
+                      <p className="text-blue-700">
+                        When Possible, Please Send Us A List Of All Vendors Working The Wedding And Their Contact/Social Media Info!
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    {/* Add Vendor Button */}
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                      <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-xl font-semibold text-gray-900">Add Vendors</h3>
+                        <button
+                          onClick={addVendor}
+                          className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium"
+                        >
+                          + Add Vendor
+                        </button>
+                      </div>
+                      <p className="text-sm text-gray-600">Add your wedding vendors one by one with their contact information.</p>
+                    </div>
+
+                    {/* Vendors List */}
+                    {vendors.length > 0 && (
+                      <div className="space-y-4">
+                        {vendors.map((vendor, index) => (
+                          <div key={vendor.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div className="flex justify-between items-center mb-4">
+                              <h4 className="text-lg font-medium text-gray-900">Vendor {index + 1}</h4>
+                              <button
+                                onClick={() => removeVendor(vendor.id)}
+                                className="text-red-600 hover:text-red-800 text-sm font-medium"
+                              >
+                                Remove
+                              </button>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Vendor Category</label>
+                                <select
+                                  value={vendor.category}
+                                  onChange={(e) => updateVendor(vendor.id, 'category', e.target.value)}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900"
+                                >
+                                  <option value="">Select category...</option>
+                                  {vendorCategories.map((category) => (
+                                    <option key={category} value={category}>
+                                      {category}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Vendor Name</label>
+                                <input
+                                  type="text"
+                                  value={vendor.name}
+                                  onChange={(e) => updateVendor(vendor.id, 'name', e.target.value)}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900"
+                                  placeholder="Enter vendor name"
+                                />
+                              </div>
+
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input
+                                  type="email"
+                                  value={vendor.email}
+                                  onChange={(e) => updateVendor(vendor.id, 'email', e.target.value)}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900"
+                                  placeholder="Enter email address"
+                                />
+                              </div>
+
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Social Media Handle(s)</label>
+                                <input
+                                  type="text"
+                                  value={vendor.socialMedia}
+                                  onChange={(e) => updateVendor(vendor.id, 'socialMedia', e.target.value)}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900"
+                                  placeholder="e.g., @vendor_instagram, @vendor_twitter"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {vendors.length === 0 && (
+                      <div className="bg-gray-50 rounded-lg p-8 text-center">
+                        <div className="text-gray-400 mb-4">
+                          <svg className="mx-auto h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                          </svg>
+                        </div>
+                        <h3 className="text-lg font-medium text-gray-900 mb-2">No vendors added yet</h3>
+                        <p className="text-gray-600 mb-4">Click "Add Vendor" to start adding your wedding vendors.</p>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             )}
 
@@ -3709,107 +3927,286 @@ export default function ClientPortal() {
 
                   {/* Song Requests Content */}
                   {activeReceptionTab === 'special-requests' && (
-                    <div className="space-y-6 mt-6">
-                      <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-medium text-gray-900">Song Requests</h3>
-                        <span className="text-sm text-gray-500">{receptionSpecialRequests.length}/5 requests</span>
+                    <div className="space-y-8 mt-6">
+                      {/* Essential Song Requests */}
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <h3 className="text-lg font-medium text-gray-900">Essential Song Requests</h3>
+                          <span className="text-sm text-gray-500">{receptionEssentialRequests.length}/2 requests</span>
+                        </div>
+                        <p className="text-sm text-gray-600">Your most important song requests that we'll prioritize</p>
+
+                        {/* Add Essential Request Button */}
+                        {receptionEssentialRequests.length < 2 && (
+                          <button
+                            onClick={() => setReceptionEssentialRequests([...receptionEssentialRequests, { clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
+                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
+                          >
+                            + Add Essential Song Request
+                          </button>
+                        )}
+
+                        {/* Essential Requests List */}
+                        {receptionEssentialRequests.map((request, index) => (
+                          <div key={index} className="bg-red-50 border border-red-200 rounded-lg p-4 space-y-4">
+                            <div className="flex justify-between items-center">
+                              <h4 className="font-medium text-gray-900">Essential Request {index + 1}</h4>
+                              <button
+                                onClick={() => setReceptionEssentialRequests(receptionEssentialRequests.filter((_, i) => i !== index))}
+                                className="text-red-600 hover:text-red-800 text-sm"
+                              >
+                                Remove
+                              </button>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Song</label>
+                                <input
+                                  type="text"
+                                  value={request.clientSongTitle}
+                                  onChange={(e) => {
+                                    const newRequests = [...receptionEssentialRequests];
+                                    newRequests[index].clientSongTitle = e.target.value;
+                                    setReceptionEssentialRequests(newRequests);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder="Enter song title"
+                                />
+                              </div>
+
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Artist</label>
+                                <input
+                                  type="text"
+                                  value={request.clientArtist}
+                                  onChange={(e) => {
+                                    const newRequests = [...receptionEssentialRequests];
+                                    newRequests[index].clientArtist = e.target.value;
+                                    setReceptionEssentialRequests(newRequests);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder="Enter artist name"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Link (Optional)</label>
+                                <input
+                                  type="url"
+                                  value={request.clientLink}
+                                  onChange={(e) => {
+                                    const newRequests = [...receptionEssentialRequests];
+                                    newRequests[index].clientLink = e.target.value;
+                                    setReceptionEssentialRequests(newRequests);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder="YouTube, Spotify, or other link"
+                                />
+                              </div>
+
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Note</label>
+                                <textarea
+                                  value={request.clientNote}
+                                  onChange={(e) => {
+                                    const newRequests = [...receptionEssentialRequests];
+                                    newRequests[index].clientNote = e.target.value;
+                                    setReceptionEssentialRequests(newRequests);
+                                  }}
+                                  rows={1}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder="Special instructions or notes"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
 
-                      {/* Add Request Button */}
-                      {receptionSpecialRequests.length < 5 && (
-                        <button
-                          onClick={() => setReceptionSpecialRequests([...receptionSpecialRequests, { clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
-                          className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
-                        >
-                          + Add Song Request
-                        </button>
-                      )}
+                      {/* Additional Song Requests */}
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <h3 className="text-lg font-medium text-gray-900">Additional Song Requests</h3>
+                          <span className="text-sm text-gray-500">{receptionAdditionalRequests.length}/5 requests</span>
+                        </div>
+                        <p className="text-sm text-gray-600">Additional songs you'd like us to consider</p>
 
-                      {/* Song Requests List */}
-                      {receptionSpecialRequests.map((request, index) => (
-                        <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
-                          <div className="flex justify-between items-center">
-                            <h4 className="font-medium text-gray-900">Request {index + 1}</h4>
-                            <button
-                              onClick={() => setReceptionSpecialRequests(receptionSpecialRequests.filter((_, i) => i !== index))}
-                              className="text-red-600 hover:text-red-800 text-sm"
-                            >
-                              Remove
-                            </button>
-                          </div>
+                        {/* Add Additional Request Button */}
+                        {receptionAdditionalRequests.length < 5 && (
+                          <button
+                            onClick={() => setReceptionAdditionalRequests([...receptionAdditionalRequests, { clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
+                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
+                          >
+                            + Add Additional Song Request
+                          </button>
+                        )}
 
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Song</label>
-                              <input
-                                type="text"
-                                value={request.clientSongTitle}
-                                onChange={(e) => {
-                                  const newRequests = [...receptionSpecialRequests];
-                                  newRequests[index].clientSongTitle = e.target.value;
-                                  setReceptionSpecialRequests(newRequests);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Enter song title"
-                              />
+                        {/* Additional Requests List */}
+                        {receptionAdditionalRequests.map((request, index) => (
+                          <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
+                            <div className="flex justify-between items-center">
+                              <h4 className="font-medium text-gray-900">Additional Request {index + 1}</h4>
+                              <button
+                                onClick={() => setReceptionAdditionalRequests(receptionAdditionalRequests.filter((_, i) => i !== index))}
+                                className="text-red-600 hover:text-red-800 text-sm"
+                              >
+                                Remove
+                              </button>
                             </div>
 
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Artist</label>
-                              <input
-                                type="text"
-                                value={request.clientArtist}
-                                onChange={(e) => {
-                                  const newRequests = [...receptionSpecialRequests];
-                                  newRequests[index].clientArtist = e.target.value;
-                                  setReceptionSpecialRequests(newRequests);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Enter artist name"
-                              />
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Song</label>
+                                <input
+                                  type="text"
+                                  value={request.clientSongTitle}
+                                  onChange={(e) => {
+                                    const newRequests = [...receptionAdditionalRequests];
+                                    newRequests[index].clientSongTitle = e.target.value;
+                                    setReceptionAdditionalRequests(newRequests);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder="Enter song title"
+                                />
+                              </div>
+
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Artist</label>
+                                <input
+                                  type="text"
+                                  value={request.clientArtist}
+                                  onChange={(e) => {
+                                    const newRequests = [...receptionAdditionalRequests];
+                                    newRequests[index].clientArtist = e.target.value;
+                                    setReceptionAdditionalRequests(newRequests);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder="Enter artist name"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Link (Optional)</label>
+                                <input
+                                  type="url"
+                                  value={request.clientLink}
+                                  onChange={(e) => {
+                                    const newRequests = [...receptionAdditionalRequests];
+                                    newRequests[index].clientLink = e.target.value;
+                                    setReceptionAdditionalRequests(newRequests);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder="YouTube, Spotify, or other link"
+                                />
+                              </div>
+
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Note</label>
+                                <textarea
+                                  value={request.clientNote}
+                                  onChange={(e) => {
+                                    const newRequests = [...receptionAdditionalRequests];
+                                    newRequests[index].clientNote = e.target.value;
+                                    setReceptionAdditionalRequests(newRequests);
+                                  }}
+                                  rows={1}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder="Special instructions or notes"
+                                />
+                              </div>
                             </div>
                           </div>
+                        ))}
+                      </div>
 
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Link (Optional)</label>
-                              <input
-                                type="url"
-                                value={request.clientLink}
-                                onChange={(e) => {
-                                  const newRequests = [...receptionSpecialRequests];
-                                  newRequests[index].clientLink = e.target.value;
-                                  setReceptionSpecialRequests(newRequests);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="YouTube, Spotify, or other link"
-                              />
+                      {/* Playlist Links */}
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <h3 className="text-lg font-medium text-gray-900">Playlist Links</h3>
+                          <span className="text-sm text-gray-500">{receptionPlaylists.length}/5 playlists</span>
+                        </div>
+                        <p className="text-sm text-gray-600">Share your Spotify, Apple Music, or other playlists with us</p>
+
+                        {/* Add Playlist Button */}
+                        {receptionPlaylists.length < 5 && (
+                          <button
+                            onClick={() => setReceptionPlaylists([...receptionPlaylists, { playlistLink: '', playlistType: '', playlistNote: '' }])}
+                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
+                          >
+                            + Add Playlist Link
+                          </button>
+                        )}
+
+                        {/* Playlists List */}
+                        {receptionPlaylists.map((playlist, index) => (
+                          <div key={index} className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-4">
+                            <div className="flex justify-between items-center">
+                              <h4 className="font-medium text-gray-900">Playlist {index + 1}</h4>
+                              <button
+                                onClick={() => setReceptionPlaylists(receptionPlaylists.filter((_, i) => i !== index))}
+                                className="text-red-600 hover:text-red-800 text-sm"
+                              >
+                                Remove
+                              </button>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Link</label>
+                                <input
+                                  type="url"
+                                  value={playlist.playlistLink}
+                                  onChange={(e) => {
+                                    const newPlaylists = [...receptionPlaylists];
+                                    newPlaylists[index].playlistLink = e.target.value;
+                                    setReceptionPlaylists(newPlaylists);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder="Spotify, Apple Music, or other playlist link"
+                                />
+                              </div>
+
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Type</label>
+                                <select
+                                  value={playlist.playlistType}
+                                  onChange={(e) => {
+                                    const newPlaylists = [...receptionPlaylists];
+                                    newPlaylists[index].playlistType = e.target.value;
+                                    setReceptionPlaylists(newPlaylists);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                >
+                                  <option value="">Select playlist type</option>
+                                  <option value="Dancing Requests">Dancing Requests</option>
+                                  <option value="Background Music">Background Music</option>
+                                  <option value="Cultural Music">Cultural Music</option>
+                                </select>
+                              </div>
                             </div>
 
                             <div>
                               <label className="block text-sm font-medium text-gray-700 mb-1">Note</label>
                               <textarea
-                                value={request.clientNote}
+                                value={playlist.playlistNote}
                                 onChange={(e) => {
-                                  const newRequests = [...receptionSpecialRequests];
-                                  newRequests[index].clientNote = e.target.value;
-                                  setReceptionSpecialRequests(newRequests);
+                                  const newPlaylists = [...receptionPlaylists];
+                                  newPlaylists[index].playlistNote = e.target.value;
+                                  setReceptionPlaylists(newPlaylists);
                                 }}
-                                rows={1}
+                                rows={2}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Special instructions or notes"
+                                placeholder="Tell us about this playlist or any special notes"
                               />
                             </div>
                           </div>
-                        </div>
-                      ))}
-
-                      {receptionSpecialRequests.length === 0 && (
-                        <div className="text-center py-8 text-gray-500">
-                          <p>No song requests added yet</p>
-                          <p className="text-sm mt-1">Click "Add Song Request" to get started</p>
-                        </div>
-                      )}
+                        ))}
+                      </div>
                     </div>
                   )}
 
@@ -4450,172 +4847,205 @@ export default function ClientPortal() {
 
                   {/* After Party Song List Content */}
                   {activeAfterPartyTab === 'core-repertoire' && (
-                    <div className="space-y-6">
-                      <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-medium text-gray-900">After Party Song List</h3>
-                        <span className="text-sm text-gray-500">{filteredAfterPartySongs.length} songs available</span>
-                      </div>
-
-                      {/* Song Progress Section */}
-                      <div className="bg-white rounded-lg border border-gray-200 p-6">
-                        <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-                          <span className="mr-2">🎵</span>
-                          Song Progress
-                        </h4>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          {/* Definitely Play Card */}
-                          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                            <div className="flex justify-between items-center mb-2">
-                              <h5 className="font-medium text-green-800">🤘 Definitely Play</h5>
-                              <span className="text-sm text-green-600">
-                                {Object.values(afterPartySongPreferences).filter(pref => pref === 'definitely').length}/30
-                              </span>
-                            </div>
-                            <div className="w-full bg-green-200 rounded-full h-2 mb-2">
-                              <div 
-                                className="bg-green-600 h-2 rounded-full transition-all duration-300"
-                                style={{ 
-                                  width: `${Math.min(100, (Object.values(afterPartySongPreferences).filter(pref => pref === 'definitely').length / 15) * 100)}%` 
-                                }}
-                              ></div>
-                            </div>
-                            <p className="text-sm text-gray-600">Goal: 15-30 songs</p>
-                            {Object.values(afterPartySongPreferences).filter(pref => pref === 'definitely').length < 15 && (
-                              <p className="text-sm text-orange-600 mt-1 flex items-center">
-                                <span className="mr-1">⚠️</span>
-                                Need more songs
-                              </p>
-                            )}
-                            {Object.values(afterPartySongPreferences).filter(pref => pref === 'definitely').length > 30 && (
-                              <p className="text-sm text-red-600 mt-1 flex items-center">
-                                <span className="mr-1">🚨</span>
-                                Over limit (max 30 songs)
-                              </p>
-                            )}
-                          </div>
-
-                          {/* If Mood Is Right Card */}
-                          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                            <div className="flex justify-between items-center mb-2">
-                              <h5 className="font-medium text-yellow-800">👍 If Mood Is Right</h5>
-                              <span className="text-sm text-yellow-600">
-                                {Object.values(afterPartySongPreferences).filter(pref => pref === 'maybe').length}/∞
-                              </span>
-                            </div>
-                            <div className="w-full bg-yellow-200 rounded-full h-2 mb-2">
-                              <div 
-                                className="bg-yellow-600 h-2 rounded-full transition-all duration-300"
-                                style={{ 
-                                  width: `${Math.min(100, (Object.values(afterPartySongPreferences).filter(pref => pref === 'maybe').length / 20) * 100)}%` 
-                                }}
-                              ></div>
-                            </div>
-                            <p className="text-sm text-gray-600">Goal: ≥20 songs</p>
-                            {Object.values(afterPartySongPreferences).filter(pref => pref === 'maybe').length < 20 && (
-                              <p className="text-sm text-orange-600 mt-1 flex items-center">
-                                <span className="mr-1">⚠️</span>
-                                Need more songs
-                              </p>
-                            )}
-                          </div>
-
-                          {/* Avoid Playing Card */}
-                          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                            <div className="flex justify-between items-center mb-2">
-                              <h5 className="font-medium text-red-800">👎 Avoid Playing</h5>
-                              <span className="text-sm text-red-600">
-                                {Object.values(afterPartySongPreferences).filter(pref => pref === 'avoid').length}/25
-                              </span>
-                            </div>
-                            <div className="w-full bg-red-200 rounded-full h-2 mb-2">
-                              <div 
-                                className="bg-red-600 h-2 rounded-full transition-all duration-300"
-                                style={{ 
-                                  width: `${Math.min(100, (Object.values(afterPartySongPreferences).filter(pref => pref === 'avoid').length / 50) * 100)}%` 
-                                }}
-                              ></div>
-                            </div>
-                            <p className="text-sm text-gray-600">Goal: ≤50 songs</p>
-                          </div>
+                    <div className="space-y-8">
+                      {/* Dance Music Repertoire Section */}
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <button
+                            onClick={() => setAfterPartyDanceExpanded(!afterPartyDanceExpanded)}
+                            className="flex items-center space-x-2 text-left hover:text-purple-600 transition-colors"
+                          >
+                            <h3 className="text-lg font-medium text-gray-900">💃 Dance Music Repertoire</h3>
+                            <span className="text-sm text-gray-500">({filteredAfterPartyDanceSongs.length} songs)</span>
+                            <svg
+                              className={`w-5 h-5 transition-transform ${afterPartyDanceExpanded ? 'rotate-180' : ''}`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </button>
                         </div>
-                      </div>
-
-                      {/* Songs List */}
-                      <div className="bg-white rounded-lg border border-gray-200">
-                        {isLoadingAfterParty ? (
-                          <div className="text-center py-8 text-gray-500">
-                            <p>Loading songs...</p>
-                          </div>
-                        ) : filteredAfterPartySongs.length === 0 ? (
-                          <div className="text-center py-8 text-gray-500">
-                            <p>No songs tagged for After Party</p>
-                          </div>
-                        ) : (
-                          <div className="divide-y divide-gray-200">
-                            {filteredAfterPartySongs.map((song, index) => (
-                              <div key={song.id || index} className="p-4 hover:bg-gray-50">
-                                <div className="flex items-center justify-between">
-                                  <div className="flex-1">
-                                    <div className="flex items-center space-x-4">
-                                      <div>
-                                        <a
-                                          href={song.videoUrl}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="font-medium text-purple-600 hover:text-purple-800 underline"
+                        
+                        {afterPartyDanceExpanded && (
+                          <div className="bg-white rounded-lg border border-gray-200">
+                            {isLoadingAfterParty ? (
+                              <div className="text-center py-8 text-gray-500">
+                                <p>Loading songs...</p>
+                              </div>
+                            ) : filteredAfterPartyDanceSongs.length === 0 ? (
+                              <div className="text-center py-8 text-gray-500">
+                                <p>No dance music available</p>
+                              </div>
+                            ) : (
+                              <div className="divide-y divide-gray-200">
+                                {filteredAfterPartyDanceSongs.map((song, index) => (
+                                  <div key={song.id || index} className="p-4 hover:bg-gray-50">
+                                    <div className="flex items-center justify-between">
+                                      <div className="flex-1">
+                                        <div className="flex items-center space-x-4">
+                                          <div>
+                                            <a
+                                              href={song.videoUrl}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="font-medium text-purple-600 hover:text-purple-800 underline"
+                                            >
+                                              {song.originalTitle}
+                                            </a>
+                                            <p className="text-sm text-gray-600">{song.originalArtist}</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
+                                      <div className="flex items-center space-x-2">
+                                        <button
+                                          onClick={() => setAfterPartySongPreferences(prev => ({
+                                            ...prev,
+                                            [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
+                                          }))}
+                                          className={`px-3 py-1 text-sm rounded border ${
+                                            afterPartySongPreferences[song.id] === 'definitely'
+                                              ? 'bg-green-100 text-green-800 border-green-300'
+                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
+                                          }`}
                                         >
-                                          {song.originalTitle}
-                                        </a>
-                                        <p className="text-sm text-gray-600">{song.originalArtist}</p>
+                                          🤘 Definitely Play
+                                        </button>
+                                        <button
+                                          onClick={() => setAfterPartySongPreferences(prev => ({
+                                            ...prev,
+                                            [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
+                                          }))}
+                                          className={`px-3 py-1 text-sm rounded border ${
+                                            afterPartySongPreferences[song.id] === 'maybe'
+                                              ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
+                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
+                                          }`}
+                                        >
+                                          👍 If the Mood is Right
+                                        </button>
+                                        <button
+                                          onClick={() => setAfterPartySongPreferences(prev => ({
+                                            ...prev,
+                                            [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
+                                          }))}
+                                          className={`px-3 py-1 text-sm rounded border ${
+                                            afterPartySongPreferences[song.id] === 'avoid'
+                                              ? 'bg-red-100 text-red-800 border-red-300'
+                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
+                                          }`}
+                                        >
+                                          👎 Avoid Playing
+                                        </button>
                                       </div>
                                     </div>
                                   </div>
-                                  
-                                  <div className="flex items-center space-x-2">
-                                    <button
-                                      onClick={() => setAfterPartySongPreferences(prev => ({
-                                        ...prev,
-                                        [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
-                                      }))}
-                                      className={`px-3 py-1 text-sm rounded border ${
-                                        afterPartySongPreferences[song.id] === 'definitely'
-                                          ? 'bg-green-100 text-green-800 border-green-300'
-                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
-                                      }`}
-                                    >
-                                      🤘 Definitely Play
-                                    </button>
-                                    <button
-                                      onClick={() => setAfterPartySongPreferences(prev => ({
-                                        ...prev,
-                                        [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
-                                      }))}
-                                      className={`px-3 py-1 text-sm rounded border ${
-                                        afterPartySongPreferences[song.id] === 'maybe'
-                                          ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
-                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
-                                      }`}
-                                    >
-                                      👍 If the Mood is Right
-                                    </button>
-                                    <button
-                                      onClick={() => setAfterPartySongPreferences(prev => ({
-                                        ...prev,
-                                        [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
-                                      }))}
-                                      className={`px-3 py-1 text-sm rounded border ${
-                                        afterPartySongPreferences[song.id] === 'avoid'
-                                          ? 'bg-red-100 text-red-800 border-red-300'
-                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
-                                      }`}
-                                    >
-                                      👎 Avoid Playing
-                                    </button>
-                                  </div>
-                                </div>
+                                ))}
                               </div>
-                            ))}
+                            )}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* DJ Song List Section */}
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <button
+                            onClick={() => setAfterPartyDJExpanded(!afterPartyDJExpanded)}
+                            className="flex items-center space-x-2 text-left hover:text-purple-600 transition-colors"
+                          >
+                            <h3 className="text-lg font-medium text-gray-900">🎧 DJ Song List</h3>
+                            <span className="text-sm text-gray-500">({filteredAfterPartyDJSongs.length} songs)</span>
+                            <svg
+                              className={`w-5 h-5 transition-transform ${afterPartyDJExpanded ? 'rotate-180' : ''}`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </button>
+                        </div>
+                        
+                        {afterPartyDJExpanded && (
+                          <div className="bg-white rounded-lg border border-gray-200">
+                            {isLoadingAfterParty ? (
+                              <div className="text-center py-8 text-gray-500">
+                                <p>Loading songs...</p>
+                              </div>
+                            ) : filteredAfterPartyDJSongs.length === 0 ? (
+                              <div className="text-center py-8 text-gray-500">
+                                <p>No DJ songs available</p>
+                              </div>
+                            ) : (
+                              <div className="divide-y divide-gray-200">
+                                {filteredAfterPartyDJSongs.map((song, index) => (
+                                  <div key={song.id || index} className="p-4 hover:bg-gray-50">
+                                    <div className="flex items-center justify-between">
+                                      <div className="flex-1">
+                                        <div className="flex items-center space-x-4">
+                                          <div>
+                                            <a
+                                              href={song.videoUrl}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="font-medium text-purple-600 hover:text-purple-800 underline"
+                                            >
+                                              {song.originalTitle}
+                                            </a>
+                                            <p className="text-sm text-gray-600">{song.originalArtist}</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
+                                      <div className="flex items-center space-x-2">
+                                        <button
+                                          onClick={() => setAfterPartySongPreferences(prev => ({
+                                            ...prev,
+                                            [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
+                                          }))}
+                                          className={`px-3 py-1 text-sm rounded border ${
+                                            afterPartySongPreferences[song.id] === 'definitely'
+                                              ? 'bg-green-100 text-green-800 border-green-300'
+                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
+                                          }`}
+                                        >
+                                          🤘 Definitely Play
+                                        </button>
+                                        <button
+                                          onClick={() => setAfterPartySongPreferences(prev => ({
+                                            ...prev,
+                                            [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
+                                          }))}
+                                          className={`px-3 py-1 text-sm rounded border ${
+                                            afterPartySongPreferences[song.id] === 'maybe'
+                                              ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
+                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
+                                          }`}
+                                        >
+                                          👍 If the Mood is Right
+                                        </button>
+                                        <button
+                                          onClick={() => setAfterPartySongPreferences(prev => ({
+                                            ...prev,
+                                            [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
+                                          }))}
+                                          className={`px-3 py-1 text-sm rounded border ${
+                                            afterPartySongPreferences[song.id] === 'avoid'
+                                              ? 'bg-red-100 text-red-800 border-red-300'
+                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
+                                          }`}
+                                        >
+                                          👎 Avoid Playing
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         )}
                       </div>
