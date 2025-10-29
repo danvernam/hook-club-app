@@ -218,6 +218,14 @@ export default function ClientPortal() {
         setSongsData(data);
         setSongs(data.songs || []);
         
+        // Debug: Log songs with sections
+        console.log('Loaded songs:', data.songs?.length || 0);
+        const songsWithSections = (data.songs || []).filter((song: any) => song.sections && song.sections.length > 0);
+        console.log('Songs with sections:', songsWithSections.length);
+        songsWithSections.forEach((song: any) => {
+          console.log(`${song.originalTitle} - sections:`, song.sections, 'isLive:', song.isLive);
+        });
+        
         // Sort songs by artist A-Z for the welcome party tab
         const sorted = [...(data.songs || [])].sort((a, b) => 
           (a.originalArtist || '').localeCompare(b.originalArtist || '')
@@ -280,9 +288,18 @@ export default function ClientPortal() {
   );
 
   // Filter songs for Piano Trio - Recommended Options (songs tagged with pianoTrio section or ceremony section)
-  const filteredPianoTrioSongs = songs.filter(song => 
-    song.isLive && song.sections && (song.sections.includes('pianoTrio') || song.sections.includes('ceremony'))
-  );
+  const filteredPianoTrioSongs = songs.filter(song => {
+    const isPianoTrio = song.isLive && song.sections && (song.sections.includes('pianoTrio') || song.sections.includes('ceremony'));
+    if (song.originalTitle && song.originalTitle.toLowerCase().includes('all of me')) {
+      console.log('All Of Me song found:', {
+        title: song.originalTitle,
+        isLive: song.isLive,
+        sections: song.sections,
+        isPianoTrio: isPianoTrio
+      });
+    }
+    return isPianoTrio;
+  });
 
   // Filter songs for Guest Arrival (songs tagged with guestArrival section)
   const filteredGuestArrivalSongs = songs.filter(song => 
