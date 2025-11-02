@@ -798,10 +798,11 @@ export default function ClientPortal() {
               <div className="space-y-8">
                 <h2 className="text-2xl font-bold text-gray-900">Selected Services</h2>
                 
-                {/* Entertainment Services */}
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Entertainment Services</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Services Grid - Side by Side */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Entertainment Services */}
+                  <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Entertainment Services</h3>
                     <div className="space-y-4">
                       <div className="border-l-4 border-purple-500 pl-4">
                         <h4 className="font-medium text-gray-900">Welcome Party</h4>
@@ -815,8 +816,6 @@ export default function ClientPortal() {
                         <h4 className="font-medium text-gray-900">Cocktail Hour</h4>
                         <p className="text-sm text-gray-600">Jazz Quartet - Sax • Guitar • Bass • Drums</p>
                       </div>
-                    </div>
-                    <div className="space-y-4">
                       <div className="border-l-4 border-purple-500 pl-4">
                         <h4 className="font-medium text-gray-900">Reception</h4>
                         <p className="text-sm text-gray-600">15-Piece Full Band - 5 Vocalists • Violin • Trumpet • Sax • Trombone • Guitar • Keyboard • Synths • Bass • Percussion • Drums</p>
@@ -827,29 +826,30 @@ export default function ClientPortal() {
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Production Services */}
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Production Services</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Production Services */}
+                  <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Production Services</h3>
                     <div className="space-y-4">
                       <div className="border-l-4 border-pink-500 pl-4">
-                        <h4 className="font-medium text-gray-900">Welcome Party - PA System • Sound Engineer • Toast Mic • Wash Lighting</h4>
+                        <h4 className="font-medium text-gray-900">Welcome Party</h4>
+                        <p className="text-sm text-gray-600">PA System • Sound Engineer • Toast Mic • Wash Lighting</p>
                       </div>
                       <div className="border-l-4 border-pink-500 pl-4">
-                        <h4 className="font-medium text-gray-900">Ceremony - Musician Amplification • Wireless Mic/Speakers</h4>
+                        <h4 className="font-medium text-gray-900">Ceremony</h4>
+                        <p className="text-sm text-gray-600">Musician Amplification • Wireless Mic/Speakers</p>
                       </div>
                       <div className="border-l-4 border-pink-500 pl-4">
-                        <h4 className="font-medium text-gray-900">Cocktail Hour - Musician Amplification</h4>
-                      </div>
-                    </div>
-                    <div className="space-y-4">
-                      <div className="border-l-4 border-pink-500 pl-4">
-                        <h4 className="font-medium text-gray-900">Reception - PA System • Sound Engineer • Toast Mic • Wash Lighting • Dance Lighting Package</h4>
+                        <h4 className="font-medium text-gray-900">Cocktail Hour</h4>
+                        <p className="text-sm text-gray-600">Musician Amplification</p>
                       </div>
                       <div className="border-l-4 border-pink-500 pl-4">
-                        <h4 className="font-medium text-gray-900">After Party - PA System • Announcement Mic • 10 Uplights</h4>
+                        <h4 className="font-medium text-gray-900">Reception</h4>
+                        <p className="text-sm text-gray-600">PA System • Sound Engineer • Toast Mic • Wash Lighting • Dance Lighting Package</p>
+                      </div>
+                      <div className="border-l-4 border-pink-500 pl-4">
+                        <h4 className="font-medium text-gray-900">After Party</h4>
+                        <p className="text-sm text-gray-600">PA System • Announcement Mic • 10 Uplights</p>
                       </div>
                     </div>
                   </div>

@@ -521,9 +521,8 @@ export default function SongsDatabase() {
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">THC Title</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">Artist Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-20">BPM</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-20">Key</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-20">THC%</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">Genre</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">Original Key</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-24">Actions</th>
               </tr>
             </thead>
@@ -550,9 +549,14 @@ export default function SongsDatabase() {
                       {song.originalArtist}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{song.thcBpm}</td>
+                  <td className="px-6 py-4">
+                    <div className="text-sm text-gray-600 truncate max-w-xs">
+                      {song.danceGenres && song.danceGenres.length > 0 ? song.danceGenres.map(g => g.client).join(', ') : 
+                       song.genres && song.genres.length > 0 ? song.genres.map(g => g.client).join(', ') : 
+                       song.lightGenres && song.lightGenres.length > 0 ? song.lightGenres.map(g => g.client).join(', ') : '-'}
+                    </div>
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{song.originalKey}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{song.thcPercent}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex space-x-1">
                       <button
