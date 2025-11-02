@@ -3671,13 +3671,20 @@ export default function ClientPortal() {
                   {/* Song Requests Content */}
                   {activeReceptionTab === 'special-requests' && (
                     <div className="space-y-8 mt-6">
+                      {/* Note */}
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <p className="text-sm text-gray-700">
+                          <strong>Note:</strong> These requests are for the dance sets only, they are separate from your "special songs" (first dance, parent dances, etc)
+                        </p>
+                      </div>
+
                       {/* Essential Song Requests */}
                       <div className="space-y-4">
                         <div className="flex justify-between items-center">
                           <h3 className="text-lg font-medium text-gray-900">Essential Song Requests</h3>
                           <span className="text-sm text-gray-500">{receptionEssentialRequests.length}/2 requests</span>
                         </div>
-                        <p className="text-sm text-gray-600">Your most important song requests that we'll prioritize</p>
+                        <p className="text-sm text-gray-600">Your most important requests - songs we can't leave the building until they've been played</p>
 
                         {/* Add Essential Request Button */}
                         {receptionEssentialRequests.length < 2 && (
@@ -3775,7 +3782,7 @@ export default function ClientPortal() {
                           <h3 className="text-lg font-medium text-gray-900">Additional Song Requests</h3>
                           <span className="text-sm text-gray-500">{receptionAdditionalRequests.length}/5 requests</span>
                         </div>
-                        <p className="text-sm text-gray-600">Additional songs you'd like us to consider</p>
+                        <p className="text-sm text-gray-600">More songs or artists you want to hear - we'll play as many as we possibly can!</p>
 
                         {/* Add Additional Request Button */}
                         {receptionAdditionalRequests.length < 5 && (
@@ -3873,7 +3880,7 @@ export default function ClientPortal() {
                           <h3 className="text-lg font-medium text-gray-900">Playlist Links</h3>
                           <span className="text-sm text-gray-500">{receptionPlaylists.length}/5 playlists</span>
                         </div>
-                        <p className="text-sm text-gray-600">Share your Spotify, Apple Music, or other playlists with us</p>
+                        <p className="text-sm text-gray-600">Share your Spotify, Apple Music, or other playlists with us - share your musical mood board!</p>
 
                         {/* Add Playlist Button */}
                         {receptionPlaylists.length < 5 && (
