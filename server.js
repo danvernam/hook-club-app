@@ -7,10 +7,20 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-// Initialize Firebase Admin
+// Initialize Firebase Admin with service account key if available
+const serviceAccountPath = require('path').join(__dirname, 'service-account-key.json');
+let credential;
+
+if (require('fs').existsSync(serviceAccountPath)) {
+  const serviceAccount = require(serviceAccountPath);
+  credential = admin.credential.cert(serviceAccount);
+} else {
+  credential = admin.credential.applicationDefault();
+}
+
 if (!admin.apps.length) {
   admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
+    credential: credential,
     projectId: process.env.GOOGLE_CLOUD_PROJECT || 'hook-club-app-2025'
   });
 }

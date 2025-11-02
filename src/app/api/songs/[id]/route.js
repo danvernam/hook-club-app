@@ -1,15 +1,28 @@
 import { NextResponse } from 'next/server';
 import admin from 'firebase-admin';
+import fs from 'fs';
+import path from 'path';
 
-// Initialize Firebase Admin
+// Initialize Firebase Admin with service account key if available
+let db;
 if (!admin.apps.length) {
+  const serviceAccountPath = path.join(process.cwd(), 'service-account-key.json');
+  let credential;
+  
+  if (fs.existsSync(serviceAccountPath)) {
+    const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8'));
+    credential = admin.credential.cert(serviceAccount);
+  } else {
+    credential = admin.credential.applicationDefault();
+  }
+  
   admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
+    credential: credential,
     projectId: process.env.GOOGLE_CLOUD_PROJECT || 'hook-club-app-2025'
   });
 }
 
-const db = admin.firestore();
+db = admin.firestore();
 
 export async function PUT(request, { params }) {
   try {

@@ -105,15 +105,8 @@ export default function SongsDatabase() {
         });
         // Don't set filteredSongs here - let the useEffect handle filtering
       } catch (err) {
-        console.error('Error loading songs:', err);
-        // Fallback to local file if API fails
-        fetch('/data/songs.json')
-          .then(res => res.json())
-          .then(data => {
-            setSongsData(data);
-            // Don't set filteredSongs here - let the useEffect handle filtering
-          })
-          .catch(fallbackErr => console.error('Error loading fallback songs:', fallbackErr));
+        console.error('Error loading songs from Firestore:', err);
+        alert('Failed to load songs from database. Please check your connection and try again.');
       }
     };
     loadSongs();
