@@ -145,8 +145,8 @@ export default function SongsDatabase() {
       );
     }
 
-    // Active/Inactive filter
-    if (!showInactive) {
+    // Active/Inactive filter - when showInactive is true (checkbox checked), show only active songs
+    if (showInactive) {
       filtered = filtered.filter(song => song.isLive);
     }
 

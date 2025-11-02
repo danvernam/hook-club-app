@@ -3,8 +3,18 @@ const fs = require('fs');
 const path = require('path');
 
 // Initialize Firebase Admin
+const serviceAccountPath = path.join(__dirname, 'service-account-key.json');
+let credential;
+
+if (fs.existsSync(serviceAccountPath)) {
+  const serviceAccount = require(serviceAccountPath);
+  credential = admin.credential.cert(serviceAccount);
+} else {
+  credential = admin.credential.applicationDefault();
+}
+
 admin.initializeApp({
-  credential: admin.credential.applicationDefault(),
+  credential: credential,
   projectId: process.env.GOOGLE_CLOUD_PROJECT || 'hook-club-app-2025'
 });
 

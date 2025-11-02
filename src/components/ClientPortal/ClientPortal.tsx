@@ -369,8 +369,7 @@ export default function ClientPortal() {
       'cocktail-hour': [
         "Wedding Party Intro",
         "Newlyweds Intro",
-        "First Dance",
-        "Toast"
+        "First Dance"
       ],
       'reception': [
         "Wedding Party Intro",
@@ -615,7 +614,7 @@ export default function ClientPortal() {
           {/* Event Details */}
           <div className="text-center mb-8">
             <div className="text-xl font-medium text-gray-800 mb-1">Carrie Bradshaw & Mr. Big • Wedding</div>
-            <div className="text-lg text-gray-600">Saturday 4/20/08 • The Plaza Hotel</div>
+            <div className="text-lg text-gray-600">Saturday, April 20th 2008</div>
           </div>
           
           {/* Navigation Buttons */}
