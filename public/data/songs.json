@@ -1,10 +1,10 @@
 {
   "metadata": {
     "version": "2.0",
-    "lastUpdated": "2025-10-26T21:13:21.934Z",
-    "totalSongs": 1450,
-    "activeSongs": 213,
-    "inactiveSongs": 1237
+    "lastUpdated": "2025-11-02T06:17:14.738Z",
+    "totalSongs": 1471,
+    "activeSongs": 289,
+    "inactiveSongs": 1182
   },
   "songs": [
     {
@@ -520,6 +520,10 @@
         {
           "client": "🕺 Studio '25",
           "band": "disco"
+        },
+        {
+          "client": "⭐ The Stars of La La Land",
+          "band": "showtunes"
         }
       ],
       "lightGenres": []
@@ -2451,6 +2455,10 @@
         {
           "client": "🎧 Can't Stop Hip Hop",
           "band": "hip hop"
+        },
+        {
+          "client": "🔥 Because I Got Lit",
+          "band": "club"
         }
       ],
       "lightGenres": []
@@ -2948,6 +2956,10 @@
         {
           "client": "💯 Cream Of The Pop",
           "band": "pop"
+        },
+        {
+          "client": "🤔 What Do You Meme",
+          "band": "meme"
         }
       ],
       "lightGenres": []
@@ -3770,14 +3782,14 @@
     {
       "id": "anti-hero-kungs-remix",
       "originalTitle": "Anti-Hero [Kungs Remix]",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Taylor Swift",
       "thcTitle": "Anti-Hero [Kungs Remix]",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -3817,7 +3829,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🚀 Next Level Bops",
+          "band": "popedm"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -5503,14 +5520,14 @@
     {
       "id": "barbie-girl",
       "originalTitle": "Barbie Girl",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Aqua",
       "thcTitle": "Barbie Girl",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -5550,7 +5567,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🤔 What Do You Meme",
+          "band": "meme"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -7378,14 +7400,14 @@
     {
       "id": "blue-da-ba-dee",
       "originalTitle": "Blue (Da Ba Dee)",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Eiffel 65, Gabry Ponte",
       "thcTitle": "Blue (Da Ba Dee)",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -7425,7 +7447,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🤔 What Do You Meme",
+          "band": "meme"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -7749,14 +7776,14 @@
     {
       "id": "body",
       "originalTitle": "Body",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Megan Thee Stallion",
       "thcTitle": "Body",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -7796,7 +7823,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🔥 Because I Got Lit",
+          "band": "club"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -8123,14 +8155,14 @@
     {
       "id": "born-this-way",
       "originalTitle": "Born This Way",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Lady Gaga",
       "thcTitle": "Born This Way",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -8170,7 +8202,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "✨ Songs That Slay",
+          "band": "lgbtq"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -8345,14 +8382,14 @@
     {
       "id": "break-my-soul",
       "originalTitle": "BREAK MY SOUL",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Beyoncé",
       "thcTitle": "BREAK MY SOUL",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -8392,7 +8429,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "✨ Songs That Slay",
+          "band": "lgbtq"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -9495,14 +9537,14 @@
     {
       "id": "call-on-me",
       "originalTitle": "Call On Me",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Eric Prydz",
       "thcTitle": "Call On Me",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -9542,7 +9584,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🤔 What Do You Meme",
+          "band": "meme"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -10843,14 +10890,14 @@
     {
       "id": "cha-cha-slide",
       "originalTitle": "Cha Cha Slide",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "DJ Casper",
       "thcTitle": "Cha Cha Slide",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -10890,7 +10937,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "💃 Get In Formation",
+          "band": "group-dances"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -11651,6 +11703,10 @@
         {
           "client": "💯 Cream Of The Pop",
           "band": "pop"
+        },
+        {
+          "client": "🚀 Next Level Bops",
+          "band": "popedm"
         }
       ],
       "lightGenres": []
@@ -11817,14 +11873,14 @@
     {
       "id": "cold-heart-pnau-remix",
       "originalTitle": "Cold Heart [PNAU Remix]",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Elton John, Dua Lipa, PNAU",
       "thcTitle": "Cold Heart [PNAU Remix]",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -11864,7 +11920,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🚀 Next Level Bops",
+          "band": "popedm"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -12638,14 +12699,14 @@
     {
       "id": "crank-that-soulja-boy",
       "originalTitle": "Crank That (Soulja Boy)",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Soulja Boy",
       "thcTitle": "Crank That (Soulja Boy)",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -12685,7 +12746,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "💃 Get In Formation",
+          "band": "group-dances"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -13148,14 +13214,14 @@
     {
       "id": "cupid-shuffle",
       "originalTitle": "Cupid Shuffle",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Cupid",
       "thcTitle": "Cupid Shuffle",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -13195,20 +13261,25 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "💃 Get In Formation",
+          "band": "group-dances"
+        }
+      ],
       "lightGenres": []
     },
     {
       "id": "cut-to-the-feeling",
       "originalTitle": "Cut To The Feeling",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Carly Rae Jepsen",
       "thcTitle": "Cut To The Feeling",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -13248,7 +13319,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "✨ Songs That Slay",
+          "band": "lgbtq"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -13519,14 +13595,14 @@
     {
       "id": "dance-the-night",
       "originalTitle": "Dance The Night",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Dua Lipa",
       "thcTitle": "Dance The Night",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -13566,7 +13642,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🚀 Next Level Bops",
+          "band": "popedm"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -15242,14 +15323,14 @@
     {
       "id": "dj-got-us-fallin-in-love",
       "originalTitle": "DJ Got Us Fallin' In Love",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "USHER, Pitbull",
       "thcTitle": "DJ Got Us Fallin' In Love",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -15289,7 +15370,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🚀 Next Level Bops",
+          "band": "popedm"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -16620,14 +16706,14 @@
     {
       "id": "dont-you-worry-child",
       "originalTitle": "Don't You Worry Child",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Swedish House Mafia, John Martin",
       "thcTitle": "Don't You Worry Child",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -16667,7 +16753,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🚀 Next Level Bops",
+          "band": "popedm"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -17107,14 +17198,14 @@
     {
       "id": "drogba-joanna",
       "originalTitle": "Drogba (Joanna)",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Afro B",
       "thcTitle": "Drogba (Joanna)",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -17154,7 +17245,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🌴 Top Of The Tropics",
+          "band": "caribbean"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -17319,14 +17415,14 @@
     {
       "id": "dynamite",
       "originalTitle": "Dynamite",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "BTS",
       "thcTitle": "Dynamite",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -17366,7 +17462,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🌍 THC Worldwide",
+          "band": "world"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -19051,6 +19152,10 @@
         {
           "client": "💯 Cream Of The Pop",
           "band": "pop"
+        },
+        {
+          "client": "🎉 All The Rave",
+          "band": "rave"
         }
       ],
       "lightGenres": []
@@ -19654,14 +19759,14 @@
     {
       "id": "feel-so-close",
       "originalTitle": "Feel So Close",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Calvin Harris",
       "thcTitle": "Feel So Close",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -19701,7 +19806,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🎉 All The Rave",
+          "band": "rave"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -19929,14 +20039,14 @@
     {
       "id": "firework",
       "originalTitle": "Firework",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Katy Perry",
       "thcTitle": "Firework",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -19976,7 +20086,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "✨ Songs That Slay",
+          "band": "lgbtq"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -21625,14 +21740,14 @@
     {
       "id": "gasolina",
       "originalTitle": "Gasolina",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Daddy Yankee",
       "thcTitle": "Gasolina",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -21672,7 +21787,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🌴 Top Of The Tropics",
+          "band": "caribbean"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -21784,14 +21904,14 @@
     {
       "id": "get-busy",
       "originalTitle": "Get Busy",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Sean Paul",
       "thcTitle": "Get Busy",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -21831,7 +21951,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🌴 Top Of The Tropics",
+          "band": "caribbean"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -22854,6 +22979,10 @@
         {
           "client": "💯 Cream Of The Pop",
           "band": "pop"
+        },
+        {
+          "client": "🚀 Next Level Bops",
+          "band": "popedm"
         }
       ],
       "lightGenres": []
@@ -27452,14 +27581,14 @@
     {
       "id": "hot-in-herre",
       "originalTitle": "Hot in Herre",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Nelly",
       "thcTitle": "Hot in Herre",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -27499,7 +27628,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🔥 Because I Got Lit",
+          "band": "club"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -31339,14 +31473,14 @@
     {
       "id": "i-will-always-love-you",
       "originalTitle": "I Will Always Love You",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Whitney Houston",
       "thcTitle": "I Will Always Love You",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -31386,7 +31520,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "⭐ The Stars of La La Land",
+          "band": "showtunes"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -34201,14 +34340,14 @@
     {
       "id": "it-wasnt-me",
       "originalTitle": "It Wasn't Me",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Shaggy",
       "thcTitle": "It Wasn't Me",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -34248,7 +34387,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🌴 Top Of The Tropics",
+          "band": "caribbean"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -34360,14 +34504,14 @@
     {
       "id": "its-not-unusual",
       "originalTitle": "It's Not Unusual",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Tom Jones",
       "thcTitle": "It's Not Unusual",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -34407,20 +34551,25 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🤔 What Do You Meme",
+          "band": "meme"
+        }
+      ],
       "lightGenres": []
     },
     {
       "id": "its-raining-men",
       "originalTitle": "It's Raining Men",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "The Weather Girls",
       "thcTitle": "It's Raining Men",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -34460,7 +34609,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "✨ Songs That Slay",
+          "band": "lgbtq"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -35327,14 +35481,14 @@
     {
       "id": "jump-in-the-line",
       "originalTitle": "Jump In The Line",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Harry Belafonte",
       "thcTitle": "Jump In The Line",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -35374,7 +35528,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "💃 Get In Formation",
+          "band": "group-dances"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -36682,14 +36841,14 @@
     {
       "id": "lady-marmalade-from-moulin-rouge",
       "originalTitle": "Lady Marmalade [From \"Moulin Rouge\"]",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Christina Aguilera, Lil' Kim, Mya, P!nk",
       "thcTitle": "Lady Marmalade [From \"Moulin Rouge\"]",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -36729,7 +36888,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "⭐ The Stars of La La Land",
+          "band": "showtunes"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -37937,14 +38101,14 @@
     {
       "id": "levels",
       "originalTitle": "Levels",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Avicii",
       "thcTitle": "Levels",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -37984,7 +38148,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🎉 All The Rave",
+          "band": "rave"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -39047,14 +39216,14 @@
     {
       "id": "lose-control",
       "originalTitle": "Lose Control",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Missy Elliot, Ciara, Fatman Scoop",
       "thcTitle": "Lose Control",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -39094,7 +39263,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🔥 Because I Got Lit",
+          "band": "club"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -39259,14 +39433,14 @@
     {
       "id": "love-in-this-club",
       "originalTitle": "Love in This Club",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "USHER, Jeezy",
       "thcTitle": "Love in This Club",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -39306,7 +39480,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🔥 Because I Got Lit",
+          "band": "club"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -39587,14 +39766,14 @@
     {
       "id": "love-shack",
       "originalTitle": "Love Shack",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "The B-52's",
       "thcTitle": "Love Shack",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -39634,7 +39813,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🤔 What Do You Meme",
+          "band": "meme"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -40438,14 +40622,14 @@
     {
       "id": "macarena",
       "originalTitle": "Macarena",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Los Del Rio",
       "thcTitle": "Macarena",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -40485,7 +40669,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "💃 Get In Formation",
+          "band": "group-dances"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -40597,14 +40786,14 @@
     {
       "id": "make-me-feel",
       "originalTitle": "Make Me Feel",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Janelle Monáe",
       "thcTitle": "Make Me Feel",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -40644,7 +40833,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "✨ Songs That Slay",
+          "band": "lgbtq"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -40921,6 +41115,10 @@
         {
           "client": "🕺 Studio '25",
           "band": "disco"
+        },
+        {
+          "client": "⭐ The Stars of La La Land",
+          "band": "showtunes"
         }
       ],
       "lightGenres": []
@@ -41892,14 +42090,14 @@
     {
       "id": "mi-gente",
       "originalTitle": "Mi Gente",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "J Balvin, Willy William, Beyoncé",
       "thcTitle": "Mi Gente",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -41939,7 +42137,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🌴 Top Of The Tropics",
+          "band": "caribbean"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -43028,6 +43231,10 @@
         {
           "client": "💯 Cream Of The Pop",
           "band": "pop"
+        },
+        {
+          "client": "✨ Songs That Slay",
+          "band": "lgbtq"
         }
       ],
       "lightGenres": []
@@ -43313,14 +43520,14 @@
     {
       "id": "my-heart-will-go-on",
       "originalTitle": "My Heart Will Go On",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Céline Dion",
       "thcTitle": "My Heart Will Go On",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -43360,7 +43567,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "⭐ The Stars of La La Land",
+          "band": "showtunes"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -44323,14 +44535,14 @@
     {
       "id": "never-gonna-give-you-up",
       "originalTitle": "Never Gonna Give You Up",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Rick Astley",
       "thcTitle": "Never Gonna Give You Up",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -44370,7 +44582,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🤔 What Do You Meme",
+          "band": "meme"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -46473,14 +46690,14 @@
     {
       "id": "one-kiss",
       "originalTitle": "One Kiss",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Calvin Harris, Dua Lipa",
       "thcTitle": "One Kiss",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -46520,7 +46737,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🎉 All The Rave",
+          "band": "rave"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -46688,6 +46910,10 @@
         {
           "client": "💯 Cream Of The Pop",
           "band": "pop"
+        },
+        {
+          "client": "🎉 All The Rave",
+          "band": "rave"
         }
       ],
       "lightGenres": []
@@ -47987,14 +48213,14 @@
     {
       "id": "party-rock-anthem",
       "originalTitle": "Party Rock Anthem",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "LMFAO",
       "thcTitle": "Party Rock Anthem",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -48034,7 +48260,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🚀 Next Level Bops",
+          "band": "popedm"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -49799,14 +50030,14 @@
     {
       "id": "purple-rain",
       "originalTitle": "Purple Rain",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Prince",
       "thcTitle": "Purple Rain",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -49846,20 +50077,25 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "⭐ The Stars of La La Land",
+          "band": "showtunes"
+        }
+      ],
       "lightGenres": []
     },
     {
       "id": "pursuit-of-happiness",
       "originalTitle": "Pursuit Of Happiness",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Kid Cudi, MGMT, Ratatat, Steve Aoki",
       "thcTitle": "Pursuit Of Happiness",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -49899,7 +50135,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🎉 All The Rave",
+          "band": "rave"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -50332,6 +50573,10 @@
         {
           "client": "🕺 Studio '25",
           "band": "disco"
+        },
+        {
+          "client": "🤔 What Do You Meme",
+          "band": "meme"
         }
       ],
       "lightGenres": []
@@ -50395,6 +50640,10 @@
         {
           "client": "💯 Cream Of The Pop",
           "band": "pop"
+        },
+        {
+          "client": "🚀 Next Level Bops",
+          "band": "popedm"
         }
       ],
       "lightGenres": []
@@ -52323,14 +52572,14 @@
     {
       "id": "sandstorm",
       "originalTitle": "Sandstorm",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Darude",
       "thcTitle": "Sandstorm",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -52370,7 +52619,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🎉 All The Rave",
+          "band": "rave"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -54026,14 +54280,14 @@
     {
       "id": "shape-of-you",
       "originalTitle": "Shape of You",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "DJ Frenzy",
       "thcTitle": "Shape of You",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -54073,7 +54327,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🌍 THC Worldwide",
+          "band": "world"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -57935,14 +58194,14 @@
     {
       "id": "stayin-alive",
       "originalTitle": "Stayin' Alive",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Bee Gees",
       "thcTitle": "Stayin' Alive",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -57982,7 +58241,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "⭐ The Stars of La La Land",
+          "band": "showtunes"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -61211,14 +61475,14 @@
     {
       "id": "take-on-me",
       "originalTitle": "Take On Me",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "a-ha",
       "thcTitle": "Take On Me",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -61258,7 +61522,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🤔 What Do You Meme",
+          "band": "meme"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -61847,14 +62116,14 @@
     {
       "id": "temperature",
       "originalTitle": "Temperature",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Sean Paul",
       "thcTitle": "Temperature",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -61894,7 +62163,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🌴 Top Of The Tropics",
+          "band": "caribbean"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -65514,14 +65788,14 @@
     {
       "id": "this-is-what-you-came-for",
       "originalTitle": "This Is What You Came For",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Calvin Harris, Rihanna",
       "thcTitle": "This Is What You Came For",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -65561,7 +65835,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🎉 All The Rave",
+          "band": "rave"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -66550,6 +66829,10 @@
         {
           "client": "💯 Cream Of The Pop",
           "band": "pop"
+        },
+        {
+          "client": "🚀 Next Level Bops",
+          "band": "popedm"
         }
       ],
       "lightGenres": []
@@ -66613,6 +66896,10 @@
         {
           "client": "🔥 The Latin Bible",
           "band": "latin"
+        },
+        {
+          "client": "🌴 Top Of The Tropics",
+          "band": "caribbean"
         }
       ],
       "lightGenres": []
@@ -67309,14 +67596,14 @@
     {
       "id": "trap-queen",
       "originalTitle": "Trap Queen",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Fetty Wap",
       "thcTitle": "Trap Queen",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -67356,7 +67643,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🔥 Because I Got Lit",
+          "band": "club"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -67839,14 +68131,14 @@
     {
       "id": "turn-down-for-what",
       "originalTitle": "Turn Down For What",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Lil Jon",
       "thcTitle": "Turn Down For What",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -67886,20 +68178,25 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🔥 Because I Got Lit",
+          "band": "club"
+        }
+      ],
       "lightGenres": []
     },
     {
       "id": "turn-me-on",
       "originalTitle": "Turn Me On",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Kevin Lyttle",
       "thcTitle": "Turn Me On",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -67939,7 +68236,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🌴 Top Of The Tropics",
+          "band": "caribbean"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -70198,14 +70500,14 @@
     {
       "id": "water",
       "originalTitle": "Water",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Tyla",
       "thcTitle": "Water",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -70245,7 +70547,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🌴 Top Of The Tropics",
+          "band": "caribbean"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -71085,14 +71392,14 @@
     {
       "id": "what-dreams-are-made-of",
       "originalTitle": "What Dreams Are Made Of",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Hilary Duff",
       "thcTitle": "What Dreams Are Made Of",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -71132,7 +71439,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "⭐ The Stars of La La Land",
+          "band": "showtunes"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -71297,14 +71609,14 @@
     {
       "id": "what-is-love",
       "originalTitle": "What Is Love",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Haddaway",
       "thcTitle": "What Is Love",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -71344,7 +71656,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "🤔 What Do You Meme",
+          "band": "meme"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -73341,14 +73658,14 @@
     {
       "id": "yes-and",
       "originalTitle": "yes, and?",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "Ariana Grande",
       "thcTitle": "yes, and?",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -73388,7 +73705,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "✨ Songs That Slay",
+          "band": "lgbtq"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -73447,14 +73769,14 @@
     {
       "id": "ymca",
       "originalTitle": "YMCA",
-      "originalArtist": "Unknown Artist",
+      "originalArtist": "The Village People",
       "thcTitle": "YMCA",
       "thcArtist": "The Hook Club",
       "videoUrl": "",
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
+      "isLive": true,
       "sections": [],
       "ensembles": [],
       "genres": [],
@@ -73494,7 +73816,12 @@
           "hornChartSpecialUrl": ""
         }
       ],
-      "danceGenres": [],
+      "danceGenres": [
+        {
+          "client": "💃 Get In Formation",
+          "band": "group-dances"
+        }
+      ],
       "lightGenres": []
     },
     {
@@ -75274,6 +75601,10 @@
         {
           "client": "🎸 Rock Of Ages",
           "band": "rock"
+        },
+        {
+          "client": "⭐ The Stars of La La Land",
+          "band": "showtunes"
         }
       ],
       "lightGenres": []
@@ -78698,6 +79029,1245 @@
         {
           "client": "💯 Cream Of The Pop",
           "band": "pop"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "cheerleader-felix-jaehn-remix",
+      "originalTitle": "Cheerleader (Felix Jaehn Remix)",
+      "originalArtist": "OMI",
+      "thcTitle": "Cheerleader (Felix Jaehn Remix)",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.713Z",
+      "updatedAt": "2025-11-02T06:17:14.713Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🌴 Top Of The Tropics",
+          "band": "caribbean"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "the-twist",
+      "originalTitle": "The Twist",
+      "originalArtist": "Chubby Checker",
+      "thcTitle": "The Twist",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.723Z",
+      "updatedAt": "2025-11-02T06:17:14.723Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "💃 Get In Formation",
+          "band": "group-dances"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "electric-boogie-electric-slide",
+      "originalTitle": "Electric Boogie (Electric Slide)",
+      "originalArtist": "Marcia Griffiths",
+      "thcTitle": "Electric Boogie (Electric Slide)",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.724Z",
+      "updatedAt": "2025-11-02T06:17:14.724Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "💃 Get In Formation",
+          "band": "group-dances"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "watch-me-whip-nae-nae",
+      "originalTitle": "Watch Me (Whip / Nae Nae)",
+      "originalArtist": "Silentó",
+      "thcTitle": "Watch Me (Whip / Nae Nae)",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.725Z",
+      "updatedAt": "2025-11-02T06:17:14.725Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "💃 Get In Formation",
+          "band": "group-dances"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "apache",
+      "originalTitle": "Apache",
+      "originalArtist": "The Sugarhill Gang",
+      "thcTitle": "Apache",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.728Z",
+      "updatedAt": "2025-11-02T06:17:14.728Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "💃 Get In Formation",
+          "band": "group-dances"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "work-bitch",
+      "originalTitle": "Work Bitch",
+      "originalArtist": "Britney Spears",
+      "thcTitle": "Work Bitch",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.729Z",
+      "updatedAt": "2025-11-02T06:17:14.729Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "✨ Songs That Slay",
+          "band": "lgbtq"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "vogue",
+      "originalTitle": "Vogue",
+      "originalArtist": "Madonna",
+      "thcTitle": "Vogue",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.730Z",
+      "updatedAt": "2025-11-02T06:17:14.730Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "✨ Songs That Slay",
+          "band": "lgbtq"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "bodak-yellow",
+      "originalTitle": "Bodak Yellow",
+      "originalArtist": "Cardi B",
+      "thcTitle": "Bodak Yellow",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.730Z",
+      "updatedAt": "2025-11-02T06:17:14.730Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🔥 Because I Got Lit",
+          "band": "club"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "12-step",
+      "originalTitle": "1,2 Step",
+      "originalArtist": "Ciara, Missy Elliott",
+      "thcTitle": "1,2 Step",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.734Z",
+      "updatedAt": "2025-11-02T06:17:14.734Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🔥 Because I Got Lit",
+          "band": "club"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "nias-in-paris",
+      "originalTitle": "Ni**as In Paris",
+      "originalArtist": "JAY-Z, Kanye West",
+      "thcTitle": "Ni**as In Paris",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.735Z",
+      "updatedAt": "2025-11-02T06:17:14.735Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🔥 Because I Got Lit",
+          "band": "club"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "shut-down",
+      "originalTitle": "Shut Down",
+      "originalArtist": "BLACKPINK",
+      "thcTitle": "Shut Down",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.736Z",
+      "updatedAt": "2025-11-02T06:17:14.736Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🌍 THC Worldwide",
+          "band": "world"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "allah-aleik-ya-seedy",
+      "originalTitle": "Allah Aleik Ya Seedy",
+      "originalArtist": "Ehab Tawfik",
+      "thcTitle": "Allah Aleik Ya Seedy",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.737Z",
+      "updatedAt": "2025-11-02T06:17:14.737Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🌍 THC Worldwide",
+          "band": "world"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "aroose-bandari",
+      "originalTitle": "Aroose Bandari",
+      "originalArtist": "Hassan Shamaizadeh",
+      "thcTitle": "Aroose Bandari",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.737Z",
+      "updatedAt": "2025-11-02T06:17:14.737Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🌍 THC Worldwide",
+          "band": "world"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "habiby-da",
+      "originalTitle": "Habiby Da",
+      "originalArtist": "Hisham",
+      "thcTitle": "Habiby Da",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.737Z",
+      "updatedAt": "2025-11-02T06:17:14.737Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🌍 THC Worldwide",
+          "band": "world"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "beware-of-the-boys",
+      "originalTitle": "Beware Of The Boys",
+      "originalArtist": "JAY-Z, Panjabi MC",
+      "thcTitle": "Beware Of The Boys",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.737Z",
+      "updatedAt": "2025-11-02T06:17:14.737Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🌍 THC Worldwide",
+          "band": "world"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "habibet-alby",
+      "originalTitle": "Habibet Alby",
+      "originalArtist": "Joe Ashkar",
+      "thcTitle": "Habibet Alby",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.737Z",
+      "updatedAt": "2025-11-02T06:17:14.737Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🌍 THC Worldwide",
+          "band": "world"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "oraia-pounai-i-nifi-mas",
+      "originalTitle": "Oraia Pou'Nai I Nifi Mas",
+      "originalArtist": "Kiki Fragouli",
+      "thcTitle": "Oraia Pou'Nai I Nifi Mas",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.737Z",
+      "updatedAt": "2025-11-02T06:17:14.737Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🌍 THC Worldwide",
+          "band": "world"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "gangnam-style",
+      "originalTitle": "Gangnam Style",
+      "originalArtist": "PSY",
+      "thcTitle": "Gangnam Style",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.737Z",
+      "updatedAt": "2025-11-02T06:17:14.737Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🌍 THC Worldwide",
+          "band": "world"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "deep-down-feat-never-dull",
+      "originalTitle": "Deep Down (feat. Never Dull)",
+      "originalArtist": "Alok, Ella Eyre, Kenny Dope, Never Dull",
+      "thcTitle": "Deep Down (feat. Never Dull)",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.737Z",
+      "updatedAt": "2025-11-02T06:17:14.737Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🎉 All The Rave",
+          "band": "rave"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "pump-it-up",
+      "originalTitle": "Pump It Up",
+      "originalArtist": "Endor",
+      "thcTitle": "Pump It Up",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.738Z",
+      "updatedAt": "2025-11-02T06:17:14.738Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "🎉 All The Rave",
+          "band": "rave"
+        }
+      ],
+      "lightGenres": []
+    },
+    {
+      "id": "flashdancewhat-a-feeling",
+      "originalTitle": "Flashdance...What a Feeling",
+      "originalArtist": "Irene Cara",
+      "thcTitle": "Flashdance...What a Feeling",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [],
+      "ensembles": [],
+      "genres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-02T06:17:14.738Z",
+      "updatedAt": "2025-11-02T06:17:14.738Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ],
+      "danceGenres": [
+        {
+          "client": "⭐ The Stars of La La Land",
+          "band": "showtunes"
         }
       ],
       "lightGenres": []

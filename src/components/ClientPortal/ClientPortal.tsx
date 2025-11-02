@@ -287,29 +287,9 @@ export default function ClientPortal() {
     )
   );
 
-  // Filter songs for Piano Trio - Recommended Options (songs tagged with pianoTrio section or ceremony section)
-  const filteredPianoTrioSongs = songs.filter(song => {
-    const isPianoTrio = song.isLive && song.sections && (song.sections.includes('pianoTrio') || song.sections.includes('ceremony'));
-    if (song.originalTitle && song.originalTitle.toLowerCase().includes('all of me')) {
-      console.log('All Of Me song found:', {
-        title: song.originalTitle,
-        isLive: song.isLive,
-        sections: song.sections,
-        isPianoTrio: isPianoTrio
-      });
-    }
-    return isPianoTrio;
-  });
-
-  // Filter songs for Guest Arrival (songs tagged with guestArrival section)
-  const filteredGuestArrivalSongs = songs.filter(song => 
-    song.isLive && song.sections && song.sections.includes('guestArrival')
-  );
-
-  // Filter songs for General Cocktail Hour Song List (songs tagged with cocktailHour section, excluding piano trio songs)
-  const filteredCocktailHourGeneralSongs = songs.filter(song => 
-    song.isLive && song.sections && song.sections.includes('cocktailHour') && 
-    !(song.sections && song.sections.includes('pianoTrio'))
+  // Filter songs for Piano Trio (only show songs tagged with Piano Trio ensemble)
+  const filteredPianoTrioSongs = songs.filter(song => 
+    song.isLive && song.ensembles && song.ensembles.includes('Piano Trio (Violin + Cello + Piano)')
   );
 
   // Filter songs for After Party - Dance Music Repertoire (all reception dance genres, excluding after party songs)
@@ -322,11 +302,14 @@ export default function ClientPortal() {
     song.isLive && song.sections && song.sections.includes('afterParty')
   );
 
-  // Filter songs for Cocktail Hour (only show songs tagged with cocktail hour genres)
+  // Filter songs for Folk Band ensemble (Welcome Party)
+  const filteredWelcomePartyFolkBandSongs = songs.filter(song => 
+    song.isLive && song.ensembles && song.ensembles.includes('Folk Band (Violin + Guitar + Bass + Drums)')
+  );
+
+  // Filter songs for Cocktail Hour (only show songs tagged with Jazz Quartet ensemble)
   const filteredCocktailHourSongs = songs.filter(song => 
-    song.isLive && song.danceGenres && song.danceGenres.some((genre: any) => 
-      ['jazz', 'soul', 'r&b', 'lounge', 'acoustic'].includes((genre.band || '').toLowerCase())
-    )
+    song.isLive && song.ensembles && song.ensembles.includes('Jazz Quartet (Sax + Piano + Bass + Drums)')
   );
 
   // Filter songs for After Party (only show songs tagged with after party section)
@@ -2272,306 +2255,178 @@ export default function ClientPortal() {
 
                   {/* Core Repertoire Content */}
                   {activeWelcomePartyTab === 'core-repertoire' && (
-                    <div className="space-y-8">
-                      {/* Dance Music Repertoire Section */}
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center">
-                          <button
-                            onClick={() => setWelcomePartyDanceExpanded(!welcomePartyDanceExpanded)}
-                            className="flex items-center space-x-2 text-left hover:text-purple-600 transition-colors"
-                          >
-                            <h3 className="text-lg font-medium text-gray-900">💃 Dance Music Repertoire</h3>
-                            <span className="text-sm text-gray-500">({filteredWelcomePartyDanceSongs.length} songs)</span>
-                            <svg
-                              className={`w-5 h-5 transition-transform ${welcomePartyDanceExpanded ? 'rotate-180' : ''}`}
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </button>
-                        </div>
-                        
-                        {welcomePartyDanceExpanded && (
-                          <div className="bg-white rounded-lg border border-gray-200">
-                            {isLoading ? (
-                              <div className="text-center py-8 text-gray-500">
-                                <p>Loading songs...</p>
-                              </div>
-                            ) : filteredWelcomePartyDanceSongs.length === 0 ? (
-                              <div className="text-center py-8 text-gray-500">
-                                <p>No dance songs available</p>
-                              </div>
-                            ) : (
-                              <div className="divide-y divide-gray-200">
-                                {filteredWelcomePartyDanceSongs.map((song, index) => (
-                                  <div key={song.id || index} className="p-4 hover:bg-gray-50">
-                                    <div className="flex items-center justify-between">
-                                      <div className="flex-1">
-                                        <div className="flex items-center space-x-4">
-                                          <div>
-                                            <a
-                                              href={song.videoUrl}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="font-medium text-purple-600 hover:text-purple-800 underline"
-                                            >
-                                              {song.originalTitle}
-                                            </a>
-                                            <p className="text-sm text-gray-600">{song.originalArtist}</p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                      <div className="flex items-center space-x-2">
-                                        <button
-                                          onClick={() => setSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            songPreferences[song.id] === 'definitely'
-                                              ? 'bg-green-100 text-green-800 border-green-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
-                                          }`}
-                                        >
-                                          🤘 Definitely Play
-                                        </button>
-                                        <button
-                                          onClick={() => setSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            songPreferences[song.id] === 'maybe'
-                                              ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
-                                          }`}
-                                        >
-                                          👍 If the Mood is Right
-                                        </button>
-                                        <button
-                                          onClick={() => setSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            songPreferences[song.id] === 'avoid'
-                                              ? 'bg-red-100 text-red-800 border-red-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
-                                          }`}
-                                        >
-                                          👎 Avoid Playing
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        )}
+                    <div className="space-y-6">
+                      <div className="flex justify-between items-center">
+                        <h3 className="text-lg font-medium text-gray-900">Welcome Party Song List</h3>
+                        <span className="text-sm text-gray-500">{filteredWelcomePartyFolkBandSongs.length} songs available</span>
                       </div>
 
-                      {/* Light Music Repertoire Section */}
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center">
-                          <button
-                            onClick={() => setWelcomePartyLightExpanded(!welcomePartyLightExpanded)}
-                            className="flex items-center space-x-2 text-left hover:text-purple-600 transition-colors"
-                          >
-                            <h3 className="text-lg font-medium text-gray-900">🎵 Light Music Repertoire</h3>
-                            <span className="text-sm text-gray-500">({filteredWelcomePartyLightSongs.length} songs)</span>
-                            <svg
-                              className={`w-5 h-5 transition-transform ${welcomePartyLightExpanded ? 'rotate-180' : ''}`}
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </button>
-                        </div>
+                      {/* Song Progress Section */}
+                      <div className="bg-white rounded-lg border border-gray-200 p-6">
+                        <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+                          <span className="mr-2">🎵</span>
+                          Song Progress
+                        </h4>
                         
-                        {welcomePartyLightExpanded && (
-                          <div className="bg-white rounded-lg border border-gray-200">
-                            {isLoading ? (
-                              <div className="text-center py-8 text-gray-500">
-                                <p>Loading songs...</p>
-                              </div>
-                            ) : filteredWelcomePartyLightSongs.length === 0 ? (
-                              <div className="text-center py-8 text-gray-500">
-                                <p>No light music songs available</p>
-                              </div>
-                            ) : (
-                              <div className="divide-y divide-gray-200">
-                                {filteredWelcomePartyLightSongs.map((song, index) => (
-                                  <div key={song.id || index} className="p-4 hover:bg-gray-50">
-                                    <div className="flex items-center justify-between">
-                                      <div className="flex-1">
-                                        <div className="flex items-center space-x-4">
-                                          <div>
-                                            <a
-                                              href={song.videoUrl}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="font-medium text-purple-600 hover:text-purple-800 underline"
-                                            >
-                                              {song.originalTitle}
-                                            </a>
-                                            <p className="text-sm text-gray-600">{song.originalArtist}</p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                      <div className="flex items-center space-x-2">
-                                        <button
-                                          onClick={() => setSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            songPreferences[song.id] === 'definitely'
-                                              ? 'bg-green-100 text-green-800 border-green-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
-                                          }`}
-                                        >
-                                          🤘 Definitely Play
-                                        </button>
-                                        <button
-                                          onClick={() => setSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            songPreferences[song.id] === 'maybe'
-                                              ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
-                                          }`}
-                                        >
-                                          👍 If the Mood is Right
-                                        </button>
-                                        <button
-                                          onClick={() => setSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            songPreferences[song.id] === 'avoid'
-                                              ? 'bg-red-100 text-red-800 border-red-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
-                                          }`}
-                                        >
-                                          👎 Avoid Playing
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          {/* Definitely Play Card */}
+                          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <div className="flex justify-between items-center mb-2">
+                              <h5 className="font-medium text-green-800">🤘 Definitely Play</h5>
+                              <span className="text-sm text-green-600">
+                                {Object.values(songPreferences).filter(pref => pref === 'definitely').length}/15
+                              </span>
+                            </div>
+                            <div className="w-full bg-green-200 rounded-full h-2 mb-2">
+                              <div 
+                                className="bg-green-600 h-2 rounded-full transition-all duration-300"
+                                style={{ 
+                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'definitely').length / 10) * 100)}%` 
+                                }}
+                              ></div>
+                            </div>
+                            <p className="text-sm text-gray-600">Goal: 10-15 songs</p>
+                            {Object.values(songPreferences).filter(pref => pref === 'definitely').length < 10 && (
+                              <p className="text-sm text-orange-600 mt-1 flex items-center">
+                                <span className="mr-1">⚠️</span>
+                                Need more songs
+                              </p>
+                            )}
+                            {Object.values(songPreferences).filter(pref => pref === 'definitely').length > 15 && (
+                              <p className="text-sm text-red-600 mt-1 flex items-center">
+                                <span className="mr-1">🚨</span>
+                                Over limit (max 15 songs)
+                              </p>
                             )}
                           </div>
-                        )}
+
+                          {/* If Mood Is Right Card */}
+                          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <div className="flex justify-between items-center mb-2">
+                              <h5 className="font-medium text-yellow-800">👍 If Mood Is Right</h5>
+                              <span className="text-sm text-yellow-600">
+                                {Object.values(songPreferences).filter(pref => pref === 'maybe').length}/∞
+                              </span>
+                            </div>
+                            <div className="w-full bg-yellow-200 rounded-full h-2 mb-2">
+                              <div 
+                                className="bg-yellow-600 h-2 rounded-full transition-all duration-300"
+                                style={{ 
+                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'maybe').length / 5) * 100)}%` 
+                                }}
+                              ></div>
+                            </div>
+                            <p className="text-sm text-gray-600">Goal: ≥5 songs</p>
+                            {Object.values(songPreferences).filter(pref => pref === 'maybe').length < 5 && (
+                              <p className="text-sm text-orange-600 mt-1 flex items-center">
+                                <span className="mr-1">⚠️</span>
+                                Need more songs
+                              </p>
+                            )}
+                          </div>
+
+                          {/* Avoid Playing Card */}
+                          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                            <div className="flex justify-between items-center mb-2">
+                              <h5 className="font-medium text-red-800">👎 Avoid Playing</h5>
+                              <span className="text-sm text-red-600">
+                                {Object.values(songPreferences).filter(pref => pref === 'avoid').length}/5
+                              </span>
+                            </div>
+                            <div className="w-full bg-red-200 rounded-full h-2 mb-2">
+                              <div 
+                                className="bg-red-600 h-2 rounded-full transition-all duration-300"
+                                style={{ 
+                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'avoid').length / 5) * 100)}%` 
+                                }}
+                              ></div>
+                            </div>
+                            <p className="text-sm text-gray-600">Goal: ≤5 songs</p>
+                            {Object.values(songPreferences).filter(pref => pref === 'avoid').length > 5 && (
+                              <p className="text-sm text-red-600 mt-1 flex items-center">
+                                <span className="mr-1">🚨</span>
+                                Over limit (max 5 songs)
+                              </p>
+                            )}
+                          </div>
+                        </div>
                       </div>
 
-                      {/* DJ Song List Section */}
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center">
-                          <button
-                            onClick={() => setWelcomePartyDJExpanded(!welcomePartyDJExpanded)}
-                            className="flex items-center space-x-2 text-left hover:text-purple-600 transition-colors"
-                          >
-                            <h3 className="text-lg font-medium text-gray-900">🎧 DJ Song List</h3>
-                            <span className="text-sm text-gray-500">({filteredWelcomePartyDJSongs.length} songs)</span>
-                            <svg
-                              className={`w-5 h-5 transition-transform ${welcomePartyDJExpanded ? 'rotate-180' : ''}`}
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </button>
-                        </div>
-                        
-                        {welcomePartyDJExpanded && (
-                          <div className="bg-white rounded-lg border border-gray-200">
-                            {isLoading ? (
-                              <div className="text-center py-8 text-gray-500">
-                                <p>Loading songs...</p>
-                              </div>
-                            ) : filteredWelcomePartyDJSongs.length === 0 ? (
-                              <div className="text-center py-8 text-gray-500">
-                                <p>No DJ songs available</p>
-                              </div>
-                            ) : (
-                              <div className="divide-y divide-gray-200">
-                                {filteredWelcomePartyDJSongs.map((song, index) => (
-                                  <div key={song.id || index} className="p-4 hover:bg-gray-50">
-                                    <div className="flex items-center justify-between">
-                                      <div className="flex-1">
-                                        <div className="flex items-center space-x-4">
-                                          <div>
-                                            <a
-                                              href={song.videoUrl}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="font-medium text-purple-600 hover:text-purple-800 underline"
-                                            >
-                                              {song.originalTitle}
-                                            </a>
-                                            <p className="text-sm text-gray-600">{song.originalArtist}</p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                      <div className="flex items-center space-x-2">
-                                        <button
-                                          onClick={() => setSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            songPreferences[song.id] === 'definitely'
-                                              ? 'bg-green-100 text-green-800 border-green-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
-                                          }`}
+                      {/* Songs List */}
+                      <div className="bg-white rounded-lg border border-gray-200">
+                        {isLoading ? (
+                          <div className="text-center py-8 text-gray-500">
+                            <p>Loading songs...</p>
+                          </div>
+                        ) : filteredWelcomePartyFolkBandSongs.length === 0 ? (
+                          <div className="text-center py-8 text-gray-500">
+                            <p>No songs tagged for Folk Band</p>
+                          </div>
+                        ) : (
+                          <div className="divide-y divide-gray-200">
+                            {filteredWelcomePartyFolkBandSongs.map((song, index) => (
+                              <div key={song.id || index} className="p-4 hover:bg-gray-50">
+                                <div className="flex items-center justify-between">
+                                  <div className="flex-1">
+                                    <div className="flex items-center space-x-4">
+                                      <div>
+                                        <a
+                                          href={song.videoUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="font-medium text-purple-600 hover:text-purple-800 underline"
                                         >
-                                          🤘 Definitely Play
-                                        </button>
-                                        <button
-                                          onClick={() => setSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            songPreferences[song.id] === 'maybe'
-                                              ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
-                                          }`}
-                                        >
-                                          👍 If the Mood is Right
-                                        </button>
-                                        <button
-                                          onClick={() => setSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            songPreferences[song.id] === 'avoid'
-                                              ? 'bg-red-100 text-red-800 border-red-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
-                                          }`}
-                                        >
-                                          👎 Avoid Playing
-                                        </button>
+                                          {song.originalTitle}
+                                        </a>
+                                        <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                       </div>
                                     </div>
                                   </div>
-                                ))}
+                                  
+                                  <div className="flex items-center space-x-2">
+                                    <button
+                                      onClick={() => setSongPreferences(prev => ({
+                                        ...prev,
+                                        [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
+                                      }))}
+                                      className={`px-3 py-1 text-sm rounded border ${
+                                        songPreferences[song.id] === 'definitely'
+                                          ? 'bg-green-100 text-green-800 border-green-300'
+                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
+                                      }`}
+                                    >
+                                      🤘 Definitely Play
+                                    </button>
+                                    <button
+                                      onClick={() => setSongPreferences(prev => ({
+                                        ...prev,
+                                        [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
+                                      }))}
+                                      className={`px-3 py-1 text-sm rounded border ${
+                                        songPreferences[song.id] === 'maybe'
+                                          ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
+                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
+                                      }`}
+                                    >
+                                      👍 If Mood Is Right
+                                    </button>
+                                    <button
+                                      onClick={() => setSongPreferences(prev => ({
+                                        ...prev,
+                                        [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
+                                      }))}
+                                      className={`px-3 py-1 text-sm rounded border ${
+                                        songPreferences[song.id] === 'avoid'
+                                          ? 'bg-red-100 text-red-800 border-red-300'
+                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
+                                      }`}
+                                    >
+                                      👎 Avoid Playing
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
-                            )}
+                            ))}
                           </div>
                         )}
                       </div>
@@ -2970,306 +2825,178 @@ export default function ClientPortal() {
 
                   {/* Guest Arrival Song List Content */}
                   {activeCeremonyTab === 'guest-arrival' && (
-                    <div className="space-y-8">
-                      {/* Piano Trio - Recommended Options Section */}
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center">
-                          <button
-                            onClick={() => setPianoTrioExpanded(!pianoTrioExpanded)}
-                            className="flex items-center space-x-2 text-left hover:text-purple-600 transition-colors"
-                          >
-                            <h3 className="text-lg font-medium text-gray-900">🎹 Piano Trio - Recommended Options</h3>
-                            <span className="text-sm text-gray-500">({filteredPianoTrioSongs.length} songs)</span>
-                            <svg
-                              className={`w-5 h-5 transition-transform ${pianoTrioExpanded ? 'rotate-180' : ''}`}
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </button>
-                        </div>
-                        
-                        {pianoTrioExpanded && (
-                          <div className="bg-white rounded-lg border border-gray-200">
-                            {isLoadingGuestArrival ? (
-                              <div className="text-center py-8 text-gray-500">
-                                <p>Loading songs...</p>
-                              </div>
-                            ) : filteredPianoTrioSongs.length === 0 ? (
-                              <div className="text-center py-8 text-gray-500">
-                                <p>No piano trio songs available</p>
-                              </div>
-                            ) : (
-                              <div className="divide-y divide-gray-200">
-                                {filteredPianoTrioSongs.map((song, index) => (
-                                  <div key={song.id || index} className="p-4 hover:bg-gray-50">
-                                    <div className="flex items-center justify-between">
-                                      <div className="flex-1">
-                                        <div className="flex items-center space-x-4">
-                                          <div>
-                                            <a
-                                              href={song.videoUrl}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="font-medium text-purple-600 hover:text-purple-800 underline"
-                                            >
-                                              {song.originalTitle}
-                                            </a>
-                                            <p className="text-sm text-gray-600">{song.originalArtist}</p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                      <div className="flex items-center space-x-2">
-                                        <button
-                                          onClick={() => setGuestArrivalSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            guestArrivalSongPreferences[song.id] === 'definitely'
-                                              ? 'bg-green-100 text-green-800 border-green-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
-                                          }`}
-                                        >
-                                          🤘 Definitely Play
-                                        </button>
-                                        <button
-                                          onClick={() => setGuestArrivalSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            guestArrivalSongPreferences[song.id] === 'maybe'
-                                              ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
-                                          }`}
-                                        >
-                                          👍 If the Mood is Right
-                                        </button>
-                                        <button
-                                          onClick={() => setGuestArrivalSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            guestArrivalSongPreferences[song.id] === 'avoid'
-                                              ? 'bg-red-100 text-red-800 border-red-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
-                                          }`}
-                                        >
-                                          👎 Avoid Playing
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        )}
+                    <div className="space-y-6">
+                      <div className="flex justify-between items-center">
+                        <h3 className="text-lg font-medium text-gray-900">Guest Arrival Song List</h3>
+                        <span className="text-sm text-gray-500">{filteredPianoTrioSongs.length} songs available</span>
                       </div>
 
-                      {/* Guest Arrival - Recommended Options Section */}
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center">
-                          <button
-                            onClick={() => setGuestArrivalExpanded(!guestArrivalExpanded)}
-                            className="flex items-center space-x-2 text-left hover:text-purple-600 transition-colors"
-                          >
-                            <h3 className="text-lg font-medium text-gray-900">🚪 Guest Arrival - Recommended Options</h3>
-                            <span className="text-sm text-gray-500">({filteredGuestArrivalSongs.length} songs)</span>
-                            <svg
-                              className={`w-5 h-5 transition-transform ${guestArrivalExpanded ? 'rotate-180' : ''}`}
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </button>
-                        </div>
+                      {/* Song Progress Section */}
+                      <div className="bg-white rounded-lg border border-gray-200 p-6">
+                        <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+                          <span className="mr-2">🎵</span>
+                          Song Progress
+                        </h4>
                         
-                        {guestArrivalExpanded && (
-                          <div className="bg-white rounded-lg border border-gray-200">
-                            {isLoadingGuestArrival ? (
-                              <div className="text-center py-8 text-gray-500">
-                                <p>Loading songs...</p>
-                              </div>
-                            ) : filteredGuestArrivalSongs.length === 0 ? (
-                              <div className="text-center py-8 text-gray-500">
-                                <p>No guest arrival songs available</p>
-                              </div>
-                            ) : (
-                              <div className="divide-y divide-gray-200">
-                                {filteredGuestArrivalSongs.map((song, index) => (
-                                  <div key={song.id || index} className="p-4 hover:bg-gray-50">
-                                    <div className="flex items-center justify-between">
-                                      <div className="flex-1">
-                                        <div className="flex items-center space-x-4">
-                                          <div>
-                                            <a
-                                              href={song.videoUrl}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="font-medium text-purple-600 hover:text-purple-800 underline"
-                                            >
-                                              {song.originalTitle}
-                                            </a>
-                                            <p className="text-sm text-gray-600">{song.originalArtist}</p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                      <div className="flex items-center space-x-2">
-                                        <button
-                                          onClick={() => setGuestArrivalSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            guestArrivalSongPreferences[song.id] === 'definitely'
-                                              ? 'bg-green-100 text-green-800 border-green-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
-                                          }`}
-                                        >
-                                          🤘 Definitely Play
-                                        </button>
-                                        <button
-                                          onClick={() => setGuestArrivalSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            guestArrivalSongPreferences[song.id] === 'maybe'
-                                              ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
-                                          }`}
-                                        >
-                                          👍 If the Mood is Right
-                                        </button>
-                                        <button
-                                          onClick={() => setGuestArrivalSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            guestArrivalSongPreferences[song.id] === 'avoid'
-                                              ? 'bg-red-100 text-red-800 border-red-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
-                                          }`}
-                                        >
-                                          👎 Avoid Playing
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          {/* Definitely Play Card */}
+                          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <div className="flex justify-between items-center mb-2">
+                              <h5 className="font-medium text-green-800">🤘 Definitely Play</h5>
+                              <span className="text-sm text-green-600">
+                                {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'definitely').length}/15
+                              </span>
+                            </div>
+                            <div className="w-full bg-green-200 rounded-full h-2 mb-2">
+                              <div 
+                                className="bg-green-600 h-2 rounded-full transition-all duration-300"
+                                style={{ 
+                                  width: `${Math.min(100, (Object.values(guestArrivalSongPreferences).filter(pref => pref === 'definitely').length / 10) * 100)}%` 
+                                }}
+                              ></div>
+                            </div>
+                            <p className="text-sm text-gray-600">Goal: 10-15 songs</p>
+                            {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'definitely').length < 10 && (
+                              <p className="text-sm text-orange-600 mt-1 flex items-center">
+                                <span className="mr-1">⚠️</span>
+                                Need more songs
+                              </p>
+                            )}
+                            {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'definitely').length > 15 && (
+                              <p className="text-sm text-red-600 mt-1 flex items-center">
+                                <span className="mr-1">🚨</span>
+                                Over limit (max 15 songs)
+                              </p>
                             )}
                           </div>
-                        )}
+
+                          {/* If Mood Is Right Card */}
+                          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <div className="flex justify-between items-center mb-2">
+                              <h5 className="font-medium text-yellow-800">👍 If Mood Is Right</h5>
+                              <span className="text-sm text-yellow-600">
+                                {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'maybe').length}/∞
+                              </span>
+                            </div>
+                            <div className="w-full bg-yellow-200 rounded-full h-2 mb-2">
+                              <div 
+                                className="bg-yellow-600 h-2 rounded-full transition-all duration-300"
+                                style={{ 
+                                  width: `${Math.min(100, (Object.values(guestArrivalSongPreferences).filter(pref => pref === 'maybe').length / 5) * 100)}%` 
+                                }}
+                              ></div>
+                            </div>
+                            <p className="text-sm text-gray-600">Goal: ≥5 songs</p>
+                            {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'maybe').length < 5 && (
+                              <p className="text-sm text-orange-600 mt-1 flex items-center">
+                                <span className="mr-1">⚠️</span>
+                                Need more songs
+                              </p>
+                            )}
+                          </div>
+
+                          {/* Avoid Playing Card */}
+                          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                            <div className="flex justify-between items-center mb-2">
+                              <h5 className="font-medium text-red-800">👎 Avoid Playing</h5>
+                              <span className="text-sm text-red-600">
+                                {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'avoid').length}/5
+                              </span>
+                            </div>
+                            <div className="w-full bg-red-200 rounded-full h-2 mb-2">
+                              <div 
+                                className="bg-red-600 h-2 rounded-full transition-all duration-300"
+                                style={{ 
+                                  width: `${Math.min(100, (Object.values(guestArrivalSongPreferences).filter(pref => pref === 'avoid').length / 5) * 100)}%` 
+                                }}
+                              ></div>
+                            </div>
+                            <p className="text-sm text-gray-600">Goal: ≤5 songs</p>
+                            {Object.values(guestArrivalSongPreferences).filter(pref => pref === 'avoid').length > 5 && (
+                              <p className="text-sm text-red-600 mt-1 flex items-center">
+                                <span className="mr-1">🚨</span>
+                                Over limit (max 5 songs)
+                              </p>
+                            )}
+                          </div>
+                        </div>
                       </div>
 
-                      {/* General Cocktail Hour Song List Section */}
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center">
-                          <button
-                            onClick={() => setCocktailHourGeneralExpanded(!cocktailHourGeneralExpanded)}
-                            className="flex items-center space-x-2 text-left hover:text-purple-600 transition-colors"
-                          >
-                            <h3 className="text-lg font-medium text-gray-900">🍸 General Cocktail Hour Song List</h3>
-                            <span className="text-sm text-gray-500">({filteredCocktailHourGeneralSongs.length} songs)</span>
-                            <svg
-                              className={`w-5 h-5 transition-transform ${cocktailHourGeneralExpanded ? 'rotate-180' : ''}`}
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </button>
-                        </div>
-                        
-                        {cocktailHourGeneralExpanded && (
-                          <div className="bg-white rounded-lg border border-gray-200">
-                            {isLoadingGuestArrival ? (
-                              <div className="text-center py-8 text-gray-500">
-                                <p>Loading songs...</p>
-                              </div>
-                            ) : filteredCocktailHourGeneralSongs.length === 0 ? (
-                              <div className="text-center py-8 text-gray-500">
-                                <p>No cocktail hour songs available</p>
-                              </div>
-                            ) : (
-                              <div className="divide-y divide-gray-200">
-                                {filteredCocktailHourGeneralSongs.map((song, index) => (
-                                  <div key={song.id || index} className="p-4 hover:bg-gray-50">
-                                    <div className="flex items-center justify-between">
-                                      <div className="flex-1">
-                                        <div className="flex items-center space-x-4">
-                                          <div>
-                                            <a
-                                              href={song.videoUrl}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="font-medium text-purple-600 hover:text-purple-800 underline"
-                                            >
-                                              {song.originalTitle}
-                                            </a>
-                                            <p className="text-sm text-gray-600">{song.originalArtist}</p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                      <div className="flex items-center space-x-2">
-                                        <button
-                                          onClick={() => setGuestArrivalSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            guestArrivalSongPreferences[song.id] === 'definitely'
-                                              ? 'bg-green-100 text-green-800 border-green-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
-                                          }`}
+                      {/* Songs List */}
+                      <div className="bg-white rounded-lg border border-gray-200">
+                        {isLoadingGuestArrival ? (
+                          <div className="text-center py-8 text-gray-500">
+                            <p>Loading songs...</p>
+                          </div>
+                        ) : filteredPianoTrioSongs.length === 0 ? (
+                          <div className="text-center py-8 text-gray-500">
+                            <p>No songs tagged for Piano Trio</p>
+                          </div>
+                        ) : (
+                          <div className="divide-y divide-gray-200">
+                            {filteredPianoTrioSongs.map((song, index) => (
+                              <div key={song.id || index} className="p-4 hover:bg-gray-50">
+                                <div className="flex items-center justify-between">
+                                  <div className="flex-1">
+                                    <div className="flex items-center space-x-4">
+                                      <div>
+                                        <a
+                                          href={song.videoUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="font-medium text-purple-600 hover:text-purple-800 underline"
                                         >
-                                          🤘 Definitely Play
-                                        </button>
-                                        <button
-                                          onClick={() => setGuestArrivalSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            guestArrivalSongPreferences[song.id] === 'maybe'
-                                              ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
-                                          }`}
-                                        >
-                                          👍 If the Mood is Right
-                                        </button>
-                                        <button
-                                          onClick={() => setGuestArrivalSongPreferences(prev => ({
-                                            ...prev,
-                                            [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
-                                          }))}
-                                          className={`px-3 py-1 text-sm rounded border ${
-                                            guestArrivalSongPreferences[song.id] === 'avoid'
-                                              ? 'bg-red-100 text-red-800 border-red-300'
-                                              : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
-                                          }`}
-                                        >
-                                          👎 Avoid Playing
-                                        </button>
+                                          {song.originalTitle}
+                                        </a>
+                                        <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                       </div>
                                     </div>
                                   </div>
-                                ))}
+                                  
+                                  <div className="flex items-center space-x-2">
+                                    <button
+                                      onClick={() => setGuestArrivalSongPreferences(prev => ({
+                                        ...prev,
+                                        [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
+                                      }))}
+                                      className={`px-3 py-1 text-sm rounded border ${
+                                        guestArrivalSongPreferences[song.id] === 'definitely'
+                                          ? 'bg-green-100 text-green-800 border-green-300'
+                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
+                                      }`}
+                                    >
+                                      🤘 Definitely Play
+                                    </button>
+                                    <button
+                                      onClick={() => setGuestArrivalSongPreferences(prev => ({
+                                        ...prev,
+                                        [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
+                                      }))}
+                                      className={`px-3 py-1 text-sm rounded border ${
+                                        guestArrivalSongPreferences[song.id] === 'maybe'
+                                          ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
+                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
+                                      }`}
+                                    >
+                                      👍 If Mood Is Right
+                                    </button>
+                                    <button
+                                      onClick={() => setGuestArrivalSongPreferences(prev => ({
+                                        ...prev,
+                                        [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
+                                      }))}
+                                      className={`px-3 py-1 text-sm rounded border ${
+                                        guestArrivalSongPreferences[song.id] === 'avoid'
+                                          ? 'bg-red-100 text-red-800 border-red-300'
+                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
+                                      }`}
+                                    >
+                                      👎 Avoid Playing
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
-                            )}
+                            ))}
                           </div>
                         )}
                       </div>
