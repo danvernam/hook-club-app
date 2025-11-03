@@ -342,8 +342,9 @@ export default function ClientPortal() {
     
     return songsData.songs
       .filter((song: any) => 
-        song.specialMomentRecommendations && 
-        song.specialMomentRecommendations.includes(momentType)
+        song.specialMomentTypes && 
+        song.specialMomentTypes.length > 0 &&
+        song.specialMomentTypes.includes(momentType)
       )
       .map((song: any) => ({
         title: song.originalTitle,
@@ -1897,17 +1898,41 @@ export default function ClientPortal() {
                             
                             <div>
                               <label className="block text-sm font-medium text-gray-700 mb-1">Song</label>
-                              <input
-                                type="text"
-                                value={moment.clientSongTitle}
-                                onChange={(e) => {
-                                  const newMoments = [...welcomePartySpecialMoments];
-                                  newMoments[index].clientSongTitle = e.target.value;
-                                  setWelcomePartySpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Enter song title"
-                              />
+                              {moment.specialMomentType && getRecommendedSongs(moment.specialMomentType).length > 0 ? (
+                                <select
+                                  value={moment.clientSongTitle}
+                                  onChange={(e) => {
+                                    const newMoments = [...welcomePartySpecialMoments];
+                                    const selectedSong = getRecommendedSongs(moment.specialMomentType).find((s: any) => s.title === e.target.value);
+                                    newMoments[index].clientSongTitle = e.target.value;
+                                    if (selectedSong) {
+                                      newMoments[index].clientArtist = selectedSong.artist;
+                                      newMoments[index].clientLink = selectedSong.videoUrl;
+                                    }
+                                    setWelcomePartySpecialMoments(newMoments);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                >
+                                  <option value="">Select a recommended song...</option>
+                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string}, songIndex: number) => (
+                                    <option key={songIndex} value={song.title}>
+                                      {song.title} - {song.artist}
+                                    </option>
+                                  ))}
+                                </select>
+                              ) : (
+                                <input
+                                  type="text"
+                                  value={moment.clientSongTitle}
+                                  onChange={(e) => {
+                                    const newMoments = [...welcomePartySpecialMoments];
+                                    newMoments[index].clientSongTitle = e.target.value;
+                                    setWelcomePartySpecialMoments(newMoments);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder={moment.specialMomentType ? "Enter song title (no recommendations available)" : "Select a special moment first"}
+                                />
+                              )}
                             </div>
                           </div>
 
@@ -2440,12 +2465,12 @@ export default function ClientPortal() {
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold text-purple-600 text-center">Ceremony</h2>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                  <div className="mb-6">
+                  <div className="mb-4">
                     <h4 className="text-lg font-medium text-gray-900">Ceremony - Piano Trio</h4>
                   </div>
                   
                   {/* Ceremony Sub-tabs */}
-                  <div className="border-b border-gray-200">
+                  <div className="border-b border-gray-200 mb-2">
                     <nav className="flex justify-center space-x-8">
                       <button
                         onClick={() => setActiveCeremonyTab('guest-arrival')}
@@ -2824,7 +2849,7 @@ export default function ClientPortal() {
 
                   {/* Guest Arrival Song List Content */}
                   {activeCeremonyTab === 'guest-arrival' && (
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                       <div className="flex justify-between items-center">
                         <h3 className="text-lg font-medium text-gray-900">Guest Arrival Song List</h3>
                         <span className="text-sm text-gray-500">{filteredPianoTrioSongs.length} songs available</span>
@@ -3102,17 +3127,41 @@ export default function ClientPortal() {
 
                             <div>
                               <label className="block text-sm font-medium text-gray-700 mb-1">Song</label>
-                              <input
-                                type="text"
-                                value={moment.clientSongTitle}
-                                onChange={(e) => {
-                                  const newMoments = [...cocktailHourSpecialMoments];
-                                  newMoments[index].clientSongTitle = e.target.value;
-                                  setCocktailHourSpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Enter song title"
-                              />
+                              {moment.specialMomentType && getRecommendedSongs(moment.specialMomentType).length > 0 ? (
+                                <select
+                                  value={moment.clientSongTitle}
+                                  onChange={(e) => {
+                                    const newMoments = [...cocktailHourSpecialMoments];
+                                    const selectedSong = getRecommendedSongs(moment.specialMomentType).find((s: any) => s.title === e.target.value);
+                                    newMoments[index].clientSongTitle = e.target.value;
+                                    if (selectedSong) {
+                                      newMoments[index].clientArtist = selectedSong.artist;
+                                      newMoments[index].clientLink = selectedSong.videoUrl;
+                                    }
+                                    setCocktailHourSpecialMoments(newMoments);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                >
+                                  <option value="">Select a recommended song...</option>
+                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string}, songIndex: number) => (
+                                    <option key={songIndex} value={song.title}>
+                                      {song.title} - {song.artist}
+                                    </option>
+                                  ))}
+                                </select>
+                              ) : (
+                                <input
+                                  type="text"
+                                  value={moment.clientSongTitle}
+                                  onChange={(e) => {
+                                    const newMoments = [...cocktailHourSpecialMoments];
+                                    newMoments[index].clientSongTitle = e.target.value;
+                                    setCocktailHourSpecialMoments(newMoments);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder={moment.specialMomentType ? "Enter song title (no recommendations available)" : "Select a special moment first"}
+                                />
+                              )}
                             </div>
                           </div>
 
@@ -3578,17 +3627,41 @@ export default function ClientPortal() {
 
                             <div>
                               <label className="block text-sm font-medium text-gray-700 mb-1">Song</label>
-                              <input
-                                type="text"
-                                value={moment.clientSongTitle}
-                                onChange={(e) => {
-                                  const newMoments = [...receptionSpecialMoments];
-                                  newMoments[index].clientSongTitle = e.target.value;
-                                  setReceptionSpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Enter song title"
-                              />
+                              {moment.specialMomentType && getRecommendedSongs(moment.specialMomentType).length > 0 ? (
+                                <select
+                                  value={moment.clientSongTitle}
+                                  onChange={(e) => {
+                                    const newMoments = [...receptionSpecialMoments];
+                                    const selectedSong = getRecommendedSongs(moment.specialMomentType).find((s: any) => s.title === e.target.value);
+                                    newMoments[index].clientSongTitle = e.target.value;
+                                    if (selectedSong) {
+                                      newMoments[index].clientArtist = selectedSong.artist;
+                                      newMoments[index].clientLink = selectedSong.videoUrl;
+                                    }
+                                    setReceptionSpecialMoments(newMoments);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                >
+                                  <option value="">Select a recommended song...</option>
+                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string}, songIndex: number) => (
+                                    <option key={songIndex} value={song.title}>
+                                      {song.title} - {song.artist}
+                                    </option>
+                                  ))}
+                                </select>
+                              ) : (
+                                <input
+                                  type="text"
+                                  value={moment.clientSongTitle}
+                                  onChange={(e) => {
+                                    const newMoments = [...receptionSpecialMoments];
+                                    newMoments[index].clientSongTitle = e.target.value;
+                                    setReceptionSpecialMoments(newMoments);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder={moment.specialMomentType ? "Enter song title (no recommendations available)" : "Select a special moment first"}
+                                />
+                              )}
                             </div>
                           </div>
 
@@ -4399,17 +4472,41 @@ export default function ClientPortal() {
 
                             <div>
                               <label className="block text-sm font-medium text-gray-700 mb-1">Song</label>
-                              <input
-                                type="text"
-                                value={moment.clientSongTitle}
-                                onChange={(e) => {
-                                  const newMoments = [...afterPartySpecialMoments];
-                                  newMoments[index].clientSongTitle = e.target.value;
-                                  setAfterPartySpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Enter song title"
-                              />
+                              {moment.specialMomentType && getRecommendedSongs(moment.specialMomentType).length > 0 ? (
+                                <select
+                                  value={moment.clientSongTitle}
+                                  onChange={(e) => {
+                                    const newMoments = [...afterPartySpecialMoments];
+                                    const selectedSong = getRecommendedSongs(moment.specialMomentType).find((s: any) => s.title === e.target.value);
+                                    newMoments[index].clientSongTitle = e.target.value;
+                                    if (selectedSong) {
+                                      newMoments[index].clientArtist = selectedSong.artist;
+                                      newMoments[index].clientLink = selectedSong.videoUrl;
+                                    }
+                                    setAfterPartySpecialMoments(newMoments);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                >
+                                  <option value="">Select a recommended song...</option>
+                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string}, songIndex: number) => (
+                                    <option key={songIndex} value={song.title}>
+                                      {song.title} - {song.artist}
+                                    </option>
+                                  ))}
+                                </select>
+                              ) : (
+                                <input
+                                  type="text"
+                                  value={moment.clientSongTitle}
+                                  onChange={(e) => {
+                                    const newMoments = [...afterPartySpecialMoments];
+                                    newMoments[index].clientSongTitle = e.target.value;
+                                    setAfterPartySpecialMoments(newMoments);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                  placeholder={moment.specialMomentType ? "Enter song title (no recommendations available)" : "Select a special moment first"}
+                                />
+                              )}
                             </div>
                           </div>
 
