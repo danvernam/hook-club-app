@@ -1,10 +1,10 @@
 {
   "metadata": {
     "version": "2.0",
-    "lastUpdated": "2025-11-02T06:17:14.738Z",
-    "totalSongs": 1471,
-    "activeSongs": 289,
-    "inactiveSongs": 1182
+    "lastUpdated": "2025-11-04T22:26:06.585Z",
+    "totalSongs": 1476,
+    "activeSongs": 338,
+    "inactiveSongs": 1138
   },
   "songs": [
     {
@@ -1293,15 +1293,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.688Z",
-      "updatedAt": "2025-10-25T10:18:24.688Z",
+      "updatedAt": "2025-11-04T22:21:34.376Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -2234,15 +2238,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.688Z",
-      "updatedAt": "2025-10-25T10:18:24.688Z",
+      "updatedAt": "2025-11-04T22:21:58.744Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -3037,15 +3045,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.689Z",
-      "updatedAt": "2025-10-25T10:18:24.689Z",
+      "updatedAt": "2025-11-04T22:23:53.037Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -3249,15 +3261,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.689Z",
-      "updatedAt": "2025-10-25T10:18:24.689Z",
+      "updatedAt": "2025-11-04T22:21:34.385Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -4335,15 +4351,21 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony",
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)",
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.689Z",
-      "updatedAt": "2025-10-25T10:18:24.689Z",
+      "updatedAt": "2025-11-04T22:23:53.037Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -7142,15 +7164,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.690Z",
-      "updatedAt": "2025-10-25T10:18:24.690Z",
+      "updatedAt": "2025-11-04T22:21:34.386Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -7465,15 +7491,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.690Z",
-      "updatedAt": "2025-10-25T10:18:24.690Z",
+      "updatedAt": "2025-11-04T22:23:53.038Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -7841,15 +7871,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.690Z",
-      "updatedAt": "2025-10-25T10:18:24.690Z",
+      "updatedAt": "2025-11-04T22:23:53.037Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -8672,15 +8706,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.690Z",
-      "updatedAt": "2025-10-25T10:18:24.690Z",
+      "updatedAt": "2025-11-04T22:21:34.383Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -9920,15 +9958,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.691Z",
-      "updatedAt": "2025-10-25T10:18:24.691Z",
+      "updatedAt": "2025-11-04T22:21:34.378Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -10249,14 +10291,18 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.691Z",
-      "updatedAt": "2025-10-25T10:18:24.691Z",
+      "updatedAt": "2025-11-04T22:23:53.053Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -10516,15 +10562,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.691Z",
-      "updatedAt": "2025-10-25T10:18:24.691Z",
+      "updatedAt": "2025-11-04T22:23:53.043Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -10955,15 +11005,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.691Z",
-      "updatedAt": "2025-10-25T10:18:24.691Z",
+      "updatedAt": "2025-11-04T22:23:53.044Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -16025,8 +16079,12 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [
         {
           "client": "Dinner Entertainment",
@@ -16037,7 +16095,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.692Z",
-      "updatedAt": "2025-10-25T10:18:24.692Z",
+      "updatedAt": "2025-11-04T22:23:53.053Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -16140,9 +16198,13 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
@@ -16940,15 +17002,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-10-25T10:18:24.693Z",
+      "updatedAt": "2025-11-04T22:23:53.040Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -17316,15 +17382,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-10-25T10:18:24.693Z",
+      "updatedAt": "2025-11-04T22:21:34.387Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -19713,15 +19783,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-10-25T10:18:24.693Z",
+      "updatedAt": "2025-11-04T22:23:53.038Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -20337,8 +20411,12 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [
         {
           "client": "Dinner Entertainment",
@@ -20349,7 +20427,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-10-25T10:18:24.693Z",
+      "updatedAt": "2025-11-04T22:23:53.040Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -20674,15 +20752,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-10-25T10:18:24.693Z",
+      "updatedAt": "2025-11-04T22:21:34.369Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -21155,8 +21237,12 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [
         {
           "client": "Dinner Entertainment",
@@ -21167,7 +21253,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-10-25T10:18:24.693Z",
+      "updatedAt": "2025-11-04T22:23:53.052Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -23315,15 +23401,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-10-25T10:18:24.693Z",
+      "updatedAt": "2025-11-04T22:21:34.379Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -23368,9 +23458,13 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
@@ -24766,15 +24860,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.694Z",
-      "updatedAt": "2025-10-25T10:18:24.694Z",
+      "updatedAt": "2025-11-04T22:21:34.375Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -25299,15 +25397,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.694Z",
-      "updatedAt": "2025-10-25T10:18:24.694Z",
+      "updatedAt": "2025-11-04T22:23:53.052Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -25617,15 +25719,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.694Z",
-      "updatedAt": "2025-10-25T10:18:24.694Z",
+      "updatedAt": "2025-11-04T22:23:53.007Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -25988,15 +26094,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.694Z",
-      "updatedAt": "2025-10-25T10:18:24.694Z",
+      "updatedAt": "2025-11-04T22:21:34.385Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -27323,15 +27433,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.694Z",
-      "updatedAt": "2025-10-25T10:18:24.694Z",
+      "updatedAt": "2025-11-04T22:23:53.039Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -28124,8 +28238,12 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [
         {
           "client": "💕 Slow Jams",
@@ -28136,7 +28254,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.694Z",
-      "updatedAt": "2025-10-25T10:18:24.694Z",
+      "updatedAt": "2025-11-04T22:21:34.379Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -29912,15 +30030,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.695Z",
-      "updatedAt": "2025-10-25T10:18:24.695Z",
+      "updatedAt": "2025-11-04T22:23:53.048Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -32257,15 +32379,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.695Z",
-      "updatedAt": "2025-10-25T10:18:24.695Z",
+      "updatedAt": "2025-11-04T22:21:34.383Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -35812,8 +35938,12 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [
         {
           "client": "Dinner Entertainment",
@@ -35824,7 +35954,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.695Z",
-      "updatedAt": "2025-10-25T10:18:24.695Z",
+      "updatedAt": "2025-11-04T22:23:53.044Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -35874,15 +36004,21 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony",
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)",
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.695Z",
-      "updatedAt": "2025-10-25T10:18:24.695Z",
+      "updatedAt": "2025-11-04T22:23:53.036Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -36192,15 +36328,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.695Z",
-      "updatedAt": "2025-10-25T10:18:24.695Z",
+      "updatedAt": "2025-11-04T22:23:53.042Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -39604,15 +39744,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.696Z",
-      "updatedAt": "2025-10-25T10:18:24.696Z",
+      "updatedAt": "2025-11-04T22:21:34.378Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -39832,8 +39976,12 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [
         {
           "client": "💯 Cream Of The Pop",
@@ -39844,7 +39992,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.696Z",
-      "updatedAt": "2025-10-25T10:18:24.696Z",
+      "updatedAt": "2025-11-04T22:21:23.041Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -40010,15 +40158,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.696Z",
-      "updatedAt": "2025-10-25T10:18:24.696Z",
+      "updatedAt": "2025-11-04T22:23:53.051Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -40687,15 +40839,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.696Z",
-      "updatedAt": "2025-10-25T10:18:24.696Z",
+      "updatedAt": "2025-11-04T22:21:34.382Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -42589,9 +42745,13 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
@@ -42695,15 +42855,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.696Z",
-      "updatedAt": "2025-10-25T10:18:24.696Z",
+      "updatedAt": "2025-11-04T22:23:53.063Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -48616,15 +48780,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.697Z",
-      "updatedAt": "2025-10-25T10:18:24.697Z",
+      "updatedAt": "2025-11-04T22:21:34.377Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -48722,15 +48890,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.697Z",
-      "updatedAt": "2025-10-25T10:18:24.697Z",
+      "updatedAt": "2025-11-04T22:21:34.383Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -49497,15 +49669,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.697Z",
-      "updatedAt": "2025-10-25T10:18:24.697Z",
+      "updatedAt": "2025-11-04T22:21:34.371Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -50817,15 +50993,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.697Z",
-      "updatedAt": "2025-10-25T10:18:24.697Z",
+      "updatedAt": "2025-11-04T22:23:53.041Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -56707,15 +56887,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.698Z",
-      "updatedAt": "2025-10-25T10:18:24.698Z",
+      "updatedAt": "2025-11-04T22:23:53.029Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -60654,15 +60838,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.698Z",
-      "updatedAt": "2025-10-25T10:18:24.698Z",
+      "updatedAt": "2025-11-04T22:21:34.386Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -62298,8 +62486,12 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [
         {
           "client": "Dinner Entertainment",
@@ -62310,7 +62502,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.699Z",
-      "updatedAt": "2025-10-25T10:18:24.699Z",
+      "updatedAt": "2025-11-04T22:23:53.057Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -63546,15 +63738,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.699Z",
-      "updatedAt": "2025-10-25T10:18:24.699Z",
+      "updatedAt": "2025-11-04T22:23:53.060Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -70734,9 +70930,13 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
@@ -72575,15 +72775,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.700Z",
-      "updatedAt": "2025-10-25T10:18:24.700Z",
+      "updatedAt": "2025-11-04T22:21:34.385Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -73337,15 +73541,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.700Z",
-      "updatedAt": "2025-10-25T10:18:24.700Z",
+      "updatedAt": "2025-11-04T22:21:34.381Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -73887,15 +74095,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.700Z",
-      "updatedAt": "2025-10-25T10:18:24.700Z",
+      "updatedAt": "2025-11-04T22:23:53.062Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -80270,6 +80482,291 @@
           "band": "showtunes"
         }
       ],
+      "lightGenres": []
+    },
+    {
+      "id": "cantaloupe-island",
+      "originalTitle": "Cantaloupe Island",
+      "originalArtist": "Herbie Hancock",
+      "thcTitle": "Cantaloupe Island",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
+      "genres": [],
+      "specialMomentTypes": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-04T22:23:53.046Z",
+      "updatedAt": "2025-11-04T22:23:53.046Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": "",
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": "",
+          "hornChartSpecialUrl": ""
+        }
+      ],
+      "danceGenres": [],
+      "lightGenres": []
+    },
+    {
+      "id": "strasbourgst-denis",
+      "originalTitle": "Strasbourg/St. Denis",
+      "originalArtist": "Roy Hargrove",
+      "thcTitle": "Strasbourg/St. Denis",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
+      "genres": [],
+      "specialMomentTypes": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-04T22:23:53.056Z",
+      "updatedAt": "2025-11-04T22:23:53.056Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": "",
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": "",
+          "hornChartSpecialUrl": ""
+        }
+      ],
+      "danceGenres": [],
+      "lightGenres": []
+    },
+    {
+      "id": "so-what",
+      "originalTitle": "So What",
+      "originalArtist": "Miles Davies Sextet",
+      "thcTitle": "So What",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
+      "genres": [],
+      "specialMomentTypes": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-04T22:30:00.000Z",
+      "updatedAt": "2025-11-04T22:30:00.000Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": "",
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": "",
+          "hornChartSpecialUrl": ""
+        }
+      ],
+      "danceGenres": [],
+      "lightGenres": []
+    },
+    {
+      "id": "beatrice",
+      "originalTitle": "Beatrice",
+      "originalArtist": "Sam Rivers",
+      "thcTitle": "Beatrice",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+      ],
+      "genres": [],
+      "specialMomentTypes": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-04T22:30:00.000Z",
+      "updatedAt": "2025-11-04T22:30:00.000Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": "",
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": "",
+          "hornChartSpecialUrl": ""
+        }
+      ],
+      "danceGenres": [],
+      "lightGenres": []
+    },
+    {
+      "id": "oh-susanna",
+      "originalTitle": "Oh! Susanna",
+      "originalArtist": "2nd South Carolina String Band",
+      "thcTitle": "Oh! Susanna",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [
+        "cocktailHour"
+      ],
+      "ensembles": [
+        "Folk Band (Violin + Guitar + Bass + Drums)"
+      ],
+      "genres": [],
+      "specialMomentTypes": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-04T22:35:00.000Z",
+      "updatedAt": "2025-11-04T22:35:00.000Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": "",
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": "",
+          "hornChartSpecialUrl": ""
+        }
+      ],
+      "danceGenres": [],
       "lightGenres": []
     }
   ]

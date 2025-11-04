@@ -1921,17 +1921,17 @@ export default function ClientPortal() {
                                   ))}
                                 </select>
                               ) : (
-                                <input
-                                  type="text"
-                                  value={moment.clientSongTitle}
-                                  onChange={(e) => {
-                                    const newMoments = [...welcomePartySpecialMoments];
-                                    newMoments[index].clientSongTitle = e.target.value;
-                                    setWelcomePartySpecialMoments(newMoments);
-                                  }}
-                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                              <input
+                                type="text"
+                                value={moment.clientSongTitle}
+                                onChange={(e) => {
+                                  const newMoments = [...welcomePartySpecialMoments];
+                                  newMoments[index].clientSongTitle = e.target.value;
+                                  setWelcomePartySpecialMoments(newMoments);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                                   placeholder={moment.specialMomentType ? "Enter song title (no recommendations available)" : "Select a special moment first"}
-                                />
+                              />
                               )}
                             </div>
                           </div>
@@ -3150,17 +3150,17 @@ export default function ClientPortal() {
                                   ))}
                                 </select>
                               ) : (
-                                <input
-                                  type="text"
-                                  value={moment.clientSongTitle}
-                                  onChange={(e) => {
-                                    const newMoments = [...cocktailHourSpecialMoments];
-                                    newMoments[index].clientSongTitle = e.target.value;
-                                    setCocktailHourSpecialMoments(newMoments);
-                                  }}
-                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                              <input
+                                type="text"
+                                value={moment.clientSongTitle}
+                                onChange={(e) => {
+                                  const newMoments = [...cocktailHourSpecialMoments];
+                                  newMoments[index].clientSongTitle = e.target.value;
+                                  setCocktailHourSpecialMoments(newMoments);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                                   placeholder={moment.specialMomentType ? "Enter song title (no recommendations available)" : "Select a special moment first"}
-                                />
+                              />
                               )}
                             </div>
                           </div>
@@ -3650,17 +3650,17 @@ export default function ClientPortal() {
                                   ))}
                                 </select>
                               ) : (
-                                <input
-                                  type="text"
-                                  value={moment.clientSongTitle}
-                                  onChange={(e) => {
-                                    const newMoments = [...receptionSpecialMoments];
-                                    newMoments[index].clientSongTitle = e.target.value;
-                                    setReceptionSpecialMoments(newMoments);
-                                  }}
-                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                              <input
+                                type="text"
+                                value={moment.clientSongTitle}
+                                onChange={(e) => {
+                                  const newMoments = [...receptionSpecialMoments];
+                                  newMoments[index].clientSongTitle = e.target.value;
+                                  setReceptionSpecialMoments(newMoments);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                                   placeholder={moment.specialMomentType ? "Enter song title (no recommendations available)" : "Select a special moment first"}
-                                />
+                              />
                               )}
                             </div>
                           </div>
@@ -4385,7 +4385,7 @@ export default function ClientPortal() {
                   </div>
                   
                   {/* After Party Sub-tabs */}
-                  <div className="border-b border-gray-200">
+                  <div className="border-b border-gray-200 mb-2">
                     <nav className="flex justify-center space-x-8">
                       <button
                         onClick={() => setActiveAfterPartyTab('core-repertoire')}
@@ -4495,17 +4495,17 @@ export default function ClientPortal() {
                                   ))}
                                 </select>
                               ) : (
-                                <input
-                                  type="text"
-                                  value={moment.clientSongTitle}
-                                  onChange={(e) => {
-                                    const newMoments = [...afterPartySpecialMoments];
-                                    newMoments[index].clientSongTitle = e.target.value;
-                                    setAfterPartySpecialMoments(newMoments);
-                                  }}
-                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                              <input
+                                type="text"
+                                value={moment.clientSongTitle}
+                                onChange={(e) => {
+                                  const newMoments = [...afterPartySpecialMoments];
+                                  newMoments[index].clientSongTitle = e.target.value;
+                                  setAfterPartySpecialMoments(newMoments);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                                   placeholder={moment.specialMomentType ? "Enter song title (no recommendations available)" : "Select a special moment first"}
-                                />
+                              />
                               )}
                             </div>
                           </div>
@@ -4694,7 +4694,7 @@ export default function ClientPortal() {
 
                   {/* After Party Song List Content */}
                   {activeAfterPartyTab === 'core-repertoire' && (
-                    <div className="space-y-8">
+                    <div className="space-y-8 mt-6">
                       {/* Dance Music Repertoire Section */}
                       <div className="space-y-4">
                         <div className="flex justify-between items-center">
