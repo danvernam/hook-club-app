@@ -1,10 +1,10 @@
 {
   "metadata": {
     "version": "2.0",
-    "lastUpdated": "2025-11-04T22:26:06.585Z",
-    "totalSongs": 1476,
-    "activeSongs": 338,
-    "inactiveSongs": 1138
+    "lastUpdated": "2025-11-06T03:54:09.465Z",
+    "totalSongs": 1479,
+    "activeSongs": 347,
+    "inactiveSongs": 1132
   },
   "songs": [
     {
@@ -2240,7 +2240,8 @@
       "thcBpm": null,
       "isLive": true,
       "sections": [
-        "ceremony"
+        "ceremony",
+        "Ceremony"
       ],
       "ensembles": [
         "Piano Trio (Violin + Cello + Piano)"
@@ -2250,7 +2251,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.688Z",
-      "updatedAt": "2025-11-04T22:21:58.744Z",
+      "updatedAt": "2025-11-06T03:54:09.464Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -4354,7 +4355,8 @@
       "isLive": true,
       "sections": [
         "ceremony",
-        "cocktailHour"
+        "cocktailHour",
+        "Ceremony"
       ],
       "ensembles": [
         "Piano Trio (Violin + Cello + Piano)",
@@ -4365,7 +4367,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.689Z",
-      "updatedAt": "2025-11-04T22:23:53.037Z",
+      "updatedAt": "2025-11-06T03:54:09.464Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -10068,15 +10070,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.691Z",
-      "updatedAt": "2025-10-25T10:18:24.691Z",
+      "updatedAt": "2025-11-06T03:54:09.463Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -10456,15 +10462,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.691Z",
-      "updatedAt": "2025-10-25T10:18:24.691Z",
+      "updatedAt": "2025-11-06T03:54:09.464Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -33774,15 +33784,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.695Z",
-      "updatedAt": "2025-10-25T10:18:24.695Z",
+      "updatedAt": "2025-11-06T03:54:09.464Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -50214,14 +50228,18 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.697Z",
-      "updatedAt": "2025-10-25T10:18:24.697Z",
+      "updatedAt": "2025-11-06T03:54:09.464Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -57262,15 +57280,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.698Z",
-      "updatedAt": "2025-10-25T10:18:24.698Z",
+      "updatedAt": "2025-11-06T03:54:09.464Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -63632,15 +63654,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.699Z",
-      "updatedAt": "2025-10-25T10:18:24.699Z",
+      "updatedAt": "2025-11-06T03:54:09.464Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -66219,14 +66245,18 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.699Z",
-      "updatedAt": "2025-10-25T10:18:24.699Z",
+      "updatedAt": "2025-11-06T03:54:09.464Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -69381,15 +69411,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.699Z",
-      "updatedAt": "2025-10-25T10:18:24.699Z",
+      "updatedAt": "2025-11-06T03:54:09.464Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -80768,6 +80802,180 @@
       ],
       "danceGenres": [],
       "lightGenres": []
+    },
+    {
+      "id": "lohengrin",
+      "originalTitle": "Lohengrin",
+      "originalArtist": "Act 3: Bridal Chorus",
+      "thcTitle": "Lohengrin",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
+      "genres": [],
+      "danceGenres": [],
+      "lightGenres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-06T03:54:09.464Z",
+      "updatedAt": "2025-11-06T03:54:09.464Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ]
+    },
+    {
+      "id": "taylor-swift",
+      "originalTitle": "Taylor Swift",
+      "originalArtist": "Unknown Artist",
+      "thcTitle": "Taylor Swift",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
+      "genres": [],
+      "danceGenres": [],
+      "lightGenres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-06T03:54:09.465Z",
+      "updatedAt": "2025-11-06T03:54:09.465Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ]
+    },
+    {
+      "id": "coldplay",
+      "originalTitle": "Coldplay",
+      "originalArtist": "Unknown Artist",
+      "thcTitle": "Coldplay",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Piano Trio (Violin + Cello + Piano)"
+      ],
+      "genres": [],
+      "danceGenres": [],
+      "lightGenres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-06T03:54:09.465Z",
+      "updatedAt": "2025-11-06T03:54:09.465Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ]
     }
   ]
 }

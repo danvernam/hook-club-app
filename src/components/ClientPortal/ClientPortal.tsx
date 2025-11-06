@@ -845,7 +845,6 @@ export default function ClientPortal() {
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold text-gray-900">Getting To Know You</h2>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                  <p className="text-gray-600 mb-6">Help us get to know you better so we can create the perfect musical experience for your special day.</p>
                   <div className="space-y-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">How Did You Find The Hook Club Originally?</label>
