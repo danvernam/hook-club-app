@@ -67,6 +67,70 @@ interface SongsData {
   songs: Song[];
 }
 
+const lightGenreLabelOverrides: Record<string, string> = {
+  'guest entrance': '🎈 Light Bops',
+  'crooner corner': '🎺 Crooner Corner',
+  'salad jazz': '🥗 Salad Jazz',
+  'dinner entertainment': '🎻 Slow Jams'
+};
+
+const normalizeBandKey = (band?: string | null) => {
+  if (!band) return '';
+  return band.toLowerCase().trim();
+};
+
+const isSlowJamsBand = (band: string | undefined | null) => {
+  const key = normalizeBandKey(band).replace(/\s+/g, '');
+  return key === 'slowjams';
+};
+
+const normalizeLightGenre = (genre: { client: string; band: string }) => {
+  if (!genre) return genre;
+  const bandKey = normalizeBandKey(genre.band);
+  const normalizedBand = isSlowJamsBand(genre.band) ? 'dinner entertainment' : bandKey;
+  const updatedClient = lightGenreLabelOverrides[normalizedBand];
+  const clientLabel = updatedClient || genre.client;
+  return {
+    ...genre,
+    band: normalizedBand,
+    client: clientLabel
+  };
+};
+
+const normalizeSong = (song: Song): Song => ({
+  ...song,
+  danceGenres: (song.danceGenres || [])
+    .filter(genre => !isSlowJamsBand(genre.band))
+    .map(genre => ({
+      ...genre,
+      band: normalizeBandKey(genre.band)
+    })),
+  lightGenres: (() => {
+    const normalizedLight = (song.lightGenres || [])
+      .map(normalizeLightGenre)
+      .reduce<Array<{ client: string; band: string }>>((acc, genre) => {
+        if (!acc.some(existing => existing.band === genre.band)) {
+          acc.push(genre);
+        }
+        return acc;
+      }, []);
+
+    const hasSlowJamsLight = normalizedLight.some(genre => genre.band === 'dinner entertainment');
+    const migratedFromDance = (song.danceGenres || []).some(genre => isSlowJamsBand(genre.band));
+    const migratedFromGenres = (song.genres || []).some(genre => isSlowJamsBand(genre.band));
+
+    if (!hasSlowJamsLight && (migratedFromDance || migratedFromGenres)) {
+      normalizedLight.push({
+        client: lightGenreLabelOverrides['dinner entertainment'],
+        band: 'dinner entertainment'
+      });
+    }
+
+    return normalizedLight;
+  })(),
+  genres: (song.genres || []).filter(genre => !isSlowJamsBand(genre.band))
+});
+
 export default function SongsDatabase() {
   const [songsData, setSongsData] = useState<SongsData | null>(null);
   const [filteredSongs, setFilteredSongs] = useState<Song[]>([]);
@@ -74,6 +138,7 @@ export default function SongsDatabase() {
   const [selectedSection, setSelectedSection] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('');
   const [showInactive, setShowInactive] = useState(true);
+  const [selectedLetter, setSelectedLetter] = useState('');
   const [editingSong, setEditingSong] = useState<Song | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -93,14 +158,15 @@ export default function SongsDatabase() {
     const loadSongs = async () => {
       try {
         const data = await apiService.getSongs();
+        const normalizedSongs = (data.songs || []).map(normalizeSong);
         setSongsData({ 
-          songs: data.songs, 
+          songs: normalizedSongs, 
           metadata: { 
             version: "1.0.0",
             lastUpdated: new Date().toISOString(),
-            totalSongs: data.songs.length,
-            activeSongs: data.songs.filter((song: any) => song.isLive).length,
-            inactiveSongs: data.songs.filter((song: any) => !song.isLive).length
+            totalSongs: normalizedSongs.length,
+            activeSongs: normalizedSongs.filter((song: any) => song.isLive).length,
+            inactiveSongs: normalizedSongs.filter((song: any) => !song.isLive).length
           } 
         });
         // Don't set filteredSongs here - let the useEffect handle filtering
@@ -143,17 +209,46 @@ export default function SongsDatabase() {
       filtered = filtered.filter(song => song.isLive);
     }
 
+    // Alphabet letter filter
+    if (selectedLetter) {
+      filtered = filtered.filter(song => {
+        const title = (song.thcTitle || song.originalTitle || '').trim();
+        if (!title) {
+          return selectedLetter === '#';
+        }
+        const firstChar = title.charAt(0).toUpperCase();
+        if (selectedLetter === '#') {
+          return firstChar < 'A' || firstChar > 'Z';
+        }
+        return firstChar === selectedLetter;
+      });
+    }
+
     // Sort alphabetically by THC title
     filtered = filtered.sort((a, b) => a.thcTitle.localeCompare(b.thcTitle));
 
     setFilteredSongs(filtered);
-  }, [songsData, searchTerm, selectedSection, selectedGenre, showInactive]);
+  }, [songsData, searchTerm, selectedSection, selectedGenre, showInactive, selectedLetter]);
 
   if (!songsData) {
     return <div className="p-8">Loading songs database...</div>;
   }
 
   const sections = ['welcomeParty', 'afterParty', 'pianoTrio', 'guestArrival', 'cocktailHour'];
+  const sectionLabels: Record<string, string> = {
+    welcomeParty: 'Welcome Party',
+    afterParty: 'After Party',
+    pianoTrio: 'Piano Trio',
+    guestArrival: 'Guest Arrival',
+    cocktailHour: 'Cocktail Hour'
+  };
+  const sectionOptions = sections.map(section => ({
+    value: section,
+    label: sectionLabels[section] ?? section
+  }));
+  const uniqueSectionOptions = sectionOptions.filter((option, index, array) =>
+    array.findIndex(compare => compare.label === option.label) === index
+  );
   const danceGenres = [
     { client: '🎷 Souled Out', band: 'soul' },
     { client: '💯 Cream Of The Pop', band: 'pop' },
@@ -161,7 +256,7 @@ export default function SongsDatabase() {
     { client: '🎧 Can\'t Stop Hip Hop', band: 'hip hop' },
     { client: '🛑 Stop! In The Name Of Motown', band: 'motown' },
     { client: '🤘 Instant Mosh', band: 'punk' },
-    { client: '🔥 The Latin Bible', band: 'latin' },
+    { client: '📖 The Latin Bible', band: 'latin' },
     { client: '🕺 Studio \'25', band: 'disco' },
     { client: '🤠 Country For All', band: 'country' },
     { client: '🚀 Next Level Bops', band: 'popedm' },
@@ -176,16 +271,18 @@ export default function SongsDatabase() {
   ];
   
   const lightGenres = [
-    { client: '🚪 Guest Entrance', band: 'guest entrance' },
+    { client: '🎈 Light Bops', band: 'guest entrance' },
+    { client: '🎺 Crooner Corner', band: 'crooner corner' },
     { client: '🥗 Salad Jazz', band: 'salad jazz' },
-    { client: '🍽️ Dinner Entertainment', band: 'dinner entertainment' }
+    { client: '🎻 Slow Jams', band: 'dinner entertainment' }
   ];
 
         const handleEditSong = (song: Song) => {
+          const normalizedSong = normalizeSong(song);
           setEditingSong({ 
-            ...song,
-            danceGenres: song.danceGenres || [],
-            lightGenres: song.lightGenres || []
+            ...normalizedSong,
+            danceGenres: normalizedSong.danceGenres || [],
+            lightGenres: normalizedSong.lightGenres || []
           });
           setIsEditModalOpen(true);
           setActiveTab('basic');
@@ -201,6 +298,7 @@ export default function SongsDatabase() {
       console.log('Is new song (empty ID):', editingSong.id === '');
       console.log('Song data:', editingSong);
       console.log('Current songs count:', songsData.songs.length);
+      let songsForUpdate = [...songsData.songs];
       
       // Check for duplicate thcTitle (exclude songs with empty IDs and current song)
       const duplicateSong = songsData.songs.find(song => 
@@ -211,40 +309,60 @@ export default function SongsDatabase() {
       );
       
       if (duplicateSong) {
-        const shouldProceed = confirm(
+        const deleteExisting = confirm(
           `A song with the THC title "${editingSong.thcTitle}" already exists (by ${duplicateSong.originalArtist}).\n\n` +
-          `Would you like to add the artist name to make it unique?\n` +
-          `This will change the THC title to: "${editingSong.thcTitle} [${editingSong.originalArtist}]"`
+          `Click OK to delete the existing song and keep the one you are editing.\n` +
+          `Click Cancel to choose a different option.`
         );
-        
-        if (shouldProceed) {
-          editingSong.thcTitle = `${editingSong.thcTitle} [${editingSong.originalArtist}]`;
+
+        if (deleteExisting) {
+          try {
+            console.log('Deleting duplicate song in favor of current edit:', duplicateSong.id);
+            await apiService.deleteSong(duplicateSong.id);
+            songsForUpdate = songsForUpdate.filter(song => song.id !== duplicateSong.id);
+            console.log('Duplicate song deleted successfully.');
+          } catch (error) {
+            console.error('Error deleting duplicate song:', error);
+            const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+            alert(`Failed to delete the existing duplicate song: ${errorMessage}. Please try again.`);
+            return;
+          }
         } else {
-          return; // User cancelled, don't save
+          const shouldProceed = confirm(
+            `Would you like to add the artist name to make it unique instead?\n\n` +
+            `This will change the THC title to: "${editingSong.thcTitle} [${editingSong.originalArtist}]"`
+          );
+          
+          if (shouldProceed) {
+            editingSong.thcTitle = `${editingSong.thcTitle} [${editingSong.originalArtist}]`;
+          } else {
+            return; // User cancelled, don't save
+          }
         }
       }
       
       let result;
       let updatedSongs;
+      const normalizedEditingSong = normalizeSong(editingSong);
       
       if (editingSong.id === '') {
         // Creating a new song
         console.log('Creating new song via API...');
-        result = await apiService.createSong(editingSong);
+        result = await apiService.createSong(normalizedEditingSong);
         console.log('Create result:', result);
         console.log('New song ID from API:', result.id);
         
         // Add the new song to local state
-        updatedSongs = [...songsData.songs, { ...editingSong, id: result.id }];
+        updatedSongs = [...songsForUpdate.map(normalizeSong), { ...normalizedEditingSong, id: result.id }];
         console.log('Updated songs count after create:', updatedSongs.length);
       } else {
         // Updating an existing song
-        result = await apiService.updateSong(editingSong.id, editingSong);
+        result = await apiService.updateSong(editingSong.id, normalizedEditingSong);
         console.log('Update result:', result);
         
         // Update the existing song in local state
-        updatedSongs = songsData.songs.map(song => 
-          song.id === editingSong.id ? editingSong : song
+        updatedSongs = songsForUpdate.map(song => 
+          song.id === editingSong.id ? normalizedEditingSong : normalizeSong(song)
         );
       }
       
@@ -420,6 +538,12 @@ export default function SongsDatabase() {
     setIsAddModalOpen(false);
   };
 
+  const alphabetFilters = ['#', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
+
+  const handleLetterFilterClick = (letter: string) => {
+    setSelectedLetter(prev => (prev === letter ? '' : letter));
+  };
+
   return (
     <div className="p-8 max-w-7xl mx-auto">
       <div className="mb-8">
@@ -451,9 +575,9 @@ export default function SongsDatabase() {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
             >
               <option value="">All Sections</option>
-              {sections.map(section => (
-                <option key={section} value={section}>
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
+              {uniqueSectionOptions.map(({ value, label }) => (
+                <option key={value} value={value}>
+                  {label}
                 </option>
               ))}
             </select>
@@ -496,9 +620,40 @@ export default function SongsDatabase() {
             Songs ({filteredSongs.length})
           </h2>
         </div>
+
+        {/* Alphabet Filter */}
+        <div className="px-6 py-4 border-b border-gray-100">
+          <div className="flex flex-wrap gap-2">
+            {alphabetFilters.map(letter => {
+              const isActive = selectedLetter === letter;
+              return (
+                <button
+                  key={letter}
+                  onClick={() => handleLetterFilterClick(letter)}
+                  className={`px-2.5 py-1 text-sm font-medium rounded ${
+                    isActive
+                      ? 'bg-purple-600 text-white shadow-sm'
+                      : 'bg-transparent text-gray-700 hover:text-purple-600'
+                  }`}
+                  aria-pressed={isActive}
+                >
+                  {letter}
+                </button>
+              );
+            })}
+            {selectedLetter && (
+              <button
+                onClick={() => setSelectedLetter('')}
+                className="ml-4 px-3 py-1 text-sm font-medium text-gray-600 hover:text-purple-600"
+              >
+                Clear
+              </button>
+            )}
+          </div>
+        </div>
         
         {/* Add Song Button */}
-        <div className="mb-4">
+        <div className="px-6 py-4 border-b border-gray-100 flex justify-end">
           <button
             onClick={() => setIsAddModalOpen(true)}
             className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -508,15 +663,15 @@ export default function SongsDatabase() {
         </div>
         
         {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="min-w-full">
+        <div className="overflow-x-visible px-6 pb-6">
+          <table className="w-full table-auto">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">THC Title</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">Artist Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">Genre</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">Original Key</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-24">Actions</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">THC Title</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Artist Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Genre</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Original Key</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -544,9 +699,13 @@ export default function SongsDatabase() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="text-sm text-gray-600 truncate max-w-xs">
-                      {song.danceGenres && song.danceGenres.length > 0 ? song.danceGenres.map(g => g.client).join(', ') : 
-                       song.genres && song.genres.length > 0 ? song.genres.map(g => g.client).join(', ') : 
-                       song.lightGenres && song.lightGenres.length > 0 ? song.lightGenres.map(g => g.client).join(', ') : '-'}
+                      {song.danceGenres && song.danceGenres.length > 0
+                        ? song.danceGenres.map(g => g.client).join(', ')
+                        : song.lightGenres && song.lightGenres.length > 0
+                          ? song.lightGenres.map(g => g.client).join(', ')
+                          : song.genres && song.genres.length > 0
+                            ? song.genres.map(g => g.client).join(', ')
+                            : '-'}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{song.originalKey}</td>
@@ -812,28 +971,28 @@ export default function SongsDatabase() {
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-3">Add-on Sections</label>
                   <div className="space-y-3">
-                    {sections.map(section => (
-                      <label key={section} className="flex items-center">
+                    {uniqueSectionOptions.map(({ value, label }) => (
+                      <label key={value} className="flex items-center">
                         <input
                           type="checkbox"
-                          checked={editingSong.sections.includes(section)}
+                          checked={editingSong.sections.includes(value)}
                           onChange={(e) => {
                             if (e.target.checked) {
                               setEditingSong({
                                 ...editingSong,
-                                sections: [...editingSong.sections, section]
+                                sections: [...editingSong.sections, value]
                               });
                             } else {
                               setEditingSong({
                                 ...editingSong,
-                                sections: editingSong.sections.filter(s => s !== section)
+                                sections: editingSong.sections.filter(s => s !== value)
                               });
                             }
                           }}
                           className="mr-2"
                         />
                         <span className="text-gray-900">
-                          {section === 'welcomeParty' ? 'Welcome Party' : 'After Party'}
+                          {label}
                         </span>
                       </label>
                     ))}
@@ -842,13 +1001,12 @@ export default function SongsDatabase() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-3">Reception Genres</label>
-                  <div className="space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-3 gap-x-6">
                     {[...danceGenres, ...lightGenres].map(genre => {
                       const isDanceGenre = danceGenres.some(dg => dg.band === genre.band);
-                      const isLightGenre = lightGenres.some(lg => lg.band === genre.band);
                       const currentField = isDanceGenre ? (editingSong.danceGenres || []) : (editingSong.lightGenres || []);
                       const isChecked = currentField.some(g => g.band === genre.band);
-                      
+
                       return (
                         <label key={genre.band} className="flex items-center">
                           <input

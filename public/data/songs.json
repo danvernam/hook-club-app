@@ -1,10 +1,10 @@
 {
   "metadata": {
     "version": "2.0",
-    "lastUpdated": "2025-11-06T03:54:09.465Z",
-    "totalSongs": 1479,
-    "activeSongs": 347,
-    "inactiveSongs": 1132
+    "lastUpdated": "2025-11-13T05:47:10.103Z",
+    "totalSongs": 1483,
+    "activeSongs": 385,
+    "inactiveSongs": 1098
   },
   "songs": [
     {
@@ -1240,15 +1240,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.688Z",
-      "updatedAt": "2025-10-25T10:18:24.688Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -2810,15 +2814,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.688Z",
-      "updatedAt": "2025-10-25T10:18:24.688Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -3319,15 +3327,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.689Z",
-      "updatedAt": "2025-10-25T10:18:24.689Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -4531,15 +4543,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.689Z",
-      "updatedAt": "2025-10-25T10:18:24.689Z",
+      "updatedAt": "2025-11-13T05:46:02.154Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -4743,15 +4759,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.689Z",
-      "updatedAt": "2025-10-25T10:18:24.689Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -6033,15 +6053,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.689Z",
-      "updatedAt": "2025-10-25T10:18:24.689Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -6424,15 +6448,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.690Z",
-      "updatedAt": "2025-10-25T10:18:24.690Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -10234,8 +10262,12 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [
         {
           "client": "💯 Cream Of The Pop",
@@ -10246,7 +10278,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.691Z",
-      "updatedAt": "2025-10-25T10:18:24.691Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -17560,15 +17592,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-10-25T10:18:24.693Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -19578,15 +19614,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-10-25T10:18:24.693Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -19684,15 +19724,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-10-25T10:18:24.693Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -23413,17 +23457,19 @@
       "thcBpm": null,
       "isLive": true,
       "sections": [
-        "ceremony"
+        "ceremony",
+        "Ceremony"
       ],
       "ensembles": [
-        "Piano Trio (Violin + Cello + Piano)"
+        "Piano Trio (Violin + Cello + Piano)",
+        "Classic Duo (Piano + Guitar)"
       ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-11-04T22:21:34.379Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -24605,15 +24651,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-10-25T10:18:24.693Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -24764,15 +24814,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.693Z",
-      "updatedAt": "2025-10-25T10:18:24.694Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -25676,15 +25730,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.694Z",
-      "updatedAt": "2025-10-25T10:18:24.694Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -26106,17 +26164,19 @@
       "thcBpm": null,
       "isLive": true,
       "sections": [
-        "ceremony"
+        "ceremony",
+        "Ceremony"
       ],
       "ensembles": [
-        "Piano Trio (Violin + Cello + Piano)"
+        "Piano Trio (Violin + Cello + Piano)",
+        "Classic Duo (Piano + Guitar)"
       ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.694Z",
-      "updatedAt": "2025-11-04T22:21:34.385Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -26966,15 +27026,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.694Z",
-      "updatedAt": "2025-10-25T10:18:24.694Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -29775,15 +29839,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.694Z",
-      "updatedAt": "2025-10-25T10:18:24.694Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -32391,17 +32459,19 @@
       "thcBpm": null,
       "isLive": true,
       "sections": [
-        "ceremony"
+        "ceremony",
+        "Ceremony"
       ],
       "ensembles": [
-        "Piano Trio (Violin + Cello + Piano)"
+        "Piano Trio (Violin + Cello + Piano)",
+        "Classic Duo (Piano + Guitar)"
       ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.695Z",
-      "updatedAt": "2025-11-04T22:21:34.383Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -33083,8 +33153,12 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [
         {
           "client": "💕 Slow Jams",
@@ -33095,7 +33169,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.695Z",
-      "updatedAt": "2025-10-25T10:18:24.695Z",
+      "updatedAt": "2025-11-13T05:47:10.102Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -34000,15 +34074,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.695Z",
-      "updatedAt": "2025-10-25T10:18:24.695Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -35148,15 +35226,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.695Z",
-      "updatedAt": "2025-10-25T10:18:24.695Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -36021,18 +36103,20 @@
       "isLive": true,
       "sections": [
         "ceremony",
-        "cocktailHour"
+        "cocktailHour",
+        "Ceremony"
       ],
       "ensembles": [
         "Piano Trio (Violin + Cello + Piano)",
-        "Jazz Quartet (Sax + Piano + Bass + Drums)"
+        "Jazz Quartet (Sax + Piano + Bass + Drums)",
+        "Lounge Duo (Vocalist + Piano)"
       ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.695Z",
-      "updatedAt": "2025-11-04T22:23:53.036Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -40283,8 +40367,12 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [
         {
           "client": "Guest Entrance",
@@ -40295,7 +40383,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.696Z",
-      "updatedAt": "2025-10-25T10:18:24.696Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -40583,15 +40671,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.696Z",
-      "updatedAt": "2025-10-25T10:18:24.696Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -41022,14 +41114,18 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.696Z",
-      "updatedAt": "2025-10-25T10:18:24.696Z",
+      "updatedAt": "2025-11-13T05:47:10.101Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -43533,15 +43629,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.696Z",
-      "updatedAt": "2025-10-25T10:18:24.696Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -44134,15 +44234,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.696Z",
-      "updatedAt": "2025-10-25T10:18:24.696Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -44402,15 +44506,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.696Z",
-      "updatedAt": "2025-10-25T10:18:24.696Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -47752,15 +47860,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.697Z",
-      "updatedAt": "2025-10-25T10:18:24.697Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -51873,15 +51985,20 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)",
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.697Z",
-      "updatedAt": "2025-10-25T10:18:24.697Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -54432,15 +54549,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.698Z",
-      "updatedAt": "2025-10-25T10:18:24.698Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -56693,15 +56814,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.698Z",
-      "updatedAt": "2025-10-25T10:18:24.698Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -57121,15 +57246,20 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)",
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.698Z",
-      "updatedAt": "2025-10-25T10:18:24.698Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -58354,15 +58484,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.698Z",
-      "updatedAt": "2025-10-25T10:18:24.698Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -59982,15 +60116,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.698Z",
-      "updatedAt": "2025-10-25T10:18:24.698Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -63495,15 +63633,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.699Z",
-      "updatedAt": "2025-10-25T10:18:24.699Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -64520,15 +64662,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.699Z",
-      "updatedAt": "2025-10-25T10:18:24.699Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -69126,15 +69272,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.699Z",
-      "updatedAt": "2025-10-25T10:18:24.699Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -69849,15 +69999,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.699Z",
-      "updatedAt": "2025-10-25T10:18:24.699Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -73632,15 +73786,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.700Z",
-      "updatedAt": "2025-10-25T10:18:24.700Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -74452,8 +74610,12 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [
         {
           "client": "💕 Slow Jams",
@@ -74464,7 +74626,7 @@
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.700Z",
-      "updatedAt": "2025-10-25T10:18:24.700Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -74518,14 +74680,18 @@
       "originalBpm": null,
       "thcBpm": null,
       "isLive": true,
-      "sections": [],
-      "ensembles": [],
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.700Z",
-      "updatedAt": "2025-10-25T10:18:24.700Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -78843,15 +79009,19 @@
       "spotifyUrl": "",
       "originalBpm": null,
       "thcBpm": null,
-      "isLive": false,
-      "sections": [],
-      "ensembles": [],
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
       "genres": [],
       "specialMomentTypes": [],
       "thcPercent": null,
       "notes": "",
       "createdAt": "2025-10-25T10:18:24.700Z",
-      "updatedAt": "2025-10-25T10:18:24.700Z",
+      "updatedAt": "2025-11-13T05:46:02.155Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
@@ -80945,6 +81115,238 @@
       "notes": "",
       "createdAt": "2025-11-06T03:54:09.465Z",
       "updatedAt": "2025-11-06T03:54:09.465Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ]
+    },
+    {
+      "id": "sweet-pea",
+      "originalTitle": "Sweet Pea",
+      "originalArtist": "Amos Lee",
+      "thcTitle": "Sweet Pea",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
+      "genres": [],
+      "danceGenres": [],
+      "lightGenres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-13T05:46:02.156Z",
+      "updatedAt": "2025-11-13T05:46:02.156Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ]
+    },
+    {
+      "id": "somethin-stupid",
+      "originalTitle": "Somethin' Stupid",
+      "originalArtist": "Frank Sinatra, Nancy Sinatra",
+      "thcTitle": "Somethin' Stupid",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
+      "genres": [],
+      "danceGenres": [],
+      "lightGenres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-13T05:46:02.156Z",
+      "updatedAt": "2025-11-13T05:46:02.156Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ]
+    },
+    {
+      "id": "my-stunning-mystery-companion",
+      "originalTitle": "My Stunning Mystery Companion",
+      "originalArtist": "Jackson Browne",
+      "thcTitle": "My Stunning Mystery Companion",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Lounge Duo (Vocalist + Piano)"
+      ],
+      "genres": [],
+      "danceGenres": [],
+      "lightGenres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-13T05:46:02.156Z",
+      "updatedAt": "2025-11-13T05:46:02.156Z",
+      "originalKey": null,
+      "requiresLeadVocalist": false,
+      "leadVocalistRole": "",
+      "leadVocalistPart": "",
+      "requiresBackgroundVocals": false,
+      "backgroundVocalCount": 0,
+      "backgroundVocalRoles": [],
+      "backgroundVocalParts": [],
+      "backgroundVocalPartNames": [],
+      "leadSheet": false,
+      "fullBandArrangement": false,
+      "hornChart": false,
+      "sheetMusicStandard": false,
+      "chartLyricsSpecial": false,
+      "hornChartSpecial": false,
+      "chordLyricChartUrl": "",
+      "ensembleSheetMusic": {},
+      "keyVersions": [
+        {
+          "key": "C",
+          "isDefault": true,
+          "bpm": null,
+          "chordLyricChartUrl": "",
+          "leadSheetUrl": "",
+          "fullBandArrangementUrl": "",
+          "hornChartUrl": null,
+          "sheetMusicStandardUrl": "",
+          "chartLyricsSpecialUrl": null,
+          "hornChartSpecialUrl": null
+        }
+      ]
+    },
+    {
+      "id": "come-away-with-me",
+      "originalTitle": "Come Away With Me",
+      "originalArtist": "Norah Jones",
+      "thcTitle": "Come Away With Me",
+      "thcArtist": "The Hook Club",
+      "videoUrl": "",
+      "spotifyUrl": "",
+      "originalBpm": null,
+      "thcBpm": null,
+      "isLive": true,
+      "sections": [
+        "Ceremony"
+      ],
+      "ensembles": [
+        "Classic Duo (Piano + Guitar)"
+      ],
+      "genres": [],
+      "danceGenres": [],
+      "lightGenres": [],
+      "specialMomentTypes": [],
+      "specialMomentRecommendations": [],
+      "thcPercent": null,
+      "notes": "",
+      "createdAt": "2025-11-13T05:47:10.103Z",
+      "updatedAt": "2025-11-13T05:47:10.103Z",
       "originalKey": null,
       "requiresLeadVocalist": false,
       "leadVocalistRole": "",
