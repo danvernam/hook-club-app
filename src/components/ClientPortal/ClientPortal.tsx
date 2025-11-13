@@ -730,6 +730,26 @@ export default function ClientPortal() {
     return receptionGenres;
   };
 
+  // Filter genres for Welcome Party Reception Repertoire
+  // If a reception ensemble is selected, use the same filtering as Reception tab
+  // Otherwise, always use Classic Band exclusions
+  const getFilteredWelcomePartyReceptionGenres = () => {
+    // Check if selected ensemble is a reception ensemble
+    const isReceptionEnsemble = receptionAndAfterPartyEnsembles.includes(selectedWelcomePartyEnsemble);
+    
+    if (isReceptionEnsemble) {
+      // Use the same filtering logic as Reception tab
+      if (selectedWelcomePartyEnsemble === 'Classic Band') {
+        return receptionGenres.filter(genre => !classicBandExcludedGenres.includes(genre.band));
+      }
+      // For other reception ensembles, show all genres
+      return receptionGenres;
+    }
+    
+    // For ceremony/cocktail hour ensembles, always use Classic Band exclusions
+    return receptionGenres.filter(genre => !classicBandExcludedGenres.includes(genre.band));
+  };
+
   const afterPartySongsWithFlag = sortedAfterPartySongs.filter(song =>
     song.isLive && Array.isArray(song.sections) && song.sections.includes('afterParty')
   );
@@ -758,14 +778,81 @@ export default function ClientPortal() {
   });
   const totalAfterPartySongs = new Set(afterPartySongsWithFlag.map(getSongKey)).size;
 
-  // Get all ceremony and cocktail hour ensembles (combined, no duplicates)
-  // Combine and deduplicate ensembles
-  const allWelcomePartyEnsembles = Array.from(new Set([...ceremonyEnsembles, ...cocktailHourEnsembles])).sort();
+  // Count songs available for selected After Party ensemble (based on filtered genres)
+  const getAfterPartySongsCount = () => {
+    const filteredGenres = getFilteredAfterPartyGenres();
+    const genreSongs = afterPartySongsWithFlag.filter(song => {
+      const isLightGenre = lightGenreBands.some(band => 
+        song.lightGenres?.some((g: any) => g.band === band)
+      );
+      const collection = isLightGenre ? song.lightGenres : song.danceGenres;
+      return Array.isArray(collection) && collection.some((g: any) => 
+        filteredGenres.some(genre => genre.band === g.band)
+      );
+    });
+    // Include ungrouped songs (songs without genre tags)
+    const allSongs = [...genreSongs, ...afterPartyUngroupedSongs];
+    return new Set(allSongs.map(getSongKey)).size;
+  };
+
+  // Helper function to count instruments in an ensemble name
+  const countInstruments = (ensemble: string): number => {
+    // Check for Solo = 1
+    if (ensemble.includes('Solo ')) return 1;
+    
+    // Check for Duo = 2
+    if (ensemble.includes('Duo')) return 2;
+    
+    // Check for Trio = 3
+    if (ensemble.includes('Trio')) return 3;
+    
+    // Check for Quartet = 4
+    if (ensemble.includes('Quartet')) return 4;
+    
+    // Check for Band - count instruments in parentheses or default to 4
+    if (ensemble.includes('Band')) {
+      const match = ensemble.match(/\(([^)]+)\)/);
+      if (match) {
+        // Count "+" signs and add 1
+        return (match[1].match(/\+/g) || []).length + 1;
+      }
+      return 4; // Default for Band
+    }
+    
+    // For "w/ Tracks" ensembles, count instruments in parentheses
+    if (ensemble.includes('w/ Tracks')) {
+      const match = ensemble.match(/\(([^)]+)\)/);
+      if (match) {
+        // Count "+" signs and add 1
+        return (match[1].match(/\+/g) || []).length + 1;
+      }
+      return 2; // Default for w/ Tracks
+    }
+    
+    // Default fallback
+    return 0;
+  };
+
+  // Get all ceremony, cocktail hour, and reception ensembles (combined, no duplicates)
+  // Separate into Small Ensembles and Reception Ensembles for dropdown grouping
+  // Sort small ensembles by instrument count, then alphabetically within same count
+  const allSmallEnsembles = Array.from(new Set([...ceremonyEnsembles, ...cocktailHourEnsembles]));
+  const smallEnsembles = allSmallEnsembles.sort((a, b) => {
+    const countA = countInstruments(a);
+    const countB = countInstruments(b);
+    if (countA !== countB) {
+      return countA - countB; // Sort by instrument count
+    }
+    return a.localeCompare(b); // Then alphabetically
+  });
+  const receptionEnsembles = [...receptionAndAfterPartyEnsembles].sort();
+  const allWelcomePartyEnsembles = [...smallEnsembles, ...receptionEnsembles];
   
   // Check if selected ensemble appears in both ceremony and cocktail hour
   const isEnsembleInCeremony = ceremonyEnsembles.includes(selectedWelcomePartyEnsemble);
   const isEnsembleInCocktailHour = cocktailHourEnsembles.includes(selectedWelcomePartyEnsemble);
   const isEnsembleInBoth = isEnsembleInCeremony && isEnsembleInCocktailHour;
+  const isReceptionEnsemble = receptionAndAfterPartyEnsembles.includes(selectedWelcomePartyEnsemble);
   
   // Filter songs for selected ensemble
   const filteredWelcomePartyEnsembleSongs = songs.filter(song => 
@@ -888,21 +975,118 @@ export default function ClientPortal() {
     [...filteredReceptionDanceSongs, ...filteredReceptionLightSongs].map(getSongKey)
   ).size;
 
+  // Count songs available for selected Reception ensemble (based on filtered genres)
+  const getReceptionSongsCount = () => {
+    const filteredGenres = getFilteredReceptionGenres();
+    const allSongs = [...filteredReceptionDanceSongs, ...filteredReceptionLightSongs];
+    const genreSongs = allSongs.filter(song => {
+      const isLightGenre = lightGenreBands.some(band => 
+        song.lightGenres?.some((g: any) => g.band === band)
+      );
+      const collection = isLightGenre ? song.lightGenres : song.danceGenres;
+      return Array.isArray(collection) && collection.some((g: any) => 
+        filteredGenres.some(genre => genre.band === g.band)
+      );
+    });
+    return new Set(genreSongs.map(getSongKey)).size;
+  };
+
+  // Count total unique songs for Welcome Party Reception Repertoire (using filtered genres)
+  const filteredWelcomePartyReceptionGenresList = getFilteredWelcomePartyReceptionGenres();
+  const welcomePartyReceptionSongs = sortedSongs.filter(song => {
+    if (!song.isLive) return false;
+    return filteredWelcomePartyReceptionGenresList.some(genre => {
+      const isLightGenre = lightGenreBands.includes(genre.band);
+      const songGenres = isLightGenre ? song.lightGenres : song.danceGenres;
+      return Array.isArray(songGenres) && songGenres.some((g: any) => g.band === genre.band);
+    });
+  });
+  const totalWelcomePartyReceptionSongs = new Set(welcomePartyReceptionSongs.map(getSongKey)).size;
+
   // Get recommended songs from database based on special moment type
-  const getRecommendedSongs = (momentType: string) => {
+  // For reception, checks ensemble-specific recommendations if ensemble is provided
+  const getRecommendedSongs = (momentType: string, section?: string, ensemble?: string) => {
     if (!songsData || !songsData.songs) return [];
     
     return songsData.songs
-      .filter((song: any) => 
-        song.specialMomentTypes && 
-        song.specialMomentTypes.length > 0 &&
-        song.specialMomentTypes.includes(momentType)
-      )
+      .filter((song: any) => {
+        // For reception section, check ensemble-specific recommendations first
+        if (section === 'reception' && ensemble && song.receptionEnsembleRecommendations) {
+          const ensembleRecs = song.receptionEnsembleRecommendations[ensemble];
+          if (Array.isArray(ensembleRecs) && ensembleRecs.includes(momentType)) {
+            return true;
+          }
+        }
+        
+        // Fallback to general special moment types
+        if (song.specialMomentTypes && song.specialMomentTypes.length > 0) {
+          return song.specialMomentTypes.includes(momentType);
+        }
+        
+        return false;
+      })
       .map((song: any) => ({
-        title: song.originalTitle,
-        artist: song.originalArtist,
-        videoUrl: song.videoUrl || ''
+        title: song.originalTitle || song.thcTitle,
+        artist: song.originalArtist || song.thcArtist,
+        videoUrl: song.videoUrl || '',
+        spotifyUrl: song.spotifyUrl || '',
+        id: song.id
       }));
+  };
+
+  // Helper function to check if a song is selected as a reception special moment
+  const isSongSelectedAsReceptionSpecialMoment = (songId: string) => {
+    if (!receptionSpecialMoments || receptionSpecialMoments.length === 0) return null;
+    const song = songs?.find((s: any) => s.id === songId);
+    if (!song) return null;
+    
+    for (const moment of receptionSpecialMoments) {
+      if (moment.clientSongTitle && moment.clientArtist) {
+        const momentTitle = normalizeText(moment.clientSongTitle);
+        const momentArtist = normalizeText(moment.clientArtist);
+        const songTitle = normalizeText(song.originalTitle || song.thcTitle || '');
+        const songArtist = normalizeText(song.originalArtist || song.thcArtist || '');
+        
+        if (momentTitle === songTitle && momentArtist === songArtist) {
+          return moment.specialMomentType;
+        }
+      }
+    }
+    return null;
+  };
+
+  // Helper function to check if a song is selected as a ceremony processional/recessional
+  const isSongSelectedAsCeremonyMoment = (songId: string) => {
+    if (!ceremonySongs || ceremonySongs.length === 0) return null;
+    const song = songs?.find((s: any) => s.id === songId);
+    if (!song) return null;
+    
+    for (const ceremonySong of ceremonySongs) {
+      if (ceremonySong.clientSongTitle && ceremonySong.clientArtist && 
+          (ceremonySong.ceremonyMomentType === 'Ceremony Processional' || 
+           ceremonySong.ceremonyMomentType === 'Ceremony Recessional')) {
+        const momentTitle = normalizeText(ceremonySong.clientSongTitle);
+        const momentArtist = normalizeText(ceremonySong.clientArtist);
+        const songTitle = normalizeText(song.originalTitle || song.thcTitle || '');
+        const songArtist = normalizeText(song.originalArtist || song.thcArtist || '');
+        
+        if (momentTitle === songTitle && momentArtist === songArtist) {
+          return ceremonySong.ceremonyMomentType;
+        }
+      }
+    }
+    return null;
+  };
+
+  // Helper function to normalize text for comparison
+  const normalizeText = (text: string) => {
+    return (text || '')
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, ' ')
+      .replace(/["'`'']/g, '')
+      .replace(/[^a-z0-9\s]/g, '')
+      .replace(/\s+/g, ' ');
   };
 
   // Section-specific special moment types
@@ -939,7 +1123,8 @@ export default function ClientPortal() {
         "Money Spray",
         "Money Dance",
         "Newlyweds Exit",
-        "Private Last Dance"
+        "Private Last Dance",
+        "Grand Finale"
       ],
       'after-party': [
         "Grand Finale",
@@ -961,6 +1146,36 @@ export default function ClientPortal() {
     "Salads",
     "Cultural Music"
   ];
+
+  // Helper function to get the best link for a song (videoUrl first, then spotifyUrl)
+  const getSongLink = (song: any): string => {
+    return song.videoUrl || song.spotifyUrl || '';
+  };
+
+  // Get ceremony ensemble recommendations from database based on selected ensemble and moment type
+  const getCeremonyEnsembleRecommendations = (ensemble: string, momentType: string) => {
+    if (!songs || songs.length === 0) return [];
+    
+    const recommendationType = momentType === 'Ceremony Processional' ? 'processional' : 
+                              momentType === 'Ceremony Recessional' ? 'recessional' : null;
+    
+    if (!recommendationType) return [];
+    
+    // Filter songs that have this ensemble recommendation for the specified type
+    return songs
+      .filter((song: any) => {
+        if (!song.ceremonyEnsembleRecommendations || !song.ceremonyEnsembleRecommendations[ensemble]) {
+          return false;
+        }
+        return song.ceremonyEnsembleRecommendations[ensemble][recommendationType] === true;
+      })
+      .map((song: any) => ({
+        title: song.originalTitle || song.thcTitle,
+        artist: song.originalArtist || song.thcArtist,
+        videoUrl: song.videoUrl || '',
+        spotifyUrl: song.spotifyUrl || ''
+      }));
+  };
 
   // Save only essential client data to API (song feedback)
   const saveClientData = async () => {
@@ -1142,7 +1357,7 @@ export default function ClientPortal() {
           {/* Event Details */}
           <div className="text-center mb-8">
             <div className="text-xl font-medium text-gray-800 mb-1">Carrie Bradshaw & Mr. Big • Wedding</div>
-            <div className="text-lg text-gray-600">Saturday, April 20th 2008</div>
+            <div className="text-lg text-gray-600">Saturday, April 20th 2008 • The Plaza Hotel</div>
           </div>
           
           {/* Navigation Buttons */}
@@ -1322,11 +1537,20 @@ export default function ClientPortal() {
                             onChange={(e) => setSelectedWelcomePartyEnsemble(e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
                           >
-                            {allWelcomePartyEnsembles.map(ensemble => (
+                            <optgroup label="Small Ensembles">
+                              {smallEnsembles.map(ensemble => (
                               <option key={ensemble} value={ensemble}>
                                 {ensemble}
                               </option>
                             ))}
+                            </optgroup>
+                            <optgroup label="Reception Ensembles">
+                              {receptionEnsembles.map(ensemble => (
+                                <option key={ensemble} value={ensemble}>
+                                  {ensemble}
+                                </option>
+                              ))}
+                            </optgroup>
                           </select>
                         </div>
                       </div>
@@ -2086,7 +2310,7 @@ export default function ClientPortal() {
                   {/* Upload Document Content */}
                   {activeDocumentsTab === 'upload' && (
                     <div className="space-y-4">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Upload Document</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Upload Document</h3>
                   
                   {/* Document Upload Form */}
                   <div className="space-y-4">
@@ -2151,15 +2375,15 @@ export default function ClientPortal() {
                       </button>
                     </div>
                   </div>
-                    </div>
+                </div>
                   )}
 
                   {/* Booking Documents Content */}
                   {activeDocumentsTab === 'booking' && (
                     <div className="space-y-4">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Booking Documents</h3>
-                      
-                      <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Booking Documents</h3>
+                  
+                  <div className="space-y-4">
                     <p className="text-gray-600 mb-4">Important documents related to your booking will appear here.</p>
                     
                     {/* Contract Section */}
@@ -2218,16 +2442,16 @@ export default function ClientPortal() {
                         </div>
                       </div>
                     </div>
-                      </div>
-                    </div>
+                  </div>
+                </div>
                   )}
 
                   {/* Payment Information Content */}
                   {activeDocumentsTab === 'payment' && (
                     <div className="space-y-4">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Payment Information</h3>
-                      
-                      <div className="space-y-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Payment Information</h3>
+                  
+                  <div className="space-y-6">
                     {/* Retainer Payment */}
                     <div className="border border-gray-200 rounded-lg p-4">
                       <div className="flex items-center justify-between mb-3">
@@ -2288,18 +2512,18 @@ export default function ClientPortal() {
                         </div>
                       </div>
                     </div>
-                      </div>
-                    </div>
+                  </div>
+                </div>
                   )}
 
                   {/* Uploaded Documents Content */}
                   {activeDocumentsTab === 'uploaded' && (
                     <div className="space-y-4">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Uploaded Documents</h3>
-                      
-                      <div className="text-center py-8">
-                        <p className="text-gray-500">No documents uploaded yet</p>
-                      </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Uploaded Documents</h3>
+                  
+                  <div className="text-center py-8">
+                    <p className="text-gray-500">No documents uploaded yet</p>
+                  </div>
                     </div>
                   )}
                 </div>
@@ -2313,26 +2537,26 @@ export default function ClientPortal() {
                 
                 {/* Full Vendor List Checkbox */}
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-start space-x-3">
                     <input
                       type="checkbox"
                       id="fullVendorListSent"
                       checked={fullVendorListSent}
                       onChange={(e) => setFullVendorListSent(e.target.checked)}
-                      className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                      className="h-5 w-5 text-purple-600 focus:ring-purple-500 border-gray-300 rounded mt-0.5"
                     />
-                    <label htmlFor="fullVendorListSent" className="text-sm font-medium text-gray-900">
-                      Check Box If You Would Rather Upload Your Vendor List Separately, Prior To The Wedding
+                    <label htmlFor="fullVendorListSent" className="text-base text-gray-700 leading-relaxed cursor-pointer">
+                      Check box if you would rather upload your vendor list separately, prior to the wedding
                     </label>
                   </div>
                 </div>
 
                 {fullVendorListSent ? (
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <div className="text-center">
-                      <h3 className="text-lg font-medium text-blue-900 mb-2">Vendor List Will Be Provided</h3>
-                      <p className="text-blue-700">
-                        When Possible, Please Send Us A List Of All Vendors Working The Wedding And Their Contact/Social Media Info!
+                    <div className="text-center space-y-3">
+                      <h3 className="text-lg font-semibold text-blue-900">Vendor list will be provided</h3>
+                      <p className="text-base text-blue-700 leading-relaxed max-w-2xl mx-auto">
+                        When possible, please send us a list of all vendors working the wedding and their contact/social media info!
                       </p>
                     </div>
                   </div>
@@ -2437,10 +2661,10 @@ export default function ClientPortal() {
                 )}
 
                 {/* Recommended Vendors Section */}
-                <div className="bg-purple-50 rounded-lg shadow-sm border border-gray-200 p-6">
+                <div className="bg-purple-50 rounded-lg shadow-sm border border-purple-200 p-8">
                   <div className="text-center">
-                    <button className="bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium text-lg">
-                      Click Here For A List Of The Hook Club's Recommended Vendors!
+                    <button className="bg-purple-600 text-white px-8 py-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 font-medium text-base shadow-md transition-all duration-200 hover:shadow-lg">
+                      Click here for a list of The Hook Club's recommended vendors!
                     </button>
                   </div>
                 </div>
@@ -2461,11 +2685,20 @@ export default function ClientPortal() {
                         onChange={(e) => setSelectedWelcomePartyEnsemble(e.target.value)}
                         className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
                       >
-                        {allWelcomePartyEnsembles.map(ensemble => (
+                        <optgroup label="Small Ensembles">
+                          {smallEnsembles.map(ensemble => (
                           <option key={ensemble} value={ensemble}>
                             {ensemble}
                           </option>
                         ))}
+                        </optgroup>
+                        <optgroup label="Reception Ensembles">
+                          {receptionEnsembles.map(ensemble => (
+                            <option key={ensemble} value={ensemble}>
+                              {ensemble}
+                            </option>
+                          ))}
+                        </optgroup>
                       </select>
                     </div>
                   </div>
@@ -2569,14 +2802,15 @@ export default function ClientPortal() {
                                     newMoments[index].clientSongTitle = e.target.value;
                                     if (selectedSong) {
                                       newMoments[index].clientArtist = selectedSong.artist;
-                                      newMoments[index].clientLink = selectedSong.videoUrl;
+                                      // Prefer videoUrl (YouTube), fallback to spotifyUrl
+                                      newMoments[index].clientLink = selectedSong.videoUrl || selectedSong.spotifyUrl || '';
                                     }
                                     setWelcomePartySpecialMoments(newMoments);
                                   }}
                                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                                 >
                                   <option value="">Select a recommended song...</option>
-                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string}, songIndex: number) => (
+                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string, spotifyUrl?: string}, songIndex: number) => (
                                     <option key={songIndex} value={song.title}>
                                       {song.title} - {song.artist}
                                     </option>
@@ -2638,28 +2872,32 @@ export default function ClientPortal() {
                               {expandedRecommendations[index] && (
                                 <div className="mt-2 max-h-64 overflow-y-auto border border-gray-200 rounded-lg">
                                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2 p-3">
-                                    {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string}, songIndex: number) => (
+                                    {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string, spotifyUrl?: string}, songIndex: number) => (
                                       <div key={songIndex} className="flex items-center justify-between p-2 bg-white rounded border hover:bg-gray-50">
                                         <div className="flex-1 min-w-0">
-                                          <div className="font-medium text-gray-900 text-sm truncate">{song.title}</div>
+                                          {(song.videoUrl || song.spotifyUrl) ? (
+                                          <a
+                                              href={song.videoUrl || song.spotifyUrl || ''}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                              className="font-medium text-purple-600 hover:text-purple-800 underline text-sm truncate block"
+                                            >
+                                              {song.title}
+                                            </a>
+                                          ) : (
+                                            <div className="font-medium text-purple-600 underline text-sm truncate">{song.title}</div>
+                                          )}
                                           <div className="text-xs text-gray-600 truncate">{song.artist}</div>
                                         </div>
                                         <div className="flex items-center space-x-1 ml-2">
-                                          <a
-                                            href={song.videoUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-blue-600 hover:text-blue-800 text-xs font-medium"
-                                          >
-                                            Video
-                                          </a>
                                           <button
                                             type="button"
                                             onClick={() => {
                                               const newMoments = [...welcomePartySpecialMoments];
                                               newMoments[index].clientSongTitle = song.title;
                                               newMoments[index].clientArtist = song.artist;
-                                              newMoments[index].clientLink = song.videoUrl;
+                                              // Prefer videoUrl (YouTube), fallback to spotifyUrl
+                                              newMoments[index].clientLink = song.videoUrl || song.spotifyUrl || '';
                                               setWelcomePartySpecialMoments(newMoments);
                                             }}
                                             className="px-2 py-1 text-xs bg-purple-600 text-white rounded hover:bg-purple-700"
@@ -2975,14 +3213,18 @@ export default function ClientPortal() {
                                   <div className="flex-1">
                                     <div className="flex items-center space-x-4">
                                       <div>
+                                        {getSongLink(song) ? (
                                         <a
-                                          href={song.videoUrl}
+                                            href={getSongLink(song)}
                                           target="_blank"
                                           rel="noopener noreferrer"
                                           className="font-medium text-purple-600 hover:text-purple-800 underline"
                                         >
                                           {song.originalTitle}
                                         </a>
+                                        ) : (
+                                          <span className="font-medium text-purple-600 underline">{song.originalTitle}</span>
+                                        )}
                                         <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                       </div>
                                     </div>
@@ -3044,11 +3286,231 @@ export default function ClientPortal() {
                   {/* Core Repertoire Content */}
                   {activeWelcomePartyTab === 'core-repertoire' && (
                     <div className="space-y-6">
-                      {/* Song Progress Section */}
+                      {/* If reception ensemble is selected, show Reception tab content */}
+                      {isReceptionEnsemble ? (
+                        <>
+                          {/* Song Progress Section - Reception style */}
+                          <div className="bg-white rounded-lg border border-gray-200 p-6">
+                            <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+                              <span className="mr-2">🎵</span>
+                              Song Progress
+                            </h4>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                              {/* Definitely Play Card */}
+                              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <div className="flex justify-between items-center mb-2">
+                                  <h5 className="font-medium text-green-800">🤘 Definitely Play</h5>
+                                  <span className="text-sm text-green-600">
+                                    {Object.values(receptionSongPreferences).filter(pref => pref === 'definitely').length}/50
+                        </span>
+                                </div>
+                                <div className="w-full bg-green-200 rounded-full h-2 mb-2">
+                                  <div 
+                                    className="bg-green-600 h-2 rounded-full transition-all duration-300"
+                                    style={{ 
+                                      width: `${Math.min(100, (Object.values(receptionSongPreferences).filter(pref => pref === 'definitely').length / 25) * 100)}%` 
+                                    }}
+                                  ></div>
+                                </div>
+                                <p className="text-sm text-gray-600">Goal: 25-50 songs</p>
+                      </div>
+
+                              {/* If Mood Is Right Card */}
+                              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                                <div className="flex justify-between items-center mb-2">
+                                  <h5 className="font-medium text-yellow-800">👍 If Mood Is Right</h5>
+                                  <span className="text-sm text-yellow-600">
+                                    {Object.values(receptionSongPreferences).filter(pref => pref === 'maybe').length}/∞
+                                  </span>
+                                </div>
+                                <div className="w-full bg-yellow-200 rounded-full h-2 mb-2">
+                                  <div 
+                                    className="bg-yellow-600 h-2 rounded-full transition-all duration-300"
+                                    style={{ 
+                                      width: `${Math.min(100, (Object.values(receptionSongPreferences).filter(pref => pref === 'maybe').length / 25) * 100)}%` 
+                                    }}
+                                  ></div>
+                                </div>
+                                <p className="text-sm text-gray-600">Goal: ≥25 songs</p>
+                              </div>
+
+                              {/* Avoid Playing Card */}
+                              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                                <div className="flex justify-between items-center mb-2">
+                                  <h5 className="font-medium text-red-800">👎 Avoid Playing</h5>
+                                  <span className="text-sm text-red-600">
+                                    {Object.values(receptionSongPreferences).filter(pref => pref === 'avoid').length}/100
+                                  </span>
+                                </div>
+                                <div className="w-full bg-red-200 rounded-full h-2 mb-2">
+                                  <div 
+                                    className="bg-red-600 h-2 rounded-full transition-all duration-300"
+                                    style={{ 
+                                      width: `${Math.min(100, (Object.values(receptionSongPreferences).filter(pref => pref === 'avoid').length / 100) * 100)}%` 
+                                    }}
+                                  ></div>
+                                </div>
+                                <p className="text-sm text-gray-600">Goal: ≤100 songs</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Songs List by Genre - Reception style */}
+                          <div className="bg-white rounded-lg border border-gray-200">
+                            {isLoadingReception ? (
+                              <div className="text-center py-8 text-gray-500">
+                                <p>Loading songs...</p>
+                              </div>
+                            ) : sortedReceptionSongs.length === 0 ? (
+                              <div className="text-center py-8 text-gray-500">
+                                <p>No songs available</p>
+                              </div>
+                            ) : (
+                              <div className="space-y-3 p-3">
+                                {(selectedWelcomePartyEnsemble === 'Classic Band' 
+                                  ? receptionGenres.filter(genre => !classicBandExcludedGenres.includes(genre.band))
+                                  : receptionGenres
+                                ).map((genre) => {
+                                  const isLightGenre = lightGenreBands.includes(genre.band);
+                                  const genreSongs = sortedReceptionSongs.filter(song => {
+                                    if (!song.isLive) return false;
+                                    const collection = isLightGenre ? song.lightGenres : song.danceGenres;
+                                    return Array.isArray(collection) && collection.some((g: any) => g.band === genre.band);
+                                  });
+
+                                  if (genreSongs.length === 0) return null;
+
+                                  return (
+                                    <div key={genre.band} className="border border-gray-200 rounded-lg">
+                                      <button
+                                        onClick={() => setExpandedReceptionGenres(prev => ({
+                                          ...prev,
+                                          [genre.band]: !prev[genre.band]
+                                        }))}
+                                        className={`w-full px-4 py-3 text-left border-b border-gray-200 flex items-center justify-between ${
+                                          isLightGenre
+                                            ? 'bg-blue-50 hover:bg-blue-100'
+                                            : 'bg-purple-50 hover:bg-purple-100'
+                                        }`}
+                                      >
+                                        <div className="flex items-center space-x-3">
+                                          <span className="text-lg font-medium text-gray-900">{genre.client}</span>
+                                          <span className="text-sm text-gray-600">({genreSongs.length} songs)</span>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                          <svg
+                                            className={`w-5 h-5 transform transition-transform ${
+                                              expandedReceptionGenres[genre.band] ? 'rotate-180' : ''
+                                            }`}
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                          >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                          </svg>
+                                        </div>
+                                      </button>
+
+                                      {expandedReceptionGenres[genre.band] && (
+                                        <div className="divide-y divide-gray-200">
+                                          {genreSongs.map((song, index) => {
+                                            const selectedAsSpecialMoment = song.id ? isSongSelectedAsReceptionSpecialMoment(song.id) : null;
+                                            return (
+                                            <div key={song.id || index} className="px-3 py-2 hover:bg-gray-50">
+                                              <div className="flex items-center justify-between">
+                                                <div className="flex-1">
+                                                  <div className="flex items-center space-x-3">
+                                                    <div className="flex-1">
+                                                      <div className="flex items-center space-x-2">
+                                                        {getSongLink(song) ? (
+                                                          <a
+                                                            href={getSongLink(song)}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="font-medium text-purple-600 hover:text-purple-800 underline"
+                                                          >
+                                                            {song.originalTitle}
+                                                          </a>
+                                                        ) : (
+                                                          <span className="font-medium text-purple-600 underline">{song.originalTitle}</span>
+                                                        )}
+                                                        {selectedAsSpecialMoment && (
+                                                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800" title={`Selected as ${selectedAsSpecialMoment}`}>
+                                                            🎵 {selectedAsSpecialMoment}
+                                                          </span>
+                                                        )}
+                                                      </div>
+                                                      <p className="text-sm text-gray-600">{song.originalArtist}</p>
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                                {isLightGenre ? (
+                                                  <div className="flex items-center space-x-2">
+                                                    <button
+                                                      onClick={() => setReceptionSongPreferences(prev => ({
+                                                        ...prev,
+                                                        [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
+                                                      }))}
+                                                      className={`px-3 py-0.5 text-sm rounded border ${
+                                                        receptionSongPreferences[song.id] === 'definitely'
+                                                          ? 'bg-green-100 text-green-800 border-green-300'
+                                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
+                                                      }`}
+                                                    >
+                                                      🤘 Definitely Play
+                                                    </button>
+                                                    <button
+                                                      onClick={() => setReceptionSongPreferences(prev => ({
+                                                        ...prev,
+                                                        [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
+                                                      }))}
+                                                      className={`px-3 py-0.5 text-sm rounded border ${
+                                                        receptionSongPreferences[song.id] === 'maybe'
+                                                          ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
+                                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
+                                                      }`}
+                                                    >
+                                                      👍 If the Mood is Right
+                                                    </button>
+                                                    <button
+                                                      onClick={() => setReceptionSongPreferences(prev => ({
+                                                        ...prev,
+                                                        [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
+                                                      }))}
+                                                      className={`px-3 py-0.5 text-sm rounded border ${
+                                                        receptionSongPreferences[song.id] === 'avoid'
+                                                          ? 'bg-red-100 text-red-800 border-red-300'
+                                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
+                                                      }`}
+                                                    >
+                                                      👎 Avoid Playing
+                                                    </button>
+                                                  </div>
+                                                ) : (
+                                                  renderSongPreferenceControls(song, 'reception')
+                                                )}
+                                              </div>
+                                            </div>
+                                            );
+                                          })}
+                                        </div>
+                                      )}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            )}
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          {/* Song Progress Section - Welcome Party style */}
                       <div className="bg-white rounded-lg border border-gray-200 p-6">
                         <h4 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
                           <span className="mr-2">🎵</span>
-                          Song Progress
+                              Song Progress
                         </h4>
                         
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -3057,18 +3519,18 @@ export default function ClientPortal() {
                             <div className="flex justify-between items-center mb-2">
                               <h5 className="font-medium text-green-800">🤘 Definitely Play</h5>
                               <span className="text-sm text-green-600">
-                                {Object.values(songPreferences).filter(pref => pref === 'definitely').length}/15
+                                    {Object.values(songPreferences).filter(pref => pref === 'definitely').length}/30
                               </span>
                             </div>
                             <div className="w-full bg-green-200 rounded-full h-2 mb-2">
                               <div 
                                 className="bg-green-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'definitely').length / 10) * 100)}%` 
+                                      width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'definitely').length / 30) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: 10-15 songs</p>
+                                <p className="text-sm text-gray-600">Goal: 15-30 songs</p>
                           </div>
 
                           {/* If Mood Is Right Card */}
@@ -3083,11 +3545,11 @@ export default function ClientPortal() {
                               <div 
                                 className="bg-yellow-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'maybe').length / 5) * 100)}%` 
+                                      width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'maybe').length / 20) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: ≥5 songs</p>
+                                <p className="text-sm text-gray-600">Goal: ≥20 songs</p>
                           </div>
 
                           {/* Avoid Playing Card */}
@@ -3095,18 +3557,18 @@ export default function ClientPortal() {
                             <div className="flex justify-between items-center mb-2">
                               <h5 className="font-medium text-red-800">👎 Avoid Playing</h5>
                               <span className="text-sm text-red-600">
-                                {Object.values(songPreferences).filter(pref => pref === 'avoid').length}/5
+                                    {Object.values(songPreferences).filter(pref => pref === 'avoid').length}/50
                               </span>
                             </div>
                             <div className="w-full bg-red-200 rounded-full h-2 mb-2">
                               <div 
                                 className="bg-red-600 h-2 rounded-full transition-all duration-300"
                                 style={{ 
-                                  width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'avoid').length / 5) * 100)}%` 
+                                      width: `${Math.min(100, (Object.values(songPreferences).filter(pref => pref === 'avoid').length / 50) * 100)}%` 
                                 }}
                               ></div>
                             </div>
-                            <p className="text-sm text-gray-600">Goal: ≤5 songs</p>
+                                <p className="text-sm text-gray-600">Goal: ≤50 songs</p>
                           </div>
                         </div>
                       </div>
@@ -3155,14 +3617,18 @@ export default function ClientPortal() {
                                             <div className="flex-1">
                                               <div className="flex items-center space-x-4">
                                                 <div>
+                                                  {getSongLink(song) ? (
                                                   <a
-                                                    href={song.videoUrl}
+                                                      href={getSongLink(song)}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="font-medium text-purple-600 hover:text-purple-800 underline"
                                                   >
                                                     {song.originalTitle}
                                                   </a>
+                                                  ) : (
+                                                    <span className="font-medium text-purple-600 underline">{song.originalTitle}</span>
+                                                  )}
                                                   <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                                 </div>
                                               </div>
@@ -3227,14 +3693,18 @@ export default function ClientPortal() {
                                             <div className="flex-1">
                                               <div className="flex items-center space-x-4">
                                                 <div>
+                                                  {getSongLink(song) ? (
                                                   <a
-                                                    href={song.videoUrl}
+                                                      href={getSongLink(song)}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="font-medium text-purple-600 hover:text-purple-800 underline"
                                                   >
                                                     {song.originalTitle}
                                                   </a>
+                                                  ) : (
+                                                    <span className="font-medium text-purple-600 underline">{song.originalTitle}</span>
+                                                  )}
                                                   <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                                 </div>
                                               </div>
@@ -3306,14 +3776,18 @@ export default function ClientPortal() {
                                       <div className="flex-1">
                                         <div className="flex items-center space-x-4">
                                           <div>
+                                            {getSongLink(song) ? (
                                             <a
-                                              href={song.videoUrl}
+                                                href={getSongLink(song)}
                                               target="_blank"
                                               rel="noopener noreferrer"
                                               className="font-medium text-purple-600 hover:text-purple-800 underline"
                                             >
                                               {song.originalTitle}
                                             </a>
+                                            ) : (
+                                              <span className="font-medium text-purple-600 underline">{song.originalTitle}</span>
+                                            )}
                                             <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                           </div>
                                         </div>
@@ -3369,7 +3843,8 @@ export default function ClientPortal() {
                         )}
                       </div>
 
-                      {/* Reception Repertoire Reference */}
+                      {/* Reception Repertoire Reference - Only show for non-reception ensembles */}
+                      {!isReceptionEnsemble && (
                       <div className="space-y-4 pt-6 border-t border-gray-200">
                         <div className="flex justify-between items-center">
                           <button
@@ -3377,7 +3852,7 @@ export default function ClientPortal() {
                             className="flex items-center space-x-2 text-left hover:text-purple-600 transition-colors"
                           >
                             <h3 className="text-lg font-medium text-gray-900">🎉 Reception Repertoire</h3>
-                            <span className="text-sm text-gray-500">({totalReceptionSongs} songs)</span>
+                            <span className="text-sm text-gray-500">({totalWelcomePartyReceptionSongs} songs)</span>
                             <svg
                               className={`w-5 h-5 transition-transform ${welcomePartyReceptionExpanded ? 'rotate-180' : ''}`}
                               fill="none"
@@ -3391,13 +3866,13 @@ export default function ClientPortal() {
 
                         {welcomePartyReceptionExpanded && (
                           <div className="bg-white rounded-lg border border-gray-200">
-                            {totalReceptionSongs === 0 ? (
+                            {totalWelcomePartyReceptionSongs === 0 ? (
                               <div className="text-center py-8 text-gray-500">
                                 <p>No reception repertoire songs available</p>
                               </div>
                             ) : (
                               <div className="space-y-4 p-4">
-                                {receptionGenres.map((genre) => {
+                                {getFilteredWelcomePartyReceptionGenres().map((genre) => {
                                   const isLightGenre = lightGenreBands.includes(genre.band);
                                   const genreSongs = sortedSongs.filter(song => {
                                     if (!song.isLive) return false;
@@ -3442,14 +3917,18 @@ export default function ClientPortal() {
                                                 <div className="flex-1">
                                                   <div className="flex items-center space-x-4">
                                                     <div>
+                                                      {getSongLink(song) ? (
                                                       <a
-                                                        href={song.videoUrl}
+                                                          href={getSongLink(song)}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         className="font-medium text-purple-600 hover:text-purple-800 underline"
                                                       >
                                                         {song.originalTitle}
                                                       </a>
+                                                      ) : (
+                                                        <span className="font-medium text-purple-600 underline">{song.originalTitle}</span>
+                                                      )}
                                                       <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                                     </div>
                                                   </div>
@@ -3469,6 +3948,9 @@ export default function ClientPortal() {
                           </div>
                         )}
                       </div>
+                      )}
+                        </>
+                      )}
                     </div>
                   )}
                 </div>
@@ -3616,8 +4098,66 @@ export default function ClientPortal() {
                               </select>
                             </div>
 
-                            {/* Recommended Options */}
-                            {song.ceremonyMomentType && getRecommendedSongs(song.ceremonyMomentType).length > 0 && (
+                            {/* Ensemble-Specific Recommended Options */}
+                            {song.ceremonyMomentType && (song.ceremonyMomentType === 'Ceremony Processional' || song.ceremonyMomentType === 'Ceremony Recessional') && getCeremonyEnsembleRecommendations(selectedCeremonyGuestArrivalEnsemble, song.ceremonyMomentType).length > 0 && (
+                              <div className="col-span-2">
+                                <button
+                                  type="button"
+                                  onClick={() => setExpandedCeremonyRecommendations({
+                                    ...expandedCeremonyRecommendations,
+                                    [index]: !expandedCeremonyRecommendations[index]
+                                  })}
+                                  className="flex items-center justify-between w-full p-3 text-left bg-purple-50 border border-purple-200 rounded-lg hover:bg-purple-100 transition-colors"
+                                >
+                                  <span className="text-sm font-medium text-purple-700">
+                                    Recommended Options for {selectedCeremonyGuestArrivalEnsemble} ({getCeremonyEnsembleRecommendations(selectedCeremonyGuestArrivalEnsemble, song.ceremonyMomentType).length} songs)
+                                  </span>
+                                  <span className="text-purple-500">
+                                    {expandedCeremonyRecommendations[index] ? '▼' : '▶'}
+                                  </span>
+                                </button>
+
+                                {expandedCeremonyRecommendations[index] && (
+                                  <div className="mt-3 p-4 bg-purple-50 border border-purple-200 rounded-lg max-h-64 overflow-y-auto">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                      {getCeremonyEnsembleRecommendations(selectedCeremonyGuestArrivalEnsemble, song.ceremonyMomentType).map((recSong: {title: string, artist: string, videoUrl?: string, spotifyUrl?: string}, songIndex: number) => (
+                                        <button
+                                          key={songIndex}
+                                          type="button"
+                                          onClick={() => {
+                                            const newSongs = [...ceremonySongs];
+                                            newSongs[index].clientSongTitle = recSong.title;
+                                            newSongs[index].clientArtist = recSong.artist;
+                                            // Prefer videoUrl (YouTube), fallback to spotifyUrl
+                                            newSongs[index].clientLink = recSong.videoUrl || recSong.spotifyUrl || '';
+                                            setCeremonySongs(newSongs);
+                                          }}
+                                          className="p-3 text-left bg-white border border-purple-200 rounded-lg hover:bg-purple-100 hover:border-purple-300 transition-colors"
+                                        >
+                                          {(recSong.videoUrl || recSong.spotifyUrl) ? (
+                                            <a
+                                              href={recSong.videoUrl || recSong.spotifyUrl || ''}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="text-sm font-medium text-purple-600 hover:text-purple-800 underline block"
+                                              onClick={(e) => e.stopPropagation()}
+                                            >
+                                              {recSong.title}
+                                            </a>
+                                          ) : (
+                                            <div className="text-sm font-medium text-purple-600 underline">{recSong.title}</div>
+                                          )}
+                                          <div className="text-xs text-gray-600">{recSong.artist}</div>
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                            
+                            {/* Other Recommended Options (for non-processional/recessional moments) */}
+                            {song.ceremonyMomentType && song.ceremonyMomentType !== 'Ceremony Processional' && song.ceremonyMomentType !== 'Ceremony Recessional' && getRecommendedSongs(song.ceremonyMomentType).length > 0 && (
                               <div className="col-span-2">
                                 <button
                                   type="button"
@@ -3638,7 +4178,7 @@ export default function ClientPortal() {
                                 {expandedCeremonyRecommendations[index] && (
                                   <div className="mt-3 p-4 bg-purple-50 border border-purple-200 rounded-lg max-h-48 overflow-y-auto">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                      {getRecommendedSongs(song.ceremonyMomentType).map((recSong: {title: string, artist: string, videoUrl: string}, songIndex: number) => (
+                                      {getRecommendedSongs(song.ceremonyMomentType).map((recSong: {title: string, artist: string, videoUrl: string, spotifyUrl?: string}, songIndex: number) => (
                                         <button
                                           key={songIndex}
                                           type="button"
@@ -3646,12 +4186,25 @@ export default function ClientPortal() {
                                             const newSongs = [...ceremonySongs];
                                             newSongs[index].clientSongTitle = recSong.title;
                                             newSongs[index].clientArtist = recSong.artist;
-                                            newSongs[index].clientLink = recSong.videoUrl;
+                                            // Prefer videoUrl (YouTube), fallback to spotifyUrl
+                                            newSongs[index].clientLink = recSong.videoUrl || recSong.spotifyUrl || '';
                                             setCeremonySongs(newSongs);
                                           }}
                                           className="p-3 text-left bg-white border border-purple-200 rounded-lg hover:bg-purple-100 hover:border-purple-300 transition-colors"
                                         >
-                                          <div className="text-sm font-medium text-gray-900">{recSong.title}</div>
+                                          {(recSong.videoUrl || recSong.spotifyUrl) ? (
+                                            <a
+                                              href={recSong.videoUrl || recSong.spotifyUrl || ''}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="text-sm font-medium text-purple-600 hover:text-purple-800 underline block"
+                                              onClick={(e) => e.stopPropagation()}
+                                            >
+                                              {recSong.title}
+                                            </a>
+                                          ) : (
+                                            <div className="text-sm font-medium text-purple-600 underline">{recSong.title}</div>
+                                          )}
                                           <div className="text-xs text-gray-600">{recSong.artist}</div>
                                         </button>
                                       ))}
@@ -3978,20 +4531,29 @@ export default function ClientPortal() {
                               </div>
                             ) : (
                               <div className="divide-y divide-gray-200">
-                                {filteredCeremonyGuestArrivalSongs.map((song, index) => (
+                                {filteredCeremonyGuestArrivalSongs.map((song, index) => {
+                                  const selectedAsCeremonyMoment = song.id ? isSongSelectedAsCeremonyMoment(song.id) : null;
+                                  return (
                                   <div key={song.id || index} className="p-4 hover:bg-gray-50">
                                     <div className="flex items-center justify-between">
                                       <div className="flex-1">
                                         <div className="flex items-center space-x-4">
-                                          <div>
-                                            <a
-                                              href={song.videoUrl}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              className="font-medium text-purple-600 hover:text-purple-800 underline"
-                                            >
-                                              {song.originalTitle}
-                                            </a>
+                                          <div className="flex-1">
+                                            <div className="flex items-center space-x-2">
+                                              <a
+                                                href={getSongLink(song)}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="font-medium text-purple-600 hover:text-purple-800 underline"
+                                              >
+                                                {song.originalTitle}
+                                              </a>
+                                              {selectedAsCeremonyMoment && (
+                                                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-100 text-purple-800" title={`Selected as ${selectedAsCeremonyMoment}`}>
+                                                  🎻 {selectedAsCeremonyMoment}
+                                                </span>
+                                              )}
+                                            </div>
                                             <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                           </div>
                                         </div>
@@ -4040,7 +4602,8 @@ export default function ClientPortal() {
                                       </div>
                                     </div>
                                   </div>
-                                ))}
+                                  );
+                                })}
                               </div>
                             )}
                           </div>
@@ -4086,7 +4649,7 @@ export default function ClientPortal() {
                                         <div className="flex items-center space-x-4">
                                           <div>
                                             <a
-                                              href={song.videoUrl}
+                                              href={getSongLink(song)}
                                               target="_blank"
                                               rel="noopener noreferrer"
                                               className="font-medium text-purple-600 hover:text-purple-800 underline"
@@ -4273,14 +4836,15 @@ export default function ClientPortal() {
                                     newMoments[index].clientSongTitle = e.target.value;
                                     if (selectedSong) {
                                       newMoments[index].clientArtist = selectedSong.artist;
-                                      newMoments[index].clientLink = selectedSong.videoUrl;
+                                      // Prefer videoUrl (YouTube), fallback to spotifyUrl
+                                      newMoments[index].clientLink = selectedSong.videoUrl || selectedSong.spotifyUrl || '';
                                     }
                                     setCocktailHourSpecialMoments(newMoments);
                                   }}
                                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                                 >
                                   <option value="">Select a recommended song...</option>
-                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string}, songIndex: number) => (
+                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string, spotifyUrl?: string}, songIndex: number) => (
                                     <option key={songIndex} value={song.title}>
                                       {song.title} - {song.artist}
                                     </option>
@@ -4592,14 +5156,18 @@ export default function ClientPortal() {
                                       <div className="flex-1">
                                         <div className="flex items-center space-x-4">
                                           <div>
+                                            {getSongLink(song) ? (
                                             <a
-                                              href={song.videoUrl}
+                                                href={getSongLink(song)}
                                               target="_blank"
                                               rel="noopener noreferrer"
                                               className="font-medium text-purple-600 hover:text-purple-800 underline"
                                             >
                                               {song.originalTitle}
                                             </a>
+                                            ) : (
+                                              <span className="font-medium text-purple-600 underline">{song.originalTitle}</span>
+                                            )}
                                             <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                           </div>
                                         </div>
@@ -4693,14 +5261,18 @@ export default function ClientPortal() {
                                       <div className="flex-1">
                                         <div className="flex items-center space-x-4">
                                           <div>
+                                            {getSongLink(song) ? (
                                             <a
-                                              href={song.videoUrl}
+                                                href={getSongLink(song)}
                                               target="_blank"
                                               rel="noopener noreferrer"
                                               className="font-medium text-purple-600 hover:text-purple-800 underline"
                                             >
                                               {song.originalTitle}
                                             </a>
+                                            ) : (
+                                              <span className="font-medium text-purple-600 underline">{song.originalTitle}</span>
+                                            )}
                                             <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                           </div>
                                         </div>
@@ -4764,7 +5336,12 @@ export default function ClientPortal() {
             {/* Reception Content */}
             {activeTab === 'reception' && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-purple-600 text-center">Reception</h2>
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl font-bold text-purple-600 text-center flex-1">Reception</h2>
+                  <div className="text-sm text-gray-600 font-medium">
+                    {getReceptionSongsCount()} songs available
+                  </div>
+                </div>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <div className="mb-6">
                     <div className="flex items-center gap-2">
@@ -4872,23 +5449,24 @@ export default function ClientPortal() {
 
                             <div>
                               <label className="block text-sm font-medium text-gray-700 mb-1">Song</label>
-                              {moment.specialMomentType && getRecommendedSongs(moment.specialMomentType).length > 0 ? (
+                              {moment.specialMomentType && getRecommendedSongs(moment.specialMomentType, 'reception', selectedReceptionEnsemble).length > 0 ? (
                                 <select
                                   value={moment.clientSongTitle}
                                   onChange={(e) => {
                                     const newMoments = [...receptionSpecialMoments];
-                                    const selectedSong = getRecommendedSongs(moment.specialMomentType).find((s: any) => s.title === e.target.value);
+                                    const selectedSong = getRecommendedSongs(moment.specialMomentType, 'reception', selectedReceptionEnsemble).find((s: any) => s.title === e.target.value);
                                     newMoments[index].clientSongTitle = e.target.value;
                                     if (selectedSong) {
                                       newMoments[index].clientArtist = selectedSong.artist;
-                                      newMoments[index].clientLink = selectedSong.videoUrl;
+                                      // Prefer videoUrl (YouTube), fallback to spotifyUrl
+                                      newMoments[index].clientLink = selectedSong.videoUrl || selectedSong.spotifyUrl || '';
                                     }
                                     setReceptionSpecialMoments(newMoments);
                                   }}
                                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                                 >
                                   <option value="">Select a recommended song...</option>
-                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string}, songIndex: number) => (
+                                  {getRecommendedSongs(moment.specialMomentType, 'reception', selectedReceptionEnsemble).map((song: {title: string, artist: string, videoUrl: string, spotifyUrl?: string}, songIndex: number) => (
                                     <option key={songIndex} value={song.title}>
                                       {song.title} - {song.artist}
                                     </option>
@@ -5409,14 +5987,18 @@ export default function ClientPortal() {
                                             <div className="flex-1">
                                               <div className="flex items-center space-x-3">
                                                 <div>
+                                                  {getSongLink(song) ? (
                                                   <a
-                                                    href={song.videoUrl}
+                                                      href={getSongLink(song)}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="font-medium text-purple-600 hover:text-purple-800 underline"
                                                   >
                                                     {song.originalTitle}
                                                   </a>
+                                                  ) : (
+                                                    <span className="font-medium text-purple-600 underline">{song.originalTitle}</span>
+                                                  )}
                                                   <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                                 </div>
                                               </div>
@@ -5487,7 +6069,12 @@ export default function ClientPortal() {
             {/* After Party Content */}
             {activeTab === 'after-party' && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-purple-600 text-center">After Party</h2>
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl font-bold text-purple-600 text-center flex-1">After Party</h2>
+                  <div className="text-sm text-gray-600 font-medium">
+                    {getAfterPartySongsCount()} songs available
+                  </div>
+                </div>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <div className="mb-6">
                     <div className="flex items-center gap-2">
@@ -5604,14 +6191,15 @@ export default function ClientPortal() {
                                     newMoments[index].clientSongTitle = e.target.value;
                                     if (selectedSong) {
                                       newMoments[index].clientArtist = selectedSong.artist;
-                                      newMoments[index].clientLink = selectedSong.videoUrl;
+                                      // Prefer videoUrl (YouTube), fallback to spotifyUrl
+                                      newMoments[index].clientLink = selectedSong.videoUrl || selectedSong.spotifyUrl || '';
                                     }
                                     setAfterPartySpecialMoments(newMoments);
                                   }}
                                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                                 >
                                   <option value="">Select a recommended song...</option>
-                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string}, songIndex: number) => (
+                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string, spotifyUrl?: string}, songIndex: number) => (
                                     <option key={songIndex} value={song.title}>
                                       {song.title} - {song.artist}
                                     </option>
@@ -5939,14 +6527,18 @@ export default function ClientPortal() {
                                             <div className="flex-1">
                                               <div className="flex items-center space-x-3">
                                                 <div>
+                                                  {getSongLink(song) ? (
                                                   <a
-                                                    href={song.videoUrl}
+                                                      href={getSongLink(song)}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="font-medium text-purple-600 hover:text-purple-800 underline"
                                                   >
                                                     {song.originalTitle}
                                                   </a>
+                                                  ) : (
+                                                    <span className="font-medium text-purple-600 underline">{song.originalTitle}</span>
+                                                  )}
                                                   <p className="text-sm text-gray-600">{song.originalArtist}</p>
                                                 </div>
                                               </div>
@@ -5993,7 +6585,7 @@ export default function ClientPortal() {
                                             <div className="flex items-center space-x-3">
                                               <div>
                                                 <a
-                                                  href={song.videoUrl}
+                                                  href={getSongLink(song)}
                                                   target="_blank"
                                                   rel="noopener noreferrer"
                                                   className="font-medium text-purple-600 hover:text-purple-800 underline"

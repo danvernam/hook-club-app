@@ -21,6 +21,8 @@ interface Song {
   lightGenres: Array<{ client: string; band: string }>;
   specialMomentTypes: string[];
   specialMomentRecommendations: string[];
+  ceremonyEnsembleRecommendations?: Record<string, { processional: boolean; recessional: boolean }>;
+  receptionEnsembleRecommendations?: Record<string, string[]>; // ensemble -> array of special moment types
   thcPercent: string;
   notes: string;
   createdAt: string;
@@ -505,6 +507,8 @@ export default function SongsDatabase() {
       lightGenres: [],
       specialMomentTypes: [],
       specialMomentRecommendations: [],
+      ceremonyEnsembleRecommendations: {},
+      receptionEnsembleRecommendations: {},
       thcPercent: '',
       notes: '',
       createdAt: new Date().toISOString(),
@@ -671,6 +675,8 @@ export default function SongsDatabase() {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Artist Name</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Genre</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Original Key</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Video URL</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Spotify URL</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
@@ -709,6 +715,36 @@ export default function SongsDatabase() {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{song.originalKey}</td>
+                  <td className="px-6 py-4">
+                    {song.videoUrl ? (
+                      <a 
+                        href={song.videoUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-sm text-purple-600 hover:text-purple-800 underline truncate max-w-xs block"
+                        title={song.videoUrl}
+                      >
+                        {song.videoUrl.length > 50 ? `${song.videoUrl.substring(0, 50)}...` : song.videoUrl}
+                      </a>
+                    ) : (
+                      <span className="text-sm text-gray-400">No link</span>
+                    )}
+                  </td>
+                  <td className="px-6 py-4">
+                    {song.spotifyUrl ? (
+                      <a 
+                        href={song.spotifyUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-sm text-green-600 hover:text-green-800 underline truncate max-w-xs block"
+                        title={song.spotifyUrl}
+                      >
+                        {song.spotifyUrl.length > 50 ? `${song.spotifyUrl.substring(0, 50)}...` : song.spotifyUrl}
+                      </a>
+                    ) : (
+                      <span className="text-sm text-gray-400">No link</span>
+                    )}
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex space-x-1">
                       <button
@@ -886,6 +922,52 @@ export default function SongsDatabase() {
                     onChange={(e) => setEditingSong({...editingSong, thcBpm: e.target.value ? parseInt(e.target.value) : null})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                   />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-900 mb-2">Video URL (Music Video Link)</label>
+                  <input
+                    type="url"
+                    value={editingSong.videoUrl || ''}
+                    onChange={(e) => setEditingSong({...editingSong, videoUrl: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                    placeholder="https://www.youtube.com/watch?v=..."
+                  />
+                  {editingSong.videoUrl && (
+                    <div className="mt-1">
+                      <a 
+                        href={editingSong.videoUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-sm text-blue-600 hover:text-blue-800 underline"
+                      >
+                        Open link in new tab
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-900 mb-2">Spotify URL</label>
+                  <input
+                    type="url"
+                    value={editingSong.spotifyUrl || ''}
+                    onChange={(e) => setEditingSong({...editingSong, spotifyUrl: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                    placeholder="https://open.spotify.com/track/..."
+                  />
+                  {editingSong.spotifyUrl && (
+                    <div className="mt-1">
+                      <a 
+                        href={editingSong.spotifyUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-sm text-blue-600 hover:text-blue-800 underline"
+                      >
+                        Open link in new tab
+                      </a>
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -1127,6 +1209,149 @@ export default function SongsDatabase() {
                         <span className="text-gray-900 text-sm flex-1">{ensemble}</span>
                       </label>
                     ))}
+                  </div>
+                </div>
+
+                {/* Ceremony Ensemble Recommendations */}
+                <div className="mt-6 pt-6 border-t border-gray-200">
+                  <label className="block text-sm font-medium text-gray-900 mb-3">
+                    Ceremony Ensemble Recommendations
+                    <span className="text-xs text-gray-500 font-normal ml-2">(Separate from guest arrival selections)</span>
+                  </label>
+                  <p className="text-xs text-gray-600 mb-4">
+                    Select which ceremony ensembles should recommend this song for processional or recessional. 
+                    This is independent of whether the song appears in the ensemble's guest arrival list.
+                  </p>
+                  <div className="space-y-3 max-h-96 overflow-y-auto border border-gray-200 rounded-md p-3">
+                    {[
+                      "Solo Piano", "Solo Guitar", "Classic Duo (Piano + Guitar)", "Lounge Duo (Vocalist + Piano)", 
+                      "Café Duo (Vocalist + Guitar)", "Solo Violin", "Solo Cello", "Violin w/ Tracks (Violin + DJ)", 
+                      "Cello w/ Tracks (Cello + DJ)", "String Duo (Violin + Cello)", "Violin Duo (Violin I + Violin II)", 
+                      "Folk Duo (Violin + Guitar)", "Elegant Duo (Violin + Piano)", "Guitar Trio (Violin + Cello + Guitar)", 
+                      "Piano Trio (Violin + Cello + Piano)", "Chamber Quartet (Violin + Cello + Guitar + Piano)", 
+                      "String Quartet (Violin I + Violin II + Viola + Cello)"
+                    ].map(ensemble => {
+                      const recs = editingSong.ceremonyEnsembleRecommendations?.[ensemble] || { processional: false, recessional: false };
+                      return (
+                        <div key={ensemble} className="border-b border-gray-100 pb-3 last:border-b-0">
+                          <div className="font-medium text-sm text-gray-900 mb-2">{ensemble}</div>
+                          <div className="ml-4 space-y-2">
+                            <label className="flex items-center py-1">
+                              <input
+                                type="checkbox"
+                                checked={recs.processional}
+                                onChange={(e) => {
+                                  const currentRecs = editingSong.ceremonyEnsembleRecommendations || {};
+                                  setEditingSong({
+                                    ...editingSong,
+                                    ceremonyEnsembleRecommendations: {
+                                      ...currentRecs,
+                                      [ensemble]: {
+                                        ...recs,
+                                        processional: e.target.checked
+                                      }
+                                    }
+                                  });
+                                }}
+                                className="mr-2"
+                              />
+                              <span className="text-gray-700 text-sm">Processional Recommendation</span>
+                            </label>
+                            <label className="flex items-center py-1">
+                              <input
+                                type="checkbox"
+                                checked={recs.recessional}
+                                onChange={(e) => {
+                                  const currentRecs = editingSong.ceremonyEnsembleRecommendations || {};
+                                  setEditingSong({
+                                    ...editingSong,
+                                    ceremonyEnsembleRecommendations: {
+                                      ...currentRecs,
+                                      [ensemble]: {
+                                        ...recs,
+                                        recessional: e.target.checked
+                                      }
+                                    }
+                                  });
+                                }}
+                                className="mr-2"
+                              />
+                              <span className="text-gray-700 text-sm">Recessional Recommendation</span>
+                            </label>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Reception Ensemble Recommendations */}
+                <div className="mt-6 pt-6 border-t border-gray-200">
+                  <label className="block text-sm font-medium text-gray-900 mb-3">
+                    Reception Ensemble Special Moment Recommendations
+                    <span className="text-xs text-gray-500 font-normal ml-2">(Separate from genre selections)</span>
+                  </label>
+                  <p className="text-xs text-gray-600 mb-4">
+                    Select which reception ensembles should recommend this song for specific special moments (e.g., First Dance, Wedding Party Intro, Grand Finale). 
+                    This is independent of whether the song appears in the ensemble's genre lists.
+                  </p>
+                  <div className="space-y-4 max-h-96 overflow-y-auto border border-gray-200 rounded-md p-3">
+                    {["Solo DJ", "DJ + Musicians", "DJ Band", "Classic Band", "Full Band"].map(ensemble => {
+                      const ensembleRecs = editingSong.receptionEnsembleRecommendations?.[ensemble] || [];
+                      const receptionMomentTypes = [
+                        "Wedding Party Intro",
+                        "Newlyweds Intro", 
+                        "First Dance",
+                        "Parent Dance",
+                        "Cake Cutting",
+                        "Anniversary Dance",
+                        "Bouquet Toss",
+                        "Mezinka Dance",
+                        "Tea Ceremony",
+                        "Tarantella",
+                        "Goldun",
+                        "Money Spray",
+                        "Money Dance",
+                        "Newlyweds Exit",
+                        "Private Last Dance",
+                        "Grand Finale"
+                      ];
+                      
+                      return (
+                        <div key={ensemble} className="border-b border-gray-100 pb-4 last:border-b-0">
+                          <div className="font-medium text-sm text-gray-900 mb-3">{ensemble}</div>
+                          <div className="ml-4 space-y-2">
+                            {receptionMomentTypes.map(momentType => (
+                              <label key={momentType} className="flex items-center py-1">
+                                <input
+                                  type="checkbox"
+                                  checked={ensembleRecs.includes(momentType)}
+                                  onChange={(e) => {
+                                    const currentRecs = editingSong.receptionEnsembleRecommendations || {};
+                                    const currentMomentTypes = currentRecs[ensemble] || [];
+                                    let updatedMomentTypes;
+                                    if (e.target.checked) {
+                                      updatedMomentTypes = [...currentMomentTypes, momentType];
+                                    } else {
+                                      updatedMomentTypes = currentMomentTypes.filter(m => m !== momentType);
+                                    }
+                                    setEditingSong({
+                                      ...editingSong,
+                                      receptionEnsembleRecommendations: {
+                                        ...currentRecs,
+                                        [ensemble]: updatedMomentTypes
+                                      }
+                                    });
+                                  }}
+                                  className="mr-2"
+                                />
+                                <span className="text-gray-700 text-sm">{momentType}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
