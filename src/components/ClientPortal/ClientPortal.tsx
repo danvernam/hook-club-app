@@ -7,7 +7,7 @@ import apiService from '@/services/api';
 export default function ClientPortal() {
   const [activeTab, setActiveTab] = useState<'services' | 'getting-to-know-you' | 'preferences' | 'documents' | 'vendors' | 'welcome-party' | 'ceremony' | 'cocktail-hour' | 'reception' | 'after-party'>('services');
   const [activeView, setActiveView] = useState<'client-portal' | 'database'>('client-portal');
-  const [activeWelcomePartyTab, setActiveWelcomePartyTab] = useState<'special-songs' | 'special-requests' | 'core-repertoire'>('core-repertoire');
+  const [activeWelcomePartyTab, setActiveWelcomePartyTab] = useState<'special-requests' | 'core-repertoire'>('core-repertoire');
   const [welcomePartyDanceExpanded, setWelcomePartyDanceExpanded] = useState(false);
   const [welcomePartyLightExpanded, setWelcomePartyLightExpanded] = useState(false);
   const [welcomePartyDJExpanded, setWelcomePartyDJExpanded] = useState(false);
@@ -27,7 +27,7 @@ export default function ClientPortal() {
     socialMedia: string;
   }>>([]);
   const [activeCeremonyTab, setActiveCeremonyTab] = useState<'ceremony-music' | 'guest-arrival-requests' | 'guest-arrival'>('guest-arrival');
-  const [activeCocktailHourTab, setActiveCocktailHourTab] = useState<'special-songs' | 'song-requests' | 'cocktail-hour-song-list'>('cocktail-hour-song-list');
+  const [activeCocktailHourTab, setActiveCocktailHourTab] = useState<'song-requests' | 'cocktail-hour-song-list'>('cocktail-hour-song-list');
   const [selectedCocktailHourEnsemble, setSelectedCocktailHourEnsemble] = useState<string>('Jazz Quartet (Sax + Piano + Bass + Drums)');
   const [cocktailHourEnsembleRecommendationsExpanded, setCocktailHourEnsembleRecommendationsExpanded] = useState(false);
   const [selectedCeremonyGuestArrivalEnsemble, setSelectedCeremonyGuestArrivalEnsemble] = useState<string>('Piano Trio (Violin + Cello + Piano)');
@@ -37,7 +37,7 @@ export default function ClientPortal() {
   const [ceremonyGuestArrivalFullRepertoireExpanded, setCeremonyGuestArrivalFullRepertoireExpanded] = useState(false);
   const [ceremonyFullRepertoireExpanded, setCeremonyFullRepertoireExpanded] = useState(false);
   const [cocktailHourFullRepertoireExpanded, setCocktailHourFullRepertoireExpanded] = useState(false);
-  const [activeAfterPartyTab, setActiveAfterPartyTab] = useState<'special-songs' | 'special-requests' | 'core-repertoire'>('core-repertoire');
+  const [activeAfterPartyTab, setActiveAfterPartyTab] = useState<'special-requests' | 'core-repertoire'>('core-repertoire');
   const [activeReceptionTab, setActiveReceptionTab] = useState<'special-songs' | 'special-requests' | 'reception-song-list'>('reception-song-list');
   const [guestArrivalSongs, setGuestArrivalSongs] = useState<any[]>([]);
   const [sortedGuestArrivalSongs, setSortedGuestArrivalSongs] = useState<any[]>([]);
@@ -112,7 +112,8 @@ export default function ClientPortal() {
   const [receptionPlaylists, setReceptionPlaylists] = useState<Array<{
     playlistLink: string;
     playlistType: string;
-    playlistNote: string;
+    customType: string;
+    notes: string;
   }>>([]);
   const [receptionSongs, setReceptionSongs] = useState<any[]>([]);
   const [sortedReceptionSongs, setSortedReceptionSongs] = useState<any[]>([]);
@@ -200,9 +201,20 @@ export default function ClientPortal() {
     // isInDatabase?: boolean;
   }>>([]);
   const [welcomePartyPlaylists, setWelcomePartyPlaylists] = useState<Array<{
-    playlistType: string;
+    playlistDescription: string;
     playlistLink: string;
-    playlistNote: string;
+  }>>([]);
+  const [ceremonyPlaylists, setCeremonyPlaylists] = useState<Array<{
+    playlistDescription: string;
+    playlistLink: string;
+  }>>([]);
+  const [cocktailHourPlaylists, setCocktailHourPlaylists] = useState<Array<{
+    playlistDescription: string;
+    playlistLink: string;
+  }>>([]);
+  const [afterPartyPlaylists, setAfterPartyPlaylists] = useState<Array<{
+    playlistDescription: string;
+    playlistLink: string;
   }>>([]);
   const [expandedRecommendations, setExpandedRecommendations] = useState<Record<number, boolean>>({});
   const [expandedCeremonyRecommendations, setExpandedCeremonyRecommendations] = useState<Record<number, boolean>>({});
@@ -217,6 +229,8 @@ export default function ClientPortal() {
   
   const [dinnerPlaylist, setDinnerPlaylist] = useState<string>('');
   const [dinnerPlaylistNotes, setDinnerPlaylistNotes] = useState<string>('');
+  const [selectedDinnerBreakPlaylist, setSelectedDinnerBreakPlaylist] = useState<string>('');
+  const [customDinnerBreakPlaylistLink, setCustomDinnerBreakPlaylistLink] = useState<string>('');
   const [playlistLinks, setPlaylistLinks] = useState<Array<{
     title: string;
     url: string;
@@ -406,6 +420,13 @@ export default function ClientPortal() {
     "Chamber Quartet (Violin + Cello + Guitar + Piano)", 
     "String Quartet (Violin I + Violin II + Viola + Cello)"
   ];
+
+  // Organize cocktail hour ensembles by size
+  const cocktailHourDuos = cocktailHourEnsembles.filter(e => e.includes('Duo')).sort();
+  const cocktailHourTrios = cocktailHourEnsembles.filter(e => e.includes('Trio')).sort();
+  const cocktailHourQuartets = cocktailHourEnsembles.filter(e => e.includes('Quartet')).sort();
+  const cocktailHourWithTracks = cocktailHourEnsembles.filter(e => e.includes('w/ Tracks')).sort();
+  const cocktailHourBands = cocktailHourEnsembles.filter(e => e.includes('Band')).sort();
 
   const ceremonyEnsembleSet = new Set(ceremonyEnsembles);
   const cocktailHourEnsembleSet = new Set(cocktailHourEnsembles);
@@ -779,20 +800,26 @@ export default function ClientPortal() {
   const totalAfterPartySongs = new Set(afterPartySongsWithFlag.map(getSongKey)).size;
 
   // Count songs available for selected After Party ensemble (based on filtered genres)
+  // Returns the SUM of genre songs + ungrouped songs as displayed in UI
   const getAfterPartySongsCount = () => {
     const filteredGenres = getFilteredAfterPartyGenres();
-    const genreSongs = afterPartySongsWithFlag.filter(song => {
-      const isLightGenre = lightGenreBands.some(band => 
-        song.lightGenres?.some((g: any) => g.band === band)
-      );
-      const collection = isLightGenre ? song.lightGenres : song.danceGenres;
-      return Array.isArray(collection) && collection.some((g: any) => 
-        filteredGenres.some(genre => genre.band === g.band)
-      );
+    // Count genre-filtered songs by summing counts from each genre as displayed
+    let genreSongsCount = 0;
+    filteredGenres.forEach(genre => {
+      const isLightGenre = lightGenreBands.includes(genre.band);
+      const genreSongs = afterPartySongsWithFlag.filter(song => {
+        if (!song.isLive) return false;
+        const collection = isLightGenre ? song.lightGenres : song.danceGenres;
+        return Array.isArray(collection) && collection.some((g: any) => g.band === genre.band);
+      });
+      genreSongsCount += genreSongs.length;
     });
-    // Include ungrouped songs (songs without genre tags)
-    const allSongs = [...genreSongs, ...afterPartyUngroupedSongs];
-    return new Set(allSongs.map(getSongKey)).size;
+    
+    // Add ungrouped songs count as displayed in UI
+    const ungroupedCount = afterPartyUngroupedSongs.length;
+    
+    // Return sum of both (as displayed in UI), not deduplicated
+    return genreSongsCount + ungroupedCount;
   };
 
   // Helper function to count instruments in an ensemble name
@@ -976,19 +1003,73 @@ export default function ClientPortal() {
   ).size;
 
   // Count songs available for selected Reception ensemble (based on filtered genres)
+  // Returns the SUM of all genre song counts as displayed in UI
   const getReceptionSongsCount = () => {
     const filteredGenres = getFilteredReceptionGenres();
-    const allSongs = [...filteredReceptionDanceSongs, ...filteredReceptionLightSongs];
-    const genreSongs = allSongs.filter(song => {
-      const isLightGenre = lightGenreBands.some(band => 
-        song.lightGenres?.some((g: any) => g.band === band)
-      );
-      const collection = isLightGenre ? song.lightGenres : song.danceGenres;
-      return Array.isArray(collection) && collection.some((g: any) => 
-        filteredGenres.some(genre => genre.band === g.band)
-      );
+    let totalCount = 0;
+    
+    // Sum up all genre song counts exactly as displayed in the UI
+    filteredGenres.forEach(genre => {
+      const isLightGenre = lightGenreBands.includes(genre.band);
+      const genreSongs = sortedReceptionSongs.filter(song => {
+        if (!song.isLive) return false;
+        const collection = isLightGenre ? song.lightGenres : song.danceGenres;
+        return Array.isArray(collection) && collection.some((g: any) => g.band === genre.band);
+      });
+      // Only count genres that have songs (same as UI: if (genreSongs.length === 0) return null)
+      if (genreSongs.length > 0) {
+        totalCount += genreSongs.length;
+      }
     });
-    return new Set(genreSongs.map(getSongKey)).size;
+    
+    return totalCount;
+  };
+
+  // Count songs available for selected Welcome Party ensemble
+  // Includes ensemble-specific songs + reception repertoire (if not a reception ensemble)
+  // Returns the SUM of both counts (as displayed in UI), not deduplicated
+  const getWelcomePartySongsCount = () => {
+    // Calculate ensemble-specific count as displayed in UI
+    let ensembleCount;
+    if (isEnsembleInBoth) {
+      // When ensemble is in both ceremony and cocktail hour, count light + upbeat songs separately
+      ensembleCount = filteredWelcomePartyEnsembleLightSongs.length + filteredWelcomePartyEnsembleUpbeatSongs.length;
+    } else {
+      // Otherwise, use the full ensemble-specific songs
+      ensembleCount = filteredWelcomePartyEnsembleSongs.length;
+    }
+    
+    // If it's not a reception ensemble, include reception repertoire songs
+    if (!isReceptionEnsemble) {
+      // Return the sum of both counts as they appear in the UI
+      const receptionCount = totalWelcomePartyReceptionSongs;
+      return ensembleCount + receptionCount;
+    }
+    
+    // For reception ensembles, only count ensemble-specific songs
+    return ensembleCount;
+  };
+
+  // Count songs available for selected Ceremony ensemble
+  // Returns the SUM of ensemble-specific + full repertoire as displayed in UI
+  const getCeremonySongsCount = () => {
+    // Ensemble-specific count (as displayed in UI)
+    const ensembleCount = filteredCeremonyGuestArrivalSongs.length;
+    // Full ceremony repertoire count (as displayed in UI)
+    const fullRepertoireCount = sortedFullCeremonySongs.length;
+    // Return sum of both (as displayed in UI), not deduplicated
+    return ensembleCount + fullRepertoireCount;
+  };
+
+  // Count songs available for selected Cocktail Hour ensemble
+  // Returns the SUM of ensemble-specific + full repertoire as displayed in UI
+  const getCocktailHourSongsCount = () => {
+    // Ensemble-specific count (as displayed in UI)
+    const ensembleCount = filteredCocktailHourSongs.length;
+    // Full cocktail hour repertoire count (as displayed in UI)
+    const fullRepertoireCount = sortedFullCocktailHourSongs.length;
+    // Return sum of both (as displayed in UI), not deduplicated
+    return ensembleCount + fullRepertoireCount;
   };
 
   // Count total unique songs for Welcome Party Reception Repertoire (using filtered genres)
@@ -1350,8 +1431,15 @@ export default function ClientPortal() {
           </div>
           
           {/* Planning Portal Title */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-4">
             <h1 className="text-2xl font-bold text-gray-900 uppercase tracking-wider">PLANNING PORTAL</h1>
+          </div>
+          
+          {/* Demo Notice */}
+          <div className="text-center mb-6">
+            <p className="text-sm text-gray-600 italic">
+              This is a demo of the planning portal. Couples receive a customized version for their wedding.
+            </p>
           </div>
           
           {/* Event Details */}
@@ -1578,11 +1666,51 @@ export default function ClientPortal() {
                             onChange={(e) => setSelectedCocktailHourEnsemble(e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
                           >
-                            {[...cocktailHourEnsembles].sort().map(ensemble => (
-                              <option key={ensemble} value={ensemble}>
-                                {ensemble}
-                              </option>
-                            ))}
+                            {cocktailHourDuos.length > 0 && (
+                              <optgroup label="Duos">
+                                {cocktailHourDuos.map(ensemble => (
+                                  <option key={ensemble} value={ensemble}>
+                                    {ensemble}
+                                  </option>
+                                ))}
+                              </optgroup>
+                            )}
+                            {cocktailHourTrios.length > 0 && (
+                              <optgroup label="Trios">
+                                {cocktailHourTrios.map(ensemble => (
+                                  <option key={ensemble} value={ensemble}>
+                                    {ensemble}
+                                  </option>
+                                ))}
+                              </optgroup>
+                            )}
+                            {cocktailHourQuartets.length > 0 && (
+                              <optgroup label="Quartets">
+                                {cocktailHourQuartets.map(ensemble => (
+                                  <option key={ensemble} value={ensemble}>
+                                    {ensemble}
+                                  </option>
+                                ))}
+                              </optgroup>
+                            )}
+                            {cocktailHourWithTracks.length > 0 && (
+                              <optgroup label="With Tracks">
+                                {cocktailHourWithTracks.map(ensemble => (
+                                  <option key={ensemble} value={ensemble}>
+                                    {ensemble}
+                                  </option>
+                                ))}
+                              </optgroup>
+                            )}
+                            {cocktailHourBands.length > 0 && (
+                              <optgroup label="Bands">
+                                {cocktailHourBands.map(ensemble => (
+                                  <option key={ensemble} value={ensemble}>
+                                    {ensemble}
+                                  </option>
+                                ))}
+                              </optgroup>
+                            )}
                           </select>
                         </div>
                       </div>
@@ -2677,29 +2805,34 @@ export default function ClientPortal() {
                 <h2 className="text-2xl font-bold text-purple-600 text-center">Welcome Party</h2>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <div className="mb-6">
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-lg font-medium text-gray-900">Welcome Party</h4>
-                      <span className="text-lg font-medium text-gray-900">-</span>
-                      <select
-                        value={selectedWelcomePartyEnsemble}
-                        onChange={(e) => setSelectedWelcomePartyEnsemble(e.target.value)}
-                        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
-                      >
-                        <optgroup label="Small Ensembles">
-                          {smallEnsembles.map(ensemble => (
-                          <option key={ensemble} value={ensemble}>
-                            {ensemble}
-                          </option>
-                        ))}
-                        </optgroup>
-                        <optgroup label="Reception Ensembles">
-                          {receptionEnsembles.map(ensemble => (
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-lg font-medium text-gray-900">Welcome Party</h4>
+                        <span className="text-lg font-medium text-gray-900">-</span>
+                        <select
+                          value={selectedWelcomePartyEnsemble}
+                          onChange={(e) => setSelectedWelcomePartyEnsemble(e.target.value)}
+                          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
+                        >
+                          <optgroup label="Small Ensembles">
+                            {smallEnsembles.map(ensemble => (
                             <option key={ensemble} value={ensemble}>
                               {ensemble}
                             </option>
                           ))}
-                        </optgroup>
-                      </select>
+                          </optgroup>
+                          <optgroup label="Reception Ensembles">
+                            {receptionEnsembles.map(ensemble => (
+                              <option key={ensemble} value={ensemble}>
+                                {ensemble}
+                              </option>
+                            ))}
+                          </optgroup>
+                        </select>
+                      </div>
+                      <div className="text-sm text-gray-600 font-medium">
+                        {getWelcomePartySongsCount()} songs available
+                      </div>
                     </div>
                   </div>
                   
@@ -2717,16 +2850,6 @@ export default function ClientPortal() {
                         Welcome Party Song List
                       </button>
                       <button
-                        onClick={() => setActiveWelcomePartyTab('special-songs')}
-                        className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeWelcomePartyTab === 'special-songs'
-                            ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
-                        }`}
-                      >
-                        Special Songs
-                      </button>
-                      <button
                         onClick={() => setActiveWelcomePartyTab('special-requests')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeWelcomePartyTab === 'special-requests'
@@ -2738,238 +2861,6 @@ export default function ClientPortal() {
                       </button>
                     </nav>
                   </div>
-
-                  {/* Special Moments Content */}
-                  {activeWelcomePartyTab === 'special-songs' && (
-                    <div className="space-y-6">
-                      <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-medium text-gray-900">Special Songs</h3>
-                        <span className="text-sm text-gray-500">{welcomePartySpecialMoments.length}/5 songs</span>
-                      </div>
-                      
-                      {/* Add Moment Button */}
-                      {welcomePartySpecialMoments.length < 5 && (
-                        <button
-                          onClick={() => setWelcomePartySpecialMoments([...welcomePartySpecialMoments, { specialMomentType: '', clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
-                          className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
-                        >
-                          + Add Special Song
-                        </button>
-                      )}
-                      
-                      {/* Special Moments List */}
-                      {welcomePartySpecialMoments.map((moment, index) => (
-                        <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
-                          <div className="flex justify-between items-center">
-                            <h4 className="font-medium text-gray-900">Moment {index + 1}</h4>
-                            <button
-                              onClick={() => setWelcomePartySpecialMoments(welcomePartySpecialMoments.filter((_, i) => i !== index))}
-                              className="text-red-600 hover:text-red-800 text-sm"
-                            >
-                              Remove
-                            </button>
-                          </div>
-                          
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Special Moment Type</label>
-                              <select
-                                value={moment.specialMomentType}
-                                onChange={(e) => {
-                                  const newMoments = [...welcomePartySpecialMoments];
-                                  newMoments[index].specialMomentType = e.target.value;
-                                  setWelcomePartySpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                              >
-                                <option value="">Select moment type</option>
-                                {getSpecialMomentTypes('welcome-party').map((type) => (
-                                  <option key={type} value={type}>
-                                    {type}
-                                  </option>
-                                ))}
-                              </select>
-                            </div>
-                            
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Song</label>
-                              {moment.specialMomentType && getRecommendedSongs(moment.specialMomentType).length > 0 ? (
-                                <select
-                                  value={moment.clientSongTitle}
-                                  onChange={(e) => {
-                                    const newMoments = [...welcomePartySpecialMoments];
-                                    const selectedSong = getRecommendedSongs(moment.specialMomentType).find((s: any) => s.title === e.target.value);
-                                    newMoments[index].clientSongTitle = e.target.value;
-                                    if (selectedSong) {
-                                      newMoments[index].clientArtist = selectedSong.artist;
-                                      // Prefer videoUrl (YouTube), fallback to spotifyUrl
-                                      newMoments[index].clientLink = selectedSong.videoUrl || selectedSong.spotifyUrl || '';
-                                    }
-                                    setWelcomePartySpecialMoments(newMoments);
-                                  }}
-                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                >
-                                  <option value="">Select a recommended song...</option>
-                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string, spotifyUrl?: string}, songIndex: number) => (
-                                    <option key={songIndex} value={song.title}>
-                                      {song.title} - {song.artist}
-                                    </option>
-                                  ))}
-                                </select>
-                              ) : (
-                              <input
-                                type="text"
-                                value={moment.clientSongTitle}
-                                onChange={(e) => {
-                                  const newMoments = [...welcomePartySpecialMoments];
-                                  newMoments[index].clientSongTitle = e.target.value;
-                                  setWelcomePartySpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                  placeholder={moment.specialMomentType ? "Enter song title (no recommendations available)" : "Select a special moment first"}
-                              />
-                              )}
-                            </div>
-                          </div>
-
-                          {/* Reason field - show when Custom is selected */}
-                          {moment.specialMomentType === 'Custom' && (
-                            <div className="mt-4">
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Reason for this song</label>
-                              <textarea
-                                value={moment.reason || ''}
-                                onChange={(e) => {
-                                  const newMoments = [...welcomePartySpecialMoments];
-                                  newMoments[index].reason = e.target.value;
-                                  setWelcomePartySpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Explain why this song is special for this moment"
-                                rows={3}
-                              />
-                            </div>
-                          )}
-
-                          {/* Recommended Songs Section */}
-                          {moment.specialMomentType && getRecommendedSongs(moment.specialMomentType).length > 0 && (
-                            <div className="mt-4">
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  setExpandedRecommendations(prev => ({
-                                    ...prev,
-                                    [index]: !prev[index]
-                                  }));
-                                }}
-                                className="flex items-center justify-between w-full p-2 text-left text-sm font-medium text-gray-700 bg-gray-50 rounded-lg border hover:bg-gray-100"
-                              >
-                                <span>Recommended Options ({getRecommendedSongs(moment.specialMomentType).length} songs)</span>
-                                <span className={`transform transition-transform ${expandedRecommendations[index] ? 'rotate-180' : ''}`}>
-                                  ▼
-                                </span>
-                              </button>
-                              
-                              {expandedRecommendations[index] && (
-                                <div className="mt-2 max-h-64 overflow-y-auto border border-gray-200 rounded-lg">
-                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 p-3">
-                                    {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string, spotifyUrl?: string}, songIndex: number) => (
-                                      <div key={songIndex} className="flex items-center justify-between p-2 bg-white rounded border hover:bg-gray-50">
-                                        <div className="flex-1 min-w-0">
-                                          {(song.videoUrl || song.spotifyUrl) ? (
-                                          <a
-                                              href={song.videoUrl || song.spotifyUrl || ''}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                              className="font-medium text-purple-600 hover:text-purple-800 underline text-sm truncate block"
-                                            >
-                                              {song.title}
-                                            </a>
-                                          ) : (
-                                            <div className="font-medium text-purple-600 underline text-sm truncate">{song.title}</div>
-                                          )}
-                                          <div className="text-xs text-gray-600 truncate">{song.artist}</div>
-                                        </div>
-                                        <div className="flex items-center space-x-1 ml-2">
-                                          <button
-                                            type="button"
-                                            onClick={() => {
-                                              const newMoments = [...welcomePartySpecialMoments];
-                                              newMoments[index].clientSongTitle = song.title;
-                                              newMoments[index].clientArtist = song.artist;
-                                              // Prefer videoUrl (YouTube), fallback to spotifyUrl
-                                              newMoments[index].clientLink = song.videoUrl || song.spotifyUrl || '';
-                                              setWelcomePartySpecialMoments(newMoments);
-                                            }}
-                                            className="px-2 py-1 text-xs bg-purple-600 text-white rounded hover:bg-purple-700"
-                                          >
-                                            Select
-                                          </button>
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          )}
-                          
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Artist</label>
-                              <input
-                                type="text"
-                                value={moment.clientArtist}
-                                onChange={(e) => {
-                                  const newMoments = [...welcomePartySpecialMoments];
-                                  newMoments[index].clientArtist = e.target.value;
-                                  setWelcomePartySpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Enter artist name"
-                              />
-                            </div>
-                            
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Link (Optional)</label>
-                              <input
-                                type="url"
-                                value={moment.clientLink}
-                                onChange={(e) => {
-                                  const newMoments = [...welcomePartySpecialMoments];
-                                  newMoments[index].clientLink = e.target.value;
-                                  setWelcomePartySpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="YouTube, Spotify, or other link"
-                              />
-                            </div>
-                          </div>
-                          
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Note</label>
-                            <textarea
-                              value={moment.clientNote}
-                              onChange={(e) => {
-                                const newMoments = [...welcomePartySpecialMoments];
-                                newMoments[index].clientNote = e.target.value;
-                                setWelcomePartySpecialMoments(newMoments);
-                              }}
-                              rows={1}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                              placeholder="Special instructions or notes"
-                            />
-                          </div>
-                        </div>
-                      ))}
-                      
-                      {welcomePartySpecialMoments.length === 0 && (
-                        <div className="text-center py-8 text-gray-500">
-                          <p>No special songs added yet</p>
-                          <p className="text-sm mt-1">Click "Add Special Song" to get started</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
 
                   {/* Special Requests Content */}
                   {activeWelcomePartyTab === 'special-requests' && (
@@ -3087,16 +2978,16 @@ export default function ClientPortal() {
                       <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                         <div className="flex justify-between items-center mb-4">
                           <h4 className="text-lg font-medium text-gray-900">Request Playlists</h4>
-                          <span className="text-sm text-gray-500">{welcomePartyPlaylists.length}/5 playlists</span>
+                          <span className="text-sm text-gray-500">{welcomePartyPlaylists.length}/2 playlists</span>
                         </div>
                         
                         {/* Add Playlist Button */}
-                        {welcomePartyPlaylists.length < 5 && (
+                        {welcomePartyPlaylists.length < 2 && (
                           <button
-                            onClick={() => setWelcomePartyPlaylists([...welcomePartyPlaylists, { playlistType: '', playlistLink: '', playlistNote: '' }])}
+                            onClick={() => setWelcomePartyPlaylists([...welcomePartyPlaylists, { playlistDescription: '', playlistLink: '' }])}
                             className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors mb-4"
                           >
-                            + Add Playlist Request
+                            + Add Request Playlist
                           </button>
                         )}
                         
@@ -3113,55 +3004,33 @@ export default function ClientPortal() {
                               </button>
                             </div>
                             
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                              <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Type</label>
-                                <select
-                                  value={playlist.playlistType}
-                                  onChange={(e) => {
-                                    const newPlaylists = [...welcomePartyPlaylists];
-                                    newPlaylists[index].playlistType = e.target.value;
-                                    setWelcomePartyPlaylists(newPlaylists);
-                                  }}
-                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                >
-                                  <option value="">Select playlist type</option>
-                                  {playlistTypes.map((type) => (
-                                    <option key={type} value={type}>
-                                      {type}
-                                    </option>
-                                  ))}
-                                </select>
-                              </div>
-                              
-                              <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Link</label>
-                                <input
-                                  type="url"
-                                  value={playlist.playlistLink}
-                                  onChange={(e) => {
-                                    const newPlaylists = [...welcomePartyPlaylists];
-                                    newPlaylists[index].playlistLink = e.target.value;
-                                    setWelcomePartyPlaylists(newPlaylists);
-                                  }}
-                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                  placeholder="Spotify, Apple Music, or other playlist link"
-                                />
-                              </div>
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Description</label>
+                              <input
+                                type="text"
+                                value={playlist.playlistDescription}
+                                onChange={(e) => {
+                                  const newPlaylists = [...welcomePartyPlaylists];
+                                  newPlaylists[index].playlistDescription = e.target.value;
+                                  setWelcomePartyPlaylists(newPlaylists);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                placeholder="Describe the playlist"
+                              />
                             </div>
                             
                             <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
-                              <textarea
-                                value={playlist.playlistNote}
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Link</label>
+                              <input
+                                type="url"
+                                value={playlist.playlistLink}
                                 onChange={(e) => {
                                   const newPlaylists = [...welcomePartyPlaylists];
-                                  newPlaylists[index].playlistNote = e.target.value;
+                                  newPlaylists[index].playlistLink = e.target.value;
                                   setWelcomePartyPlaylists(newPlaylists);
                                 }}
-                                rows={2}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Special instructions or notes about this playlist"
+                                placeholder="Spotify, Apple Music, or other playlist link"
                               />
                             </div>
                           </div>
@@ -3170,116 +3039,10 @@ export default function ClientPortal() {
                         {welcomePartyPlaylists.length === 0 && (
                           <div className="text-center py-4 text-gray-500">
                             <p className="text-sm">No playlist requests added yet</p>
-                            <p className="text-xs mt-1">Click "Add Playlist Request" to get started</p>
+                            <p className="text-xs mt-1">Click "Add Request Playlist" to get started</p>
                           </div>
                         )}
                       </div>
-
-                  {/* Full Guest Arrival Repertoire */}
-                  <div className="space-y-4 pt-2 border-t border-gray-200">
-                    <div className="flex justify-between items-center">
-                      <button
-                        onClick={() => setCeremonyGuestArrivalFullRepertoireExpanded(!ceremonyGuestArrivalFullRepertoireExpanded)}
-                        className="flex items-center space-x-2 text-left hover:text-purple-600 transition-colors"
-                      >
-                        <h3 className="text-lg font-medium text-gray-900">🎼 Full Guest Arrival Repertoire</h3>
-                        <span className="text-sm text-gray-500">({sortedFullCeremonyGuestArrivalSongs.length} songs)</span>
-                        <svg
-                          className={`w-5 h-5 transition-transform ${ceremonyGuestArrivalFullRepertoireExpanded ? 'rotate-180' : ''}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                    </div>
-
-                    {ceremonyGuestArrivalFullRepertoireExpanded && (
-                      <div className="bg-white rounded-lg border border-gray-200">
-                        {isLoadingGuestArrival ? (
-                          <div className="text-center py-8 text-gray-500">
-                            <p>Loading songs...</p>
-                          </div>
-                        ) : sortedFullCeremonyGuestArrivalSongs.length === 0 ? (
-                          <div className="text-center py-8 text-gray-500">
-                            <p>No additional ceremony songs available</p>
-                          </div>
-                        ) : (
-                          <div className="divide-y divide-gray-200">
-                            {sortedFullCeremonyGuestArrivalSongs.map((song, index) => (
-                              <div key={song.id || index} className="p-4 hover:bg-gray-50">
-                                <div className="flex items-center justify-between">
-                                  <div className="flex-1">
-                                    <div className="flex items-center space-x-4">
-                                      <div>
-                                        {getSongLink(song) ? (
-                                        <a
-                                            href={getSongLink(song)}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="font-medium text-purple-600 hover:text-purple-800 underline"
-                                        >
-                                          {song.originalTitle}
-                                        </a>
-                                        ) : (
-                                          <span className="font-medium text-purple-600 underline">{song.originalTitle}</span>
-                                        )}
-                                        <p className="text-sm text-gray-600">{song.originalArtist}</p>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div className="flex items-center space-x-2">
-                                    <button
-                                      onClick={() => setGuestArrivalSongPreferences(prev => ({
-                                        ...prev,
-                                        [song.id]: prev[song.id] === 'definitely' ? undefined : 'definitely'
-                                      }))}
-                                      className={`px-3 py-1 text-sm rounded border ${
-                                        guestArrivalSongPreferences[song.id] === 'definitely'
-                                          ? 'bg-green-100 text-green-800 border-green-300'
-                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50'
-                                      }`}
-                                    >
-                                      🤘 Definitely Play
-                                    </button>
-                                    <button
-                                      onClick={() => setGuestArrivalSongPreferences(prev => ({
-                                        ...prev,
-                                        [song.id]: prev[song.id] === 'maybe' ? undefined : 'maybe'
-                                      }))}
-                                      className={`px-3 py-1 text-sm rounded border ${
-                                        guestArrivalSongPreferences[song.id] === 'maybe'
-                                          ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
-                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-yellow-50'
-                                      }`}
-                                    >
-                                      👍 If Mood Is Right
-                                    </button>
-                                    <button
-                                      onClick={() => setGuestArrivalSongPreferences(prev => ({
-                                        ...prev,
-                                        [song.id]: prev[song.id] === 'avoid' ? undefined : 'avoid'
-                                      }))}
-                                      className={`px-3 py-1 text-sm rounded border ${
-                                        guestArrivalSongPreferences[song.id] === 'avoid'
-                                          ? 'bg-red-100 text-red-800 border-red-300'
-                                          : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'
-                                      }`}
-                                    >
-                                      👎 Avoid Playing
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-
                     </div>
                   )}
 
@@ -3963,20 +3726,25 @@ export default function ClientPortal() {
                 <h2 className="text-2xl font-bold text-purple-600 text-center">Ceremony</h2>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <div className="mb-6">
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-lg font-medium text-gray-900">Ceremony</h4>
-                      <span className="text-lg font-medium text-gray-900">-</span>
-                      <select
-                        value={selectedCeremonyGuestArrivalEnsemble}
-                        onChange={(e) => setSelectedCeremonyGuestArrivalEnsemble(e.target.value)}
-                        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
-                      >
-                        {ceremonyEnsembles.map(ensemble => (
-                          <option key={ensemble} value={ensemble}>
-                            {ensemble}
-                          </option>
-                        ))}
-                      </select>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-lg font-medium text-gray-900">Ceremony</h4>
+                        <span className="text-lg font-medium text-gray-900">-</span>
+                        <select
+                          value={selectedCeremonyGuestArrivalEnsemble}
+                          onChange={(e) => setSelectedCeremonyGuestArrivalEnsemble(e.target.value)}
+                          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
+                        >
+                          {ceremonyEnsembles.map(ensemble => (
+                            <option key={ensemble} value={ensemble}>
+                              {ensemble}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="text-sm text-gray-600 font-medium">
+                        {getCeremonySongsCount()} songs available
+                      </div>
                     </div>
                   </div>
                   
@@ -4331,19 +4099,26 @@ export default function ClientPortal() {
                         <span className="text-sm text-gray-500">{guestArrivalRequests.length}/2 requests</span>
                       </div>
 
-                      {/* Add Guest Arrival Request Button */}
-                      {guestArrivalRequests.length < 2 && (
-                        <button
-                          onClick={() => setGuestArrivalRequests([...guestArrivalRequests, { clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
-                          className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
-                        >
-                          + Add Guest Arrival Song Request
-                        </button>
-                      )}
+                      {/* Song Requests Section */}
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <h4 className="text-lg font-medium text-gray-900">Song Requests</h4>
+                          <span className="text-sm text-gray-500">{guestArrivalRequests.length}/2 requests</span>
+                        </div>
+                        
+                        {/* Add Guest Arrival Request Button */}
+                        {guestArrivalRequests.length < 2 && (
+                          <button
+                            onClick={() => setGuestArrivalRequests([...guestArrivalRequests, { clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
+                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors mb-4"
+                          >
+                            + Add Guest Arrival Song Request
+                          </button>
+                        )}
 
-                      {/* Guest Arrival Requests List */}
-                      {guestArrivalRequests.map((request, index) => (
-                        <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
+                        {/* Guest Arrival Requests List */}
+                        {guestArrivalRequests.map((request, index) => (
+                          <div key={index} className="bg-white rounded-lg p-4 space-y-4 mb-4 border border-gray-200">
                           <div className="flex justify-between items-center">
                             <h4 className="font-medium text-gray-900">Request {index + 1}</h4>
                             <button
@@ -4420,12 +4195,83 @@ export default function ClientPortal() {
                         </div>
                       ))}
 
-                      {guestArrivalRequests.length === 0 && (
-                        <div className="text-center py-8 text-gray-500">
-                          <p>No guest arrival song requests added yet</p>
-                          <p className="text-sm mt-1">Click "Add Guest Arrival Song Request" to get started</p>
+                        {guestArrivalRequests.length === 0 && (
+                          <div className="text-center py-4 text-gray-500">
+                            <p className="text-sm">No guest arrival song requests added yet</p>
+                            <p className="text-xs mt-1">Click "Add Guest Arrival Song Request" to get started</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Request Playlist Section */}
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <h4 className="text-lg font-medium text-gray-900">Request Playlist</h4>
+                          <span className="text-sm text-gray-500">{ceremonyPlaylists.length}/1 playlist</span>
                         </div>
-                      )}
+                        
+                        {/* Add Playlist Button */}
+                        {ceremonyPlaylists.length < 1 && (
+                          <button
+                            onClick={() => setCeremonyPlaylists([...ceremonyPlaylists, { playlistDescription: '', playlistLink: '' }])}
+                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors mb-4"
+                          >
+                            + Add Request Playlist
+                          </button>
+                        )}
+                        
+                        {/* Playlist Request List */}
+                        {ceremonyPlaylists.map((playlist, index) => (
+                          <div key={index} className="bg-white rounded-lg p-4 space-y-4 mb-4 border border-gray-200">
+                            <div className="flex justify-between items-center">
+                              <h5 className="font-medium text-gray-900">Playlist {index + 1}</h5>
+                              <button
+                                onClick={() => setCeremonyPlaylists(ceremonyPlaylists.filter((_, i) => i !== index))}
+                                className="text-red-600 hover:text-red-800 text-sm"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                            
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Description</label>
+                              <input
+                                type="text"
+                                value={playlist.playlistDescription}
+                                onChange={(e) => {
+                                  const newPlaylists = [...ceremonyPlaylists];
+                                  newPlaylists[index].playlistDescription = e.target.value;
+                                  setCeremonyPlaylists(newPlaylists);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                placeholder="Describe the playlist"
+                              />
+                            </div>
+                            
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Link</label>
+                              <input
+                                type="url"
+                                value={playlist.playlistLink}
+                                onChange={(e) => {
+                                  const newPlaylists = [...ceremonyPlaylists];
+                                  newPlaylists[index].playlistLink = e.target.value;
+                                  setCeremonyPlaylists(newPlaylists);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                placeholder="Spotify, Apple Music, or other playlist link"
+                              />
+                            </div>
+                          </div>
+                        ))}
+                        
+                        {ceremonyPlaylists.length === 0 && (
+                          <div className="text-center py-4 text-gray-500">
+                            <p className="text-sm">No playlist request added yet</p>
+                            <p className="text-xs mt-1">Click "Add Request Playlist" to get started</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
 
@@ -4722,20 +4568,25 @@ export default function ClientPortal() {
                 <h2 className="text-2xl font-bold text-purple-600 text-center">Cocktail Hour</h2>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <div className="mb-6">
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-lg font-medium text-gray-900">Cocktail Hour</h4>
-                      <span className="text-lg font-medium text-gray-900">-</span>
-                      <select
-                        value={selectedCocktailHourEnsemble}
-                        onChange={(e) => setSelectedCocktailHourEnsemble(e.target.value)}
-                        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
-                      >
-                        {[...cocktailHourEnsembles].sort().map(ensemble => (
-                          <option key={ensemble} value={ensemble}>
-                            {ensemble}
-                          </option>
-                        ))}
-                      </select>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-lg font-medium text-gray-900">Cocktail Hour</h4>
+                        <span className="text-lg font-medium text-gray-900">-</span>
+                        <select
+                          value={selectedCocktailHourEnsemble}
+                          onChange={(e) => setSelectedCocktailHourEnsemble(e.target.value)}
+                          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
+                        >
+                          {[...cocktailHourEnsembles].sort().map(ensemble => (
+                            <option key={ensemble} value={ensemble}>
+                              {ensemble}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="text-sm text-gray-600 font-medium">
+                        {getCocktailHourSongsCount()} songs available
+                      </div>
                     </div>
                   </div>
                   
@@ -4753,16 +4604,6 @@ export default function ClientPortal() {
                         Cocktail Hour Song List
                       </button>
                       <button
-                        onClick={() => setActiveCocktailHourTab('special-songs')}
-                        className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeCocktailHourTab === 'special-songs'
-                            ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
-                        }`}
-                      >
-                        Special Songs
-                      </button>
-                      <button
                         onClick={() => setActiveCocktailHourTab('song-requests')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeCocktailHourTab === 'song-requests'
@@ -4775,194 +4616,34 @@ export default function ClientPortal() {
                     </nav>
                   </div>
 
-                  {/* Special Moments Content */}
-                  {activeCocktailHourTab === 'special-songs' && (
-                    <div className="space-y-6">
-                      <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-medium text-gray-900">Special Songs</h3>
-                        <span className="text-sm text-gray-500">{cocktailHourSpecialMoments.length} songs</span>
-                      </div>
-
-                      {/* Add Special Moment Button */}
-                      <button
-                        onClick={() => setCocktailHourSpecialMoments([...cocktailHourSpecialMoments, { specialMomentType: '', clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
-                        className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
-                      >
-                        + Add Special Song
-                      </button>
-
-                      {/* Special Moments List */}
-                      {cocktailHourSpecialMoments.map((moment, index) => (
-                        <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
-                          <div className="flex justify-between items-center">
-                            <h4 className="font-medium text-gray-900">Special Song {index + 1}</h4>
-                            <button
-                              onClick={() => setCocktailHourSpecialMoments(cocktailHourSpecialMoments.filter((_, i) => i !== index))}
-                              className="text-red-600 hover:text-red-800 text-sm"
-                            >
-                              Remove
-                            </button>
-                          </div>
-
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Special Moment</label>
-                              <select
-                                value={moment.specialMomentType}
-                                onChange={(e) => {
-                                  const newMoments = [...cocktailHourSpecialMoments];
-                                  newMoments[index].specialMomentType = e.target.value;
-                                  setCocktailHourSpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                              >
-                                <option value="">Select special moment</option>
-                                {getSpecialMomentTypes('cocktail-hour').map((type) => (
-                                  <option key={type} value={type}>
-                                    {type}
-                                  </option>
-                                ))}
-                              </select>
-                            </div>
-
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Song</label>
-                              {moment.specialMomentType && getRecommendedSongs(moment.specialMomentType).length > 0 ? (
-                                <select
-                                  value={moment.clientSongTitle}
-                                  onChange={(e) => {
-                                    const newMoments = [...cocktailHourSpecialMoments];
-                                    const selectedSong = getRecommendedSongs(moment.specialMomentType).find((s: any) => s.title === e.target.value);
-                                    newMoments[index].clientSongTitle = e.target.value;
-                                    if (selectedSong) {
-                                      newMoments[index].clientArtist = selectedSong.artist;
-                                      // Prefer videoUrl (YouTube), fallback to spotifyUrl
-                                      newMoments[index].clientLink = selectedSong.videoUrl || selectedSong.spotifyUrl || '';
-                                    }
-                                    setCocktailHourSpecialMoments(newMoments);
-                                  }}
-                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                >
-                                  <option value="">Select a recommended song...</option>
-                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string, spotifyUrl?: string}, songIndex: number) => (
-                                    <option key={songIndex} value={song.title}>
-                                      {song.title} - {song.artist}
-                                    </option>
-                                  ))}
-                                </select>
-                              ) : (
-                              <input
-                                type="text"
-                                value={moment.clientSongTitle}
-                                onChange={(e) => {
-                                  const newMoments = [...cocktailHourSpecialMoments];
-                                  newMoments[index].clientSongTitle = e.target.value;
-                                  setCocktailHourSpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                  placeholder={moment.specialMomentType ? "Enter song title (no recommendations available)" : "Select a special moment first"}
-                              />
-                              )}
-                            </div>
-                          </div>
-
-                          {/* Reason field - show when Custom is selected */}
-                          {moment.specialMomentType === 'Custom' && (
-                            <div className="mt-4">
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Reason for this song</label>
-                              <textarea
-                                value={moment.reason || ''}
-                                onChange={(e) => {
-                                  const newMoments = [...cocktailHourSpecialMoments];
-                                  newMoments[index].reason = e.target.value;
-                                  setCocktailHourSpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Explain why this song is special for this moment"
-                                rows={3}
-                              />
-                            </div>
-                          )}
-
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Artist</label>
-                              <input
-                                type="text"
-                                value={moment.clientArtist}
-                                onChange={(e) => {
-                                  const newMoments = [...cocktailHourSpecialMoments];
-                                  newMoments[index].clientArtist = e.target.value;
-                                  setCocktailHourSpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Enter artist name"
-                              />
-                            </div>
-
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Link (Optional)</label>
-                              <input
-                                type="url"
-                                value={moment.clientLink}
-                                onChange={(e) => {
-                                  const newMoments = [...cocktailHourSpecialMoments];
-                                  newMoments[index].clientLink = e.target.value;
-                                  setCocktailHourSpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="YouTube, Spotify, or other link"
-                              />
-                            </div>
-                          </div>
-
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Note</label>
-                            <textarea
-                              value={moment.clientNote}
-                              onChange={(e) => {
-                                const newMoments = [...cocktailHourSpecialMoments];
-                                newMoments[index].clientNote = e.target.value;
-                                setCocktailHourSpecialMoments(newMoments);
-                              }}
-                              rows={1}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                              placeholder="Special instructions or notes"
-                            />
-                          </div>
-                        </div>
-                      ))}
-
-                      {cocktailHourSpecialMoments.length === 0 && (
-                        <div className="text-center py-8 text-gray-500">
-                          <p>No special songs added yet</p>
-                          <p className="text-sm mt-1">Click "Add Special Song" to get started</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
                   {/* Song Requests Content */}
                   {activeCocktailHourTab === 'song-requests' && (
                     <div className="space-y-6">
                       <div className="flex justify-between items-center">
                         <h3 className="text-lg font-medium text-gray-900">Song Requests</h3>
-                        <span className="text-sm text-gray-500">{cocktailHourRequests.length}/5 requests</span>
+                        <span className="text-sm text-gray-500">{cocktailHourRequests.length}/2 requests</span>
                       </div>
 
-                      {/* Add Request Button */}
-                      {cocktailHourRequests.length < 5 && (
-                        <button
-                          onClick={() => setCocktailHourRequests([...cocktailHourRequests, { clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
-                          className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
-                        >
-                          + Add Song Request
-                        </button>
-                      )}
+                      {/* Song Requests Section */}
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <h4 className="text-lg font-medium text-gray-900">Song Requests</h4>
+                          <span className="text-sm text-gray-500">{cocktailHourRequests.length}/2 requests</span>
+                        </div>
+                        
+                        {/* Add Request Button */}
+                        {cocktailHourRequests.length < 2 && (
+                          <button
+                            onClick={() => setCocktailHourRequests([...cocktailHourRequests, { clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
+                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors mb-4"
+                          >
+                            + Add Song Request
+                          </button>
+                        )}
 
-                      {/* Song Requests List */}
-                      {cocktailHourRequests.map((request, index) => (
-                        <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
+                        {/* Song Requests List */}
+                        {cocktailHourRequests.map((request, index) => (
+                          <div key={index} className="bg-white rounded-lg p-4 space-y-4 mb-4 border border-gray-200">
                           <div className="flex justify-between items-center">
                             <h4 className="font-medium text-gray-900">Request {index + 1}</h4>
                             <button
@@ -5039,12 +4720,83 @@ export default function ClientPortal() {
                         </div>
                       ))}
 
-                      {cocktailHourRequests.length === 0 && (
-                        <div className="text-center py-8 text-gray-500">
-                          <p>No song requests added yet</p>
-                          <p className="text-sm mt-1">Click "Add Song Request" to get started</p>
+                        {cocktailHourRequests.length === 0 && (
+                          <div className="text-center py-4 text-gray-500">
+                            <p className="text-sm">No song requests added yet</p>
+                            <p className="text-xs mt-1">Click "Add Song Request" to get started</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Request Playlist Section */}
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <h4 className="text-lg font-medium text-gray-900">Request Playlist</h4>
+                          <span className="text-sm text-gray-500">{cocktailHourPlaylists.length}/1 playlist</span>
                         </div>
-                      )}
+                        
+                        {/* Add Playlist Button */}
+                        {cocktailHourPlaylists.length < 1 && (
+                          <button
+                            onClick={() => setCocktailHourPlaylists([...cocktailHourPlaylists, { playlistDescription: '', playlistLink: '' }])}
+                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors mb-4"
+                          >
+                            + Add Request Playlist
+                          </button>
+                        )}
+                        
+                        {/* Playlist Request List */}
+                        {cocktailHourPlaylists.map((playlist, index) => (
+                          <div key={index} className="bg-white rounded-lg p-4 space-y-4 mb-4 border border-gray-200">
+                            <div className="flex justify-between items-center">
+                              <h5 className="font-medium text-gray-900">Playlist {index + 1}</h5>
+                              <button
+                                onClick={() => setCocktailHourPlaylists(cocktailHourPlaylists.filter((_, i) => i !== index))}
+                                className="text-red-600 hover:text-red-800 text-sm"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                            
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Description</label>
+                              <input
+                                type="text"
+                                value={playlist.playlistDescription}
+                                onChange={(e) => {
+                                  const newPlaylists = [...cocktailHourPlaylists];
+                                  newPlaylists[index].playlistDescription = e.target.value;
+                                  setCocktailHourPlaylists(newPlaylists);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                placeholder="Describe the playlist"
+                              />
+                            </div>
+                            
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Link</label>
+                              <input
+                                type="url"
+                                value={playlist.playlistLink}
+                                onChange={(e) => {
+                                  const newPlaylists = [...cocktailHourPlaylists];
+                                  newPlaylists[index].playlistLink = e.target.value;
+                                  setCocktailHourPlaylists(newPlaylists);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                placeholder="Spotify, Apple Music, or other playlist link"
+                              />
+                            </div>
+                          </div>
+                        ))}
+                        
+                        {cocktailHourPlaylists.length === 0 && (
+                          <div className="text-center py-4 text-gray-500">
+                            <p className="text-sm">No playlist request added yet</p>
+                            <p className="text-xs mt-1">Click "Add Request Playlist" to get started</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
 
@@ -5338,26 +5090,28 @@ export default function ClientPortal() {
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <h2 className="text-2xl font-bold text-purple-600 text-center flex-1">Reception</h2>
-                  <div className="text-sm text-gray-600 font-medium">
-                    {getReceptionSongsCount()} songs available
-                  </div>
                 </div>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <div className="mb-6">
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-lg font-medium text-gray-900">Reception</h4>
-                      <span className="text-lg font-medium text-gray-900">-</span>
-                      <select
-                        value={selectedReceptionEnsemble}
-                        onChange={(e) => setSelectedReceptionEnsemble(e.target.value)}
-                        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
-                      >
-                        {receptionAndAfterPartyEnsembles.map((ensemble) => (
-                          <option key={ensemble} value={ensemble}>
-                            {ensemble}
-                          </option>
-                        ))}
-                      </select>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-lg font-medium text-gray-900">Reception</h4>
+                        <span className="text-lg font-medium text-gray-900">-</span>
+                        <select
+                          value={selectedReceptionEnsemble}
+                          onChange={(e) => setSelectedReceptionEnsemble(e.target.value)}
+                          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
+                        >
+                          {receptionAndAfterPartyEnsembles.map((ensemble) => (
+                            <option key={ensemble} value={ensemble}>
+                              {ensemble}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="text-sm text-gray-600 font-medium">
+                        {getReceptionSongsCount()} songs available
+                      </div>
                     </div>
                   </div>
                   
@@ -5575,18 +5329,18 @@ export default function ClientPortal() {
                       </div>
 
                       {/* Essential Song Requests */}
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center">
-                          <h3 className="text-lg font-medium text-gray-900">Essential Song Requests</h3>
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <h4 className="text-lg font-medium text-gray-900">Essential Song Requests</h4>
                           <span className="text-sm text-gray-500">{receptionEssentialRequests.length}/2 requests</span>
                         </div>
-                        <p className="text-sm text-gray-600">Your most important requests - songs we can't leave the building until they've been played</p>
+                        <p className="text-sm text-gray-600 mb-4">Your most important requests - songs we can't leave the building until they've been played</p>
 
                         {/* Add Essential Request Button */}
                         {receptionEssentialRequests.length < 2 && (
                           <button
                             onClick={() => setReceptionEssentialRequests([...receptionEssentialRequests, { clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
-                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
+                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors mb-4"
                           >
                             + Add Essential Song Request
                           </button>
@@ -5594,7 +5348,7 @@ export default function ClientPortal() {
 
                         {/* Essential Requests List */}
                         {receptionEssentialRequests.map((request, index) => (
-                          <div key={index} className="bg-red-50 border border-red-200 rounded-lg p-4 space-y-4">
+                          <div key={index} className="bg-white rounded-lg p-4 space-y-4 mb-4 border border-gray-200">
                             <div className="flex justify-between items-center">
                               <h4 className="font-medium text-gray-900">Essential Request {index + 1}</h4>
                               <button
@@ -5673,18 +5427,18 @@ export default function ClientPortal() {
                       </div>
 
                       {/* Additional Song Requests */}
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center">
-                          <h3 className="text-lg font-medium text-gray-900">Additional Song Requests</h3>
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <h4 className="text-lg font-medium text-gray-900">Additional Song Requests</h4>
                           <span className="text-sm text-gray-500">{receptionAdditionalRequests.length}/5 requests</span>
                         </div>
-                        <p className="text-sm text-gray-600">More songs or artists you want to hear - we'll play as many as we possibly can!</p>
+                        <p className="text-sm text-gray-600 mb-4">More songs or artists you want to hear - we'll play as many as we possibly can!</p>
 
                         {/* Add Additional Request Button */}
                         {receptionAdditionalRequests.length < 5 && (
                           <button
                             onClick={() => setReceptionAdditionalRequests([...receptionAdditionalRequests, { clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
-                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
+                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors mb-4"
                           >
                             + Add Additional Song Request
                           </button>
@@ -5692,7 +5446,7 @@ export default function ClientPortal() {
 
                         {/* Additional Requests List */}
                         {receptionAdditionalRequests.map((request, index) => (
-                          <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
+                          <div key={index} className="bg-white rounded-lg p-4 space-y-4 mb-4 border border-gray-200">
                             <div className="flex justify-between items-center">
                               <h4 className="font-medium text-gray-900">Additional Request {index + 1}</h4>
                               <button
@@ -5768,29 +5522,36 @@ export default function ClientPortal() {
                             </div>
                           </div>
                         ))}
+                        
+                        {receptionAdditionalRequests.length === 0 && (
+                          <div className="text-center py-4 text-gray-500">
+                            <p className="text-sm">No additional song requests added yet</p>
+                            <p className="text-xs mt-1">Click "Add Additional Song Request" to get started</p>
+                          </div>
+                        )}
                       </div>
 
                       {/* Playlist Links */}
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center">
-                          <h3 className="text-lg font-medium text-gray-900">Playlist Links</h3>
-                          <span className="text-sm text-gray-500">{receptionPlaylists.length}/5 playlists</span>
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <h4 className="text-lg font-medium text-gray-900">Request Playlists</h4>
+                          <span className="text-sm text-gray-500">{receptionPlaylists.length}/3 playlists</span>
                         </div>
-                        <p className="text-sm text-gray-600">Share your Spotify, Apple Music, or other playlists with us - share your musical mood board!</p>
+                        <p className="text-sm text-gray-600 mb-4">Share your Spotify, Apple Music, or other playlists with us - share your musical mood board!</p>
 
                         {/* Add Playlist Button */}
-                        {receptionPlaylists.length < 5 && (
+                        {receptionPlaylists.length < 3 && (
                           <button
-                            onClick={() => setReceptionPlaylists([...receptionPlaylists, { playlistLink: '', playlistType: '', playlistNote: '' }])}
-                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
+                            onClick={() => setReceptionPlaylists([...receptionPlaylists, { playlistLink: '', playlistType: '', customType: '', notes: '' }])}
+                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors mb-4"
                           >
-                            + Add Playlist Link
+                            + Add Request Playlist
                           </button>
                         )}
 
                         {/* Playlists List */}
                         {receptionPlaylists.map((playlist, index) => (
-                          <div key={index} className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-4">
+                          <div key={index} className="bg-white rounded-lg p-4 space-y-4 mb-4 border border-gray-200">
                             <div className="flex justify-between items-center">
                               <h4 className="font-medium text-gray-900">Playlist {index + 1}</h4>
                               <button
@@ -5802,6 +5563,41 @@ export default function ClientPortal() {
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Type</label>
+                                <select
+                                  value={playlist.playlistType}
+                                  onChange={(e) => {
+                                    const newPlaylists = [...receptionPlaylists];
+                                    newPlaylists[index].playlistType = e.target.value;
+                                    if (e.target.value !== 'Custom') {
+                                      newPlaylists[index].customType = '';
+                                    }
+                                    setReceptionPlaylists(newPlaylists);
+                                  }}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                >
+                                  <option value="">Select playlist type</option>
+                                  <option value="Dancing Requests">Dancing Requests</option>
+                                  <option value="Background Music">Background Music</option>
+                                  <option value="Cultural Music">Cultural Music</option>
+                                  <option value="Custom">Custom</option>
+                                </select>
+                                {playlist.playlistType === 'Custom' && (
+                                  <input
+                                    type="text"
+                                    value={playlist.customType}
+                                    onChange={(e) => {
+                                      const newPlaylists = [...receptionPlaylists];
+                                      newPlaylists[index].customType = e.target.value;
+                                      setReceptionPlaylists(newPlaylists);
+                                    }}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 mt-2"
+                                    placeholder="Enter custom playlist type/description"
+                                  />
+                                )}
+                              </div>
+
                               <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Link</label>
                                 <input
@@ -5816,42 +5612,192 @@ export default function ClientPortal() {
                                   placeholder="Spotify, Apple Music, or other playlist link"
                                 />
                               </div>
-
-                              <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Type</label>
-                                <select
-                                  value={playlist.playlistType}
-                                  onChange={(e) => {
-                                    const newPlaylists = [...receptionPlaylists];
-                                    newPlaylists[index].playlistType = e.target.value;
-                                    setReceptionPlaylists(newPlaylists);
-                                  }}
-                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                >
-                                  <option value="">Select playlist type</option>
-                                  <option value="Dancing Requests">Dancing Requests</option>
-                                  <option value="Background Music">Background Music</option>
-                                  <option value="Cultural Music">Cultural Music</option>
-                                </select>
-                              </div>
                             </div>
 
                             <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Note</label>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
                               <textarea
-                                value={playlist.playlistNote}
+                                value={playlist.notes}
                                 onChange={(e) => {
                                   const newPlaylists = [...receptionPlaylists];
-                                  newPlaylists[index].playlistNote = e.target.value;
+                                  newPlaylists[index].notes = e.target.value;
                                   setReceptionPlaylists(newPlaylists);
                                 }}
                                 rows={2}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Tell us about this playlist or any special notes"
+                                placeholder="Special instructions or notes about this playlist"
                               />
                             </div>
                           </div>
                         ))}
+                        
+                        {receptionPlaylists.length === 0 && (
+                          <div className="text-center py-4 text-gray-500">
+                            <p className="text-sm">No playlist requests added yet</p>
+                            <p className="text-xs mt-1">Click "Add Request Playlist" to get started</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Dinner Break Playlist */}
+                      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2 text-center">Dinner Break Playlist</h3>
+                        <p className="text-gray-600 mb-6 text-center italic">We will take a short dinner break, choose a playlist we can put on!</p>
+                        
+                        <div className="space-y-3">
+                          {/* Option 1: Classics */}
+                          <div 
+                            onClick={() => {
+                              setSelectedDinnerBreakPlaylist('classics');
+                              setCustomDinnerBreakPlaylistLink('');
+                            }}
+                            className={`border rounded-lg p-4 cursor-pointer transition-colors ${
+                              selectedDinnerBreakPlaylist === 'classics' 
+                                ? 'border-purple-500 bg-purple-50' 
+                                : 'border-gray-200 hover:border-purple-300'
+                            }`}
+                          >
+                            <div className="flex justify-between items-center">
+                              <a 
+                                href="#" 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  // Prevent default only for placeholder links
+                                  if (e.currentTarget.getAttribute('href') === '#') {
+                                    e.preventDefault();
+                                  }
+                                  // TODO: Replace href="#" with actual playlist links
+                                }}
+                                className="font-medium text-purple-600 underline hover:text-purple-800"
+                              >
+                                Dinner Playlist #1 (Classics)
+                              </a>
+                              <div className="flex items-center space-x-2">
+                                {selectedDinnerBreakPlaylist === 'classics' ? (
+                                  <span className="text-purple-600">✓</span>
+                                ) : (
+                                  <span className="text-gray-400">☐</span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Option 2: Contemporary */}
+                          <div 
+                            onClick={() => {
+                              setSelectedDinnerBreakPlaylist('contemporary');
+                              setCustomDinnerBreakPlaylistLink('');
+                            }}
+                            className={`border rounded-lg p-4 cursor-pointer transition-colors ${
+                              selectedDinnerBreakPlaylist === 'contemporary' 
+                                ? 'border-purple-500 bg-purple-50' 
+                                : 'border-gray-200 hover:border-purple-300'
+                            }`}
+                          >
+                            <div className="flex justify-between items-center">
+                              <a 
+                                href="#" 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  // Prevent default only for placeholder links
+                                  if (e.currentTarget.getAttribute('href') === '#') {
+                                    e.preventDefault();
+                                  }
+                                  // TODO: Replace href="#" with actual playlist links
+                                }}
+                                className="font-medium text-purple-600 underline hover:text-purple-800"
+                              >
+                                Dinner Playlist #2 (Contemporary)
+                              </a>
+                              <div className="flex items-center space-x-2">
+                                {selectedDinnerBreakPlaylist === 'contemporary' ? (
+                                  <span className="text-purple-600">✓</span>
+                                ) : (
+                                  <span className="text-gray-400">☐</span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Option 3: Light Rock */}
+                          <div 
+                            onClick={() => {
+                              setSelectedDinnerBreakPlaylist('light-rock');
+                              setCustomDinnerBreakPlaylistLink('');
+                            }}
+                            className={`border rounded-lg p-4 cursor-pointer transition-colors ${
+                              selectedDinnerBreakPlaylist === 'light-rock' 
+                                ? 'border-purple-500 bg-purple-50' 
+                                : 'border-gray-200 hover:border-purple-300'
+                            }`}
+                          >
+                            <div className="flex justify-between items-center">
+                              <a 
+                                href="#" 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  // Prevent default only for placeholder links
+                                  if (e.currentTarget.getAttribute('href') === '#') {
+                                    e.preventDefault();
+                                  }
+                                  // TODO: Replace href="#" with actual playlist links
+                                }}
+                                className="font-medium text-purple-600 underline hover:text-purple-800"
+                              >
+                                Dinner Playlist #3 (Light Rock)
+                              </a>
+                              <div className="flex items-center space-x-2">
+                                {selectedDinnerBreakPlaylist === 'light-rock' ? (
+                                  <span className="text-purple-600">✓</span>
+                                ) : (
+                                  <span className="text-gray-400">☐</span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Option 4: Client-Provided List */}
+                          <div 
+                            onClick={() => setSelectedDinnerBreakPlaylist('custom')}
+                            className={`border rounded-lg p-4 cursor-pointer transition-colors ${
+                              selectedDinnerBreakPlaylist === 'custom' 
+                                ? 'border-purple-500 bg-purple-50' 
+                                : 'border-gray-200 hover:border-purple-300'
+                            }`}
+                          >
+                            <div className="flex justify-between items-center mb-3">
+                              <h4 className="font-medium text-gray-900">Client-Provided List</h4>
+                              <div className="flex items-center space-x-2">
+                                {selectedDinnerBreakPlaylist === 'custom' ? (
+                                  <span className="text-purple-600">✓</span>
+                                ) : (
+                                  <span className="text-gray-400">☐</span>
+                                )}
+                              </div>
+                            </div>
+                            
+                            {selectedDinnerBreakPlaylist === 'custom' && (
+                              <div 
+                                onClick={(e) => e.stopPropagation()}
+                                className="mt-3 pt-3 border-t border-gray-200"
+                              >
+                                <input
+                                  type="url"
+                                  value={customDinnerBreakPlaylistLink}
+                                  onChange={(e) => setCustomDinnerBreakPlaylistLink(e.target.value)}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900"
+                                  placeholder="Enter playlist link (Spotify, Apple Music, etc.)"
+                                />
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -6071,26 +6017,28 @@ export default function ClientPortal() {
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <h2 className="text-2xl font-bold text-purple-600 text-center flex-1">After Party</h2>
-                  <div className="text-sm text-gray-600 font-medium">
-                    {getAfterPartySongsCount()} songs available
-                  </div>
                 </div>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <div className="mb-6">
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-lg font-medium text-gray-900">After Party</h4>
-                      <span className="text-lg font-medium text-gray-900">-</span>
-                      <select
-                        value={selectedAfterPartyEnsemble}
-                        onChange={(e) => setSelectedAfterPartyEnsemble(e.target.value)}
-                        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
-                      >
-                        {receptionAndAfterPartyEnsembles.map((ensemble) => (
-                          <option key={ensemble} value={ensemble}>
-                            {ensemble}
-                          </option>
-                        ))}
-                      </select>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-lg font-medium text-gray-900">After Party</h4>
+                        <span className="text-lg font-medium text-gray-900">-</span>
+                        <select
+                          value={selectedAfterPartyEnsemble}
+                          onChange={(e) => setSelectedAfterPartyEnsemble(e.target.value)}
+                          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 bg-white"
+                        >
+                          {receptionAndAfterPartyEnsembles.map((ensemble) => (
+                            <option key={ensemble} value={ensemble}>
+                              {ensemble}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="text-sm text-gray-600 font-medium">
+                        {getAfterPartySongsCount()} songs available
+                      </div>
                     </div>
                   </div>
                   
@@ -6108,16 +6056,6 @@ export default function ClientPortal() {
                         After Party Song List
                       </button>
                       <button
-                        onClick={() => setActiveAfterPartyTab('special-songs')}
-                        className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                          activeAfterPartyTab === 'special-songs'
-                            ? 'border-purple-500 text-purple-600'
-                            : 'border-transparent text-gray-900 hover:text-purple-600 hover:border-purple-300'
-                        }`}
-                      >
-                        Special Songs
-                      </button>
-                      <button
                         onClick={() => setActiveAfterPartyTab('special-requests')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${
                           activeAfterPartyTab === 'special-requests'
@@ -6130,173 +6068,6 @@ export default function ClientPortal() {
                     </nav>
                   </div>
 
-                  {/* Special Moments Content */}
-                  {activeAfterPartyTab === 'special-songs' && (
-                    <div className="space-y-6">
-                      <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-medium text-gray-900">Special Songs</h3>
-                        <span className="text-sm text-gray-500">{afterPartySpecialMoments.length} songs</span>
-                      </div>
-
-                      {/* Add Special Moment Button */}
-                      <button
-                        onClick={() => setAfterPartySpecialMoments([...afterPartySpecialMoments, { specialMomentType: '', clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
-                        className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
-                      >
-                        + Add Special Song
-                      </button>
-
-                      {/* Special Moments List */}
-                      {afterPartySpecialMoments.map((moment, index) => (
-                        <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
-                          <div className="flex justify-between items-center">
-                            <h4 className="font-medium text-gray-900">Special Song {index + 1}</h4>
-                            <button
-                              onClick={() => setAfterPartySpecialMoments(afterPartySpecialMoments.filter((_, i) => i !== index))}
-                              className="text-red-600 hover:text-red-800 text-sm"
-                            >
-                              Remove
-                            </button>
-                          </div>
-
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Special Moment</label>
-                              <select
-                                value={moment.specialMomentType}
-                                onChange={(e) => {
-                                  const newMoments = [...afterPartySpecialMoments];
-                                  newMoments[index].specialMomentType = e.target.value;
-                                  setAfterPartySpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                              >
-                                <option value="">Select special moment</option>
-                                {getSpecialMomentTypes('after-party').map((type) => (
-                                  <option key={type} value={type}>
-                                    {type}
-                                  </option>
-                                ))}
-                              </select>
-                            </div>
-
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Song</label>
-                              {moment.specialMomentType && getRecommendedSongs(moment.specialMomentType).length > 0 ? (
-                                <select
-                                  value={moment.clientSongTitle}
-                                  onChange={(e) => {
-                                    const newMoments = [...afterPartySpecialMoments];
-                                    const selectedSong = getRecommendedSongs(moment.specialMomentType).find((s: any) => s.title === e.target.value);
-                                    newMoments[index].clientSongTitle = e.target.value;
-                                    if (selectedSong) {
-                                      newMoments[index].clientArtist = selectedSong.artist;
-                                      // Prefer videoUrl (YouTube), fallback to spotifyUrl
-                                      newMoments[index].clientLink = selectedSong.videoUrl || selectedSong.spotifyUrl || '';
-                                    }
-                                    setAfterPartySpecialMoments(newMoments);
-                                  }}
-                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                >
-                                  <option value="">Select a recommended song...</option>
-                                  {getRecommendedSongs(moment.specialMomentType).map((song: {title: string, artist: string, videoUrl: string, spotifyUrl?: string}, songIndex: number) => (
-                                    <option key={songIndex} value={song.title}>
-                                      {song.title} - {song.artist}
-                                    </option>
-                                  ))}
-                                </select>
-                              ) : (
-                              <input
-                                type="text"
-                                value={moment.clientSongTitle}
-                                onChange={(e) => {
-                                  const newMoments = [...afterPartySpecialMoments];
-                                  newMoments[index].clientSongTitle = e.target.value;
-                                  setAfterPartySpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                  placeholder={moment.specialMomentType ? "Enter song title (no recommendations available)" : "Select a special moment first"}
-                              />
-                              )}
-                            </div>
-                          </div>
-
-                          {/* Reason field - show when Custom is selected */}
-                          {moment.specialMomentType === 'Custom' && (
-                            <div className="mt-4">
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Reason for this song</label>
-                              <textarea
-                                value={moment.reason || ''}
-                                onChange={(e) => {
-                                  const newMoments = [...afterPartySpecialMoments];
-                                  newMoments[index].reason = e.target.value;
-                                  setAfterPartySpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Explain why this song is special for this moment"
-                                rows={3}
-                              />
-                            </div>
-                          )}
-
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Artist</label>
-                              <input
-                                type="text"
-                                value={moment.clientArtist}
-                                onChange={(e) => {
-                                  const newMoments = [...afterPartySpecialMoments];
-                                  newMoments[index].clientArtist = e.target.value;
-                                  setAfterPartySpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="Enter artist name"
-                              />
-                            </div>
-
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Link (Optional)</label>
-                              <input
-                                type="url"
-                                value={moment.clientLink}
-                                onChange={(e) => {
-                                  const newMoments = [...afterPartySpecialMoments];
-                                  newMoments[index].clientLink = e.target.value;
-                                  setAfterPartySpecialMoments(newMoments);
-                                }}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                                placeholder="YouTube, Spotify, or other link"
-                              />
-                            </div>
-                          </div>
-
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Note</label>
-                            <textarea
-                              value={moment.clientNote}
-                              onChange={(e) => {
-                                const newMoments = [...afterPartySpecialMoments];
-                                newMoments[index].clientNote = e.target.value;
-                                setAfterPartySpecialMoments(newMoments);
-                              }}
-                              rows={1}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                              placeholder="Special instructions or notes"
-                            />
-                          </div>
-                        </div>
-                      ))}
-
-                      {afterPartySpecialMoments.length === 0 && (
-                        <div className="text-center py-8 text-gray-500">
-                          <p>No special songs added yet</p>
-                          <p className="text-sm mt-1">Click "Add Special Song" to get started</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
                   {/* Song Requests Content */}
                   {activeAfterPartyTab === 'special-requests' && (
                     <div className="space-y-6">
@@ -6305,19 +6076,26 @@ export default function ClientPortal() {
                         <span className="text-sm text-gray-500">{afterPartySpecialRequests.length}/5 requests</span>
                       </div>
 
-                      {/* Add Request Button */}
-                      {afterPartySpecialRequests.length < 5 && (
-                        <button
-                          onClick={() => setAfterPartySpecialRequests([...afterPartySpecialRequests, { clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
-                          className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors"
-                        >
-                          + Add Song Request
-                        </button>
-                      )}
+                      {/* Song Requests Section */}
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <h4 className="text-lg font-medium text-gray-900">Song Requests</h4>
+                          <span className="text-sm text-gray-500">{afterPartySpecialRequests.length}/5 requests</span>
+                        </div>
+                        
+                        {/* Add Request Button */}
+                        {afterPartySpecialRequests.length < 5 && (
+                          <button
+                            onClick={() => setAfterPartySpecialRequests([...afterPartySpecialRequests, { clientSongTitle: '', clientArtist: '', clientLink: '', clientNote: '' }])}
+                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors mb-4"
+                          >
+                            + Add Song Request
+                          </button>
+                        )}
 
-                      {/* Song Requests List */}
-                      {afterPartySpecialRequests.map((request, index) => (
-                        <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
+                        {/* Song Requests List */}
+                        {afterPartySpecialRequests.map((request, index) => (
+                          <div key={index} className="bg-white rounded-lg p-4 space-y-4 mb-4 border border-gray-200">
                           <div className="flex justify-between items-center">
                             <h4 className="font-medium text-gray-900">Request {index + 1}</h4>
                             <button
@@ -6394,12 +6172,83 @@ export default function ClientPortal() {
                         </div>
                       ))}
 
-                      {afterPartySpecialRequests.length === 0 && (
-                        <div className="text-center py-8 text-gray-500">
-                          <p>No song requests added yet</p>
-                          <p className="text-sm mt-1">Click "Add Song Request" to get started</p>
+                        {afterPartySpecialRequests.length === 0 && (
+                          <div className="text-center py-4 text-gray-500">
+                            <p className="text-sm">No song requests added yet</p>
+                            <p className="text-xs mt-1">Click "Add Song Request" to get started</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Request Playlist Section */}
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <h4 className="text-lg font-medium text-gray-900">Request Playlist</h4>
+                          <span className="text-sm text-gray-500">{afterPartyPlaylists.length}/1 playlist</span>
                         </div>
-                      )}
+                        
+                        {/* Add Playlist Button */}
+                        {afterPartyPlaylists.length < 1 && (
+                          <button
+                            onClick={() => setAfterPartyPlaylists([...afterPartyPlaylists, { playlistDescription: '', playlistLink: '' }])}
+                            className="w-full py-3 px-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-purple-300 hover:text-purple-600 transition-colors mb-4"
+                          >
+                            + Add Request Playlist
+                          </button>
+                        )}
+                        
+                        {/* Playlist Request List */}
+                        {afterPartyPlaylists.map((playlist, index) => (
+                          <div key={index} className="bg-white rounded-lg p-4 space-y-4 mb-4 border border-gray-200">
+                            <div className="flex justify-between items-center">
+                              <h5 className="font-medium text-gray-900">Playlist {index + 1}</h5>
+                              <button
+                                onClick={() => setAfterPartyPlaylists(afterPartyPlaylists.filter((_, i) => i !== index))}
+                                className="text-red-600 hover:text-red-800 text-sm"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                            
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Description</label>
+                              <input
+                                type="text"
+                                value={playlist.playlistDescription}
+                                onChange={(e) => {
+                                  const newPlaylists = [...afterPartyPlaylists];
+                                  newPlaylists[index].playlistDescription = e.target.value;
+                                  setAfterPartyPlaylists(newPlaylists);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                placeholder="Describe the playlist"
+                              />
+                            </div>
+                            
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">Playlist Link</label>
+                              <input
+                                type="url"
+                                value={playlist.playlistLink}
+                                onChange={(e) => {
+                                  const newPlaylists = [...afterPartyPlaylists];
+                                  newPlaylists[index].playlistLink = e.target.value;
+                                  setAfterPartyPlaylists(newPlaylists);
+                                }}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                                placeholder="Spotify, Apple Music, or other playlist link"
+                              />
+                            </div>
+                          </div>
+                        ))}
+                        
+                        {afterPartyPlaylists.length === 0 && (
+                          <div className="text-center py-4 text-gray-500">
+                            <p className="text-sm">No playlist request added yet</p>
+                            <p className="text-xs mt-1">Click "Add Request Playlist" to get started</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
 
